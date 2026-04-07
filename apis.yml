@@ -1,7 +1,12 @@
 aid: amtrust-financial-services
-url: https://raw.githubusercontent.com/api-evangelist/amtrust-financial-services/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/amtrust-financial-services/refs/heads/main/apis.yml
 modified: '2026-03-23'
 apis: []
 common:
   - type: Website
     url: https://www.amtrust-financial-services.com
+description: >-
+  AmTrust Financial Services is a multinational property and casualty insurer specializing
+  in coverage for small businesses, including workers' compensation, commercial package,
+  and specialty risk programs.
