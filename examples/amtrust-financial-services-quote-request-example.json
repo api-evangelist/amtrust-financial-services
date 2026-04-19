@@ -1,0 +1,21 @@
+{
+  "product_type": "workers_compensation",
+  "state": "TX",
+  "effective_date": "2025-07-01",
+  "expiration_date": "2026-07-01",
+  "insured": {
+    "name": "Acme Contracting LLC",
+    "fein": "12-3456789",
+    "class_code": "8810",
+    "address": {
+      "street": "123 Main St",
+      "city": "Austin",
+      "state": "TX",
+      "zip": "78701"
+    },
+    "years_in_business": 5,
+    "payroll": 750000,
+    "employee_count": 25
+  },
+  "agent_id": "AGT-12345"
+}

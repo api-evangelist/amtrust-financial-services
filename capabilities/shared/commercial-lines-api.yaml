@@ -1,0 +1,183 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: AmTrust Commercial Lines API
+  description: Shared per-API capability definition for the AmTrust Commercial Lines API.
+  tags:
+  - AmTrust Financial Services
+  - Insurance
+  - Commercial Lines
+  created: '2026-04-19'
+  modified: '2026-04-19'
+binds:
+- namespace: env
+  keys:
+    AMTRUST_CLIENT_ID: AMTRUST_CLIENT_ID
+    AMTRUST_CLIENT_SECRET: AMTRUST_CLIENT_SECRET
+capability:
+  consumes:
+  - type: http
+    namespace: amtrust-commercial-lines
+    baseUri: https://api.amtrustservices.com
+    description: AmTrust Commercial Lines API for insurance quoting and binding
+    authentication:
+      type: bearer
+      token: '{{AMTRUST_ACCESS_TOKEN}}'
+    resources:
+    - name: appetite
+      path: /v1/appetite
+      description: Coverage appetite checks
+      operations:
+      - name: checkAppetite
+        method: POST
+        description: Check coverage appetite for a business
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: quotes
+      path: /v1/quotes
+      description: Quote management
+      operations:
+      - name: createQuote
+        method: POST
+        description: Create a commercial lines quote
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: listQuotes
+        method: GET
+        description: List quotes
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          required: false
+          description: Filter by status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: bindPolicy
+        method: POST
+        description: Bind a quoted policy
+        inputParameters:
+        - name: quote_id
+          in: path
+          type: string
+          required: true
+          description: Quote ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: policies
+      path: /v1/policies
+      description: Policy management
+      operations:
+      - name: getPolicy
+        method: GET
+        description: Retrieve policy details
+        inputParameters:
+        - name: policy_id
+          in: path
+          type: string
+          required: true
+          description: Policy number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8100
+    namespace: amtrust-commercial-lines-rest
+    resources:
+    - path: /v1/appetite
+      name: appetite
+      operations:
+      - method: POST
+        name: checkAppetite
+        description: Check coverage appetite
+        call: amtrust-commercial-lines.checkAppetite
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/quotes
+      name: quotes
+      operations:
+      - method: POST
+        name: createQuote
+        description: Create a quote
+        call: amtrust-commercial-lines.createQuote
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listQuotes
+        description: List quotes
+        call: amtrust-commercial-lines.listQuotes
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9100
+    namespace: amtrust-commercial-lines-mcp
+    transport: http
+    tools:
+    - name: check-appetite
+      description: Check coverage appetite for a business
+      hints:
+        readOnly: false
+      call: amtrust-commercial-lines.checkAppetite
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-quote
+      description: Create a commercial lines quote
+      hints:
+        readOnly: false
+      call: amtrust-commercial-lines.createQuote
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-quotes
+      description: List quotes
+      hints:
+        readOnly: true
+      call: amtrust-commercial-lines.listQuotes
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bind-policy
+      description: Bind a quoted policy
+      hints:
+        readOnly: false
+        destructive: false
+      call: amtrust-commercial-lines.bindPolicy
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-policy
+      description: Retrieve policy details
+      hints:
+        readOnly: true
+      call: amtrust-commercial-lines.getPolicy
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amtrust-financial-services/refs/heads/main/json-schema/amtrust-financial-services-policy-response-schema.json",
+  "title": "PolicyResponse",
+  "description": "Bound policy details",
+  "type": "object",
+  "properties": {
+    "policy_number": {
+      "type": "string",
+      "description": "Unique AmTrust policy number",
+      "example": "WC-2025-001234"
+    },
+    "status": {
+      "type": "string",
+      "description": "Policy status",
+      "enum": [
+        "active",
+        "cancelled",
+        "expired"
+      ],
+      "example": "active"
+    },
+    "product_type": {
+      "type": "string",
+      "description": "Insurance product type",
+      "example": "workers_compensation"
+    },
+    "premium": {
+      "type": "number",
+      "description": "Annual premium",
+      "example": 8250.0
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "example": "2025-07-01"
+    },
+    "expiration_date": {
+      "type": "string",
+      "format": "date",
+      "example": "2026-07-01"
+    },
+    "insured": {
+      "$ref": "#/components/schemas/Insured"
+    },
+    "bound_at": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2025-03-15T15:00:00Z"
+    }
+  }
+}

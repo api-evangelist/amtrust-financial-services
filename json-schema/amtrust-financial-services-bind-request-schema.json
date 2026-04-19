@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amtrust-financial-services/refs/heads/main/json-schema/amtrust-financial-services-bind-request-schema.json",
+  "title": "BindRequest",
+  "description": "Request to bind a quoted policy",
+  "type": "object",
+  "required": [
+    "agent_signature"
+  ],
+  "properties": {
+    "agent_signature": {
+      "type": "string",
+      "description": "Agent electronic signature confirming bind intent",
+      "example": "John Smith"
+    },
+    "payment_method": {
+      "type": "string",
+      "description": "Payment method for premium",
+      "enum": [
+        "direct_bill",
+        "agency_bill"
+      ],
+      "example": "direct_bill"
+    },
+    "additional_notes": {
+      "type": "string",
+      "description": "Optional notes for the policy",
+      "example": "Insured prefers monthly installments"
+    }
+  }
+}

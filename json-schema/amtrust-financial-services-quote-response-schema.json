@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amtrust-financial-services/refs/heads/main/json-schema/amtrust-financial-services-quote-response-schema.json",
+  "title": "QuoteResponse",
+  "description": "Quote response",
+  "type": "object",
+  "properties": {
+    "quote_id": {
+      "type": "string",
+      "description": "Unique quote identifier",
+      "example": "QT-2025-78901"
+    },
+    "status": {
+      "type": "string",
+      "description": "Quote status",
+      "enum": [
+        "pending",
+        "quoted",
+        "bound",
+        "expired"
+      ],
+      "example": "quoted"
+    },
+    "premium": {
+      "type": "number",
+      "description": "Annual premium amount",
+      "example": 8250.0
+    },
+    "product_type": {
+      "type": "string",
+      "description": "Insurance product type",
+      "example": "workers_compensation"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Policy effective date",
+      "example": "2025-07-01"
+    },
+    "expiration_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Policy expiration date",
+      "example": "2026-07-01"
+    },
+    "insured": {
+      "$ref": "#/components/schemas/Insured"
+    },
+    "bind_online": {
+      "type": "boolean",
+      "description": "Whether this quote can be bound online",
+      "example": true
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quote creation timestamp",
+      "example": "2025-03-15T14:30:00Z"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quote expiration timestamp",
+      "example": "2025-04-14T14:30:00Z"
+    }
+  }
+}

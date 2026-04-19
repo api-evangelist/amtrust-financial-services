@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amtrust-financial-services/refs/heads/main/json-schema/amtrust-financial-services-appetite-response-schema.json",
+  "title": "AppetiteResponse",
+  "description": "Coverage appetite check result",
+  "type": "object",
+  "properties": {
+    "eligible": {
+      "type": "boolean",
+      "description": "Whether AmTrust has appetite for this risk",
+      "example": true
+    },
+    "products": {
+      "type": "array",
+      "description": "Available products for this risk",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "workers_compensation"
+      ]
+    },
+    "bind_online": {
+      "type": "boolean",
+      "description": "Whether the policy can be bound online",
+      "example": true
+    },
+    "reason": {
+      "type": "string",
+      "description": "Reason if not eligible",
+      "example": "Eligible for online quoting and binding"
+    }
+  }
+}

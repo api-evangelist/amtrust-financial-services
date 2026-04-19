@@ -1,0 +1,754 @@
+openapi: 3.0.3
+info:
+  title: AmTrust Financial Services Commercial Lines API
+  description: The AmTrust Commercial Lines API enables insurance agents, brokers, and technology partners to review appetite, generate quotes, and bind commercial lines policies. Supports workers' 
+    compensation, BOP, general liability, and commercial package across 300+ eligible class codes.
+  version: 1.0.0
+  contact:
+    name: AmTrust API Support
+    url: https://amtrustfinancial.com/api
+  termsOfService: https://amtrustfinancial.com/terms-of-use
+  x-generated-from: documentation
+externalDocs:
+  description: AmTrust API Documentation
+  url: https://amtrustfinancial.com/api
+servers:
+- url: https://api.amtrustservices.com
+  description: AmTrust Production API
+tags:
+- name: Appetite
+  description: Coverage appetite and eligibility checks
+- name: Quotes
+  description: Quote generation and management
+- name: Policies
+  description: Policy binding and management
+- name: Authentication
+  description: OAuth 2.0 token management
+security:
+- bearerAuth: []
+paths:
+  /oauth/token:
+    post:
+      operationId: getAccessToken
+      summary: AmTrust Financial Services Get Access Token
+      description: Obtain an OAuth 2.0 access token using client credentials. Tokens are valid for 4 hours and must be sent with all subsequent API requests via SSL encrypted connection.
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              - client_id
+              - client_secret
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - client_credentials
+                  description: OAuth 2.0 grant type
+                  example: client_credentials
+                client_id:
+                  type: string
+                  description: Client ID provided by AmTrust
+                  example: your-client-id
+                client_secret:
+                  type: string
+                  description: Client secret provided by AmTrust
+                  example: your-client-secret
+      responses:
+        '200':
+          description: Access token issued successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+              examples:
+                getAccessToken200Example:
+                  summary: Default getAccessToken 200 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                getAccessToken401Example:
+                  summary: Default getAccessToken 401 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/appetite:
+    post:
+      operationId: checkAppetite
+      summary: AmTrust Financial Services Check Coverage Appetite
+      description: Check whether AmTrust has an appetite for a given risk based on business class code, state, and coverage type. Returns eligibility status and available products.
+      tags:
+      - Appetite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppetiteRequest'
+      responses:
+        '200':
+          description: Appetite check result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppetiteResponse'
+              examples:
+                checkAppetite200Example:
+                  summary: Default checkAppetite 200 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                checkAppetite400Example:
+                  summary: Default checkAppetite 400 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                checkAppetite401Example:
+                  summary: Default checkAppetite 401 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/quotes:
+    post:
+      operationId: createQuote
+      summary: AmTrust Financial Services Create Quote
+      description: Generate a commercial lines insurance quote for a given business. Supports workers' compensation, BOP, general liability, and commercial package products.
+      tags:
+      - Quotes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteRequest'
+      responses:
+        '201':
+          description: Quote created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+              examples:
+                createQuote201Example:
+                  summary: Default createQuote 201 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '400':
+          description: Invalid request data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                createQuote400Example:
+                  summary: Default createQuote 400 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                createQuote401Example:
+                  summary: Default createQuote 401 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: listQuotes
+      summary: AmTrust Financial Services List Quotes
+      description: Retrieve a list of quotes for the authenticated agent or broker account.
+      tags:
+      - Quotes
+      parameters:
+      - name: status
+        in: query
+        description: Filter quotes by status
+        schema:
+          type: string
+          enum:
+          - pending
+          - quoted
+          - bound
+          - expired
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        description: Number of quotes per page
+        schema:
+          type: integer
+          default: 20
+      responses:
+        '200':
+          description: List of quotes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteListResponse'
+              examples:
+                listQuotes200Example:
+                  summary: Default listQuotes 200 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                listQuotes401Example:
+                  summary: Default listQuotes 401 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/quotes/{quote_id}:
+    get:
+      operationId: getQuote
+      summary: AmTrust Financial Services Get Quote
+      description: Retrieve the details of a specific quote by its ID.
+      tags:
+      - Quotes
+      parameters:
+      - name: quote_id
+        in: path
+        required: true
+        description: Unique identifier of the quote
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Quote details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+              examples:
+                getQuote200Example:
+                  summary: Default getQuote 200 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '404':
+          description: Quote not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                getQuote404Example:
+                  summary: Default getQuote 404 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/quotes/{quote_id}/bind:
+    post:
+      operationId: bindPolicy
+      summary: AmTrust Financial Services Bind Policy
+      description: Bind a quoted policy to issue a commercial lines policy. Only available for eligible class codes that support online binding.
+      tags:
+      - Policies
+      parameters:
+      - name: quote_id
+        in: path
+        required: true
+        description: Unique identifier of the quote to bind
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BindRequest'
+      responses:
+        '201':
+          description: Policy bound successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyResponse'
+              examples:
+                bindPolicy201Example:
+                  summary: Default bindPolicy 201 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '400':
+          description: Invalid bind request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                bindPolicy400Example:
+                  summary: Default bindPolicy 400 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '404':
+          description: Quote not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                bindPolicy404Example:
+                  summary: Default bindPolicy 404 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/policies/{policy_id}:
+    get:
+      operationId: getPolicy
+      summary: AmTrust Financial Services Get Policy
+      description: Retrieve the details of a bound commercial lines policy.
+      tags:
+      - Policies
+      parameters:
+      - name: policy_id
+        in: path
+        required: true
+        description: Unique policy number
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Policy details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyResponse'
+              examples:
+                getPolicy200Example:
+                  summary: Default getPolicy 200 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '404':
+          description: Policy not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                getPolicy404Example:
+                  summary: Default getPolicy 404 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from /oauth/token endpoint
+  schemas:
+    TokenResponse:
+      type: object
+      description: OAuth 2.0 token response
+      properties:
+        access_token:
+          type: string
+          description: Access token for API calls
+          example: eyJhbGciOiJSUzI1NiJ9...
+        token_type:
+          type: string
+          description: Token type
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Token expiry in seconds (14400 = 4 hours)
+          example: 14400
+    AppetiteRequest:
+      type: object
+      description: Request to check coverage appetite
+      required:
+      - state
+      - class_code
+      - product_type
+      properties:
+        state:
+          type: string
+          description: US state abbreviation
+          example: CA
+        class_code:
+          type: string
+          description: NCCI or state class code for the business
+          example: '8810'
+        product_type:
+          type: string
+          description: Insurance product type
+          enum:
+          - workers_compensation
+          - bop
+          - general_liability
+          - commercial_package
+          example: workers_compensation
+        payroll:
+          type: number
+          description: Annual payroll amount
+          example: 500000
+    AppetiteResponse:
+      type: object
+      description: Coverage appetite check result
+      properties:
+        eligible:
+          type: boolean
+          description: Whether AmTrust has appetite for this risk
+          example: true
+        products:
+          type: array
+          description: Available products for this risk
+          items:
+            type: string
+          example:
+          - workers_compensation
+        bind_online:
+          type: boolean
+          description: Whether the policy can be bound online
+          example: true
+        reason:
+          type: string
+          description: Reason if not eligible
+          example: Eligible for online quoting and binding
+    QuoteRequest:
+      type: object
+      description: Request to create a commercial lines quote
+      required:
+      - product_type
+      - state
+      - effective_date
+      - insured
+      properties:
+        product_type:
+          type: string
+          description: Insurance product type
+          enum:
+          - workers_compensation
+          - bop
+          - general_liability
+          - commercial_package
+        state:
+          type: string
+          description: US state abbreviation
+          example: TX
+        effective_date:
+          type: string
+          format: date
+          description: Policy effective date
+          example: '2025-07-01'
+        expiration_date:
+          type: string
+          format: date
+          description: Policy expiration date
+          example: '2026-07-01'
+        insured:
+          $ref: '#/components/schemas/Insured'
+        coverages:
+          type: array
+          description: Requested coverage details
+          items:
+            $ref: '#/components/schemas/Coverage'
+        agent_id:
+          type: string
+          description: AmTrust agent identifier
+          example: AGT-12345
+    Insured:
+      type: object
+      description: Business insured information
+      required:
+      - name
+      - address
+      - class_code
+      properties:
+        name:
+          type: string
+          description: Legal business name
+          example: Acme Contracting LLC
+        fein:
+          type: string
+          description: Federal Employer Identification Number
+          example: 12-3456789
+        class_code:
+          type: string
+          description: NCCI or state class code
+          example: '8810'
+        address:
+          $ref: '#/components/schemas/Address'
+        years_in_business:
+          type: integer
+          description: Years the business has been operating
+          example: 5
+        payroll:
+          type: number
+          description: Total annual payroll
+          example: 750000
+        employee_count:
+          type: integer
+          description: Total number of employees
+          example: 25
+    Address:
+      type: object
+      description: Physical address
+      required:
+      - street
+      - city
+      - state
+      - zip
+      properties:
+        street:
+          type: string
+          description: Street address
+          example: 123 Main St
+        city:
+          type: string
+          description: City
+          example: Austin
+        state:
+          type: string
+          description: State abbreviation
+          example: TX
+        zip:
+          type: string
+          description: ZIP code
+          example: '78701'
+    Coverage:
+      type: object
+      description: Coverage detail
+      properties:
+        type:
+          type: string
+          description: Coverage type
+          example: employers_liability
+        limit:
+          type: number
+          description: Coverage limit
+          example: 1000000
+        deductible:
+          type: number
+          description: Deductible amount
+          example: 0
+    QuoteResponse:
+      type: object
+      description: Quote response
+      properties:
+        quote_id:
+          type: string
+          description: Unique quote identifier
+          example: QT-2025-78901
+        status:
+          type: string
+          description: Quote status
+          enum:
+          - pending
+          - quoted
+          - bound
+          - expired
+          example: quoted
+        premium:
+          type: number
+          description: Annual premium amount
+          example: 8250.0
+        product_type:
+          type: string
+          description: Insurance product type
+          example: workers_compensation
+        effective_date:
+          type: string
+          format: date
+          description: Policy effective date
+          example: '2025-07-01'
+        expiration_date:
+          type: string
+          format: date
+          description: Policy expiration date
+          example: '2026-07-01'
+        insured:
+          $ref: '#/components/schemas/Insured'
+        bind_online:
+          type: boolean
+          description: Whether this quote can be bound online
+          example: true
+        created_at:
+          type: string
+          format: date-time
+          description: Quote creation timestamp
+          example: '2025-03-15T14:30:00Z'
+        expires_at:
+          type: string
+          format: date-time
+          description: Quote expiration timestamp
+          example: '2025-04-14T14:30:00Z'
+    QuoteListResponse:
+      type: object
+      description: Paginated list of quotes
+      properties:
+        quotes:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuoteResponse'
+        total:
+          type: integer
+          description: Total number of quotes
+          example: 42
+        page:
+          type: integer
+          description: Current page
+          example: 1
+        limit:
+          type: integer
+          description: Items per page
+          example: 20
+    BindRequest:
+      type: object
+      description: Request to bind a quoted policy
+      required:
+      - agent_signature
+      properties:
+        agent_signature:
+          type: string
+          description: Agent electronic signature confirming bind intent
+          example: John Smith
+        payment_method:
+          type: string
+          description: Payment method for premium
+          enum:
+          - direct_bill
+          - agency_bill
+          example: direct_bill
+        additional_notes:
+          type: string
+          description: Optional notes for the policy
+          example: Insured prefers monthly installments
+    PolicyResponse:
+      type: object
+      description: Bound policy details
+      properties:
+        policy_number:
+          type: string
+          description: Unique AmTrust policy number
+          example: WC-2025-001234
+        status:
+          type: string
+          description: Policy status
+          enum:
+          - active
+          - cancelled
+          - expired
+          example: active
+        product_type:
+          type: string
+          description: Insurance product type
+          example: workers_compensation
+        premium:
+          type: number
+          description: Annual premium
+          example: 8250.0
+        effective_date:
+          type: string
+          format: date
+          example: '2025-07-01'
+        expiration_date:
+          type: string
+          format: date
+          example: '2026-07-01'
+        insured:
+          $ref: '#/components/schemas/Insured'
+        bound_at:
+          type: string
+          format: date-time
+          example: '2025-03-15T15:00:00Z'
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid class code for the specified state
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details

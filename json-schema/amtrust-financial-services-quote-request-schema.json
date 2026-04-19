@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amtrust-financial-services/refs/heads/main/json-schema/amtrust-financial-services-quote-request-schema.json",
+  "title": "QuoteRequest",
+  "description": "Request to create a commercial lines quote",
+  "type": "object",
+  "required": [
+    "product_type",
+    "state",
+    "effective_date",
+    "insured"
+  ],
+  "properties": {
+    "product_type": {
+      "type": "string",
+      "description": "Insurance product type",
+      "enum": [
+        "workers_compensation",
+        "bop",
+        "general_liability",
+        "commercial_package"
+      ]
+    },
+    "state": {
+      "type": "string",
+      "description": "US state abbreviation",
+      "example": "TX"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Policy effective date",
+      "example": "2025-07-01"
+    },
+    "expiration_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Policy expiration date",
+      "example": "2026-07-01"
+    },
+    "insured": {
+      "$ref": "#/components/schemas/Insured"
+    },
+    "coverages": {
+      "type": "array",
+      "description": "Requested coverage details",
+      "items": {
+        "$ref": "#/components/schemas/Coverage"
+      }
+    },
+    "agent_id": {
+      "type": "string",
+      "description": "AmTrust agent identifier",
+      "example": "AGT-12345"
+    }
+  }
+}

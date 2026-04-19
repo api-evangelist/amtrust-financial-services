@@ -1,0 +1,102 @@
+vocabulary: 1.0.0
+info:
+  provider: AmTrust Financial Services
+  description: Taxonomy for AmTrust commercial lines insurance APIs covering quoting, binding, and policy management.
+  created: '2026-04-19'
+  modified: '2026-04-19'
+operational:
+  apis:
+  - name: AmTrust Commercial Lines API
+    namespace: amtrust-commercial-lines
+    version: 1.0.0
+    baseUrl: https://api.amtrustservices.com
+    status: active
+  resources:
+  - name: Appetite
+    apis:
+    - amtrust-commercial-lines
+    actions:
+    - checkAppetite
+  - name: Quotes
+    apis:
+    - amtrust-commercial-lines
+    actions:
+    - createQuote
+    - listQuotes
+    - getQuote
+  - name: Policies
+    apis:
+    - amtrust-commercial-lines
+    actions:
+    - bindPolicy
+    - getPolicy
+  actions:
+  - verb: check
+    method: POST
+    operationCount: 1
+  - verb: create
+    method: POST
+    operationCount: 1
+  - verb: list
+    method: GET
+    operationCount: 1
+  - verb: get
+    method: GET
+    operationCount: 2
+  - verb: bind
+    method: POST
+    operationCount: 1
+  schemas:
+    core:
+    - name: QuoteRequest
+    - name: QuoteResponse
+    - name: PolicyResponse
+    - name: Insured
+  authentication:
+  - type: oauth2_client_credentials
+    description: OAuth 2.0 client credentials with 4-hour token validity
+  insuranceDomain:
+    productTypes:
+    - workers_compensation
+    - bop
+    - general_liability
+    - commercial_package
+    classCodes:
+      standard: NCCI
+      eligibleForOnlineBind: 300+
+    states: All US states where AmTrust is licensed
+capability:
+  workflows:
+  - name: AmTrust Insurance Quoting and Binding
+    file: amtrust-insurance-quoting-and-binding.yaml
+    description: End-to-end insurance quoting and binding workflow
+    toolCount: 5
+  personas:
+  - id: insurance-agent
+    name: Insurance Agent
+    description: Agent checking appetite and generating quotes for clients
+  - id: platform-developer
+    name: Platform Developer
+    description: Developer integrating AmTrust API into agent or broker platform
+  domains:
+  - Commercial Insurance
+  - Workers Compensation
+  - Insurance Technology
+crossReference:
+- resource: Appetite
+  apis:
+  - amtrust-commercial-lines
+  actions:
+  - checkAppetite
+- resource: Quotes
+  apis:
+  - amtrust-commercial-lines
+  actions:
+  - createQuote
+  - listQuotes
+- resource: Policies
+  apis:
+  - amtrust-commercial-lines
+  actions:
+  - bindPolicy
+  - getPolicy

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amtrust-financial-services/refs/heads/main/json-schema/amtrust-financial-services-appetite-request-schema.json",
+  "title": "AppetiteRequest",
+  "description": "Request to check coverage appetite",
+  "type": "object",
+  "required": [
+    "state",
+    "class_code",
+    "product_type"
+  ],
+  "properties": {
+    "state": {
+      "type": "string",
+      "description": "US state abbreviation",
+      "example": "CA"
+    },
+    "class_code": {
+      "type": "string",
+      "description": "NCCI or state class code for the business",
+      "example": "8810"
+    },
+    "product_type": {
+      "type": "string",
+      "description": "Insurance product type",
+      "enum": [
+        "workers_compensation",
+        "bop",
+        "general_liability",
+        "commercial_package"
+      ],
+      "example": "workers_compensation"
+    },
+    "payroll": {
+      "type": "number",
+      "description": "Annual payroll amount",
+      "example": 500000
+    }
+  }
+}

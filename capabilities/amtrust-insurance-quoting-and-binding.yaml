@@ -1,0 +1,110 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: AmTrust Insurance Quoting and Binding
+  description: Workflow capability for reviewing appetite, generating quotes, and binding commercial lines policies. Used by insurance agents and broker platforms.
+  tags:
+  - AmTrust Financial Services
+  - Insurance
+  - Commercial Lines
+  - Workers Compensation
+  created: '2026-04-19'
+  modified: '2026-04-19'
+binds:
+- namespace: env
+  keys:
+    AMTRUST_CLIENT_ID: AMTRUST_CLIENT_ID
+    AMTRUST_CLIENT_SECRET: AMTRUST_CLIENT_SECRET
+capability:
+  consumes:
+  - import: amtrust-commercial-lines
+    location: ./shared/commercial-lines-api.yaml
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: amtrust-quoting-api
+    description: REST API for insurance quoting and binding
+    resources:
+    - path: /v1/appetite
+      name: appetite
+      operations:
+      - method: POST
+        name: checkAppetite
+        description: Check coverage appetite
+        call: amtrust-commercial-lines.checkAppetite
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/quotes
+      name: quotes
+      operations:
+      - method: POST
+        name: createQuote
+        description: Create quote
+        call: amtrust-commercial-lines.createQuote
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/policies
+      name: policies
+      operations:
+      - method: GET
+        name: getPolicy
+        description: Get policy
+        call: amtrust-commercial-lines.getPolicy
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: amtrust-quoting-mcp
+    transport: http
+    description: MCP server for AI-assisted insurance quoting and binding
+    tools:
+    - name: check-appetite
+      description: Check AmTrust coverage appetite for a business risk
+      hints:
+        readOnly: false
+      call: amtrust-commercial-lines.checkAppetite
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-quote
+      description: Generate a commercial lines quote
+      hints:
+        readOnly: false
+      call: amtrust-commercial-lines.createQuote
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-quotes
+      description: List all quotes for the agent account
+      hints:
+        readOnly: true
+      call: amtrust-commercial-lines.listQuotes
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bind-policy
+      description: Bind an approved quote to issue a policy
+      hints:
+        readOnly: false
+      call: amtrust-commercial-lines.bindPolicy
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-policy
+      description: Retrieve policy details by policy number
+      hints:
+        readOnly: true
+      call: amtrust-commercial-lines.getPolicy
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.

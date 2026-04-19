@@ -1,0 +1,66 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "amtrust": "https://amtrustfinancial.com/schema/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "QuoteRequest": "amtrust:QuoteRequest",
+    "QuoteResponse": "amtrust:QuoteResponse",
+    "PolicyResponse": "amtrust:PolicyResponse",
+    "Insured": "amtrust:Insured",
+    "productType": {
+      "@id": "amtrust:product_type",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "amtrust:state",
+      "@type": "xsd:string"
+    },
+    "effectiveDate": {
+      "@id": "amtrust:effective_date",
+      "@type": "xsd:date"
+    },
+    "expirationDate": {
+      "@id": "amtrust:expiration_date",
+      "@type": "xsd:date"
+    },
+    "premium": {
+      "@id": "amtrust:premium",
+      "@type": "xsd:decimal"
+    },
+    "policyNumber": {
+      "@id": "amtrust:policy_number",
+      "@type": "xsd:string"
+    },
+    "quoteId": {
+      "@id": "amtrust:quote_id",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "amtrust:status",
+      "@type": "xsd:string"
+    },
+    "classCode": {
+      "@id": "amtrust:class_code",
+      "@type": "xsd:string"
+    },
+    "payroll": {
+      "@id": "amtrust:payroll",
+      "@type": "xsd:decimal"
+    },
+    "employeeCount": {
+      "@id": "amtrust:employee_count",
+      "@type": "xsd:integer"
+    },
+    "name": "schema:name",
+    "description": "schema:description",
+    "createdAt": {
+      "@id": "amtrust:created_at",
+      "@type": "xsd:dateTime"
+    },
+    "boundAt": {
+      "@id": "amtrust:bound_at",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

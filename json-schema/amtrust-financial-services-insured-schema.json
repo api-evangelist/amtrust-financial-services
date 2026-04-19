@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amtrust-financial-services/refs/heads/main/json-schema/amtrust-financial-services-insured-schema.json",
+  "title": "Insured",
+  "description": "Business insured information",
+  "type": "object",
+  "required": [
+    "name",
+    "address",
+    "class_code"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Legal business name",
+      "example": "Acme Contracting LLC"
+    },
+    "fein": {
+      "type": "string",
+      "description": "Federal Employer Identification Number",
+      "example": "12-3456789"
+    },
+    "class_code": {
+      "type": "string",
+      "description": "NCCI or state class code",
+      "example": "8810"
+    },
+    "address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "years_in_business": {
+      "type": "integer",
+      "description": "Years the business has been operating",
+      "example": 5
+    },
+    "payroll": {
+      "type": "number",
+      "description": "Total annual payroll",
+      "example": 750000
+    },
+    "employee_count": {
+      "type": "integer",
+      "description": "Total number of employees",
+      "example": 25
+    }
+  }
+}
