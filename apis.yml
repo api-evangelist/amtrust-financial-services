@@ -36,6 +36,8 @@ apis:
   - url: openapi/amtrust-financial-services-commercial-lines-api.yaml
     type: OpenAPI
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/amtrust-financial-services-inc
 - type: Portal
   url: https://amtrustfinancial.com
 - type: DeveloperPortal

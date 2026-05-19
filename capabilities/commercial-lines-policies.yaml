@@ -1,0 +1,130 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AmTrust Financial Services Commercial Lines API — Policies
+  description: 'AmTrust Financial Services Commercial Lines API — Policies. 2 operations. Lead operation: AmTrust Financial
+    Services Get Policy. Self-contained Naftiko capability covering one Amtrust Financial Services business surface.'
+  tags:
+  - Amtrust Financial Services
+  - Policies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMTRUST_FINANCIAL_SERVICES_API_KEY: AMTRUST_FINANCIAL_SERVICES_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: commercial-lines-policies
+    baseUri: https://api.amtrustservices.com
+    description: AmTrust Financial Services Commercial Lines API — Policies business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: v1-policies-policy_id
+      path: /v1/policies/{policy_id}
+      operations:
+      - name: getpolicy
+        method: GET
+        description: AmTrust Financial Services Get Policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policy_id
+          in: path
+          type: string
+          description: Unique policy number
+          required: true
+    - name: v1-quotes-quote_id-bind
+      path: /v1/quotes/{quote_id}/bind
+      operations:
+      - name: bindpolicy
+        method: POST
+        description: AmTrust Financial Services Bind Policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: quote_id
+          in: path
+          type: string
+          description: Unique identifier of the quote to bind
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AMTRUST_FINANCIAL_SERVICES_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: commercial-lines-policies-rest
+    port: 8080
+    description: REST adapter for AmTrust Financial Services Commercial Lines API — Policies. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/policies/{policy-id}
+      name: v1-policies-policy-id
+      description: REST surface for v1-policies-policy_id.
+      operations:
+      - method: GET
+        name: getpolicy
+        description: AmTrust Financial Services Get Policy
+        call: commercial-lines-policies.getpolicy
+        with:
+          policy_id: rest.policy_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/quotes/{quote-id}/bind
+      name: v1-quotes-quote-id-bind
+      description: REST surface for v1-quotes-quote_id-bind.
+      operations:
+      - method: POST
+        name: bindpolicy
+        description: AmTrust Financial Services Bind Policy
+        call: commercial-lines-policies.bindpolicy
+        with:
+          quote_id: rest.quote_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: commercial-lines-policies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AmTrust Financial Services Commercial Lines API — Policies. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: amtrust-financial-services-get-policy
+      description: AmTrust Financial Services Get Policy
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: commercial-lines-policies.getpolicy
+      with:
+        policy_id: tools.policy_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amtrust-financial-services-bind-policy
+      description: AmTrust Financial Services Bind Policy
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: commercial-lines-policies.bindpolicy
+      with:
+        quote_id: tools.quote_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
