@@ -5,7 +5,7 @@ name: AmTrust Financial Services
 description: AmTrust Financial Services is a multinational specialty property and casualty insurer focused on small to mid-sized businesses. AmTrust provides APIs that enable insurance agents, 
   brokers, and technology partners to review appetite, generate quotes, and bind policies programmatically. The API platform processes over 12 million API calls daily with 99.68% availability and 
   supports workers' compensation, business owners' policies, general liability, and other commercial insurance products across 300+ eligible class codes.
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Commercial Insurance
   - Insurance
@@ -24,7 +24,7 @@ apis:
     - General Liability
     - Insurance
     - Workers Compensation
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.amtrustservices.com
     humanURL: https://amtrustfinancial.com/api
     properties:
