@@ -49,7 +49,7 @@ common:
     url: https://amtrustfinancial.com/api
   - type: Authentication
     url: https://utapiportal.amtrustgroup.com/authentication
-  - type: SignUp
+  - type: Signup
     url: https://amtrustfinancial.com/api
   - type: Support
     url: https://amtrustfinancial.com/contact-us
@@ -103,7 +103,7 @@ common:
     url: json-ld/amtrust-financial-services-context.jsonld
   - type: Vocabulary
     url: vocabulary/amtrust-financial-services-vocabulary.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/amtrust-insurance-quoting-and-binding.yaml
   - type: JSONStructure
     url: json-structure/amtrust-financial-services-quote-request-structure.json
