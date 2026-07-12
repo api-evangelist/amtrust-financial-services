@@ -37,6 +37,12 @@ apis:
     - url: openapi/amtrust-financial-services-commercial-lines-api.yaml
       type: OpenAPI
 common:
+  - type: VulnerabilityDisclosure
+    url: security/amtrust-financial-services-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/amtrust-financial-services-domain-security.yml
+  - type: Authentication
+    url: authentication/amtrust-financial-services-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/amtrust
   - type: LinkedIn
@@ -107,6 +113,8 @@ common:
     url: capabilities/amtrust-insurance-quoting-and-binding.yaml
   - type: JSONStructure
     url: json-structure/amtrust-financial-services-quote-request-structure.json
+  - url: https://amtrustfinancial.com/blog
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

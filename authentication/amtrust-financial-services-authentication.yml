@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/amtrust-financial-services-commercial-lines-api.yaml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: OAuth 2.0 access token obtained from /oauth/token endpoint
+  sources:
+  - openapi/amtrust-financial-services-commercial-lines-api.yaml
