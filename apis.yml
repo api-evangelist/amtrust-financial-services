@@ -37,6 +37,8 @@ apis:
     - url: openapi/amtrust-financial-services-commercial-lines-api.yaml
       type: OpenAPI
 common:
+  - type: AgenticAccess
+    url: agentic-access/amtrust-financial-services-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/amtrust-financial-services-vulnerability-disclosure.yml
   - type: DomainSecurity
