@@ -1,0 +1,272 @@
+openapi: 3.0.3
+info:
+  title: AmTrust Financial Services Commercial Lines Appetite Policies API
+  description: The AmTrust Commercial Lines API enables insurance agents, brokers, and technology partners to review appetite, generate quotes, and bind commercial lines policies. Supports workers' compensation, BOP, general liability, and commercial package across 300+ eligible class codes.
+  version: 1.0.0
+  contact:
+    name: AmTrust API Support
+    url: https://amtrustfinancial.com/api
+  termsOfService: https://amtrustfinancial.com/terms-of-use
+  x-generated-from: documentation
+servers:
+- url: https://api.amtrustservices.com
+  description: AmTrust Production API
+security:
+- bearerAuth: []
+tags:
+- name: Policies
+  description: Policy binding and management
+paths:
+  /v1/quotes/{quote_id}/bind:
+    post:
+      operationId: bindPolicy
+      summary: AmTrust Financial Services Bind Policy
+      description: Bind a quoted policy to issue a commercial lines policy. Only available for eligible class codes that support online binding.
+      tags:
+      - Policies
+      parameters:
+      - name: quote_id
+        in: path
+        required: true
+        description: Unique identifier of the quote to bind
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BindRequest'
+      responses:
+        '201':
+          description: Policy bound successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyResponse'
+              examples:
+                bindPolicy201Example:
+                  summary: Default bindPolicy 201 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '400':
+          description: Invalid bind request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                bindPolicy400Example:
+                  summary: Default bindPolicy 400 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '404':
+          description: Quote not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                bindPolicy404Example:
+                  summary: Default bindPolicy 404 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/policies/{policy_id}:
+    get:
+      operationId: getPolicy
+      summary: AmTrust Financial Services Get Policy
+      description: Retrieve the details of a bound commercial lines policy.
+      tags:
+      - Policies
+      parameters:
+      - name: policy_id
+        in: path
+        required: true
+        description: Unique policy number
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Policy details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyResponse'
+              examples:
+                getPolicy200Example:
+                  summary: Default getPolicy 200 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '404':
+          description: Policy not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                getPolicy404Example:
+                  summary: Default getPolicy 404 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid class code for the specified state
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
+    Insured:
+      type: object
+      description: Business insured information
+      required:
+      - name
+      - address
+      - class_code
+      properties:
+        name:
+          type: string
+          description: Legal business name
+          example: Acme Contracting LLC
+        fein:
+          type: string
+          description: Federal Employer Identification Number
+          example: 12-3456789
+        class_code:
+          type: string
+          description: NCCI or state class code
+          example: '8810'
+        address:
+          $ref: '#/components/schemas/Address'
+        years_in_business:
+          type: integer
+          description: Years the business has been operating
+          example: 5
+        payroll:
+          type: number
+          description: Total annual payroll
+          example: 750000
+        employee_count:
+          type: integer
+          description: Total number of employees
+          example: 25
+    PolicyResponse:
+      type: object
+      description: Bound policy details
+      properties:
+        policy_number:
+          type: string
+          description: Unique AmTrust policy number
+          example: WC-2025-001234
+        status:
+          type: string
+          description: Policy status
+          enum:
+          - active
+          - cancelled
+          - expired
+          example: active
+        product_type:
+          type: string
+          description: Insurance product type
+          example: workers_compensation
+        premium:
+          type: number
+          description: Annual premium
+          example: 8250.0
+        effective_date:
+          type: string
+          format: date
+          example: '2025-07-01'
+        expiration_date:
+          type: string
+          format: date
+          example: '2026-07-01'
+        insured:
+          $ref: '#/components/schemas/Insured'
+        bound_at:
+          type: string
+          format: date-time
+          example: '2025-03-15T15:00:00Z'
+    Address:
+      type: object
+      description: Physical address
+      required:
+      - street
+      - city
+      - state
+      - zip
+      properties:
+        street:
+          type: string
+          description: Street address
+          example: 123 Main St
+        city:
+          type: string
+          description: City
+          example: Austin
+        state:
+          type: string
+          description: State abbreviation
+          example: TX
+        zip:
+          type: string
+          description: ZIP code
+          example: '78701'
+    BindRequest:
+      type: object
+      description: Request to bind a quoted policy
+      required:
+      - agent_signature
+      properties:
+        agent_signature:
+          type: string
+          description: Agent electronic signature confirming bind intent
+          example: John Smith
+        payment_method:
+          type: string
+          description: Payment method for premium
+          enum:
+          - direct_bill
+          - agency_bill
+          example: direct_bill
+        additional_notes:
+          type: string
+          description: Optional notes for the policy
+          example: Insured prefers monthly installments
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from /oauth/token endpoint
+externalDocs:
+  description: AmTrust API Documentation
+  url: https://amtrustfinancial.com/api

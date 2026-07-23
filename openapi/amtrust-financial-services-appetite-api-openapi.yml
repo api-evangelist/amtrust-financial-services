@@ -1,0 +1,155 @@
+openapi: 3.0.3
+info:
+  title: AmTrust Financial Services Commercial Lines Appetite API
+  description: The AmTrust Commercial Lines API enables insurance agents, brokers, and technology partners to review appetite, generate quotes, and bind commercial lines policies. Supports workers' compensation, BOP, general liability, and commercial package across 300+ eligible class codes.
+  version: 1.0.0
+  contact:
+    name: AmTrust API Support
+    url: https://amtrustfinancial.com/api
+  termsOfService: https://amtrustfinancial.com/terms-of-use
+  x-generated-from: documentation
+servers:
+- url: https://api.amtrustservices.com
+  description: AmTrust Production API
+security:
+- bearerAuth: []
+tags:
+- name: Appetite
+  description: Coverage appetite and eligibility checks
+paths:
+  /v1/appetite:
+    post:
+      operationId: checkAppetite
+      summary: AmTrust Financial Services Check Coverage Appetite
+      description: Check whether AmTrust has an appetite for a given risk based on business class code, state, and coverage type. Returns eligibility status and available products.
+      tags:
+      - Appetite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppetiteRequest'
+      responses:
+        '200':
+          description: Appetite check result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppetiteResponse'
+              examples:
+                checkAppetite200Example:
+                  summary: Default checkAppetite 200 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                checkAppetite400Example:
+                  summary: Default checkAppetite 400 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                checkAppetite401Example:
+                  summary: Default checkAppetite 401 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    AppetiteRequest:
+      type: object
+      description: Request to check coverage appetite
+      required:
+      - state
+      - class_code
+      - product_type
+      properties:
+        state:
+          type: string
+          description: US state abbreviation
+          example: CA
+        class_code:
+          type: string
+          description: NCCI or state class code for the business
+          example: '8810'
+        product_type:
+          type: string
+          description: Insurance product type
+          enum:
+          - workers_compensation
+          - bop
+          - general_liability
+          - commercial_package
+          example: workers_compensation
+        payroll:
+          type: number
+          description: Annual payroll amount
+          example: 500000
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid class code for the specified state
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
+    AppetiteResponse:
+      type: object
+      description: Coverage appetite check result
+      properties:
+        eligible:
+          type: boolean
+          description: Whether AmTrust has appetite for this risk
+          example: true
+        products:
+          type: array
+          description: Available products for this risk
+          items:
+            type: string
+          example:
+          - workers_compensation
+        bind_online:
+          type: boolean
+          description: Whether the policy can be bound online
+          example: true
+        reason:
+          type: string
+          description: Reason if not eligible
+          example: Eligible for online quoting and binding
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from /oauth/token endpoint
+externalDocs:
+  description: AmTrust API Documentation
+  url: https://amtrustfinancial.com/api

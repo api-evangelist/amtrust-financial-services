@@ -1,0 +1,126 @@
+openapi: 3.0.3
+info:
+  title: AmTrust Financial Services Commercial Lines Appetite Authentication API
+  description: The AmTrust Commercial Lines API enables insurance agents, brokers, and technology partners to review appetite, generate quotes, and bind commercial lines policies. Supports workers' compensation, BOP, general liability, and commercial package across 300+ eligible class codes.
+  version: 1.0.0
+  contact:
+    name: AmTrust API Support
+    url: https://amtrustfinancial.com/api
+  termsOfService: https://amtrustfinancial.com/terms-of-use
+  x-generated-from: documentation
+servers:
+- url: https://api.amtrustservices.com
+  description: AmTrust Production API
+security:
+- bearerAuth: []
+tags:
+- name: Authentication
+  description: OAuth 2.0 token management
+paths:
+  /oauth/token:
+    post:
+      operationId: getAccessToken
+      summary: AmTrust Financial Services Get Access Token
+      description: Obtain an OAuth 2.0 access token using client credentials. Tokens are valid for 4 hours and must be sent with all subsequent API requests via SSL encrypted connection.
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              - client_id
+              - client_secret
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - client_credentials
+                  description: OAuth 2.0 grant type
+                  example: client_credentials
+                client_id:
+                  type: string
+                  description: Client ID provided by AmTrust
+                  example: your-client-id
+                client_secret:
+                  type: string
+                  description: Client secret provided by AmTrust
+                  example: your-client-secret
+      responses:
+        '200':
+          description: Access token issued successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+              examples:
+                getAccessToken200Example:
+                  summary: Default getAccessToken 200 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                getAccessToken401Example:
+                  summary: Default getAccessToken 401 response
+                  x-microcks-default: true
+                  value:
+                    status: success
+                    message: Operation completed
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid class code for the specified state
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
+    TokenResponse:
+      type: object
+      description: OAuth 2.0 token response
+      properties:
+        access_token:
+          type: string
+          description: Access token for API calls
+          example: eyJhbGciOiJSUzI1NiJ9...
+        token_type:
+          type: string
+          description: Token type
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Token expiry in seconds (14400 = 4 hours)
+          example: 14400
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from /oauth/token endpoint
+externalDocs:
+  description: AmTrust API Documentation
+  url: https://amtrustfinancial.com/api
