@@ -1,11 +1,24 @@
 aid: amtrust-financial-services
 url: https://raw.githubusercontent.com/api-evangelist/amtrust-financial-services/refs/heads/main/apis.yml
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 modified: '2026-04-19'
 name: AmTrust Financial Services
 description: AmTrust Financial Services is a multinational specialty property and casualty insurer focused on small to mid-sized businesses. AmTrust provides APIs that enable insurance agents, 
   brokers, and technology partners to review appetite, generate quotes, and bind policies programmatically. The API platform processes over 12 million API calls daily with 99.68% availability and 
   supports workers' compensation, business owners' policies, general liability, and other commercial insurance products across 300+ eligible class codes.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amtrust-financial-services.png
 tags:
   - Commercial Insurance
   - Insurance
@@ -14,29 +27,73 @@ tags:
   - Workers Compensation
   - Fortune 1000
 apis:
-  - aid: amtrust-financial-services:commercial-lines-api
-    name: AmTrust Commercial Lines API
-    description: The AmTrust Commercial Lines API enables insurance agents, brokers, and technology partners to programmatically review coverage appetite, generate quotes, and bind commercial lines 
-      policies. It supports workers' compensation, business owners' policy, general liability, and commercial package products across 300+ eligible class codes.
-    tags:
-    - Commercial Lines
-    - Commercial Package
-    - General Liability
-    - Insurance
-    - Workers Compensation
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    baseURL: https://api.amtrustservices.com
-    humanURL: https://amtrustfinancial.com/api
-    properties:
-    - url: https://amtrustfinancial.com/api
-      type: Documentation
-    - url: https://utapiportal.amtrustgroup.com
-      type: Portal
-    - url: https://utapiportal.amtrustgroup.com/authentication
-      type: Authentication
-    - url: openapi/amtrust-financial-services-commercial-lines-api.yaml
-      type: OpenAPI
+- aid: amtrust-financial-services:amtrust-financial-services-appetite-api
+  name: AmTrust Financial Services Appetite API
+  description: Coverage appetite and eligibility checks
+  humanURL: https://amtrustfinancial.com/api
+  baseURL: https://api.amtrustservices.com
+  tags:
+  - Appetite
+  properties:
+  - type: OpenAPI
+    url: openapi/amtrust-financial-services-appetite-api-openapi.yml
+  - type: Documentation
+    url: https://amtrustfinancial.com/api
+  - type: Portal
+    url: https://utapiportal.amtrustgroup.com
+  - type: Authentication
+    url: https://utapiportal.amtrustgroup.com/authentication
+- aid: amtrust-financial-services:amtrust-financial-services-authentication-api
+  name: AmTrust Financial Services Authentication API
+  description: OAuth 2.0 token management
+  humanURL: https://amtrustfinancial.com/api
+  baseURL: https://api.amtrustservices.com
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/amtrust-financial-services-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://amtrustfinancial.com/api
+  - type: Portal
+    url: https://utapiportal.amtrustgroup.com
+  - type: Authentication
+    url: https://utapiportal.amtrustgroup.com/authentication
+- aid: amtrust-financial-services:amtrust-financial-services-policies-api
+  name: AmTrust Financial Services Policies API
+  description: Policy binding and management
+  humanURL: https://amtrustfinancial.com/api
+  baseURL: https://api.amtrustservices.com
+  tags:
+  - Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/amtrust-financial-services-policies-api-openapi.yml
+  - type: Documentation
+    url: https://amtrustfinancial.com/api
+  - type: Portal
+    url: https://utapiportal.amtrustgroup.com
+  - type: Authentication
+    url: https://utapiportal.amtrustgroup.com/authentication
+- aid: amtrust-financial-services:amtrust-financial-services-quotes-api
+  name: AmTrust Financial Services Quotes API
+  description: Quote generation and management
+  humanURL: https://amtrustfinancial.com/api
+  baseURL: https://api.amtrustservices.com
+  tags:
+  - Quotes
+  properties:
+  - type: OpenAPI
+    url: openapi/amtrust-financial-services-quotes-api-openapi.yml
+  - type: Documentation
+    url: https://amtrustfinancial.com/api
+  - type: Portal
+    url: https://utapiportal.amtrustgroup.com
+  - type: Authentication
+    url: https://utapiportal.amtrustgroup.com/authentication
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/amtrust-financial-services/overview
   - type: AgenticAccess
     url: agentic-access/amtrust-financial-services-agentic-access.yml
   - type: VulnerabilityDisclosure
