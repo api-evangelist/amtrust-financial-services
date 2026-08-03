@@ -1,0 +1,238 @@
+{
+  "info": {
+    "_postman_id": "e3ea045d-3eb3-49ff-a4dd-18e9c61dcac2",
+    "name": "AmTrust Financial Services Commercial Lines Appetite Authentication API",
+    "description": "The AmTrust Commercial Lines API enables insurance agents, brokers, and technology partners to review appetite, generate quotes, and bind commercial lines policies. Supports workers' compensation, BOP, general liability, and commercial package across 300+ eligible class codes.\n\nContact Support:\n Name: AmTrust API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:00:36.000Z",
+    "updatedAt": "2026-07-28T01:00:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e3ea045d-3eb3-49ff-a4dd-18e9c61dcac2"
+  },
+  "item": [
+    {
+      "name": "oauth",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "AmTrust Financial Services Get Access Token",
+              "id": "4fa7018a-347f-4ea7-9780-3c63e7bba073",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) OAuth 2.0 grant type",
+                      "key": "grant_type",
+                      "value": "client_credentials"
+                    },
+                    {
+                      "description": "(Required) Client ID provided by AmTrust",
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Client secret provided by AmTrust",
+                      "key": "client_secret",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/oauth/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth",
+                    "token"
+                  ]
+                },
+                "description": "Obtain an OAuth 2.0 access token using client credentials. Tokens are valid for 4 hours and must be sent with all subsequent API requests via SSL encrypted connection."
+              },
+              "response": [
+                {
+                  "id": "9f898e2d-05cd-4693-b83b-70fb401c938a",
+                  "name": "Access token issued successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) OAuth 2.0 grant type",
+                          "key": "grant_type",
+                          "value": "client_credentials"
+                        },
+                        {
+                          "description": "(Required) Client ID provided by AmTrust",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Client secret provided by AmTrust",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:00:36.000Z",
+                  "updatedAt": "2026-07-28T01:00:36.000Z",
+                  "uid": "35240-9f898e2d-05cd-4693-b83b-70fb401c938a"
+                },
+                {
+                  "id": "7321cd5a-69db-45c6-a2db-03dc322230e6",
+                  "name": "Invalid credentials",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) OAuth 2.0 grant type",
+                          "key": "grant_type",
+                          "value": "client_credentials"
+                        },
+                        {
+                          "description": "(Required) Client ID provided by AmTrust",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Client secret provided by AmTrust",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T01:00:36.000Z",
+                  "updatedAt": "2026-07-28T01:00:36.000Z",
+                  "uid": "35240-7321cd5a-69db-45c6-a2db-03dc322230e6"
+                }
+              ],
+              "createdAt": "2026-07-28T01:00:36.000Z",
+              "updatedAt": "2026-07-28T01:00:36.000Z",
+              "uid": "35240-4fa7018a-347f-4ea7-9780-3c63e7bba073"
+            }
+          ],
+          "id": "26969684-6dd1-4cd1-8dad-0405c110dc08",
+          "createdAt": "2026-07-28T01:00:36.000Z",
+          "updatedAt": "2026-07-28T01:00:36.000Z",
+          "uid": "35240-26969684-6dd1-4cd1-8dad-0405c110dc08"
+        }
+      ],
+      "id": "288931dd-326c-4d11-83f6-c1eb514c3728",
+      "createdAt": "2026-07-28T01:00:36.000Z",
+      "updatedAt": "2026-07-28T01:00:36.000Z",
+      "uid": "35240-288931dd-326c-4d11-83f6-c1eb514c3728"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.amtrustservices.com"
+    }
+  ]
+}

@@ -1,0 +1,582 @@
+{
+  "info": {
+    "_postman_id": "460fd45d-f7fe-4b6d-8321-acb48c35bc39",
+    "name": "AmTrust Financial Services Commercial Lines Appetite Quotes API",
+    "description": "The AmTrust Commercial Lines API enables insurance agents, brokers, and technology partners to review appetite, generate quotes, and bind commercial lines policies. Supports workers' compensation, BOP, general liability, and commercial package across 300+ eligible class codes.\n\nContact Support:\n Name: AmTrust API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:00:38.000Z",
+    "updatedAt": "2026-07-28T01:00:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-460fd45d-f7fe-4b6d-8321-acb48c35bc39"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "quotes",
+          "item": [
+            {
+              "name": "{quote_id}",
+              "item": [
+                {
+                  "name": "AmTrust Financial Services Get Quote",
+                  "id": "dfe76d92-15d8-4fb3-a10f-53356da15b48",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/quotes/:quote_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "quotes",
+                        ":quote_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "108f2320-ec95-413b-ba94-4904e0c0115a",
+                          "key": "quote_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the quote"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve the details of a specific quote by its ID."
+                  },
+                  "response": [
+                    {
+                      "id": "68cb7b55-a22d-45ab-b64e-c323e62254ce",
+                      "name": "Quote details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/quotes/:quote_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "quotes",
+                            ":quote_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "quote_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"quote_id\": \"<string>\",\n  \"status\": \"bound\",\n  \"premium\": \"<number>\",\n  \"product_type\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"expiration_date\": \"<date>\",\n  \"insured\": {\n    \"name\": \"<string>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\"\n    },\n    \"class_code\": \"<string>\",\n    \"fein\": \"<string>\",\n    \"years_in_business\": \"<integer>\",\n    \"payroll\": \"<number>\",\n    \"employee_count\": \"<integer>\"\n  },\n  \"bind_online\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"expires_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:00:39.000Z",
+                      "updatedAt": "2026-07-28T01:00:39.000Z",
+                      "uid": "35240-68cb7b55-a22d-45ab-b64e-c323e62254ce"
+                    },
+                    {
+                      "id": "0a5f5f2b-9492-41c2-9ff9-c9b35d83f3ef",
+                      "name": "Quote not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/quotes/:quote_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "quotes",
+                            ":quote_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "quote_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T01:00:39.000Z",
+                      "updatedAt": "2026-07-28T01:00:39.000Z",
+                      "uid": "35240-0a5f5f2b-9492-41c2-9ff9-c9b35d83f3ef"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:00:38.000Z",
+                  "updatedAt": "2026-07-28T01:00:38.000Z",
+                  "uid": "35240-dfe76d92-15d8-4fb3-a10f-53356da15b48"
+                }
+              ],
+              "id": "6b1426a7-f75e-4c31-9365-9eae85945942",
+              "createdAt": "2026-07-28T01:00:38.000Z",
+              "updatedAt": "2026-07-28T01:00:38.000Z",
+              "uid": "35240-6b1426a7-f75e-4c31-9365-9eae85945942"
+            },
+            {
+              "name": "AmTrust Financial Services Create Quote",
+              "id": "17616403-bb37-4e84-9b62-156eefaeb14f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product_type\": \"commercial_package\",\n  \"state\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"insured\": {\n    \"name\": \"<string>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\"\n    },\n    \"class_code\": \"<string>\",\n    \"fein\": \"<string>\",\n    \"years_in_business\": \"<integer>\",\n    \"payroll\": \"<number>\",\n    \"employee_count\": \"<integer>\"\n  },\n  \"expiration_date\": \"<date>\",\n  \"coverages\": [\n    {\n      \"type\": \"<string>\",\n      \"limit\": \"<number>\",\n      \"deductible\": \"<number>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"limit\": \"<number>\",\n      \"deductible\": \"<number>\"\n    }\n  ],\n  \"agent_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/quotes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "quotes"
+                  ]
+                },
+                "description": "Generate a commercial lines insurance quote for a given business. Supports workers' compensation, BOP, general liability, and commercial package products."
+              },
+              "response": [
+                {
+                  "id": "a4c40bd6-c86a-410c-90bc-e1cc5ffc45f6",
+                  "name": "Quote created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"product_type\": \"commercial_package\",\n  \"state\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"insured\": {\n    \"name\": \"<string>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\"\n    },\n    \"class_code\": \"<string>\",\n    \"fein\": \"<string>\",\n    \"years_in_business\": \"<integer>\",\n    \"payroll\": \"<number>\",\n    \"employee_count\": \"<integer>\"\n  },\n  \"expiration_date\": \"<date>\",\n  \"coverages\": [\n    {\n      \"type\": \"<string>\",\n      \"limit\": \"<number>\",\n      \"deductible\": \"<number>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"limit\": \"<number>\",\n      \"deductible\": \"<number>\"\n    }\n  ],\n  \"agent_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/quotes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "quotes"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"quote_id\": \"<string>\",\n  \"status\": \"bound\",\n  \"premium\": \"<number>\",\n  \"product_type\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"expiration_date\": \"<date>\",\n  \"insured\": {\n    \"name\": \"<string>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\"\n    },\n    \"class_code\": \"<string>\",\n    \"fein\": \"<string>\",\n    \"years_in_business\": \"<integer>\",\n    \"payroll\": \"<number>\",\n    \"employee_count\": \"<integer>\"\n  },\n  \"bind_online\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"expires_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:00:39.000Z",
+                  "updatedAt": "2026-07-28T01:00:39.000Z",
+                  "uid": "35240-a4c40bd6-c86a-410c-90bc-e1cc5ffc45f6"
+                },
+                {
+                  "id": "1a63fb88-229f-43f0-9e0b-a0211596b4ae",
+                  "name": "Invalid request data",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"product_type\": \"commercial_package\",\n  \"state\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"insured\": {\n    \"name\": \"<string>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\"\n    },\n    \"class_code\": \"<string>\",\n    \"fein\": \"<string>\",\n    \"years_in_business\": \"<integer>\",\n    \"payroll\": \"<number>\",\n    \"employee_count\": \"<integer>\"\n  },\n  \"expiration_date\": \"<date>\",\n  \"coverages\": [\n    {\n      \"type\": \"<string>\",\n      \"limit\": \"<number>\",\n      \"deductible\": \"<number>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"limit\": \"<number>\",\n      \"deductible\": \"<number>\"\n    }\n  ],\n  \"agent_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/quotes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "quotes"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T01:00:39.000Z",
+                  "updatedAt": "2026-07-28T01:00:39.000Z",
+                  "uid": "35240-1a63fb88-229f-43f0-9e0b-a0211596b4ae"
+                },
+                {
+                  "id": "ca0a1c13-6b84-4ee6-83b6-c5ce59e17e45",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"product_type\": \"commercial_package\",\n  \"state\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"insured\": {\n    \"name\": \"<string>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\"\n    },\n    \"class_code\": \"<string>\",\n    \"fein\": \"<string>\",\n    \"years_in_business\": \"<integer>\",\n    \"payroll\": \"<number>\",\n    \"employee_count\": \"<integer>\"\n  },\n  \"expiration_date\": \"<date>\",\n  \"coverages\": [\n    {\n      \"type\": \"<string>\",\n      \"limit\": \"<number>\",\n      \"deductible\": \"<number>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"limit\": \"<number>\",\n      \"deductible\": \"<number>\"\n    }\n  ],\n  \"agent_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/quotes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "quotes"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T01:00:39.000Z",
+                  "updatedAt": "2026-07-28T01:00:39.000Z",
+                  "uid": "35240-ca0a1c13-6b84-4ee6-83b6-c5ce59e17e45"
+                }
+              ],
+              "createdAt": "2026-07-28T01:00:38.000Z",
+              "updatedAt": "2026-07-28T01:00:38.000Z",
+              "uid": "35240-17616403-bb37-4e84-9b62-156eefaeb14f"
+            },
+            {
+              "name": "AmTrust Financial Services List Quotes",
+              "id": "41a4cf58-9768-47ab-bdb3-274d21656d16",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/quotes?status=quoted&page=1&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "quotes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter quotes by status",
+                      "key": "status",
+                      "value": "quoted"
+                    },
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of quotes per page",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                },
+                "description": "Retrieve a list of quotes for the authenticated agent or broker account."
+              },
+              "response": [
+                {
+                  "id": "a57e9e1e-07bc-4c30-9833-d363f1f325a1",
+                  "name": "List of quotes",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/quotes?status=quoted&page=1&limit=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "quotes"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter quotes by status",
+                          "key": "status",
+                          "value": "quoted"
+                        },
+                        {
+                          "description": "Page number for pagination",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of quotes per page",
+                          "key": "limit",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"quotes\": [\n    {\n      \"quote_id\": \"<string>\",\n      \"status\": \"expired\",\n      \"premium\": \"<number>\",\n      \"product_type\": \"<string>\",\n      \"effective_date\": \"<date>\",\n      \"expiration_date\": \"<date>\",\n      \"insured\": {\n        \"name\": \"<string>\",\n        \"address\": {\n          \"street\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zip\": \"<string>\"\n        },\n        \"class_code\": \"<string>\",\n        \"fein\": \"<string>\",\n        \"years_in_business\": \"<integer>\",\n        \"payroll\": \"<number>\",\n        \"employee_count\": \"<integer>\"\n      },\n      \"bind_online\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"expires_at\": \"<dateTime>\"\n    },\n    {\n      \"quote_id\": \"<string>\",\n      \"status\": \"expired\",\n      \"premium\": \"<number>\",\n      \"product_type\": \"<string>\",\n      \"effective_date\": \"<date>\",\n      \"expiration_date\": \"<date>\",\n      \"insured\": {\n        \"name\": \"<string>\",\n        \"address\": {\n          \"street\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zip\": \"<string>\"\n        },\n        \"class_code\": \"<string>\",\n        \"fein\": \"<string>\",\n        \"years_in_business\": \"<integer>\",\n        \"payroll\": \"<number>\",\n        \"employee_count\": \"<integer>\"\n      },\n      \"bind_online\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"expires_at\": \"<dateTime>\"\n    }\n  ],\n  \"total\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"limit\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:00:39.000Z",
+                  "updatedAt": "2026-07-28T01:00:39.000Z",
+                  "uid": "35240-a57e9e1e-07bc-4c30-9833-d363f1f325a1"
+                },
+                {
+                  "id": "49236f7e-03e1-4218-a41c-d20ea02fbd2c",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/quotes?status=quoted&page=1&limit=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "quotes"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter quotes by status",
+                          "key": "status",
+                          "value": "quoted"
+                        },
+                        {
+                          "description": "Page number for pagination",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of quotes per page",
+                          "key": "limit",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T01:00:39.000Z",
+                  "updatedAt": "2026-07-28T01:00:39.000Z",
+                  "uid": "35240-49236f7e-03e1-4218-a41c-d20ea02fbd2c"
+                }
+              ],
+              "createdAt": "2026-07-28T01:00:38.000Z",
+              "updatedAt": "2026-07-28T01:00:38.000Z",
+              "uid": "35240-41a4cf58-9768-47ab-bdb3-274d21656d16"
+            }
+          ],
+          "id": "5c791c20-d066-4f33-b2a7-e70622c127cc",
+          "createdAt": "2026-07-28T01:00:38.000Z",
+          "updatedAt": "2026-07-28T01:00:38.000Z",
+          "uid": "35240-5c791c20-d066-4f33-b2a7-e70622c127cc"
+        }
+      ],
+      "id": "f9cf0e93-49b3-4b61-b5ba-03c13ec5bbc5",
+      "createdAt": "2026-07-28T01:00:38.000Z",
+      "updatedAt": "2026-07-28T01:00:38.000Z",
+      "uid": "35240-f9cf0e93-49b3-4b61-b5ba-03c13ec5bbc5"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.amtrustservices.com"
+    }
+  ]
+}

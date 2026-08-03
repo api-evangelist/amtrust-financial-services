@@ -1,0 +1,265 @@
+{
+  "info": {
+    "_postman_id": "52cd402e-5534-4f83-a8e4-c835c2eec1a1",
+    "name": "AmTrust Financial Services Commercial Lines Appetite API",
+    "description": "The AmTrust Commercial Lines API enables insurance agents, brokers, and technology partners to review appetite, generate quotes, and bind commercial lines policies. Supports workers' compensation, BOP, general liability, and commercial package across 300+ eligible class codes.\n\nContact Support:\n Name: AmTrust API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:00:35.000Z",
+    "updatedAt": "2026-07-28T01:00:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-52cd402e-5534-4f83-a8e4-c835c2eec1a1"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "appetite",
+          "item": [
+            {
+              "name": "AmTrust Financial Services Check Coverage Appetite",
+              "id": "27838dda-3665-48b1-861a-ddb3225a13aa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"state\": \"<string>\",\n  \"class_code\": \"<string>\",\n  \"product_type\": \"bop\",\n  \"payroll\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/appetite",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "appetite"
+                  ]
+                },
+                "description": "Check whether AmTrust has an appetite for a given risk based on business class code, state, and coverage type. Returns eligibility status and available products."
+              },
+              "response": [
+                {
+                  "id": "b4ee5359-653b-422d-a78d-32e693cbafdd",
+                  "name": "Appetite check result",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"<string>\",\n  \"class_code\": \"<string>\",\n  \"product_type\": \"bop\",\n  \"payroll\": \"<number>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/appetite",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "appetite"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"eligible\": \"<boolean>\",\n  \"products\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bind_online\": \"<boolean>\",\n  \"reason\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:00:35.000Z",
+                  "updatedAt": "2026-07-28T01:00:35.000Z",
+                  "uid": "35240-b4ee5359-653b-422d-a78d-32e693cbafdd"
+                },
+                {
+                  "id": "26832a46-5f26-4d90-9b4b-d51138904f4c",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"<string>\",\n  \"class_code\": \"<string>\",\n  \"product_type\": \"bop\",\n  \"payroll\": \"<number>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/appetite",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "appetite"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T01:00:35.000Z",
+                  "updatedAt": "2026-07-28T01:00:35.000Z",
+                  "uid": "35240-26832a46-5f26-4d90-9b4b-d51138904f4c"
+                },
+                {
+                  "id": "f1518106-3ac2-445c-917a-276b9116a8c7",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"<string>\",\n  \"class_code\": \"<string>\",\n  \"product_type\": \"bop\",\n  \"payroll\": \"<number>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/appetite",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "appetite"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T01:00:35.000Z",
+                  "updatedAt": "2026-07-28T01:00:35.000Z",
+                  "uid": "35240-f1518106-3ac2-445c-917a-276b9116a8c7"
+                }
+              ],
+              "createdAt": "2026-07-28T01:00:35.000Z",
+              "updatedAt": "2026-07-28T01:00:35.000Z",
+              "uid": "35240-27838dda-3665-48b1-861a-ddb3225a13aa"
+            }
+          ],
+          "id": "20dab21e-f978-4b24-b93f-3255cd48840c",
+          "createdAt": "2026-07-28T01:00:35.000Z",
+          "updatedAt": "2026-07-28T01:00:35.000Z",
+          "uid": "35240-20dab21e-f978-4b24-b93f-3255cd48840c"
+        }
+      ],
+      "id": "fee238ee-2e01-4b64-be7e-199bd19aff17",
+      "createdAt": "2026-07-28T01:00:35.000Z",
+      "updatedAt": "2026-07-28T01:00:35.000Z",
+      "uid": "35240-fee238ee-2e01-4b64-be7e-199bd19aff17"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.amtrustservices.com"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "provider": "amtrust-financial-services",
+  "sources": [
+    "amtrust-financial-services-appetite-api-openapi.yml",
+    "amtrust-financial-services-authentication-api-openapi.yml",
+    "amtrust-financial-services-policies-api-openapi.yml",
+    "amtrust-financial-services-quotes-api-openapi.yml"
+  ],
+  "outputs": [
+    "amtrust-financial-services-appetite-api-openapi.yml",
+    "amtrust-financial-services-authentication-api-openapi.yml",
+    "amtrust-financial-services-policies-api-openapi.yml",
+    "amtrust-financial-services-quotes-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,471 @@
+{
+  "info": {
+    "_postman_id": "88bc99d9-a7fc-4c7e-b6ad-48cc48fba4ec",
+    "name": "AmTrust Financial Services Commercial Lines Appetite Policies API",
+    "description": "The AmTrust Commercial Lines API enables insurance agents, brokers, and technology partners to review appetite, generate quotes, and bind commercial lines policies. Supports workers' compensation, BOP, general liability, and commercial package across 300+ eligible class codes.\n\nContact Support:\n Name: AmTrust API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:00:37.000Z",
+    "updatedAt": "2026-07-28T01:00:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-88bc99d9-a7fc-4c7e-b6ad-48cc48fba4ec"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "quotes",
+          "item": [
+            {
+              "name": "{quote_id}",
+              "item": [
+                {
+                  "name": "bind",
+                  "item": [
+                    {
+                      "name": "AmTrust Financial Services Bind Policy",
+                      "id": "906f512e-01d2-4694-8f55-09f0aab391cc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"agent_signature\": \"<string>\",\n  \"payment_method\": \"direct_bill\",\n  \"additional_notes\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/quotes/:quote_id/bind",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "quotes",
+                            ":quote_id",
+                            "bind"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7a85039b-a55b-4209-beb4-076c627c29cb",
+                              "key": "quote_id",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the quote to bind"
+                            }
+                          ]
+                        },
+                        "description": "Bind a quoted policy to issue a commercial lines policy. Only available for eligible class codes that support online binding."
+                      },
+                      "response": [
+                        {
+                          "id": "82699ef9-23cf-43b7-b17a-e65721e5c65c",
+                          "name": "Policy bound successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"agent_signature\": \"<string>\",\n  \"payment_method\": \"direct_bill\",\n  \"additional_notes\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/quotes/:quote_id/bind",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "quotes",
+                                ":quote_id",
+                                "bind"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "quote_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"policy_number\": \"<string>\",\n  \"status\": \"active\",\n  \"product_type\": \"<string>\",\n  \"premium\": \"<number>\",\n  \"effective_date\": \"<date>\",\n  \"expiration_date\": \"<date>\",\n  \"insured\": {\n    \"name\": \"<string>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\"\n    },\n    \"class_code\": \"<string>\",\n    \"fein\": \"<string>\",\n    \"years_in_business\": \"<integer>\",\n    \"payroll\": \"<number>\",\n    \"employee_count\": \"<integer>\"\n  },\n  \"bound_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T01:00:37.000Z",
+                          "updatedAt": "2026-07-28T01:00:37.000Z",
+                          "uid": "35240-82699ef9-23cf-43b7-b17a-e65721e5c65c"
+                        },
+                        {
+                          "id": "1f99584e-7006-42da-9172-6479095b52b4",
+                          "name": "Invalid bind request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"agent_signature\": \"<string>\",\n  \"payment_method\": \"direct_bill\",\n  \"additional_notes\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/quotes/:quote_id/bind",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "quotes",
+                                ":quote_id",
+                                "bind"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "quote_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-07-28T01:00:37.000Z",
+                          "updatedAt": "2026-07-28T01:00:37.000Z",
+                          "uid": "35240-1f99584e-7006-42da-9172-6479095b52b4"
+                        },
+                        {
+                          "id": "9b7bde62-7ca6-4629-9b71-e696525ecaa1",
+                          "name": "Quote not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"agent_signature\": \"<string>\",\n  \"payment_method\": \"direct_bill\",\n  \"additional_notes\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/quotes/:quote_id/bind",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "quotes",
+                                ":quote_id",
+                                "bind"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "quote_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-07-28T01:00:37.000Z",
+                          "updatedAt": "2026-07-28T01:00:37.000Z",
+                          "uid": "35240-9b7bde62-7ca6-4629-9b71-e696525ecaa1"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:00:37.000Z",
+                      "updatedAt": "2026-07-28T01:00:37.000Z",
+                      "uid": "35240-906f512e-01d2-4694-8f55-09f0aab391cc"
+                    }
+                  ],
+                  "id": "2b935b8e-0ee2-455b-a105-a249cca774ff",
+                  "createdAt": "2026-07-28T01:00:37.000Z",
+                  "updatedAt": "2026-07-28T01:00:37.000Z",
+                  "uid": "35240-2b935b8e-0ee2-455b-a105-a249cca774ff"
+                }
+              ],
+              "id": "2f3b4641-7398-41a3-aff4-7c54fb6352cc",
+              "createdAt": "2026-07-28T01:00:37.000Z",
+              "updatedAt": "2026-07-28T01:00:37.000Z",
+              "uid": "35240-2f3b4641-7398-41a3-aff4-7c54fb6352cc"
+            }
+          ],
+          "id": "746f65c7-28cc-4e48-909a-08414ae5755f",
+          "createdAt": "2026-07-28T01:00:37.000Z",
+          "updatedAt": "2026-07-28T01:00:37.000Z",
+          "uid": "35240-746f65c7-28cc-4e48-909a-08414ae5755f"
+        },
+        {
+          "name": "policies",
+          "item": [
+            {
+              "name": "{policy_id}",
+              "item": [
+                {
+                  "name": "AmTrust Financial Services Get Policy",
+                  "id": "07e243c7-c70f-4e62-933b-ac3d39c19c67",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/policies/:policy_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "policies",
+                        ":policy_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b818a3ab-0e72-4c67-b83c-e0f560630903",
+                          "key": "policy_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique policy number"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve the details of a bound commercial lines policy."
+                  },
+                  "response": [
+                    {
+                      "id": "03bfb5c9-48d3-4f14-b99f-9f48b768f70e",
+                      "name": "Policy details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/policies/:policy_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "policies",
+                            ":policy_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "policy_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"policy_number\": \"<string>\",\n  \"status\": \"active\",\n  \"product_type\": \"<string>\",\n  \"premium\": \"<number>\",\n  \"effective_date\": \"<date>\",\n  \"expiration_date\": \"<date>\",\n  \"insured\": {\n    \"name\": \"<string>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\"\n    },\n    \"class_code\": \"<string>\",\n    \"fein\": \"<string>\",\n    \"years_in_business\": \"<integer>\",\n    \"payroll\": \"<number>\",\n    \"employee_count\": \"<integer>\"\n  },\n  \"bound_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:00:37.000Z",
+                      "updatedAt": "2026-07-28T01:00:37.000Z",
+                      "uid": "35240-03bfb5c9-48d3-4f14-b99f-9f48b768f70e"
+                    },
+                    {
+                      "id": "f0668fe5-9863-42f9-99f0-31a2901d4a30",
+                      "name": "Policy not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/policies/:policy_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "policies",
+                            ":policy_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "policy_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T01:00:37.000Z",
+                      "updatedAt": "2026-07-28T01:00:37.000Z",
+                      "uid": "35240-f0668fe5-9863-42f9-99f0-31a2901d4a30"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:00:37.000Z",
+                  "updatedAt": "2026-07-28T01:00:37.000Z",
+                  "uid": "35240-07e243c7-c70f-4e62-933b-ac3d39c19c67"
+                }
+              ],
+              "id": "333297f4-3a35-492a-9a7a-e5547216adad",
+              "createdAt": "2026-07-28T01:00:37.000Z",
+              "updatedAt": "2026-07-28T01:00:37.000Z",
+              "uid": "35240-333297f4-3a35-492a-9a7a-e5547216adad"
+            }
+          ],
+          "id": "b608f414-1c9c-4b32-8acb-7ac31f507f57",
+          "createdAt": "2026-07-28T01:00:37.000Z",
+          "updatedAt": "2026-07-28T01:00:37.000Z",
+          "uid": "35240-b608f414-1c9c-4b32-8acb-7ac31f507f57"
+        }
+      ],
+      "id": "2863821e-5489-444e-8585-4cbc18059c65",
+      "createdAt": "2026-07-28T01:00:37.000Z",
+      "updatedAt": "2026-07-28T01:00:37.000Z",
+      "uid": "35240-2863821e-5489-444e-8585-4cbc18059c65"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.amtrustservices.com"
+    }
+  ]
+}
