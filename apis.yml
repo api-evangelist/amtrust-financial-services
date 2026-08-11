@@ -162,14 +162,10 @@ common:
     url: json-schema/amtrust-financial-services-quote-request-schema.json
   - type: JSONSchema
     url: json-schema/amtrust-financial-services-quote-response-schema.json
-  - type: JSONSchema
-    url: json-schema/amtrust-financial-services-policy-schema.json
   - type: JSONLD
     url: json-ld/amtrust-financial-services-context.jsonld
   - type: Vocabulary
     url: vocabulary/amtrust-financial-services-vocabulary.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/amtrust-insurance-quoting-and-binding.yaml
   - type: JSONStructure
     url: json-structure/amtrust-financial-services-quote-request-structure.json
   - url: https://amtrustfinancial.com/blog
