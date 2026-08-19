@@ -1,5 +1,6 @@
 aid: amtrust-financial-services
 url: https://raw.githubusercontent.com/api-evangelist/amtrust-financial-services/refs/heads/main/apis.yml
+specificationVersion: '0.23'
 accessModel:
   pricing: freemium
   onboarding: self-serve
