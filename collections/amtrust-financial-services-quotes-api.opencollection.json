@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AmTrust Financial Services Commercial Lines Appetite Quotes API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Quotes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AmTrust Financial Services List Quotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.amtrustservices.com/v1/quotes",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter quotes by status"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of quotes per page"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of quotes for the authenticated agent or broker account."
+        },
+        {
+          "info": {
+            "name": "AmTrust Financial Services Create Quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.amtrustservices.com/v1/quotes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a commercial lines insurance quote for a given business. Supports workers' compensation, BOP, general liability, and commercial package products."
+        },
+        {
+          "info": {
+            "name": "AmTrust Financial Services Get Quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.amtrustservices.com/v1/quotes/:quote_id",
+            "params": [
+              {
+                "name": "quote_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the quote"
+              }
+            ]
+          },
+          "docs": "Retrieve the details of a specific quote by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

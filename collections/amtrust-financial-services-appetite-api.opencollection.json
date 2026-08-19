@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AmTrust Financial Services Commercial Lines Appetite API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Appetite",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AmTrust Financial Services Check Coverage Appetite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.amtrustservices.com/v1/appetite",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check whether AmTrust has an appetite for a given risk based on business class code, state, and coverage type. Returns eligibility status and available products."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

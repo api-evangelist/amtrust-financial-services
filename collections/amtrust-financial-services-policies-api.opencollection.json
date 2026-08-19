@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AmTrust Financial Services Commercial Lines Appetite Policies API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AmTrust Financial Services Bind Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.amtrustservices.com/v1/quotes/:quote_id/bind",
+            "params": [
+              {
+                "name": "quote_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the quote to bind"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bind a quoted policy to issue a commercial lines policy. Only available for eligible class codes that support online binding."
+        },
+        {
+          "info": {
+            "name": "AmTrust Financial Services Get Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.amtrustservices.com/v1/policies/:policy_id",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique policy number"
+              }
+            ]
+          },
+          "docs": "Retrieve the details of a bound commercial lines policy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

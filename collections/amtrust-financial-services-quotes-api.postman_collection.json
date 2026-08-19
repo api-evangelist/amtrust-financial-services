@@ -1,0 +1,566 @@
+{
+  "item": [
+    {
+      "id": "65e7c0bc-0da7-4c41-ba54-6ff3a64823e6",
+      "name": "Quotes",
+      "description": {
+        "content": "Quote generation and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "63385540-1086-41ac-806c-f1a7a26053fd",
+          "name": "AmTrust Financial Services Create Quote",
+          "request": {
+            "name": "AmTrust Financial Services Create Quote",
+            "description": {
+              "content": "Generate a commercial lines insurance quote for a given business. Supports workers' compensation, BOP, general liability, and commercial package products.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "quotes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product_type\": \"<string>\",\n  \"state\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"insured\": {\n    \"name\": \"<string>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\"\n    },\n    \"class_code\": \"<string>\",\n    \"fein\": \"<string>\",\n    \"years_in_business\": \"<integer>\",\n    \"payroll\": \"<number>\",\n    \"employee_count\": \"<integer>\"\n  },\n  \"expiration_date\": \"<date>\",\n  \"coverages\": [\n    {\n      \"type\": \"<string>\",\n      \"limit\": \"<number>\",\n      \"deductible\": \"<number>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"limit\": \"<number>\",\n      \"deductible\": \"<number>\"\n    }\n  ],\n  \"agent_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ffe2a989-bd59-4dbf-b073-b9e442f4076e",
+              "name": "Quote created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product_type\": \"<string>\",\n  \"state\": \"TX\",\n  \"effective_date\": \"2025-07-01\",\n  \"insured\": {\n    \"name\": \"Acme Contracting LLC\",\n    \"address\": {\n      \"street\": \"123 Main St\",\n      \"city\": \"Austin\",\n      \"state\": \"TX\",\n      \"zip\": \"78701\"\n    },\n    \"class_code\": \"8810\",\n    \"fein\": \"12-3456789\",\n    \"years_in_business\": 5,\n    \"payroll\": 750000,\n    \"employee_count\": 25\n  },\n  \"expiration_date\": \"2026-07-01\",\n  \"coverages\": [\n    {\n      \"type\": \"employers_liability\",\n      \"limit\": 1000000,\n      \"deductible\": 0\n    },\n    {\n      \"type\": \"employers_liability\",\n      \"limit\": 1000000,\n      \"deductible\": 0\n    }\n  ],\n  \"agent_id\": \"AGT-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Operation completed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c258aaa0-72a7-400f-a31d-ea3bb73e8535",
+              "name": "Invalid request data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product_type\": \"<string>\",\n  \"state\": \"TX\",\n  \"effective_date\": \"2025-07-01\",\n  \"insured\": {\n    \"name\": \"Acme Contracting LLC\",\n    \"address\": {\n      \"street\": \"123 Main St\",\n      \"city\": \"Austin\",\n      \"state\": \"TX\",\n      \"zip\": \"78701\"\n    },\n    \"class_code\": \"8810\",\n    \"fein\": \"12-3456789\",\n    \"years_in_business\": 5,\n    \"payroll\": 750000,\n    \"employee_count\": 25\n  },\n  \"expiration_date\": \"2026-07-01\",\n  \"coverages\": [\n    {\n      \"type\": \"employers_liability\",\n      \"limit\": 1000000,\n      \"deductible\": 0\n    },\n    {\n      \"type\": \"employers_liability\",\n      \"limit\": 1000000,\n      \"deductible\": 0\n    }\n  ],\n  \"agent_id\": \"AGT-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Operation completed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7ebf21d-8cad-423d-8ba2-2746127de035",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product_type\": \"<string>\",\n  \"state\": \"TX\",\n  \"effective_date\": \"2025-07-01\",\n  \"insured\": {\n    \"name\": \"Acme Contracting LLC\",\n    \"address\": {\n      \"street\": \"123 Main St\",\n      \"city\": \"Austin\",\n      \"state\": \"TX\",\n      \"zip\": \"78701\"\n    },\n    \"class_code\": \"8810\",\n    \"fein\": \"12-3456789\",\n    \"years_in_business\": 5,\n    \"payroll\": 750000,\n    \"employee_count\": 25\n  },\n  \"expiration_date\": \"2026-07-01\",\n  \"coverages\": [\n    {\n      \"type\": \"employers_liability\",\n      \"limit\": 1000000,\n      \"deductible\": 0\n    },\n    {\n      \"type\": \"employers_liability\",\n      \"limit\": 1000000,\n      \"deductible\": 0\n    }\n  ],\n  \"agent_id\": \"AGT-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Operation completed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65c07b61-7c58-42ce-b8c5-ddbd2f762fd2",
+          "name": "AmTrust Financial Services List Quotes",
+          "request": {
+            "name": "AmTrust Financial Services List Quotes",
+            "description": {
+              "content": "Retrieve a list of quotes for the authenticated agent or broker account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "quotes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter quotes by status"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of quotes per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "451e0613-a1fc-4862-b7d3-5132b27929af",
+              "name": "List of quotes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Operation completed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e91d13e-42c4-4278-88b2-403fe1fb778c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Operation completed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f69be470-5bbe-42d0-b0f8-42294c60514a",
+          "name": "AmTrust Financial Services Get Quote",
+          "request": {
+            "name": "AmTrust Financial Services Get Quote",
+            "description": {
+              "content": "Retrieve the details of a specific quote by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "quotes",
+                ":quote_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "quote_id",
+                  "description": "(Required) Unique identifier of the quote"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b6462f7-2c34-4788-9589-12c2391c0732",
+              "name": "Quote details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quotes",
+                    ":quote_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quote_id",
+                      "description": "(Required) Unique identifier of the quote"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Operation completed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f891ed0d-a5b6-4d5b-888e-52f58c3c8d64",
+              "name": "Quote not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quotes",
+                    ":quote_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quote_id",
+                      "description": "(Required) Unique identifier of the quote"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Operation completed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.amtrustservices.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8f889831-e309-410d-a201-679d1eef45c3",
+    "name": "AmTrust Financial Services Commercial Lines Appetite Quotes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The AmTrust Commercial Lines API enables insurance agents, brokers, and technology partners to review appetite, generate quotes, and bind commercial lines policies. Supports workers' compensation, BOP, general liability, and commercial package across 300+ eligible class codes.\n\nContact Support:\n Name: AmTrust API Support",
+      "type": "text/plain"
+    }
+  }
+}
