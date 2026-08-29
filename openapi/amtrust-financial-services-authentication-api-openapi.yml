@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: AmTrust Financial Services Commercial Lines Appetite Authentication API
   description: The AmTrust Commercial Lines API enables insurance agents, brokers, and technology partners to review appetite, generate quotes, and bind commercial lines policies. Supports workers' compensation, BOP, general liability, and commercial package across 300+ eligible class codes.

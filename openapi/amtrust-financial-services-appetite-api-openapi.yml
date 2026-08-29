@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: AmTrust Financial Services Commercial Lines Appetite API
   description: The AmTrust Commercial Lines API enables insurance agents, brokers, and technology partners to review appetite, generate quotes, and bind commercial lines policies. Supports workers' compensation, BOP, general liability, and commercial package across 300+ eligible class codes.
@@ -75,35 +75,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AppetiteRequest:
-      type: object
-      description: Request to check coverage appetite
-      required:
-      - state
-      - class_code
-      - product_type
-      properties:
-        state:
-          type: string
-          description: US state abbreviation
-          example: CA
-        class_code:
-          type: string
-          description: NCCI or state class code for the business
-          example: '8810'
-        product_type:
-          type: string
-          description: Insurance product type
-          enum:
-          - workers_compensation
-          - bop
-          - general_liability
-          - commercial_package
-          example: workers_compensation
-        payroll:
-          type: number
-          description: Annual payroll amount
-          example: 500000
     ErrorResponse:
       type: object
       description: Error response
@@ -144,6 +115,35 @@ components:
           type: string
           description: Reason if not eligible
           example: Eligible for online quoting and binding
+    AppetiteRequest:
+      type: object
+      description: Request to check coverage appetite
+      required:
+      - state
+      - class_code
+      - product_type
+      properties:
+        state:
+          type: string
+          description: US state abbreviation
+          example: CA
+        class_code:
+          type: string
+          description: NCCI or state class code for the business
+          example: '8810'
+        product_type:
+          type: string
+          description: Insurance product type
+          enum:
+          - workers_compensation
+          - bop
+          - general_liability
+          - commercial_package
+          example: workers_compensation
+        payroll:
+          type: number
+          description: Annual payroll amount
+          example: 500000
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: AmTrust Financial Services Commercial Lines Appetite Policies API
   description: The AmTrust Commercial Lines API enables insurance agents, brokers, and technology partners to review appetite, generate quotes, and bind commercial lines policies. Supports workers' compensation, BOP, general liability, and commercial package across 300+ eligible class codes.
@@ -126,6 +126,65 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    BindRequest:
+      type: object
+      description: Request to bind a quoted policy
+      required:
+      - agent_signature
+      properties:
+        agent_signature:
+          type: string
+          description: Agent electronic signature confirming bind intent
+          example: John Smith
+        payment_method:
+          type: string
+          description: Payment method for premium
+          enum:
+          - direct_bill
+          - agency_bill
+          example: direct_bill
+        additional_notes:
+          type: string
+          description: Optional notes for the policy
+          example: Insured prefers monthly installments
+    PolicyResponse:
+      type: object
+      description: Bound policy details
+      properties:
+        policy_number:
+          type: string
+          description: Unique AmTrust policy number
+          example: WC-2025-001234
+        status:
+          type: string
+          description: Policy status
+          enum:
+          - active
+          - cancelled
+          - expired
+          example: active
+        product_type:
+          type: string
+          description: Insurance product type
+          example: workers_compensation
+        premium:
+          type: number
+          description: Annual premium
+          example: 8250.0
+        effective_date:
+          type: string
+          format: date
+          example: '2025-07-01'
+        expiration_date:
+          type: string
+          format: date
+          example: '2026-07-01'
+        insured:
+          $ref: '#/components/schemas/Insured'
+        bound_at:
+          type: string
+          format: date-time
+          example: '2025-03-15T15:00:00Z'
     ErrorResponse:
       type: object
       description: Error response
@@ -177,44 +236,6 @@ components:
           type: integer
           description: Total number of employees
           example: 25
-    PolicyResponse:
-      type: object
-      description: Bound policy details
-      properties:
-        policy_number:
-          type: string
-          description: Unique AmTrust policy number
-          example: WC-2025-001234
-        status:
-          type: string
-          description: Policy status
-          enum:
-          - active
-          - cancelled
-          - expired
-          example: active
-        product_type:
-          type: string
-          description: Insurance product type
-          example: workers_compensation
-        premium:
-          type: number
-          description: Annual premium
-          example: 8250.0
-        effective_date:
-          type: string
-          format: date
-          example: '2025-07-01'
-        expiration_date:
-          type: string
-          format: date
-          example: '2026-07-01'
-        insured:
-          $ref: '#/components/schemas/Insured'
-        bound_at:
-          type: string
-          format: date-time
-          example: '2025-03-15T15:00:00Z'
     Address:
       type: object
       description: Physical address
@@ -240,27 +261,6 @@ components:
           type: string
           description: ZIP code
           example: '78701'
-    BindRequest:
-      type: object
-      description: Request to bind a quoted policy
-      required:
-      - agent_signature
-      properties:
-        agent_signature:
-          type: string
-          description: Agent electronic signature confirming bind intent
-          example: John Smith
-        payment_method:
-          type: string
-          description: Payment method for premium
-          enum:
-          - direct_bill
-          - agency_bill
-          example: direct_bill
-        additional_notes:
-          type: string
-          description: Optional notes for the policy
-          example: Insured prefers monthly installments
   securitySchemes:
     bearerAuth:
       type: http

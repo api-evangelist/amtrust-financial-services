@@ -15,6 +15,12 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "amtrust-financial-services-appetite-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "amtrust-financial-services-authentication-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "amtrust-financial-services-policies-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "amtrust-financial-services-quotes-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

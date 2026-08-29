@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: AmTrust Financial Services Commercial Lines Appetite Quotes API
   description: The AmTrust Commercial Lines API enables insurance agents, brokers, and technology partners to review appetite, generate quotes, and bind commercial lines policies. Supports workers' compensation, BOP, general liability, and commercial package across 300+ eligible class codes.
@@ -178,77 +178,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: Invalid class code for the specified state
-        details:
-          type: array
-          items:
-            type: string
-          description: Additional error details
-    Insured:
-      type: object
-      description: Business insured information
-      required:
-      - name
-      - address
-      - class_code
-      properties:
-        name:
-          type: string
-          description: Legal business name
-          example: Acme Contracting LLC
-        fein:
-          type: string
-          description: Federal Employer Identification Number
-          example: 12-3456789
-        class_code:
-          type: string
-          description: NCCI or state class code
-          example: '8810'
-        address:
-          $ref: '#/components/schemas/Address'
-        years_in_business:
-          type: integer
-          description: Years the business has been operating
-          example: 5
-        payroll:
-          type: number
-          description: Total annual payroll
-          example: 750000
-        employee_count:
-          type: integer
-          description: Total number of employees
-          example: 25
-    QuoteListResponse:
-      type: object
-      description: Paginated list of quotes
-      properties:
-        quotes:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuoteResponse'
-        total:
-          type: integer
-          description: Total number of quotes
-          example: 42
-        page:
-          type: integer
-          description: Current page
-          example: 1
-        limit:
-          type: integer
-          description: Items per page
-          example: 20
     Coverage:
       type: object
       description: Coverage detail
@@ -265,31 +194,6 @@ components:
           type: number
           description: Deductible amount
           example: 0
-    Address:
-      type: object
-      description: Physical address
-      required:
-      - street
-      - city
-      - state
-      - zip
-      properties:
-        street:
-          type: string
-          description: Street address
-          example: 123 Main St
-        city:
-          type: string
-          description: City
-          example: Austin
-        state:
-          type: string
-          description: State abbreviation
-          example: TX
-        zip:
-          type: string
-          description: ZIP code
-          example: '78701'
     QuoteRequest:
       type: object
       description: Request to create a commercial lines quote
@@ -383,6 +287,102 @@ components:
           format: date-time
           description: Quote expiration timestamp
           example: '2025-04-14T14:30:00Z'
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid class code for the specified state
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
+    QuoteListResponse:
+      type: object
+      description: Paginated list of quotes
+      properties:
+        quotes:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuoteResponse'
+        total:
+          type: integer
+          description: Total number of quotes
+          example: 42
+        page:
+          type: integer
+          description: Current page
+          example: 1
+        limit:
+          type: integer
+          description: Items per page
+          example: 20
+    Insured:
+      type: object
+      description: Business insured information
+      required:
+      - name
+      - address
+      - class_code
+      properties:
+        name:
+          type: string
+          description: Legal business name
+          example: Acme Contracting LLC
+        fein:
+          type: string
+          description: Federal Employer Identification Number
+          example: 12-3456789
+        class_code:
+          type: string
+          description: NCCI or state class code
+          example: '8810'
+        address:
+          $ref: '#/components/schemas/Address'
+        years_in_business:
+          type: integer
+          description: Years the business has been operating
+          example: 5
+        payroll:
+          type: number
+          description: Total annual payroll
+          example: 750000
+        employee_count:
+          type: integer
+          description: Total number of employees
+          example: 25
+    Address:
+      type: object
+      description: Physical address
+      required:
+      - street
+      - city
+      - state
+      - zip
+      properties:
+        street:
+          type: string
+          description: Street address
+          example: 123 Main St
+        city:
+          type: string
+          description: City
+          example: Austin
+        state:
+          type: string
+          description: State abbreviation
+          example: TX
+        zip:
+          type: string
+          description: ZIP code
+          example: '78701'
   securitySchemes:
     bearerAuth:
       type: http
