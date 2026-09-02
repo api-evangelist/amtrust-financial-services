@@ -1,0 +1,42 @@
+generated: '2026-09-02'
+method: searched
+source: >-
+  registry.npmjs.org search, pypi.org/pypi/<name>/json, rubygems.org/api/v1/search.json,
+  azuresearch-usnc.nuget.org/query, github.com/amtrust, and the AmTrust developer portals
+  (apiportal.amtrustgroup.com, utapiportal.amtrustgroup.com), probed 2026-09-02
+provider: AmTrust Financial Services
+providerId: amtrust-financial-services
+package_count: 0
+official_count: 0
+packages: []
+note: >-
+  AmTrust publishes no first-party client libraries. npm search for "amtrust" returns 0 results,
+  pypi.org/pypi/amtrust/json returns 404, the RubyGems search returns an empty array, and the NuGet
+  query returns totalHits 0 — despite AmTrust being an all-Microsoft shop whose APIs are fronted by
+  Azure API Management, which is where a first-party NuGet package would be most expected. There is no
+  GitHub organization: https://github.com/amtrust returns 404, as do github.com/amtrustfinancial and
+  github.com/AmTrustFinancialServices. The developer portals (Azure APIM) offer generated code samples
+  in the try-it console but ship no downloadable, versioned SDK. Integration is therefore raw HTTP
+  against gateway.amtrustgroup.com, or through one of the third-party agency-platform partners
+  (Appulate, Semsee, Tarmika, IBQ) that have built their own connectors.
+registries_probed:
+- registry: npm
+  query: https://registry.npmjs.org/-/v1/search?text=amtrust&size=20
+  status: 200
+  results: 0
+- registry: pypi
+  query: https://pypi.org/pypi/amtrust/json
+  status: 404
+  results: 0
+- registry: rubygems
+  query: https://rubygems.org/api/v1/search.json?query=amtrust
+  status: 200
+  results: 0
+- registry: nuget
+  query: https://azuresearch-usnc.nuget.org/query?q=amtrust&take=20
+  status: 200
+  results: 0
+- registry: github
+  query: https://github.com/amtrust
+  status: 404
+  results: 0

@@ -1,26 +1,65 @@
-generated: '2026-07-11'
+generated: '2026-09-02'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
 - host: amtrustfinancial.com
   https: true
   tls_version: TLSv1.3
-  cert_expires: Aug 18 14:53:38 2026 GMT
+  cert_expires: Oct 17 14:10:47 2026 GMT
   hsts: true
   hsts_max_age: 63072000
-- host: api.amtrustservices.com
-  https: false
+- host: apiportal.amtrustgroup.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 29 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: gateway.amtrustgroup.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 29 23:59:59 2026 GMT
+  hsts: null
 domains:
 - domain: amtrustfinancial.com
-  dnssec: false
-  caa:
-  - ves-io-235f76b6-e673-4a73-aa89-7927b57b12ad.ac.vh.ves.io.
-  spf: true
-  dmarc: true
-  dmarc_policy: reject
-- domain: amtrustservices.com
   dnssec: false
   caa: []
   spf: true
   dmarc: true
   dmarc_policy: reject
+- domain: amtrustgroup.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+notes:
+- 'apimanagement.amtrustgroup.com serves an EXPIRED wildcard certificate: subject CN=*.amtrustgroup.com,
+  O=AmTrust Financial Services, Inc., issued by Corporation Service Company RSA OV SSL CA, valid 2023-11-28
+  to 2024-11-27 — expired roughly 21 months before this probe. It is the management endpoint that the
+  PRODUCTION developer portal at apiportal.amtrustgroup.com names in its own /config.json, so any browser
+  loading the production portal''s API list fails TLS validation. curl exits 60 (SSL certificate problem)
+  against it.'
+- prod-apim-gw.amtrustservices.com has no DNS record. It is the second servers[] entry in all nine published
+  production OpenAPI documents, so every AmTrust contract names an unreachable host.
+- gateway.amtrustgroup.com does not send Strict-Transport-Security on its root 404, but does send 'max-age=63072000;
+  includeSubDomains' on an authenticated-path 401 response.
+additional_hosts:
+- host: apimanagement.amtrustgroup.com
+  https: false
+  tls_error: certificate expired 2024-11-27
+  cert_subject: C=US, ST=New York, O=AmTrust Financial Services, Inc., CN=*.amtrustgroup.com
+  cert_issuer: C=US, O=Corporation Service Company, CN=Corporation Service Company RSA OV SSL CA
+  cert_not_before: '2023-11-28'
+  cert_not_after: '2024-11-27'
+- host: auth.amtrustgroup.com
+  https: true
+  note: OpenID Connect discovery served under /AuthServer
+- host: uatauth.amtrustgroup.com
+  https: true
+  note: UAT OpenID Connect discovery under /AuthServer_usertest
+- host: utapiportal.amtrustgroup.com
+  https: true
+  note: UAT Azure API Management developer portal
+- host: prod-apim-gw.amtrustservices.com
+  https: false
+  note: no DNS record

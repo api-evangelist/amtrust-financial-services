@@ -1,0 +1,46 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Digital Cyber API
+  version: 1.0.0
+extends: amtrust-financial-services-digital-cyber-api-openapi.json
+x-generated: '2026-09-02'
+x-method: generated
+x-source: openapi/amtrust-financial-services-digital-cyber-api-openapi.json (harvested verbatim from AmTrust
+  Azure API Management, 2026-09-02)
+x-note: 'Non-destructive enhancements API Evangelist would apply to the AmTrust contract. The original
+  document in openapi/_original/ is never mutated. The dominant fix is the missing OpenID Connect security
+  scheme: AmTrust requires BOTH an APIM subscription key AND a bearer token from its IdentityServer, and
+  only the subscription key is declared in the spec, so a generated client 401s.'
+actions:
+- target: $.info
+  description: Add contact and external documentation pointing at the AmTrust developer portal.
+  update:
+    contact:
+      name: AmTrust API Program
+      url: https://apiportal.amtrustgroup.com
+    termsOfService: https://amtrustfinancial.com/about-us/terms-of-use
+- target: $.externalDocs
+  description: Point at the AmTrust developer portal.
+  update:
+    description: AmTrust developer portal
+    url: https://apiportal.amtrustgroup.com/apis
+- target: $.components.securitySchemes
+  description: Declare the OpenID Connect bearer token that the portal documents but the contract omits.
+  update:
+    amtrustIdentityServer:
+      type: openIdConnect
+      openIdConnectUrl: https://auth.amtrustgroup.com/AuthServer/.well-known/openid-configuration
+      description: 'AmTrust IdentityServer bearer token, sent as Authorization: Bearer <token> ALONGSIDE
+        the subscriber_id subscription key. Tokens live 4 hours. Documented at https://apiportal.amtrustgroup.com/authentication.'
+- target: $.security
+  description: Require both credentials together, which is what the gateway actually enforces.
+  update:
+  - apiKeyHeader: []
+    amtrustIdentityServer: []
+- target: $.servers[?(@.url=~/prod-apim-gw\.amtrustservices\.com/)]
+  description: 'Flag the second server entry: prod-apim-gw.amtrustservices.com has no DNS record as of
+    2026-09-02 and cannot be reached.'
+  update:
+    x-unreachable: true
+    x-probed: '2026-09-02'
+    x-probe-result: no DNS record

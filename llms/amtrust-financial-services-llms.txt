@@ -1,0 +1,46 @@
+# AmTrust Financial Services
+> Niche specialty property and casualty insurance company with more than 7,000 employees globally.
+> 500,000+ small commercial policies in force. Over 400 eligible classes of business.
+> AM Best rating: A- (Excellent), Financial Size Category XV.
+> For detailed product descriptions, FAQs, and full context see [llms-full.txt](https://amtrustfinancial.com/llms-full.txt)
+
+## Products
+- Workers' Compensation: https://amtrustfinancial.com/insurance-products/workers-compensation
+- Business Owner's Policy (BOP): https://amtrustfinancial.com/insurance-products/businessowners-policy
+- General Liability: https://amtrustfinancial.com/insurance-products/general-liability
+- Commercial Auto: https://amtrustfinancial.com/insurance-products/commercial-auto
+- Cyber Insurance: https://amtrustfinancial.com/insurance-products/cyber-insurance
+- EPLI: https://amtrustfinancial.com/insurance-products/epli
+- Commercial Package: https://amtrustfinancial.com/insurance-products/commercial-package
+- Commercial Property: https://amtrustfinancial.com/insurance-products/commercial-property-insurance
+- Executive Liability: https://amtrustfinancial.com/insurance-products/executive-liability
+- Surety: https://amtrustfinancial.com/insurance-products/surety
+- Specialty Programs: https://amtrustfinancial.com/insurance-products/specialty-programs
+
+## Divisions
+- AmTrust E&S Insurance (Excess & Surplus): https://amtrustfinancial.com/excess-surplus
+- AmTrust Specialty Programs: https://amtrustfinancial.com/specialty-programs
+- AmTrust Risk Solutions: https://amtrustfinancial.com/risk-solutions
+- AmTrust Title: https://amtrustfinancial.com/title
+- AmTrust Surety: https://amtrustfinancial.com/surety
+- AmTrust International: https://amtrustfinancial.com/international
+
+## Services
+- Claims Reporting: https://amtrustfinancial.com/claims
+- Risk Control & Loss Control: https://amtrustfinancial.com/loss-control
+- Payments (Pay-As-You-Owe): https://amtrustfinancial.com/payments
+- Premium Audit: https://amtrustfinancial.com/premium-audit
+- API Access: https://amtrustfinancial.com/api
+
+## Industries Served
+Auto Repair, Contractors, Financial Institutions, Grocery Stores, Healthcare, Landscapers, Manufacturing, Nonprofit, Offices, Restaurants, Retail, Schools, Wholesale
+
+## Contact
+- Customer Service: 877-528-7878
+- Claims: 888-239-3909
+- Claims Email: WorkersCompClaimReport@AmTrustGroup.com
+- Website: https://amtrustfinancial.com
+
+## For Agents
+- Agent Portal: https://amtrustfinancial.com/agents
+- Blog: https://amtrustfinancial.com/blog

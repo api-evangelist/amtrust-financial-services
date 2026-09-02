@@ -1,0 +1,101 @@
+generated: '2026-09-02'
+method: derived
+source: >-
+  openapi/ (nine harvested AmTrust OpenAPI documents), AmTrust's Azure API Management catalogs
+  (apimanagement.amtrustgroup.com prod, utapimanagement.amtrustgroup.com UAT), and probes of
+  status.amtrustfinancial.com, status.amtrustgroup.com and amtrustfinancial.statuspage.io — 2026-09-02
+provider: AmTrust Financial Services
+providerId: amtrust-financial-services
+versioning:
+  scheme: path-segment major version
+  style: per-operation, not per-API
+  observed:
+  - /api/v1/... (the majority)
+  - /api/v2/... (quotes create, bind, some policy operations)
+  - /api/v3/... (specialty-program endorsements, one BOP quote read)
+  - /api/v{version}/... (templated — Reinsurance Contract Entry and Experience Claims Medical Case)
+  note: >-
+    Versions move at the OPERATION level inside a single document, so one API serves v1, v2 and v3
+    paths side by side. The Digital WC API alone spans all three. Two APIs publish a TEMPLATED
+    `{version}` path segment with no enum and no default anywhere in the contract, so a client cannot
+    determine from the spec what value to send. That is a real integration blocker, not a nit.
+  info_version_declared: '1.0'
+  info_version_note: >-
+    All nine documents declare info.version "1.0" regardless of the v1/v2/v3 paths they contain, so
+    the document version conveys nothing.
+  apim_revision: >-
+    Azure API Management revisioning is available and effectively unused — the revisions collection is
+    empty for every production API and apiRevision is "1" throughout.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  deprecated_operations: 0
+  note: >-
+    No deprecation policy is published, no operation in any of the 387 carries `deprecated: true`, and
+    neither the Sunset (RFC 8594) nor the Deprecation header is mentioned anywhere. The only "sunset"
+    string in the whole contract set is `sunsetClause`, a reinsurance treaty business field in the
+    RCE API — unrelated. Because versions are mixed at operation level with no deprecation marking,
+    there is no signal telling an integrator that /api/v1/quotes is superseded by /api/v2/quotes.
+  no_pointer_reason: >-
+    No Deprecation pointer is emitted in apis.yml because no deprecation policy exists to point at.
+status_page:
+  published: false
+  probes:
+  - url: https://status.amtrustfinancial.com/
+    status: '<no response>'
+    note: No DNS record.
+  - url: https://status.amtrustgroup.com/
+    status: '<no response>'
+    note: No DNS record.
+  - url: https://amtrustfinancial.statuspage.io/
+    status: 200
+    note: >-
+      Resolves on the Statuspage wildcard but redirects to atlassian.com/software/statuspage — the
+      Statuspage marketing page, not an AmTrust status page. A false positive, not a status page.
+  no_pointer_reason: >-
+    No StatusPage pointer is emitted in apis.yml because AmTrust operates no public status page.
+sla:
+  published: false
+  note: >-
+    No SLA, uptime target or availability commitment is published on either developer portal or on
+    amtrustfinancial.com/api. Terms are negotiated inside the partner agreement that follows the
+    Digital Partner Vetting Questionnaire.
+changelog:
+  published: false
+  note: >-
+    Neither developer portal carries a changelog or release-notes page, and the APIM catalog exposes no
+    dated revision history. Changes to the 387 operations are not announced publicly.
+environments:
+- name: production
+  gateway: https://gateway.amtrustgroup.com
+  portal: https://apiportal.amtrustgroup.com
+  auth: https://auth.amtrustgroup.com/AuthServer
+  apis_published: 9
+- name: user-test (UAT)
+  gateway: inferred from the UAT APIM instance; not publicly named on the portal
+  portal: https://utapiportal.amtrustgroup.com
+  auth: https://uatauth.amtrustgroup.com/AuthServer_usertest
+  apis_published: 13
+  note: >-
+    The UAT catalog carries four APIs with no production counterpart — Commercial Package Models
+    (ds-commercial-lines-tiering-api, a pricing-recommendation model service), Experience Claims Canopy,
+    Experience Claims Legal, and Specialty Risk Net Reporting — plus a staging variant of the last.
+    These are the visible edge of AmTrust's forward roadmap.
+observed_decay:
+- finding: >-
+    prod-apim-gw.amtrustservices.com is the SECOND servers[] entry in all nine production OpenAPI
+    documents and has no DNS record. Every published contract AmTrust serves names a host that cannot
+    be reached.
+  status: '<no response>'
+- finding: >-
+    apimanagement.amtrustgroup.com — the management endpoint the PRODUCTION developer portal
+    (apiportal.amtrustgroup.com) is configured to call, per its own /config.json — serves a wildcard
+    *.amtrustgroup.com certificate that expired 2024-11-27, roughly 21 months ago. Any browser loading
+    the production portal's API list fails TLS validation against it.
+  status: TLS validation failure (curl exit 60)
+  certificate:
+    subject: C=US, ST=New York, O=AmTrust Financial Services, Inc., CN=*.amtrustgroup.com
+    issuer: Corporation Service Company RSA OV SSL CA
+    not_before: '2023-11-28'
+    not_after: '2024-11-27'

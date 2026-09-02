@@ -3,90 +3,66 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: AmTrust Financial Services
 providerId: amtrust-financial-services
+generated: '2026-09-02'
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+modified: '2026-09-02'
+method: probed
+source: >-
+  Live unauthenticated request to https://gateway.amtrustgroup.com/digital-bop/api/v1/agent-contacts,
+  the nine harvested OpenAPI documents, and AmTrust's own Azure API Management product catalog at
+  apimanagement.amtrustgroup.com — probed 2026-09-02
 tags:
   - Commercial Insurance
   - Insurance
-  - Property And Casualty
-  - Small Business
-  - Workers Compensation
   - Rate Limiting
   - Quotas
   - Throttling
-description: Machine-readable rate limit definitions for the AmTrust Financial Services API surface. Captures
-  per-tier quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values
-  to be replaced with published provider limits.
+limit_count: 0
+limits: []
+description: >-
+  AmTrust publishes NO rate limits for any of the nine externally exposed APIs. All nine sit in the
+  custom Azure API Management product "External", which states no call ceiling. No harvested OpenAPI
+  document declares a 429 response — the full set of documented status codes across 387 operations is
+  200, 201, 400, 401, 403, 404 and 424 — and a live unauthenticated call to the gateway returned no
+  RateLimit-*, X-RateLimit-* or Retry-After header. limit_count is 0 because that is the true published
+  number.
+note: >-
+  This artifact REPLACES a 2026-05-04 bulk-sweep scaffold that asserted free/professional/enterprise
+  tiers at 10/100/1000 requests per minute with X-RateLimit-* headers and a 429 response. AmTrust
+  publishes none of that: no 429 appears anywhere in the contract set, and the gateway emits no
+  rate-limit headers.
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  limit: null
+  remaining: null
+  reset: null
+  retryAfter: null
+  policy: null
+  note: No rate-limit signaling headers observed on the live gateway response.
 responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - AmTrust Commercial Lines API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - AmTrust Commercial Lines API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - AmTrust Commercial Lines API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - AmTrust Commercial Lines API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - AmTrust Commercial Lines API
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  throttled: null
+  note: >-
+    No operation in any of the nine OpenAPI documents declares 429. Azure API Management returns 429
+    when a rate-limit policy is attached, but AmTrust's API-level policies are not anonymously readable
+    (GET .../apis/digital-bop/policies/policy returned 401), so whether one is attached cannot be
+    established from outside.
+observed_response:
+  url: https://gateway.amtrustgroup.com/digital-bop/api/v1/agent-contacts
+  method: GET
+  status: 401
+  headers:
+    WWW-Authenticate: AzureApiManagementKey realm="https://gateway.amtrustgroup.com/digital-bop",name="subscriber_id",type="header"
+    Strict-Transport-Security: max-age=63072000; includeSubDomains
+    Content-Type: application/json
+  body: '{ "statusCode": 401, "message": "Access denied due to missing subscription key. Make sure to
+    include subscription key when making requests to an API." }'
+  note: No rate-limit header of any family was present on the response.
+undocumented_tier_text:
+  note: >-
+    The APIM "Starter" product description reads "Subscribers will be able to run 5 calls/minute up to a
+    maximum of 100 calls/week." That is Azure API Management's verbatim default sample text and NO
+    AmTrust API is assigned to that product, so it is recorded here as observed but NOT counted as a
+    published limit for any AmTrust API.
+  source: https://apimanagement.amtrustgroup.com/.../amtrust-prod-apim/products?api-version=2022-08-01
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

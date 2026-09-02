@@ -1,0 +1,78 @@
+generated: '2026-09-02'
+method: probed
+source: >-
+  https://utapiportal.amtrustgroup.com (HTTP 200), https://utapiportal.amtrustgroup.com/authentication
+  (HTTP 200), https://uatauth.amtrustgroup.com/AuthServer_usertest/.well-known/openid-configuration
+  (HTTP 200), and AmTrust's UAT Azure API Management catalog at utapimanagement.amtrustgroup.com
+  (HTTP 200) — probed 2026-09-02
+provider: AmTrust Financial Services
+providerId: amtrust-financial-services
+available: true
+name: AmTrust User Test (UAT) environment
+description: >-
+  AmTrust runs a full parallel user-test environment — its own Azure API Management instance
+  (amtrust-uat-apim), its own developer portal, and its own IdentityServer — and it is the environment
+  AmTrust's public authentication documentation leads with. Access still requires issued credentials;
+  there is no anonymous sandbox and no self-serve key.
+environments:
+- name: user-test
+  portal: https://utapiportal.amtrustgroup.com
+  portal_status: 200
+  apis_page: https://utapiportal.amtrustgroup.com/apis
+  auth_docs: https://utapiportal.amtrustgroup.com/authentication
+  token_endpoint: https://uatauth.amtrustgroup.com/AuthServer_usertest/OpenIDConnect/Token
+  discovery: https://uatauth.amtrustgroup.com/AuthServer_usertest/.well-known/openid-configuration
+  issuer: https://uatauth.amtrustgroup.com/AuthServer_usertest
+  apim_instance: amtrust-uat-apim
+  apis_published: 13
+- name: production
+  portal: https://apiportal.amtrustgroup.com
+  portal_status: 200
+  token_endpoint: https://auth.amtrustgroup.com/AuthServer/OpenIDConnect/Token
+  issuer: https://auth.amtrustgroup.com/AuthServer
+  apim_instance: amtrust-prod-apim
+  apis_published: 9
+environment_switching:
+  mechanism: separate hostnames and separate path prefixes, not a mode flag on a key
+  auth_path_prod: /AuthServer/OpenIdConnect/Token on auth.amtrustgroup.com
+  auth_path_uat: /AuthServer_usertest/OpenIdConnect/Token on uatauth.amtrustgroup.com
+  note: >-
+    There is no test-vs-live key PREFIX. A UAT subscriber_id and a production subscriber_id are
+    indistinguishable by inspection, so a client cannot tell from a credential which environment it is
+    pointed at — the only signal is the hostname it was configured with.
+uat_only_apis:
+  note: >-
+    Four APIs exist in UAT with no production counterpart, plus a staging variant. They are visible
+    forward work, not test doubles.
+  apis:
+  - id: ds-commercial-lines-tiering-api
+    name: Commercial Package Models
+    description: Pricing recommendation for GL and CF package quotes.
+  - id: experience-claims-canopy
+    name: Experience Claims Canopy API
+  - id: experience-claims-legal
+    name: Experience Claims Legal
+  - id: experience-srana-netapi
+    name: Specialty Risk Net Reporting API
+  - id: experience-srana-netapi-staging
+    name: Specialty Risk Net Reporting API (staging)
+test_data:
+  test_credentials_published: false
+  test_identifiers_published: false
+  test_cards: null
+  fixtures: null
+  time_simulation: false
+  note: >-
+    AmTrust publishes NO test values of any kind — no sample quoteId, no test class code, no test agent
+    contact, no seeded insured. A partner receives UAT credentials through the vetting process and
+    discovers workable test data by trial. Nothing is invented here to fill the gap.
+try_it_console:
+  available: true
+  url: https://utapiportal.amtrustgroup.com/apis
+  note: >-
+    The Azure API Management developer portal ships a built-in try-it console and generated code
+    samples, but the API list is rendered client-side from the management endpoint and every operation
+    requires a subscription key, so an unauthenticated visitor sees the shell and nothing callable.
+gaps:
+- No published test data, so a new partner cannot exercise a quote-to-bind flow from documentation alone.
+- No key prefix distinguishing UAT from production credentials.

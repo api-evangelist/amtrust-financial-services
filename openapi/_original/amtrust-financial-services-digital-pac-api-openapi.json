@@ -1,0 +1,5407 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Digital PAC API",
+    "description": "Digital PAC API allows users to submit, rate, quote and bind policies, and match the insured’s exposures with a wide range of optional and enhanced coverages.",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.amtrustgroup.com/digital-pac"
+    },
+    {
+      "url": "https://prod-apim-gw.amtrustservices.com/digital-pac"
+    }
+  ],
+  "paths": {
+    "/api/v1/agent-contacts": {
+      "get": {
+        "tags": [
+          "Agent Contacts"
+        ],
+        "summary": "Retrieve all agent contacts",
+        "description": "Returns all agent contact IDs, names, and emails linked to the agency authenticated",
+        "operationId": "get-api-v1-agent-contacts",
+        "responses": {
+          "401": {
+            "description": "Bad or expired token. To resolve this error, generate a new or refreshed token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "34822e69a339",
+                  "timeStamp": "2023-08-25T01:04:41.5513032+00:00",
+                  "httpStatusCode": 401,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 401,
+                      "messageCode": "ERR-NOTAUTHORIZED",
+                      "title": "Bearer token is not authorized",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or client does not have required permissions to complete this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "7723319b7f74",
+                  "timeStamp": "2023-08-25T01:04:41.5514991+00:00",
+                  "httpStatusCode": 403,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 403,
+                      "messageCode": "ERR-FORBIDDEN",
+                      "title": "The token provided does not have permissions for the requested action",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentContactDtoIEnumerableIApiResponse"
+                },
+                "example": {
+                  "data": [
+                    {
+                      "id": 1,
+                      "name": "George Washington",
+                      "email": "gwashington@uspresident.gov"
+                    },
+                    {
+                      "id": 2,
+                      "name": "John Adams",
+                      "email": "jadams@uspresident.gov"
+                    },
+                    {
+                      "id": 1,
+                      "name": "Thomas Jefferson",
+                      "email": "tjefferson@uspresident.gov"
+                    }
+                  ],
+                  "responseId": "f8c1fcf784ed",
+                  "timeStamp": "2023-08-25T01:04:41.5516729+00:00",
+                  "httpStatusCode": 200,
+                  "isOk": true,
+                  "_v": "AD"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reference-resources/business-types": {
+      "get": {
+        "tags": [
+          "Reference Resources"
+        ],
+        "summary": "Retrieve Business Types",
+        "description": "Returns all available business types that can be selected",
+        "operationId": "get-api-v1-reference-resources-business-types",
+        "responses": {
+          "401": {
+            "description": "Bad or expired token. To resolve this error, generate a new or refreshed token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "72e2414eff20",
+                  "timeStamp": "2023-08-25T01:04:41.8153992+00:00",
+                  "httpStatusCode": 401,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 401,
+                      "messageCode": "ERR-NOTAUTHORIZED",
+                      "title": "Bearer token is not authorized",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or client does not have required permissions to complete this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "f70c07280952",
+                  "timeStamp": "2023-08-25T01:04:41.8155065+00:00",
+                  "httpStatusCode": 403,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 403,
+                      "messageCode": "ERR-FORBIDDEN",
+                      "title": "The token provided does not have permissions for the requested action",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessTypeDtoIEnumerableIApiResponse"
+                },
+                "example": {
+                  "data": [
+                    {
+                      "id": "ApartmentBuilding",
+                      "description": "Apartment Building"
+                    },
+                    {
+                      "id": "ApartmentCondoOrCoOpMercantile",
+                      "description": "Apartment, Condo or Co-op with Mercantile"
+                    },
+                    {
+                      "id": "CondominiumOrCoOp",
+                      "description": "Condominium or Co-op"
+                    },
+                    {
+                      "id": "Contractor",
+                      "description": "Contractor"
+                    },
+                    {
+                      "id": "Dwelling",
+                      "description": "Dwelling (1-4 Family)"
+                    },
+                    {
+                      "id": "HomeownersAssociation",
+                      "description": "Homeowners Association"
+                    },
+                    {
+                      "id": "HotelsMotels",
+                      "description": "Hotels/Motels"
+                    },
+                    {
+                      "id": "Institution",
+                      "description": "Institution (such as churches / houses of worship/schools)"
+                    },
+                    {
+                      "id": "Manufacturing",
+                      "description": "Manufacturing"
+                    },
+                    {
+                      "id": "LRO",
+                      "description": "LRO- no apartments (lessors Risk Only)"
+                    },
+                    {
+                      "id": "Office",
+                      "description": "Office"
+                    },
+                    {
+                      "id": "Restaurant",
+                      "description": "Restaurant"
+                    },
+                    {
+                      "id": "RetailMercantile",
+                      "description": "Retail Mercantile"
+                    },
+                    {
+                      "id": "Services",
+                      "description": "Services (classes such as auto repair, beauty salons, clubs, dry cleaning, gas stations, Laundromat, printing)"
+                    },
+                    {
+                      "id": "WholesaleDistributor",
+                      "description": "Wholesale/Distributor"
+                    },
+                    {
+                      "id": "Other",
+                      "description": "All other"
+                    }
+                  ],
+                  "responseId": "96f22b5eba8f",
+                  "timeStamp": "2023-08-25T01:04:41.8156170+00:00",
+                  "httpStatusCode": 200,
+                  "isOk": true,
+                  "_v": "AD"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reference-resources/legal-entities": {
+      "get": {
+        "tags": [
+          "Reference Resources"
+        ],
+        "summary": "Retrieve Legal Entities",
+        "description": "Returns all available legal entities that can be selected",
+        "operationId": "get-api-v1-reference-resources-legal-entities",
+        "parameters": [
+          {
+            "name": "effectiveDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Bad or expired token. To resolve this error, generate a new or refreshed token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "c2b519977e5f",
+                  "timeStamp": "2023-08-25T01:04:41.8217788+00:00",
+                  "httpStatusCode": 401,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 401,
+                      "messageCode": "ERR-NOTAUTHORIZED",
+                      "title": "Bearer token is not authorized",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or client does not have required permissions to complete this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "bdb91e86fe58",
+                  "timeStamp": "2023-08-25T01:04:41.8218853+00:00",
+                  "httpStatusCode": 403,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 403,
+                      "messageCode": "ERR-FORBIDDEN",
+                      "title": "The token provided does not have permissions for the requested action",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringIEnumerableIApiResponse"
+                },
+                "example": {
+                  "data": [
+                    "Individual",
+                    "Partnership",
+                    "Joint Venture",
+                    "Trust",
+                    "Limited Liability Company",
+                    "Organization Including a Corporation",
+                    "Other"
+                  ],
+                  "responseId": "eab104ac3609",
+                  "timeStamp": "2023-08-25T01:04:41.8219963+00:00",
+                  "httpStatusCode": 200,
+                  "isOk": true,
+                  "_v": "AD"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/quotes/{quoteId}/liability-limits": {
+      "get": {
+        "tags": [
+          "Liability Limits"
+        ],
+        "summary": "Retrieve Available Liability Limits by Quote",
+        "description": "Returns all general liability limits that are available for the specific quote",
+        "operationId": "get-api-v1-quotes-quoteid-liability-limits",
+        "parameters": [
+          {
+            "name": "quoteId",
+            "in": "path",
+            "description": "Format - int32.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Bad or expired token. To resolve this error, generate a new or refreshed token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "d61f51f8b311",
+                  "timeStamp": "2023-08-25T01:04:41.5833659+00:00",
+                  "httpStatusCode": 401,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 401,
+                      "messageCode": "ERR-NOTAUTHORIZED",
+                      "title": "Bearer token is not authorized",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or client does not have required permissions to complete this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "eac02409545a",
+                  "timeStamp": "2023-08-25T01:04:41.5835689+00:00",
+                  "httpStatusCode": 403,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 403,
+                      "messageCode": "ERR-FORBIDDEN",
+                      "title": "The token provided does not have permissions for the requested action",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "5fbb884dc8a6",
+                  "timeStamp": "2023-08-25T01:04:41.5837225+00:00",
+                  "httpStatusCode": 404,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 404,
+                      "messageCode": "ERR-ItemNotFound",
+                      "title": "Item was not found",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LiabilityLimitsContainerDtoIApiResponse"
+                },
+                "example": {
+                  "data": {
+                    "liabilityOccurrence": {
+                      "options": [
+                        "100000",
+                        "300000",
+                        "500000",
+                        "1000000",
+                        "2000000"
+                      ],
+                      "default": "1000000"
+                    },
+                    "generalAggregate": {
+                      "options": [
+                        "100000",
+                        "200000",
+                        "300000",
+                        "500000",
+                        "600000",
+                        "1000000",
+                        "2000000",
+                        "4000000"
+                      ],
+                      "default": "2000000"
+                    },
+                    "productsAggregate": {
+                      "options": [
+                        "100000",
+                        "200000",
+                        "300000",
+                        "500000",
+                        "600000",
+                        "1000000",
+                        "2000000",
+                        "4000000",
+                        "Excluded"
+                      ],
+                      "default": "1000000"
+                    },
+                    "medicalExpense": {
+                      "options": [
+                        "0",
+                        "5000",
+                        "10000",
+                        "15000"
+                      ],
+                      "default": "5000"
+                    },
+                    "damageToPremisesRentedToYou": {
+                      "options": [
+                        "100000",
+                        "300000",
+                        "500000",
+                        "1000000"
+                      ],
+                      "default": "100000"
+                    }
+                  },
+                  "responseId": "7a93ed7fe9ed",
+                  "timeStamp": "2023-08-25T01:04:41.5838541+00:00",
+                  "httpStatusCode": 200,
+                  "isOk": true,
+                  "_v": "AD"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Liability Limits"
+        ],
+        "summary": "Add General Liability Limits",
+        "description": "This endpoint saves general liability limits to the quote",
+        "operationId": "post-api-v1-quotes-quoteid-liability-limits",
+        "parameters": [
+          {
+            "name": "quoteId",
+            "in": "path",
+            "description": "Format - int32.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLiabilityLimitsDto"
+              },
+              "example": {
+                "liabilityOccurrence": "1000000",
+                "generalAggregate": "2000000",
+                "productsAggregate": "50000",
+                "medicalExpense": "0 (Excluded)",
+                "damageToPremisesRentedToYou": "0 (Excluded)"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLiabilityLimitsDto"
+              },
+              "example": {
+                "liabilityOccurrence": "1000000",
+                "generalAggregate": "2000000",
+                "productsAggregate": "50000",
+                "medicalExpense": "0 (Excluded)",
+                "damageToPremisesRentedToYou": "0 (Excluded)"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLiabilityLimitsDto"
+              },
+              "example": {
+                "liabilityOccurrence": "1000000",
+                "generalAggregate": "2000000",
+                "productsAggregate": "50000",
+                "medicalExpense": "0 (Excluded)",
+                "damageToPremisesRentedToYou": "0 (Excluded)"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostLiabilityLimitsDto"
+              },
+              "example": {
+                "liabilityOccurrence": "1000000",
+                "generalAggregate": "2000000",
+                "productsAggregate": "50000",
+                "medicalExpense": "0 (Excluded)",
+                "damageToPremisesRentedToYou": "0 (Excluded)"
+              }
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Bad or expired token. To resolve this error, generate a new or refreshed token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "931bce89f6b0",
+                  "timeStamp": "2023-08-25T01:04:41.6199754+00:00",
+                  "httpStatusCode": 401,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 401,
+                      "messageCode": "ERR-NOTAUTHORIZED",
+                      "title": "Bearer token is not authorized",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or client does not have required permissions to complete this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "0542d761f261",
+                  "timeStamp": "2023-08-25T01:04:41.6201055+00:00",
+                  "httpStatusCode": 403,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 403,
+                      "messageCode": "ERR-FORBIDDEN",
+                      "title": "The token provided does not have permissions for the requested action",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "e7b3d56c846d",
+                  "timeStamp": "2023-08-25T01:04:41.6202656+00:00",
+                  "httpStatusCode": 404,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 404,
+                      "messageCode": "ERR-ItemNotFound",
+                      "title": "Item was not found",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLiabilityLimitsResponseDtoIApiResponse"
+                },
+                "example": {
+                  "data": {
+                    "accountInformation": {
+                      "quoteId": 983428,
+                      "masterAccountId": 32529301
+                    },
+                    "liabilityLimits": {
+                      "liabilityOccurrence": "1000000",
+                      "generalAggregate": "2000000",
+                      "personalAndAdvInjury": "1000000",
+                      "productsAggregate": "50000",
+                      "medicalExpense": "0 (Excluded)",
+                      "damageToPremisesRentedToYou": "0 (Excluded)"
+                    },
+                    "premiumDetails": {
+                      "generalLiability": {
+                        "premium": 1200,
+                        "taxes": 0
+                      },
+                      "commercialProperty": {
+                        "premium": 1389,
+                        "taxes": 1
+                      },
+                      "netPremium": 1
+                    }
+                  },
+                  "responseId": "2a78421739b2",
+                  "timeStamp": "2023-08-25T01:04:41.6204311+00:00",
+                  "httpStatusCode": 201,
+                  "isOk": true,
+                  "messages": [
+                    {
+                      "httpStatusCode": 200,
+                      "messageCode": "Deeplink",
+                      "title": "https://devk8s.amtrustgroup.com/usertest/webapp-nexus/AccountManagement/24786342",
+                      "isOk": true
+                    }
+                  ],
+                  "maxMessageIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "64fffb858005",
+                  "timeStamp": "2023-08-25T01:04:41.6206070+00:00",
+                  "httpStatusCode": 400,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 400,
+                      "messageCode": "ERR-ValidationErr",
+                      "title": "Validation Error",
+                      "detail": "Validation detail message",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/quotes": {
+      "post": {
+        "tags": [
+          "Quotes"
+        ],
+        "summary": "Create Quote",
+        "description": "This endpoint takes in basic insured information (addresses, name, contact, effective date, business information), along with allowing coverage selections. <br>\r\n                            <br> This endpoint will not take in class code specific limit selections, nor will it return a premium.",
+        "operationId": "post-api-v1-quotes",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostQuoteRequestDto"
+              },
+              "example": {
+                "businessName": "Stark Industries",
+                "dbaName": "Marvel Studios",
+                "primaryAddress": {
+                  "line1": "41 Madison Ave",
+                  "line2": "Suite A",
+                  "city": "New York",
+                  "territory": "NY",
+                  "postalCode": "10010"
+                },
+                "mailingAddress": {
+                  "line1": "41 Madison Ave",
+                  "line2": "Suite A",
+                  "city": "New York",
+                  "territory": "NY",
+                  "postalCode": "10010"
+                },
+                "effectiveDate": "2023-08-27",
+                "fein": "123456789",
+                "agentContactId": 123456,
+                "insuredContact": {
+                  "name": "Pepper Potts-Stark",
+                  "phone": "5555555555",
+                  "email": "IronLove3000@mail.com"
+                },
+                "legalEntity": "Individual",
+                "businessType": "ApartmentBuilding",
+                "yearsInBusiness": 45,
+                "yearsOfExperience": null,
+                "natureOfBusiness": "Government funding housing",
+                "quoteCoverageSelection": {
+                  "hasGeneralLiability": true,
+                  "hasEmploymentRelatedPracticesLiability": false,
+                  "hasCommercialProperty": true
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostQuoteRequestDto"
+              },
+              "example": {
+                "businessName": "Stark Industries",
+                "dbaName": "Marvel Studios",
+                "primaryAddress": {
+                  "line1": "41 Madison Ave",
+                  "line2": "Suite A",
+                  "city": "New York",
+                  "territory": "NY",
+                  "postalCode": "10010"
+                },
+                "mailingAddress": {
+                  "line1": "41 Madison Ave",
+                  "line2": "Suite A",
+                  "city": "New York",
+                  "territory": "NY",
+                  "postalCode": "10010"
+                },
+                "effectiveDate": "2023-08-27",
+                "fein": "123456789",
+                "agentContactId": 123456,
+                "insuredContact": {
+                  "name": "Pepper Potts-Stark",
+                  "phone": "5555555555",
+                  "email": "IronLove3000@mail.com"
+                },
+                "legalEntity": "Individual",
+                "businessType": "ApartmentBuilding",
+                "yearsInBusiness": 45,
+                "yearsOfExperience": null,
+                "natureOfBusiness": "Government funding housing",
+                "quoteCoverageSelection": {
+                  "hasGeneralLiability": true,
+                  "hasEmploymentRelatedPracticesLiability": false,
+                  "hasCommercialProperty": true
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostQuoteRequestDto"
+              },
+              "example": {
+                "businessName": "Stark Industries",
+                "dbaName": "Marvel Studios",
+                "primaryAddress": {
+                  "line1": "41 Madison Ave",
+                  "line2": "Suite A",
+                  "city": "New York",
+                  "territory": "NY",
+                  "postalCode": "10010"
+                },
+                "mailingAddress": {
+                  "line1": "41 Madison Ave",
+                  "line2": "Suite A",
+                  "city": "New York",
+                  "territory": "NY",
+                  "postalCode": "10010"
+                },
+                "effectiveDate": "2023-08-27",
+                "fein": "123456789",
+                "agentContactId": 123456,
+                "insuredContact": {
+                  "name": "Pepper Potts-Stark",
+                  "phone": "5555555555",
+                  "email": "IronLove3000@mail.com"
+                },
+                "legalEntity": "Individual",
+                "businessType": "ApartmentBuilding",
+                "yearsInBusiness": 45,
+                "yearsOfExperience": null,
+                "natureOfBusiness": "Government funding housing",
+                "quoteCoverageSelection": {
+                  "hasGeneralLiability": true,
+                  "hasEmploymentRelatedPracticesLiability": false,
+                  "hasCommercialProperty": true
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostQuoteRequestDto"
+              },
+              "example": {
+                "businessName": "Stark Industries",
+                "dbaName": "Marvel Studios",
+                "primaryAddress": {
+                  "line1": "41 Madison Ave",
+                  "line2": "Suite A",
+                  "city": "New York",
+                  "territory": "NY",
+                  "postalCode": "10010"
+                },
+                "mailingAddress": {
+                  "line1": "41 Madison Ave",
+                  "line2": "Suite A",
+                  "city": "New York",
+                  "territory": "NY",
+                  "postalCode": "10010"
+                },
+                "effectiveDate": "2023-08-27",
+                "fein": "123456789",
+                "agentContactId": 123456,
+                "insuredContact": {
+                  "name": "Pepper Potts-Stark",
+                  "phone": "5555555555",
+                  "email": "IronLove3000@mail.com"
+                },
+                "legalEntity": "Individual",
+                "businessType": "ApartmentBuilding",
+                "yearsInBusiness": 45,
+                "yearsOfExperience": null,
+                "natureOfBusiness": "Government funding housing",
+                "quoteCoverageSelection": {
+                  "hasGeneralLiability": true,
+                  "hasEmploymentRelatedPracticesLiability": false,
+                  "hasCommercialProperty": true
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Bad or expired token. To resolve this error, generate a new or refreshed token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "ed69613dec3c",
+                  "timeStamp": "2023-08-25T01:04:41.7926382+00:00",
+                  "httpStatusCode": 401,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 401,
+                      "messageCode": "ERR-NOTAUTHORIZED",
+                      "title": "Bearer token is not authorized",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or client does not have required permissions to complete this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "27f2b522c7e0",
+                  "timeStamp": "2023-08-25T01:04:41.7927444+00:00",
+                  "httpStatusCode": 403,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 403,
+                      "messageCode": "ERR-FORBIDDEN",
+                      "title": "The token provided does not have permissions for the requested action",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostQuoteResponseDtoIApiResponse"
+                },
+                "example": {
+                  "data": {
+                    "businessName": "Stark Industries",
+                    "dbaName": "Marvel Studios",
+                    "primaryAddress": {
+                      "line1": "41 Madison Ave",
+                      "line2": "Suite A",
+                      "city": "New York",
+                      "territory": "NY",
+                      "postalCode": "10010"
+                    },
+                    "mailingAddress": {
+                      "line1": "41 Madison Ave",
+                      "line2": "Suite A",
+                      "city": "New York",
+                      "territory": "NY",
+                      "postalCode": "10010"
+                    },
+                    "effectiveDate": "2023-08-27",
+                    "fein": "123456789",
+                    "agentContact": {
+                      "id": 12345,
+                      "name": "Phil Coulson",
+                      "email": "AgentPhil@mail.com"
+                    },
+                    "insuredContact": {
+                      "name": "Pepper Potts-Stark",
+                      "phone": "5555555555",
+                      "email": "IronLove3000@mail.com"
+                    },
+                    "legalEntity": "Individual",
+                    "businessType": "ApartmentBuilding",
+                    "yearsInBusiness": 45,
+                    "yearsOfExperience": null,
+                    "natureOfBusiness": "Government funding housing",
+                    "accountInformation": {
+                      "quoteId": 1234567,
+                      "masterAccountId": 7654321
+                    },
+                    "quoteCoverageSelection": {
+                      "hasGeneralLiability": true,
+                      "hasEmploymentRelatedPracticesLiability": false,
+                      "hasCommercialProperty": true
+                    },
+                    "locations": [
+                      {
+                        "id": 1,
+                        "address": {
+                          "line1": "41 Madison Ave",
+                          "line2": "Suite A",
+                          "city": "New York",
+                          "territory": "NY",
+                          "postalCode": "10010"
+                        }
+                      }
+                    ]
+                  },
+                  "responseId": "2593516b2032",
+                  "timeStamp": "2023-08-25T01:04:41.7928591+00:00",
+                  "httpStatusCode": 201,
+                  "isOk": true,
+                  "messages": [
+                    {
+                      "httpStatusCode": 200,
+                      "messageCode": "Deeplink",
+                      "title": "https://devk8s.amtrustgroup.com/usertest/webapp-nexus/AccountManagement/24786342",
+                      "isOk": true
+                    }
+                  ],
+                  "maxMessageIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "7119f5a6ffa5",
+                  "timeStamp": "2023-08-25T01:04:41.7930202+00:00",
+                  "httpStatusCode": 400,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 400,
+                      "messageCode": "ERR-ValidationErr",
+                      "title": "Validation Error",
+                      "detail": "Validation detail message",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/quotes/{quoteId}": {
+      "get": {
+        "tags": [
+          "Quotes"
+        ],
+        "summary": "Retrieve Quote Information",
+        "description": "Returns all currently saved quote information",
+        "operationId": "get-api-v1-quotes-quoteid",
+        "parameters": [
+          {
+            "name": "quoteId",
+            "in": "path",
+            "description": "Format - int32.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Bad or expired token. To resolve this error, generate a new or refreshed token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "31a1ed3988e4",
+                  "timeStamp": "2023-08-25T01:04:41.8067271+00:00",
+                  "httpStatusCode": 401,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 401,
+                      "messageCode": "ERR-NOTAUTHORIZED",
+                      "title": "Bearer token is not authorized",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or client does not have required permissions to complete this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "b4ee2f25d021",
+                  "timeStamp": "2023-08-25T01:04:41.8068404+00:00",
+                  "httpStatusCode": 403,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 403,
+                      "messageCode": "ERR-FORBIDDEN",
+                      "title": "The token provided does not have permissions for the requested action",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetQuoteResponseDtoIApiResponse"
+                },
+                "example": {
+                  "data": {
+                    "businessName": "Stark Industries",
+                    "dbaName": "Marvel Studios",
+                    "primaryAddress": {
+                      "line1": "41 Madison Ave",
+                      "line2": "Suite A",
+                      "city": "New York",
+                      "territory": "NY",
+                      "postalCode": "10010"
+                    },
+                    "mailingAddress": {
+                      "line1": "41 Madison Ave",
+                      "line2": "Suite A",
+                      "city": "New York",
+                      "territory": "NY",
+                      "postalCode": "10010"
+                    },
+                    "effectiveDate": "2023-08-27",
+                    "fein": "123456789",
+                    "agentContact": {
+                      "id": 12345,
+                      "name": "Phil Coulson",
+                      "email": "AgentPhil@mail.com"
+                    },
+                    "insuredContact": {
+                      "name": "Pepper Potts-Stark",
+                      "phone": "5555555555",
+                      "email": "IronLove3000@mail.com"
+                    },
+                    "legalEntity": "Individual",
+                    "businessType": "Apartment Building",
+                    "yearsInBusiness": 45,
+                    "yearsOfExperience": null,
+                    "natureOfBusiness": "Government funding housing",
+                    "accountInformation": {
+                      "quoteId": 1234567,
+                      "masterAccountId": 7654321
+                    },
+                    "quoteCoverageSelection": {
+                      "hasGeneralLiability": true,
+                      "hasEmploymentRelatedPracticesLiability": false,
+                      "hasCommercialProperty": true
+                    },
+                    "locations": [
+                      {
+                        "deductible": 1000,
+                        "protectionClass": "1",
+                        "id": 1,
+                        "address": {
+                          "line1": "41 Madison Ave",
+                          "line2": "Suite A",
+                          "city": "New York",
+                          "territory": "NY",
+                          "postalCode": "10010"
+                        }
+                      }
+                    ]
+                  },
+                  "responseId": "e17fa5a007c2",
+                  "timeStamp": "2023-08-25T01:04:41.8069540+00:00",
+                  "httpStatusCode": 200,
+                  "isOk": true,
+                  "messages": [
+                    {
+                      "httpStatusCode": 200,
+                      "messageCode": "Deeplink",
+                      "title": "https://devk8s.amtrustgroup.com/usertest/webapp-nexus/AccountManagement/24786342",
+                      "isOk": true
+                    }
+                  ],
+                  "maxMessageIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "feccc7046c4e",
+                  "timeStamp": "2023-08-25T01:04:41.8071116+00:00",
+                  "httpStatusCode": 404,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 404,
+                      "messageCode": "ERR-ItemNotFound",
+                      "title": "Item was not found",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/quotes/{quoteId}/locations": {
+      "post": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Add Location",
+        "description": "This endpoint allows user to add additional locations to their quote",
+        "operationId": "post-api-v1-quotes-quoteid-locations",
+        "parameters": [
+          {
+            "name": "quoteId",
+            "in": "path",
+            "description": "Format - int32.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/LocationPostDto"
+                }
+              },
+              "example": [
+                {
+                  "deductible": 2500,
+                  "address": {
+                    "line1": "41 Madison Ave",
+                    "line2": "Suite A",
+                    "city": "New York",
+                    "territory": "NY",
+                    "postalCode": "10010"
+                  }
+                }
+              ]
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/LocationPostDto"
+                }
+              },
+              "example": [
+                {
+                  "deductible": 2500,
+                  "address": {
+                    "line1": "41 Madison Ave",
+                    "line2": "Suite A",
+                    "city": "New York",
+                    "territory": "NY",
+                    "postalCode": "10010"
+                  }
+                }
+              ]
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/LocationPostDto"
+                }
+              },
+              "example": [
+                {
+                  "deductible": 2500,
+                  "address": {
+                    "line1": "41 Madison Ave",
+                    "line2": "Suite A",
+                    "city": "New York",
+                    "territory": "NY",
+                    "postalCode": "10010"
+                  }
+                }
+              ]
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/LocationPostDto"
+                }
+              },
+              "example": [
+                {
+                  "deductible": 2500,
+                  "address": {
+                    "line1": "41 Madison Ave",
+                    "line2": "Suite A",
+                    "city": "New York",
+                    "territory": "NY",
+                    "postalCode": "10010"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Bad or expired token. To resolve this error, generate a new or refreshed token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "a18cc45b7252",
+                  "timeStamp": "2023-08-25T01:04:41.6456632+00:00",
+                  "httpStatusCode": 401,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 401,
+                      "messageCode": "ERR-NOTAUTHORIZED",
+                      "title": "Bearer token is not authorized",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or client does not have required permissions to complete this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "315b78345f4c",
+                  "timeStamp": "2023-08-25T01:04:41.6458548+00:00",
+                  "httpStatusCode": 403,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 403,
+                      "messageCode": "ERR-FORBIDDEN",
+                      "title": "The token provided does not have permissions for the requested action",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostLocationResponseDtoIApiResponse"
+                },
+                "example": {
+                  "data": {
+                    "accountInformation": {
+                      "quoteId": 1234567,
+                      "masterAccountId": 7654321
+                    },
+                    "locations": [
+                      {
+                        "territoryName": "509",
+                        "deductible": 2500,
+                        "protectionClass": "1",
+                        "id": 1,
+                        "address": {
+                          "line1": "41 Madison Ave",
+                          "line2": "Suite A",
+                          "city": "New York",
+                          "territory": "NY",
+                          "postalCode": "10010"
+                        }
+                      }
+                    ]
+                  },
+                  "responseId": "25f7552a3e60",
+                  "timeStamp": "2023-08-25T01:04:41.6459940+00:00",
+                  "httpStatusCode": 200,
+                  "isOk": true,
+                  "messages": [
+                    {
+                      "httpStatusCode": 200,
+                      "messageCode": "Deeplink",
+                      "title": "https://devk8s.amtrustgroup.com/usertest/webapp-nexus/AccountManagement/24786342",
+                      "isOk": true
+                    }
+                  ],
+                  "maxMessageIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "4d884ba5f38c",
+                  "timeStamp": "2023-08-25T01:04:41.6461317+00:00",
+                  "httpStatusCode": 404,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 404,
+                      "messageCode": "ERR-ItemNotFound",
+                      "title": "Item was not found",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "a3e444288a43",
+                  "timeStamp": "2023-08-25T01:04:41.6462697+00:00",
+                  "httpStatusCode": 400,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 400,
+                      "messageCode": "ERR-ValidationErr",
+                      "title": "Validation Error",
+                      "detail": "Validation detail message",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/quotes/{quoteId}/locations/{locationId}/commercial-property": {
+      "post": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Add Commercial Property",
+        "description": "This endpoint saves commercial property coverage to the location",
+        "operationId": "post-api-v1-quotes-quoteid-locations-locationid-commercial-property",
+        "parameters": [
+          {
+            "name": "quoteId",
+            "in": "path",
+            "description": "Format - int32.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "locationId",
+            "in": "path",
+            "description": "Format - int32.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostCommercialPropertyDto"
+              },
+              "example": {
+                "deductible": 500,
+                "buildings": [
+                  {
+                    "classCode": "0074",
+                    "description": "Candy Store",
+                    "construction": 1,
+                    "totalSquareFootage": 2,
+                    "yearBuilt": 2018,
+                    "yearWiringUpdated": 0,
+                    "yearPlumbingUpdated": 0,
+                    "yearHeatingUpdated": 0,
+                    "yearRoofingUpdated": 0,
+                    "roofType": 0,
+                    "numberOfStories": 2,
+                    "coinsurance": "80",
+                    "causeOfLoss": "Special - Including Theft",
+                    "sprinkleredBuilding": "No",
+                    "isVacantOrPartiallyVacant": "No",
+                    "coveragesContainer": {
+                      "building": {
+                        "buildingType": "Building",
+                        "limit": 10000,
+                        "coinsurance": "90",
+                        "buildingValuation": "ActualCashValue",
+                        "isApplicantOnlyBuildingOccupant": "No",
+                        "allOccupantslListedInClassList": null,
+                        "any20PercentOccupant": null,
+                        "listNotIncludedOccupantsInClassList": null
+                      },
+                      "contens": {
+                        "personalProperty": {
+                          "limit": 10000,
+                          "coinsurance": "90"
+                        },
+                        "personalPropertyOfOthers": {
+                          "alarmConnection": "CentralStationWithKeys",
+                          "alarmProtection": "Low",
+                          "personalPropertyValuation": "ReplacementExcludingStock",
+                          "limit": 10000,
+                          "coinsurance": "90"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostCommercialPropertyDto"
+              },
+              "example": {
+                "deductible": 500,
+                "buildings": [
+                  {
+                    "classCode": "0074",
+                    "description": "Candy Store",
+                    "construction": 1,
+                    "totalSquareFootage": 2,
+                    "yearBuilt": 2018,
+                    "yearWiringUpdated": 0,
+                    "yearPlumbingUpdated": 0,
+                    "yearHeatingUpdated": 0,
+                    "yearRoofingUpdated": 0,
+                    "roofType": 0,
+                    "numberOfStories": 2,
+                    "coinsurance": "80",
+                    "causeOfLoss": "Special - Including Theft",
+                    "sprinkleredBuilding": "No",
+                    "isVacantOrPartiallyVacant": "No",
+                    "coveragesContainer": {
+                      "building": {
+                        "buildingType": "Building",
+                        "limit": 10000,
+                        "coinsurance": "90",
+                        "buildingValuation": "ActualCashValue",
+                        "isApplicantOnlyBuildingOccupant": "No",
+                        "allOccupantslListedInClassList": null,
+                        "any20PercentOccupant": null,
+                        "listNotIncludedOccupantsInClassList": null
+                      },
+                      "contens": {
+                        "personalProperty": {
+                          "limit": 10000,
+                          "coinsurance": "90"
+                        },
+                        "personalPropertyOfOthers": {
+                          "alarmConnection": "CentralStationWithKeys",
+                          "alarmProtection": "Low",
+                          "personalPropertyValuation": "ReplacementExcludingStock",
+                          "limit": 10000,
+                          "coinsurance": "90"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostCommercialPropertyDto"
+              },
+              "example": {
+                "deductible": 500,
+                "buildings": [
+                  {
+                    "classCode": "0074",
+                    "description": "Candy Store",
+                    "construction": 1,
+                    "totalSquareFootage": 2,
+                    "yearBuilt": 2018,
+                    "yearWiringUpdated": 0,
+                    "yearPlumbingUpdated": 0,
+                    "yearHeatingUpdated": 0,
+                    "yearRoofingUpdated": 0,
+                    "roofType": 0,
+                    "numberOfStories": 2,
+                    "coinsurance": "80",
+                    "causeOfLoss": "Special - Including Theft",
+                    "sprinkleredBuilding": "No",
+                    "isVacantOrPartiallyVacant": "No",
+                    "coveragesContainer": {
+                      "building": {
+                        "buildingType": "Building",
+                        "limit": 10000,
+                        "coinsurance": "90",
+                        "buildingValuation": "ActualCashValue",
+                        "isApplicantOnlyBuildingOccupant": "No",
+                        "allOccupantslListedInClassList": null,
+                        "any20PercentOccupant": null,
+                        "listNotIncludedOccupantsInClassList": null
+                      },
+                      "contens": {
+                        "personalProperty": {
+                          "limit": 10000,
+                          "coinsurance": "90"
+                        },
+                        "personalPropertyOfOthers": {
+                          "alarmConnection": "CentralStationWithKeys",
+                          "alarmProtection": "Low",
+                          "personalPropertyValuation": "ReplacementExcludingStock",
+                          "limit": 10000,
+                          "coinsurance": "90"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostCommercialPropertyDto"
+              },
+              "example": {
+                "deductible": 500,
+                "buildings": [
+                  {
+                    "classCode": "0074",
+                    "description": "Candy Store",
+                    "construction": 1,
+                    "totalSquareFootage": 2,
+                    "yearBuilt": 2018,
+                    "yearWiringUpdated": 0,
+                    "yearPlumbingUpdated": 0,
+                    "yearHeatingUpdated": 0,
+                    "yearRoofingUpdated": 0,
+                    "roofType": 0,
+                    "numberOfStories": 2,
+                    "coinsurance": "80",
+                    "causeOfLoss": "Special - Including Theft",
+                    "sprinkleredBuilding": "No",
+                    "isVacantOrPartiallyVacant": "No",
+                    "coveragesContainer": {
+                      "building": {
+                        "buildingType": "Building",
+                        "limit": 10000,
+                        "coinsurance": "90",
+                        "buildingValuation": "ActualCashValue",
+                        "isApplicantOnlyBuildingOccupant": "No",
+                        "allOccupantslListedInClassList": null,
+                        "any20PercentOccupant": null,
+                        "listNotIncludedOccupantsInClassList": null
+                      },
+                      "contens": {
+                        "personalProperty": {
+                          "limit": 10000,
+                          "coinsurance": "90"
+                        },
+                        "personalPropertyOfOthers": {
+                          "alarmConnection": "CentralStationWithKeys",
+                          "alarmProtection": "Low",
+                          "personalPropertyValuation": "ReplacementExcludingStock",
+                          "limit": 10000,
+                          "coinsurance": "90"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Bad or expired token. To resolve this error, generate a new or refreshed token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "dc3d2507dd92",
+                  "timeStamp": "2023-08-25T01:04:41.7323934+00:00",
+                  "httpStatusCode": 401,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 401,
+                      "messageCode": "ERR-NOTAUTHORIZED",
+                      "title": "Bearer token is not authorized",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or client does not have required permissions to complete this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "20a0e0d7baac",
+                  "timeStamp": "2023-08-25T01:04:41.7325004+00:00",
+                  "httpStatusCode": 403,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 403,
+                      "messageCode": "ERR-FORBIDDEN",
+                      "title": "The token provided does not have permissions for the requested action",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommercialPropertyResponseDtoIApiResponse"
+                },
+                "example": {
+                  "data": {
+                    "quoteId": 983428,
+                    "masterAccountId": 32529301,
+                    "locationId": 1,
+                    "locationAddress": {
+                      "line1": "41 Madison Ave",
+                      "line2": "Suite A",
+                      "city": "New York",
+                      "territory": "NY",
+                      "postalCode": "10010"
+                    },
+                    "protectionClass": "1X-5X",
+                    "deductible": 500,
+                    "buildings": [
+                      {
+                        "buildingId": 0,
+                        "classCode": "0074",
+                        "classCodeDescription": null,
+                        "description": "Candy Store",
+                        "construction": 1,
+                        "totalSquareFootage": 2,
+                        "yearBuilt": 2018,
+                        "yearWiringUpdated": 0,
+                        "yearPlumbingUpdated": 0,
+                        "yearHeatingUpdated": 0,
+                        "yearRoofingUpdated": 0,
+                        "roofType": 0,
+                        "numberOfStories": 2,
+                        "coinsurance": null,
+                        "causeOfLoss": "Special - Including Theft",
+                        "sprinkleredBuilding": "No",
+                        "specificGroupLossCostBuilding": 0,
+                        "specificGroupLossCostContents": 0,
+                        "isVacantOrPartiallyVacant": false,
+                        "coveragesContainer": {
+                          "building": {
+                            "buildingType": "Building",
+                            "limit": 10000,
+                            "couseOfLouse": "Special - Including Theft",
+                            "coinsurance": "90",
+                            "buildingValuation": "ActualCashValue"
+                          },
+                          "contents": {
+                            "personalProperty": {
+                              "limit": 10000,
+                              "coinsurance": "90",
+                              "causeOfLoss": "Special - Including Theft"
+                            },
+                            "personalPropertyOfOthers": {
+                              "alarmConnection": "CentralStationWithKeys",
+                              "alarmProtection": "Low",
+                              "personalPropertyValuation": "ReplacementExcludingStock",
+                              "limit": 10000,
+                              "coinsurance": "90",
+                              "causeOfLoss": "Special - Including Theft"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "premiumDetails": {
+                      "generalLiability": {
+                        "premium": 1200,
+                        "taxes": 0
+                      },
+                      "commercialProperty": {
+                        "premium": 1389,
+                        "taxes": 1
+                      },
+                      "netPremium": 1
+                    }
+                  },
+                  "responseId": "898e4bf4dc3a",
+                  "timeStamp": "2023-08-25T01:04:41.7326258+00:00",
+                  "httpStatusCode": 201,
+                  "isOk": true,
+                  "messages": [
+                    {
+                      "httpStatusCode": 200,
+                      "messageCode": "Deeplink",
+                      "title": "https://devk8s.amtrustgroup.com/usertest/webapp-nexus/AccountManagement/24786342",
+                      "isOk": true
+                    }
+                  ],
+                  "maxMessageIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "b13dbc5f9af0",
+                  "timeStamp": "2023-08-25T01:04:41.7328045+00:00",
+                  "httpStatusCode": 404,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 404,
+                      "messageCode": "ERR-ItemNotFound",
+                      "title": "Item was not found",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "8dcfed34884c",
+                  "timeStamp": "2023-08-25T01:04:41.7329303+00:00",
+                  "httpStatusCode": 400,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 400,
+                      "messageCode": "ERR-ValidationErr",
+                      "title": "Validation Error",
+                      "detail": "Validation detail message",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/quotes/{quoteId}/locations/{locationId}/class-codes": {
+      "post": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Add GL Class Code",
+        "description": "This endpoint saves GL class codes to a specific location",
+        "operationId": "post-api-v1-quotes-quoteid-locations-locationid-class-codes",
+        "parameters": [
+          {
+            "name": "quoteId",
+            "in": "path",
+            "description": "Format - int32.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "locationId",
+            "in": "path",
+            "description": "Format - int32.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PostClassCodeDto"
+                }
+              },
+              "example": [
+                {
+                  "classCode": "49185",
+                  "exposure": 500
+                }
+              ]
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PostClassCodeDto"
+                }
+              },
+              "example": [
+                {
+                  "classCode": "49185",
+                  "exposure": 500
+                }
+              ]
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PostClassCodeDto"
+                }
+              },
+              "example": [
+                {
+                  "classCode": "49185",
+                  "exposure": 500
+                }
+              ]
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PostClassCodeDto"
+                }
+              },
+              "example": [
+                {
+                  "classCode": "49185",
+                  "exposure": 500
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Bad or expired token. To resolve this error, generate a new or refreshed token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "f7962ff5147c",
+                  "timeStamp": "2023-08-25T01:04:41.7503217+00:00",
+                  "httpStatusCode": 401,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 401,
+                      "messageCode": "ERR-NOTAUTHORIZED",
+                      "title": "Bearer token is not authorized",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or client does not have required permissions to complete this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "2eed3d2b9ab7",
+                  "timeStamp": "2023-08-25T01:04:41.7505376+00:00",
+                  "httpStatusCode": 403,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 403,
+                      "messageCode": "ERR-FORBIDDEN",
+                      "title": "The token provided does not have permissions for the requested action",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostClassCodesResponseDtoIApiResponse"
+                },
+                "example": {
+                  "data": {
+                    "accountInformation": {
+                      "quoteId": 1234567,
+                      "masterAccountId": 7654321
+                    },
+                    "location": {
+                      "glTerritoryName": "Huntington Park, Los Angeles",
+                      "classCodes": [
+                        {
+                          "classCode": "49185",
+                          "classCodeDescription": "Youth Recreation Programs (For-Profit)",
+                          "exposure": 500
+                        }
+                      ],
+                      "id": 1,
+                      "address": {
+                        "line1": "41 Madison Ave",
+                        "line2": "Suite A",
+                        "city": "New York",
+                        "territory": "NY",
+                        "postalCode": "10010"
+                      }
+                    }
+                  },
+                  "responseId": "f3096daea287",
+                  "timeStamp": "2023-08-25T01:04:41.7507599+00:00",
+                  "httpStatusCode": 201,
+                  "isOk": true,
+                  "messages": [
+                    {
+                      "httpStatusCode": 200,
+                      "messageCode": "Deeplink",
+                      "title": "https://devk8s.amtrustgroup.com/usertest/webapp-nexus/AccountManagement/24786342",
+                      "isOk": true
+                    }
+                  ],
+                  "maxMessageIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "21ff9fc1111c",
+                  "timeStamp": "2023-08-25T01:04:41.7510637+00:00",
+                  "httpStatusCode": 404,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 404,
+                      "messageCode": "ERR-ItemNotFound",
+                      "title": "Item was not found",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "85401f391e3e",
+                  "timeStamp": "2023-08-25T01:04:41.7512875+00:00",
+                  "httpStatusCode": 400,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 400,
+                      "messageCode": "ERR-ValidationErr",
+                      "title": "Validation Error",
+                      "detail": "Validation detail message",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reference-resources/class-codes/property": {
+      "get": {
+        "tags": [
+          "Reference Resources"
+        ],
+        "summary": "Commercial Property Class Codes",
+        "description": "This endpoint will return all available Commercial Property class codes that can be saved to your PAC quote",
+        "operationId": "get-api-v1-reference-resources-class-codes-property",
+        "responses": {
+          "401": {
+            "description": "Bad or expired token. To resolve this error, generate a new or refreshed token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "3d93298bcbe9",
+                  "timeStamp": "2023-08-25T01:04:41.8297592+00:00",
+                  "httpStatusCode": 401,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 401,
+                      "messageCode": "ERR-NOTAUTHORIZED",
+                      "title": "Bearer token is not authorized",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or client does not have required permissions to complete this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "15877618b74c",
+                  "timeStamp": "2023-08-25T01:04:41.8298664+00:00",
+                  "httpStatusCode": 403,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 403,
+                      "messageCode": "ERR-FORBIDDEN",
+                      "title": "The token provided does not have permissions for the requested action",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PropertyClassCodeDtoIEnumerableIApiResponse"
+                },
+                "example": {
+                  "data": [
+                    {
+                      "classCode": "6810",
+                      "description": "Automobile, Bus and Truck Body Mfg. – Heavy metal products",
+                      "stateApplicable": "All states"
+                    },
+                    {
+                      "classCode": "0747",
+                      "description": "Hotels and Motels – without restaurant – Over 30 units",
+                      "stateApplicable": "WA"
+                    },
+                    {
+                      "classCode": "0755",
+                      "description": "Clubs – Sports clubs, with cooking; country clubs with cooking",
+                      "stateApplicable": "WA"
+                    }
+                  ],
+                  "responseId": "a0ed491c6246",
+                  "timeStamp": "2023-08-25T01:04:41.8299775+00:00",
+                  "httpStatusCode": 200,
+                  "isOk": true,
+                  "_v": "AD"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reference-resources/class-codes/general-liability": {
+      "get": {
+        "tags": [
+          "Reference Resources"
+        ],
+        "summary": "General Liability Class Codes",
+        "description": "This endpoint will return all available General Liability class codes that can be saved to your PAC quote",
+        "operationId": "get-api-v1-reference-resources-class-codes-general-liability",
+        "responses": {
+          "401": {
+            "description": "Bad or expired token. To resolve this error, generate a new or refreshed token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "5091cd9703bc",
+                  "timeStamp": "2023-08-25T01:04:41.8377108+00:00",
+                  "httpStatusCode": 401,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 401,
+                      "messageCode": "ERR-NOTAUTHORIZED",
+                      "title": "Bearer token is not authorized",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or client does not have required permissions to complete this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "82a65cc1bb0a",
+                  "timeStamp": "2023-08-25T01:04:41.8378178+00:00",
+                  "httpStatusCode": 403,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 403,
+                      "messageCode": "ERR-FORBIDDEN",
+                      "title": "The token provided does not have permissions for the requested action",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralLiabilityClassCodeDtoIEnumerableIApiResponse"
+                },
+                "example": {
+                  "data": [
+                    {
+                      "classCode": "10010",
+                      "description": "Air Conditioning Equipment - dealers  and distributors only",
+                      "exposureBasis": "$1,000 of Gross Sales"
+                    },
+                    {
+                      "classCode": "41672",
+                      "description": "Conventions (sponsor's risk only)  (For-Profit)",
+                      "exposureBasis": "Number of Convention Days"
+                    },
+                    {
+                      "classCode": "10026",
+                      "description": "Antique Stores",
+                      "exposureBasis": "$1,000 of Gross Sales"
+                    }
+                  ],
+                  "responseId": "41fa8212c058",
+                  "timeStamp": "2023-08-25T01:04:41.8379300+00:00",
+                  "httpStatusCode": 200,
+                  "isOk": true,
+                  "_v": "AD"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reference-resources/liability-limits": {
+      "get": {
+        "tags": [
+          "Reference Resources"
+        ],
+        "summary": "Retrieve Liability Limits",
+        "description": "This endpoint will return all possible general liability limits that could be available for any given quote",
+        "operationId": "get-api-v1-reference-resources-liability-limits",
+        "responses": {
+          "401": {
+            "description": "Bad or expired token. To resolve this error, generate a new or refreshed token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "840a7dda8821",
+                  "timeStamp": "2023-08-25T01:04:41.8471601+00:00",
+                  "httpStatusCode": 401,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 401,
+                      "messageCode": "ERR-NOTAUTHORIZED",
+                      "title": "Bearer token is not authorized",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or client does not have required permissions to complete this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorIApiResponse"
+                },
+                "example": {
+                  "responseId": "19fa98b16e05",
+                  "timeStamp": "2023-08-25T01:04:41.8473500+00:00",
+                  "httpStatusCode": 403,
+                  "isOk": false,
+                  "errors": [
+                    {
+                      "httpStatusCode": 403,
+                      "messageCode": "ERR-FORBIDDEN",
+                      "title": "The token provided does not have permissions for the requested action",
+                      "isOk": false
+                    }
+                  ],
+                  "maxErrorIndex": 0,
+                  "_v": "AD"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LiabilityLimitsResourceDtoIApiResponse"
+                },
+                "example": {
+                  "data": {
+                    "liabilityOccurrence": {
+                      "options": [
+                        "100000",
+                        "300000",
+                        "500000",
+                        "1000000",
+                        "2000000"
+                      ],
+                      "default": "1000000"
+                    },
+                    "generalAggregate": {
+                      "options": [
+                        "100000",
+                        "200000",
+                        "300000",
+                        "500000",
+                        "600000",
+                        "1000000",
+                        "2000000",
+                        "4000000"
+                      ],
+                      "default": "2000000"
+                    },
+                    "productsAggregate": {
+                      "options": [
+                        "100000",
+                        "200000",
+                        "300000",
+                        "500000",
+                        "600000",
+                        "1000000",
+                        "2000000",
+                        "4000000",
+                        "Excluded"
+                      ],
+                      "default": "1000000"
+                    },
+                    "medicalExpense": {
+                      "options": [
+                        "0",
+                        "5000",
+                        "10000",
+                        "15000"
+                      ],
+                      "default": "5000"
+                    },
+                    "damageToPremisesRentedToYou": {
+                      "optionsUnderNYAndNJ": {
+                        "options": [
+                          "100000",
+                          "300000",
+                          "500000",
+                          "1000000"
+                        ],
+                        "default": "100000"
+                      },
+                      "optionsUnderAllOtherStates": {
+                        "options": [
+                          "100000"
+                        ],
+                        "default": "100000"
+                      }
+                    }
+                  },
+                  "responseId": "6026e3ed7a77",
+                  "timeStamp": "2023-08-25T01:04:41.8474708+00:00",
+                  "httpStatusCode": 200,
+                  "isOk": true,
+                  "_v": "AD"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountInformation": {
+        "type": "object",
+        "properties": {
+          "quoteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "masterAccountId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddressDto": {
+        "required": [
+          "city",
+          "line1",
+          "postalCode",
+          "territory"
+        ],
+        "type": "object",
+        "properties": {
+          "line1": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "line2": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "territory": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "postalCode": {
+            "minLength": 1,
+            "pattern": "^\\d{5}(-\\d{4})?$",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AgentContactDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AgentContactDtoIEnumerableIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgentContactDto"
+            },
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiMessage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messageCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "messageType": {
+            "$ref": "#/components/schemas/ApiMessageType"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "internal": {
+            "type": "string",
+            "nullable": true
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true
+          },
+          "exception": {
+            "$ref": "#/components/schemas/LogException"
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "needsSanitization": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiMessageType": {
+        "enum": [
+          "0 = Info",
+          "1 = Error"
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ApiPageRequest": {
+        "type": "object",
+        "properties": {
+          "skip": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "take": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "count": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiPageResponse": {
+        "type": "object",
+        "properties": {
+          "first": {
+            "type": "string",
+            "nullable": true
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true
+          },
+          "current": {
+            "type": "string",
+            "nullable": true
+          },
+          "next": {
+            "type": "string",
+            "nullable": true
+          },
+          "last": {
+            "type": "string",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiPaging": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/ApiPageRequest"
+          },
+          "response": {
+            "$ref": "#/components/schemas/ApiPageResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BadRequestError": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messageType": {
+            "$ref": "#/components/schemas/ApiMessageType"
+          },
+          "internal": {
+            "type": "string",
+            "nullable": true
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true
+          },
+          "exception": {
+            "$ref": "#/components/schemas/LogException"
+          },
+          "needsSanitization": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "httpStatusCode": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messageCode": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BadRequestErrorIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/BadRequestError"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BuildingCoverageDto": {
+        "required": [
+          "buildingType",
+          "buildingValuation",
+          "coinsurance",
+          "limit"
+        ],
+        "type": "object",
+        "properties": {
+          "buildingType": {
+            "minLength": 1,
+            "enum": [
+              "Building",
+              "ImprovementsAndBetterments"
+            ],
+            "type": "string"
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coinsurance": {
+            "minLength": 1,
+            "enum": [
+              "80",
+              "90",
+              "100"
+            ],
+            "type": "string"
+          },
+          "buildingValuation": {
+            "minLength": 1,
+            "enum": [
+              "ReplacementCost",
+              "ActualCashValue"
+            ],
+            "type": "string"
+          },
+          "isApplicantOnlyBuildingOccupant": {
+            "enum": [
+              "True",
+              "False",
+              "Yes",
+              "No"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "allOccupantslListedInClassList": {
+            "enum": [
+              "True",
+              "False",
+              "Yes",
+              "No"
+            ],
+            "type": "string",
+            "description": "Required if applicant is not only building occupant. Can download eligible class list in the description of the endpoint",
+            "nullable": true
+          },
+          "any20PercentOccupant": {
+            "enum": [
+              "True",
+              "False",
+              "Yes",
+              "No"
+            ],
+            "type": "string",
+            "description": "Required if any additional occupants are not listed in eligible class list",
+            "nullable": true
+          },
+          "listNotIncludedOccupantsInClassList": {
+            "type": "string",
+            "description": "Required if additional occupants do not occupy more than 20% of building",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BuildingCoverageResponseDto": {
+        "type": "object",
+        "properties": {
+          "buildingType": {
+            "type": "string",
+            "nullable": true
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "couseOfLouse": {
+            "type": "string",
+            "nullable": true
+          },
+          "coinsurance": {
+            "type": "string",
+            "nullable": true
+          },
+          "buildingValuation": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessTypeDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessTypeDtoIEnumerableIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BusinessTypeDto"
+            },
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClassCodeResponseDto": {
+        "type": "object",
+        "properties": {
+          "classCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "classCodeDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "exposure": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommercialPropertyBuildingsResponse": {
+        "type": "object",
+        "properties": {
+          "buildingId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "classCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "classCodeDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "construction": {
+            "$ref": "#/components/schemas/Construction"
+          },
+          "totalSquareFootage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "yearBuilt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "yearWiringUpdated": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "yearPlumbingUpdated": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "yearHeatingUpdated": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "yearRoofingUpdated": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roofType": {
+            "$ref": "#/components/schemas/RoofType"
+          },
+          "numberOfStories": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coinsurance": {
+            "type": "string",
+            "nullable": true
+          },
+          "causeOfLoss": {
+            "type": "string",
+            "nullable": true
+          },
+          "sprinkleredBuilding": {
+            "type": "string",
+            "nullable": true
+          },
+          "specificGroupLossCostBuilding": {
+            "type": "number",
+            "format": "double"
+          },
+          "specificGroupLossCostContents": {
+            "type": "number",
+            "format": "double"
+          },
+          "isVacantOrPartiallyVacant": {
+            "type": "boolean"
+          },
+          "coveragesContainer": {
+            "$ref": "#/components/schemas/CoveragesContainerResponseDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommercialPropertyResponseDto": {
+        "type": "object",
+        "properties": {
+          "quoteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "masterAccountId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "locationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "locationAddress": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "protectionClass": {
+            "type": "string",
+            "nullable": true
+          },
+          "deductible": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "buildings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommercialPropertyBuildingsResponse"
+            },
+            "nullable": true
+          },
+          "premiumDetails": {
+            "$ref": "#/components/schemas/PremiumDetailsContainerDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CommercialPropertyResponseDtoIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CommercialPropertyResponseDto"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Construction": {
+        "enum": [
+          "1 = Frame",
+          "2 = JoistedMasonry",
+          "3 = NonCombustible",
+          "4 = MasonryNonCombustible",
+          "5 = ModifiedFireResistive",
+          "6 = FireResistive"
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ContensCoverageDto": {
+        "type": "object",
+        "properties": {
+          "personalProperty": {
+            "$ref": "#/components/schemas/PersonalPropertyDto"
+          },
+          "personalPropertyOfOthers": {
+            "$ref": "#/components/schemas/PersonalPropertyOfOthersDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ContentsCoverageResponseDto": {
+        "type": "object",
+        "properties": {
+          "personalProperty": {
+            "$ref": "#/components/schemas/PersonalPropertyResponseDto"
+          },
+          "personalPropertyOfOthers": {
+            "$ref": "#/components/schemas/PersonalPropertyOfOthersResponseDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CoveragesContainerDto": {
+        "type": "object",
+        "properties": {
+          "building": {
+            "$ref": "#/components/schemas/BuildingCoverageDto"
+          },
+          "contens": {
+            "$ref": "#/components/schemas/ContensCoverageDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CoveragesContainerResponseDto": {
+        "type": "object",
+        "properties": {
+          "building": {
+            "$ref": "#/components/schemas/BuildingCoverageResponseDto"
+          },
+          "contents": {
+            "$ref": "#/components/schemas/ContentsCoverageResponseDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DamageToPremisesRentedToYou": {
+        "type": "object",
+        "properties": {
+          "optionsUnderNYAndNJ": {
+            "$ref": "#/components/schemas/LiabilityLimitDto"
+          },
+          "optionsUnderAllOtherStates": {
+            "$ref": "#/components/schemas/LiabilityLimitDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ForbiddenError": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messageType": {
+            "$ref": "#/components/schemas/ApiMessageType"
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "internal": {
+            "type": "string",
+            "nullable": true
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true
+          },
+          "exception": {
+            "$ref": "#/components/schemas/LogException"
+          },
+          "needsSanitization": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "httpStatusCode": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messageCode": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ForbiddenErrorIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ForbiddenError"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GLSpecificLocationDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "glTerritoryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "classCodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClassCodeResponseDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GeneralLiabilityClassCodeDto": {
+        "type": "object",
+        "properties": {
+          "classCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "exposureBasis": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GeneralLiabilityClassCodeDtoIEnumerableIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GeneralLiabilityClassCodeDto"
+            },
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetLiabilityLimitsDto": {
+        "type": "object",
+        "properties": {
+          "liabilityOccurrence": {
+            "type": "string",
+            "nullable": true
+          },
+          "generalAggregate": {
+            "type": "string",
+            "nullable": true
+          },
+          "personalAndAdvInjury": {
+            "type": "string",
+            "nullable": true
+          },
+          "productsAggregate": {
+            "type": "string",
+            "nullable": true
+          },
+          "medicalExpense": {
+            "type": "string",
+            "nullable": true
+          },
+          "damageToPremisesRentedToYou": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetQuoteResponseDto": {
+        "type": "object",
+        "properties": {
+          "businessName": {
+            "type": "string",
+            "nullable": true
+          },
+          "dbaName": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryAddress": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "mailingAddress": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "effectiveDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "fein": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentContact": {
+            "$ref": "#/components/schemas/AgentContactDto"
+          },
+          "insuredContact": {
+            "$ref": "#/components/schemas/InsuredContactDto"
+          },
+          "legalEntity": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessType": {
+            "type": "string",
+            "nullable": true
+          },
+          "yearsInBusiness": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "yearsOfExperience": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "natureOfBusiness": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountInformation": {
+            "$ref": "#/components/schemas/AccountInformation"
+          },
+          "quoteCoverageSelection": {
+            "$ref": "#/components/schemas/QuoteCoverageSelectionDto"
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetQuoteResponseDtoIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GetQuoteResponseDto"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HttpStatusCode": {
+        "enum": [
+          "100 = Continue",
+          "101 = SwitchingProtocols",
+          "102 = Processing",
+          "103 = EarlyHints",
+          "200 = OK",
+          "201 = Created",
+          "202 = Accepted",
+          "203 = NonAuthoritativeInformation",
+          "204 = NoContent",
+          "205 = ResetContent",
+          "206 = PartialContent",
+          "207 = MultiStatus",
+          "208 = AlreadyReported",
+          "226 = IMUsed",
+          "300 = MultipleChoices",
+          "300 = Ambiguous",
+          "301 = MovedPermanently",
+          "301 = Moved",
+          "302 = Found",
+          "302 = Redirect",
+          "303 = SeeOther",
+          "303 = RedirectMethod",
+          "304 = NotModified",
+          "305 = UseProxy",
+          "306 = Unused",
+          "307 = TemporaryRedirect",
+          "307 = RedirectKeepVerb",
+          "308 = PermanentRedirect",
+          "400 = BadRequest",
+          "401 = Unauthorized",
+          "402 = PaymentRequired",
+          "403 = Forbidden",
+          "404 = NotFound",
+          "405 = MethodNotAllowed",
+          "406 = NotAcceptable",
+          "407 = ProxyAuthenticationRequired",
+          "408 = RequestTimeout",
+          "409 = Conflict",
+          "410 = Gone",
+          "411 = LengthRequired",
+          "412 = PreconditionFailed",
+          "413 = RequestEntityTooLarge",
+          "414 = RequestUriTooLong",
+          "415 = UnsupportedMediaType",
+          "416 = RequestedRangeNotSatisfiable",
+          "417 = ExpectationFailed",
+          "421 = MisdirectedRequest",
+          "422 = UnprocessableEntity",
+          "423 = Locked",
+          "424 = FailedDependency",
+          "426 = UpgradeRequired",
+          "428 = PreconditionRequired",
+          "429 = TooManyRequests",
+          "431 = RequestHeaderFieldsTooLarge",
+          "451 = UnavailableForLegalReasons",
+          "500 = InternalServerError",
+          "501 = NotImplemented",
+          "502 = BadGateway",
+          "503 = ServiceUnavailable",
+          "504 = GatewayTimeout",
+          "505 = HttpVersionNotSupported",
+          "506 = VariantAlsoNegotiates",
+          "507 = InsufficientStorage",
+          "508 = LoopDetected",
+          "510 = NotExtended",
+          "511 = NetworkAuthenticationRequired"
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "InsuredContactDto": {
+        "required": [
+          "email",
+          "name",
+          "phone"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "phone": {
+            "minLength": 1,
+            "pattern": "^\\d{10}$",
+            "type": "string"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LiabilityLimitDto": {
+        "type": "object",
+        "properties": {
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "default": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LiabilityLimitsContainerDto": {
+        "type": "object",
+        "properties": {
+          "liabilityOccurrence": {
+            "$ref": "#/components/schemas/LiabilityLimitDto"
+          },
+          "generalAggregate": {
+            "$ref": "#/components/schemas/LiabilityLimitDto"
+          },
+          "productsAggregate": {
+            "$ref": "#/components/schemas/LiabilityLimitDto"
+          },
+          "medicalExpense": {
+            "$ref": "#/components/schemas/LiabilityLimitDto"
+          },
+          "damageToPremisesRentedToYou": {
+            "$ref": "#/components/schemas/LiabilityLimitDto"
+          }
+        },
+        "additionalProperties": false,
+        "description": "<ul><li>generalAggregate - The options available for this limit will always be the limit  equal to Occurrence Limit selection, or limit 2X the Occurrence Limit.  Example:  If the Occurrence Limit selected is $500,000 and the limit sent for General Aggregate is NOT $500,000 or $1M, an error throw and the save will not be successful</li>\r\n<li>productsAggregate - The options available for this limit will always be equal to the following: the General Aggregate selection, the  limit equal to the Occurrence Limit selection, OR Excluded. Example: If General Aggregate selection is $1M, and limit sent for Products Aggregate is NOT $500,000 or $1M, or Excluded, an error will throw and save will not be successful. Please note: If the General Aggregate selection is $500,00 the ONLY options available for the Products Aggregate will be $500,000 or Excluded</li>\r\n<li>DamageToPremisesRentedToYou - Available options will not exceed the Occurrence Limit selection.  If quote is in NY or NJ, and Occurrence Limit selection is $100,000 ONLY option for this limit will be $100,000</li></ul>\r\n"
+      },
+      "LiabilityLimitsContainerDtoIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/LiabilityLimitsContainerDto"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LiabilityLimitsResourceDto": {
+        "type": "object",
+        "properties": {
+          "liabilityOccurrence": {
+            "$ref": "#/components/schemas/LiabilityLimitDto"
+          },
+          "generalAggregate": {
+            "$ref": "#/components/schemas/LiabilityLimitDto"
+          },
+          "productsAggregate": {
+            "$ref": "#/components/schemas/LiabilityLimitDto"
+          },
+          "medicalExpense": {
+            "$ref": "#/components/schemas/LiabilityLimitDto"
+          },
+          "damageToPremisesRentedToYou": {
+            "$ref": "#/components/schemas/DamageToPremisesRentedToYou"
+          }
+        },
+        "additionalProperties": false,
+        "description": "<ul><li>generalAggregate - The options available for this limit will always be the limit equal to the Occurrence Limit selection, or limit 2X the Occurrence Limit.  <br/>Example:  If Occurrence Limit selection is 500000, and the limit sent for General Aggregate is NOT 500000 or 1000000, the API will default to what is accepted and selection will not be saved.</li>\r\n<li>productsAggregate - The options available for this limit will always be equal to the selection for General Aggregate, equal to the selection for Occurrence Limit, OR Excluded.  \r\n<ul><li>Example:  If General Aggregate selection is 1000000 and the limit sent for Products Aggregate is NOT 500000 or 1000000, or Excluded, the API will default to lowest value accepted and selection will not be saved.  \r\n</li><li>NOTE:  If General Aggregate selection is 500000, the only options available for the Products Aggregate will be 500000 or Excluded</li></ul></li>\r\n<li>DamageToPremisesRentedToYou - Available options will not exceed the Occurrence Limit selection.\r\n<br/>Example:  If quote is in NY or NJ, and Occurrence Limit selection is 100000, the only option for this limit will be 100000.  If any other selection is sent, the API will default to 100000 and selection will not be saved</li></ul>\r\n"
+      },
+      "LiabilityLimitsResourceDtoIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/LiabilityLimitsResourceDto"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AddressDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationGetDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "deductible": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "protectionClass": {
+            "type": "string",
+            "nullable": true
+          },
+          "territoryName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationPostDto": {
+        "required": [
+          "address"
+        ],
+        "type": "object",
+        "properties": {
+          "deductible": {
+            "type": "integer",
+            "description": "Only applicable if commercial property is True on quote. </br> If not sent in, and commercial property exists on quote, deductible will be defaulted to $1,000",
+            "format": "int32"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AddressDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LogException": {
+        "type": "object",
+        "properties": {
+          "exceptionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "module": {
+            "type": "string",
+            "nullable": true
+          },
+          "class": {
+            "type": "string",
+            "nullable": true
+          },
+          "targetSite": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpWebEventCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "httpStatusValue": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "httpStatusCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpHtmlMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "innerException": {
+            "$ref": "#/components/schemas/LogException"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true
+          },
+          "stackTrace": {
+            "type": "string",
+            "nullable": true
+          },
+          "helpLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "method": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "exceptionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "baseException": {
+            "$ref": "#/components/schemas/LogException"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MailingAddressDto": {
+        "required": [
+          "city",
+          "line1",
+          "postalCode",
+          "territory"
+        ],
+        "type": "object",
+        "properties": {
+          "line1": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "line2": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "territory": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "postalCode": {
+            "minLength": 1,
+            "pattern": "^\\d{5}(-\\d{4})?$",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "description": "If mailing address is not sent in, it will be defaulted to information sent in Primary Address"
+      },
+      "NotFoundError": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messageType": {
+            "$ref": "#/components/schemas/ApiMessageType"
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "internal": {
+            "type": "string",
+            "nullable": true
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true
+          },
+          "exception": {
+            "$ref": "#/components/schemas/LogException"
+          },
+          "needsSanitization": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "httpStatusCode": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messageCode": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NotFoundErrorIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/NotFoundError"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PersonalPropertyDto": {
+        "required": [
+          "coinsurance",
+          "limit"
+        ],
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coinsurance": {
+            "minLength": 1,
+            "enum": [
+              "80",
+              "90",
+              "100"
+            ],
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PersonalPropertyOfOthersDto": {
+        "required": [
+          "alarmConnection",
+          "coinsurance",
+          "limit",
+          "personalPropertyValuation"
+        ],
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coinsurance": {
+            "minLength": 1,
+            "enum": [
+              "80",
+              "90",
+              "100"
+            ],
+            "type": "string"
+          },
+          "alarmConnection": {
+            "minLength": 1,
+            "enum": [
+              "NotApplicable",
+              "CentralStationWithKeys",
+              "CentralStationWithoutKeys",
+              "LocalAlarm"
+            ],
+            "type": "string"
+          },
+          "alarmProtection": {
+            "enum": [
+              "High",
+              "Low",
+              "Moderate"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "personalPropertyValuation": {
+            "minLength": 1,
+            "enum": [
+              "ActualCashValue",
+              "ReplacementExcludingStock",
+              "ReplacementIncludingStock",
+              "Functional"
+            ],
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PersonalPropertyOfOthersResponseDto": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coinsurance": {
+            "type": "string",
+            "nullable": true
+          },
+          "causeOfLoss": {
+            "type": "string",
+            "nullable": true
+          },
+          "alarmConnection": {
+            "type": "string",
+            "nullable": true
+          },
+          "alarmProtection": {
+            "type": "string",
+            "nullable": true
+          },
+          "personalPropertyValuation": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PersonalPropertyResponseDto": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coinsurance": {
+            "type": "string",
+            "nullable": true
+          },
+          "causeOfLoss": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostBuildingDto": {
+        "required": [
+          "causeOfLoss",
+          "classCode",
+          "construction",
+          "coveragesContainer",
+          "numberOfStories",
+          "sprinkleredBuilding",
+          "totalSquareFootage",
+          "yearBuilt"
+        ],
+        "type": "object",
+        "properties": {
+          "classCode": {
+            "minLength": 1,
+            "type": "string",
+            "description": "For full list of available class codes, please refer to endpoint: [Commercial Property Class Codes](#api=digital-pac&operation=get-api-v1-reference-resources-class-codes-property)"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "construction": {
+            "$ref": "#/components/schemas/Construction"
+          },
+          "totalSquareFootage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "yearBuilt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "yearWiringUpdated": {
+            "type": "integer",
+            "description": "Required only if Year Built is over 20 years old",
+            "format": "int32"
+          },
+          "yearPlumbingUpdated": {
+            "type": "integer",
+            "description": "Required only if Year Built is over 20 years old",
+            "format": "int32"
+          },
+          "yearHeatingUpdated": {
+            "type": "integer",
+            "description": "Required only if Year Built is over 20 years old",
+            "format": "int32"
+          },
+          "yearRoofingUpdated": {
+            "type": "integer",
+            "description": "Required only if Year Built is over 20 years old",
+            "format": "int32"
+          },
+          "roofType": {
+            "$ref": "#/components/schemas/RoofType"
+          },
+          "numberOfStories": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coinsurance": {
+            "enum": [
+              "80",
+              "90",
+              "100"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "causeOfLoss": {
+            "minLength": 1,
+            "enum": [
+              "Basic",
+              "Broad",
+              "Special - Including Theft",
+              "Special - Excluding Theft"
+            ],
+            "type": "string"
+          },
+          "sprinkleredBuilding": {
+            "minLength": 1,
+            "enum": [
+              "True",
+              "False",
+              "Yes",
+              "No"
+            ],
+            "type": "string"
+          },
+          "isVacantOrPartiallyVacant": {
+            "enum": [
+              "True",
+              "False",
+              "Yes",
+              "No"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "coveragesContainer": {
+            "$ref": "#/components/schemas/CoveragesContainerDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostClassCodeDto": {
+        "required": [
+          "classCode",
+          "exposure"
+        ],
+        "type": "object",
+        "properties": {
+          "classCode": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "exposure": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostClassCodesResponseDto": {
+        "type": "object",
+        "properties": {
+          "accountInformation": {
+            "$ref": "#/components/schemas/AccountInformation"
+          },
+          "location": {
+            "$ref": "#/components/schemas/GLSpecificLocationDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostClassCodesResponseDtoIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PostClassCodesResponseDto"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostCommercialPropertyDto": {
+        "required": [
+          "buildings",
+          "deductible"
+        ],
+        "type": "object",
+        "properties": {
+          "deductible": {
+            "enum": [
+              "500",
+              "1000",
+              "2500",
+              "5000",
+              "10000",
+              "25000"
+            ],
+            "type": "integer",
+            "format": "int32"
+          },
+          "buildings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostBuildingDto"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostLiabilityLimitsDto": {
+        "type": "object",
+        "properties": {
+          "liabilityOccurrence": {
+            "type": "string",
+            "nullable": true
+          },
+          "generalAggregate": {
+            "type": "string",
+            "nullable": true
+          },
+          "productsAggregate": {
+            "type": "string",
+            "nullable": true
+          },
+          "medicalExpense": {
+            "type": "string",
+            "nullable": true
+          },
+          "damageToPremisesRentedToYou": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostLiabilityLimitsResponseDto": {
+        "type": "object",
+        "properties": {
+          "accountInformation": {
+            "$ref": "#/components/schemas/AccountInformation"
+          },
+          "liabilityLimits": {
+            "$ref": "#/components/schemas/GetLiabilityLimitsDto"
+          },
+          "premiumDetails": {
+            "$ref": "#/components/schemas/PremiumDetailsContainerDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostLiabilityLimitsResponseDtoIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PostLiabilityLimitsResponseDto"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostLocationResponseDto": {
+        "type": "object",
+        "properties": {
+          "accountInformation": {
+            "$ref": "#/components/schemas/AccountInformation"
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationGetDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostLocationResponseDtoIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PostLocationResponseDto"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostQuoteRequestDto": {
+        "required": [
+          "businessName",
+          "businessType",
+          "effectiveDate",
+          "insuredContact",
+          "legalEntity",
+          "natureOfBusiness",
+          "primaryAddress",
+          "quoteCoverageSelection",
+          "yearsInBusiness"
+        ],
+        "type": "object",
+        "properties": {
+          "businessName": {
+            "maxLength": 90,
+            "minLength": 1,
+            "type": "string"
+          },
+          "dbaName": {
+            "maxLength": 90,
+            "type": "string",
+            "nullable": true
+          },
+          "primaryAddress": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "mailingAddress": {
+            "$ref": "#/components/schemas/MailingAddressDto"
+          },
+          "effectiveDate": {
+            "type": "string",
+            "description": "Cannot be before today or more than 3 months in the future",
+            "format": "date"
+          },
+          "fein": {
+            "pattern": "^\\d{9}$",
+            "type": "string",
+            "nullable": true
+          },
+          "agentContactId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "insuredContact": {
+            "$ref": "#/components/schemas/InsuredContactDto"
+          },
+          "legalEntity": {
+            "minLength": 1,
+            "type": "string",
+            "description": "To see available values, please see Retrieve Legal Entities endpoint documentation. Link: [/reference-resources/legal-entities](#/Reference%20Resources/get_api_v1_reference_resources_legal_entities)"
+          },
+          "businessType": {
+            "minLength": 1,
+            "type": "string",
+            "description": "To see available values, please see Retrieve Business Types endpoint documentation. Link: [/reference-resources/business-types](#/Reference%20Resources/get_api_v1_reference_resources_business_types)"
+          },
+          "yearsInBusiness": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "yearsOfExperience": {
+            "type": "integer",
+            "description": "Required only if Years in Business is less than 3",
+            "format": "int32",
+            "nullable": true
+          },
+          "natureOfBusiness": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "quoteCoverageSelection": {
+            "$ref": "#/components/schemas/QuoteCoverageSelectionDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostQuoteResponseDto": {
+        "type": "object",
+        "properties": {
+          "businessName": {
+            "type": "string",
+            "nullable": true
+          },
+          "dbaName": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryAddress": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "mailingAddress": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "effectiveDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "fein": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentContact": {
+            "$ref": "#/components/schemas/AgentContactDto"
+          },
+          "insuredContact": {
+            "$ref": "#/components/schemas/InsuredContactDto"
+          },
+          "legalEntity": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessType": {
+            "type": "string",
+            "nullable": true
+          },
+          "yearsInBusiness": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "yearsOfExperience": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "natureOfBusiness": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountInformation": {
+            "$ref": "#/components/schemas/AccountInformation"
+          },
+          "quoteCoverageSelection": {
+            "$ref": "#/components/schemas/QuoteCoverageSelectionDto"
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostQuoteResponseDtoIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PostQuoteResponseDto"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PremiumDetailsContainerDto": {
+        "type": "object",
+        "properties": {
+          "generalLiability": {
+            "$ref": "#/components/schemas/PremiumDetailsResponseDto"
+          },
+          "commercialProperty": {
+            "$ref": "#/components/schemas/PremiumDetailsResponseDto"
+          },
+          "netPremium": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PremiumDetailsResponseDto": {
+        "type": "object",
+        "properties": {
+          "premium": {
+            "type": "number",
+            "format": "double"
+          },
+          "taxes": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PropertyClassCodeDto": {
+        "type": "object",
+        "properties": {
+          "classCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateApplicable": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PropertyClassCodeDtoIEnumerableIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PropertyClassCodeDto"
+            },
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "QuoteCoverageSelectionDto": {
+        "type": "object",
+        "properties": {
+          "hasGeneralLiability": {
+            "type": "boolean"
+          },
+          "hasEmploymentRelatedPracticesLiability": {
+            "type": "boolean",
+            "description": "Can be selected only if General Liability is selected"
+          },
+          "hasCommercialProperty": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Quote must have hasGeneralLiability or has CommercialProperty selected in order to successfully generate a quote - both can be selected"
+      },
+      "RoofType": {
+        "enum": [
+          "3 = BuiltUpRoofing",
+          "4 = MetalRoofPanels",
+          "5 = AsphaltShingles",
+          "6 = ClayTiles",
+          "7 = ConcretePaver",
+          "8 = RubberMembrane",
+          "9 = StoneBallast"
+        ],
+        "type": "integer",
+        "description": "Note for Built-up Roofing: Common on commercial buildings",
+        "format": "int32"
+      },
+      "StringIEnumerableIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UnauthorizedError": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messageType": {
+            "$ref": "#/components/schemas/ApiMessageType"
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "internal": {
+            "type": "string",
+            "nullable": true
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true
+          },
+          "exception": {
+            "$ref": "#/components/schemas/LogException"
+          },
+          "needsSanitization": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "httpStatusCode": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messageCode": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UnauthorizedErrorIApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/UnauthorizedError"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "httpStatus": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiMessage"
+            },
+            "nullable": true
+          },
+          "paging": {
+            "$ref": "#/components/schemas/ApiPaging"
+          },
+          "maxMsgIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "maxErrIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "isOk": {
+            "type": "boolean"
+          },
+          "apiResponseVersion": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "apiKeyHeader": {
+        "type": "apiKey",
+        "name": "subscriber_id",
+        "in": "header"
+      },
+      "apiKeyQuery": {
+        "type": "apiKey",
+        "name": "subscription-key",
+        "in": "query"
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ]
+}

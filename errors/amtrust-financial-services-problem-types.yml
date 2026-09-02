@@ -1,0 +1,160 @@
+generated: '2026-09-02'
+method: derived
+source: >-
+  openapi/ (nine harvested AmTrust OpenAPI documents, 387 operations), enriched with a live probe of
+  https://gateway.amtrustgroup.com/digital-bop/api/v1/agent-contacts and
+  https://gateway.amtrustgroup.com/swagger.json — 2026-09-02
+provider: AmTrust Financial Services
+providerId: amtrust-financial-services
+format: custom
+media_type: application/json
+rfc9457: false
+note: >-
+  AmTrust does not use RFC 9457 `application/problem+json`. It ships something structurally close to it
+  and better than most: one envelope, reused across every API in the estate, carrying a machine-readable
+  `MessageCode` plus human `Title` and `Detail` — the same three fields RFC 9457 calls `type`, `title`
+  and `detail` — alongside a `CorrelationID` for support. Switching the media type to
+  application/problem+json and renaming three fields would make this conformant with almost no work.
+  What is missing is a PUBLISHED REGISTRY of MessageCode values: the field exists on every error in
+  387 operations and not one code is enumerated anywhere in the contract or on the portal, so a client
+  can read the shape but cannot branch on the code.
+envelopes:
+- name: IApiResponse error envelope
+  used_by: >-
+    UnauthorizedErrorIApiResponse, ForbiddenErrorIApiResponse, NotFoundErrorIApiResponse,
+    BadRequestErrorIApiResponse — 813 of the 848 documented error responses
+  fields:
+  - name: ID
+    type: string
+    description: Response identifier.
+  - name: Timestamp
+    type: string (date-time)
+    description: When the response was produced.
+  - name: CorrelationID
+    type: string
+    description: Trace identifier to quote to AmTrust support. The estate's request-tracing primitive.
+  - name: HttpStatus
+    type: HttpStatusCode
+    description: Echoed HTTP status.
+  - name: Messages
+    type: array of ApiMessage
+    description: Informational messages.
+  - name: Errors
+    type: array of ApiMessage
+    description: The errors themselves. Multiple errors per response are supported.
+  - name: IsOk
+    type: boolean
+    description: Convenience success flag.
+  - name: ApiResponseVersion
+    type: string
+    description: Envelope version.
+  - name: Paging
+    type: ApiPaging
+    description: Present on the shared envelope even for errors.
+  api_message_fields:
+  - name: MessageCode
+    type: string
+    description: >-
+      The machine-readable error code. NO published registry of values exists — this is the single
+      largest gap in AmTrust's error semantics.
+  - name: MessageType
+    type: ApiMessageType
+  - name: Title
+    type: string
+    description: Short human-readable summary (RFC 9457 `title` equivalent).
+  - name: Detail
+    type: string
+    description: Human-readable explanation (RFC 9457 `detail` equivalent).
+  - name: Reference
+    type: string
+  - name: Internal
+    type: string
+    description: Internal diagnostic string; should not be surfaced to end users.
+- name: BaseResponse error envelope
+  used_by: NotFoundErrorBaseResponse, FailedDependencyErrorBaseResponse — 22 responses
+  fields:
+  - name: StatusCode
+    type: HttpStatusCode
+  - name: Message
+    type: string
+  - name: AdditionalMessages
+    type: array of string
+  - name: Errors
+    type: object (field name -> array of message strings)
+    description: Field-keyed validation errors, ASP.NET ModelState style.
+  - name: Data
+    type: the typed error object
+- name: Gateway envelope
+  used_by: Azure API Management itself, before a request reaches a backend
+  observed: true
+  source: live probe 2026-09-02
+  examples:
+  - status: 401
+    body: '{ "statusCode": 401, "message": "Access denied due to missing subscription key. Make sure
+      to include subscription key when making requests to an API." }'
+  - status: 404
+    body: '{ "httpStatusCode": 404, "messageCode": "ERR-NotFound", "title": "Item was not found",
+      "detail": "Unable to match incoming request to an operation." }'
+  note: >-
+    The 404 envelope is the lowerCamel twin of the backend IApiResponse ApiMessage shape and carries a
+    real MessageCode value, `ERR-NotFound` — the only MessageCode value observable anywhere. The 401
+    envelope is a THIRD, different shape (statusCode/message). A client must therefore handle three
+    error shapes depending on how far into the stack the request got.
+problem_types:
+- status: 400
+  title: Validation error
+  count: 115
+  schema: BadRequestErrorIApiResponse (108) / BadRequestErrorBaseResponse
+  description: >-
+    Request failed validation. Field-level detail arrives in Errors[]. Dominant description across the
+    estate is "Validation error" (93 operations); 21 say only "Bad Request".
+  remediation: Read Errors[].Detail and Errors[].MessageCode; correct the named fields and retry.
+- status: 401
+  title: Bad or expired token
+  count: 278
+  schema: UnauthorizedErrorIApiResponse
+  description: >-
+    Documented on 254 operations as "Bad or expired token. To resolve this error, generate a new or
+    refreshed token." Also returned by the gateway itself when the subscriber_id subscription key is
+    missing, with a different body shape.
+  remediation: >-
+    Request a fresh token from https://auth.amtrustgroup.com/AuthServer/OpenIDConnect/Token (tokens
+    live 4 hours) AND confirm the subscriber_id header is present.
+- status: 403
+  title: Insufficient permissions
+  count: 258
+  schema: ForbiddenErrorIApiResponse
+  description: >-
+    "The authenticated user or client does not have required permissions to complete this request."
+    Authorization is by APIM product entitlement, not by token scope.
+  remediation: Confirm the subscriber_id is entitled to the product containing this API.
+- status: 404
+  title: Not found
+  count: 186
+  schema: NotFoundErrorIApiResponse (169) / NotFoundErrorBaseResponse (13)
+  description: Addressed resource does not exist, or the path did not match an operation at the gateway.
+  remediation: Verify the identifier and the gateway path prefix for the API.
+- status: 424
+  title: Failed dependency
+  count: 9
+  schema: FailedDependencyErrorBaseResponse
+  description: >-
+    "An internal dependency has failed." AmTrust is one of very few providers in the catalog that
+    documents 424 at all — it makes an upstream policy-administration failure distinguishable from a
+    caller error, which is exactly what an automated retry needs.
+  remediation: Retryable. Back off and retry; escalate with the CorrelationID if it persists.
+- status: 500
+  title: Internal server error
+  count: 2
+  description: Documented on only 2 of 387 operations.
+  remediation: Retry with backoff; escalate with the CorrelationID.
+coverage:
+  operations_total: 387
+  error_responses_documented: 848
+  status_codes_documented: [400, 401, 403, 404, 424, 500]
+  status_codes_absent: [409, 422, 429, 502, 503]
+gaps:
+- No MessageCode registry is published anywhere; the field is present on every error and enumerable nowhere.
+- No 429 is documented on any operation, so a client cannot tell throttling from any other failure.
+- Three different error body shapes are reachable depending on where the request fails.
+- Media type is application/json, not application/problem+json, so generic RFC 9457 clients see nothing.

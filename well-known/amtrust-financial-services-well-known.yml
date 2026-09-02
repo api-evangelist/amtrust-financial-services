@@ -1,0 +1,118 @@
+generated: '2026-09-02'
+method: probed
+source: live GET of the named /.well-known/ path list on every apis.yml host, every OpenAPI servers[]
+  host, and the docs/portal hosts, 2026-09-02
+note: >-
+  Two real documents were served, both OpenID Connect discovery documents published by AmTrust's own
+  IdentityServer (production and UAT). They do NOT sit at the host root — AmTrust mounts the authorization
+  server under /AuthServer (prod) and /AuthServer_usertest (UAT), so the discovery document is at
+  <host>/AuthServer/.well-known/openid-configuration. Every other named path 404s on every host. The
+  amtrustfinancial.com marketing site and both Azure API Management developer portals answer /.well-known/*
+  with their standard HTML 404 page, and the API gateway answers with its JSON not-found envelope; neither
+  is a document. A WellKnown pointer is emitted on the strength of the two OIDC documents only. No
+  security.txt is served anywhere, so no SecurityTxt pointer is emitted.
+hosts:
+- host: auth.amtrustgroup.com
+  documents:
+  - path: /AuthServer/.well-known/openid-configuration
+    status: 200
+    file: well-known/amtrust-financial-services-openid-configuration.json
+    content_type: application/json
+    note: Production OpenID Connect discovery document. issuer https://auth.amtrustgroup.com/AuthServer.
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: uatauth.amtrustgroup.com
+  documents:
+  - path: /AuthServer_usertest/.well-known/openid-configuration
+    status: 200
+    file: well-known/amtrust-financial-services-uat-openid-configuration.json
+    content_type: application/json
+    note: UAT OpenID Connect discovery document. issuer https://uatauth.amtrustgroup.com/AuthServer_usertest.
+- host: gateway.amtrustgroup.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: apiportal.amtrustgroup.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: utapiportal.amtrustgroup.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: amtrustfinancial.com
+  documents:
+  - path: /llms.txt
+    status: 200
+    file: llms/amtrust-financial-services-llms.txt
+    content_type: text/plain
+    note: Provider-published llms.txt. Not a /.well-known/ path, recorded here because it was found on
+      the same sweep.
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: prod-apim-gw.amtrustservices.com
+  documents:
+  - path: /.well-known/security.txt
+    status: '<no response>'
+    note: Host does not resolve. It is the SECOND servers[] entry in all nine harvested OpenAPI documents
+      and has no DNS record, so every probe against it returned connection failure.

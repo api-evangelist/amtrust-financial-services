@@ -1,0 +1,123 @@
+generated: '2026-09-02'
+method: derived
+source: >-
+  openapi/ (nine harvested AmTrust OpenAPI documents),
+  https://auth.amtrustgroup.com/AuthServer/.well-known/openid-configuration (HTTP 200),
+  https://apiportal.amtrustgroup.com/authentication (HTTP 200), and live probes of
+  gateway.amtrustgroup.com — 2026-09-02
+provider: AmTrust Financial Services
+providerId: amtrust-financial-services
+regime: insurance
+conformance:
+- id: openapi
+  conforms: true
+  version: 3.0.1
+  evidence: >-
+    Nine OpenAPI 3.0.1 documents totalling 387 operations, exported verbatim from AmTrust's own Azure
+    API Management instance and saved to openapi/_original/. Every operation carries an operationId and
+    a summary; 2xx and 4xx responses are modelled with named component schemas.
+- id: oidc
+  conforms: true
+  evidence: >-
+    A conformant OpenID Connect discovery document is served at
+    https://auth.amtrustgroup.com/AuthServer/.well-known/openid-configuration with issuer,
+    authorization_endpoint, token_endpoint, jwks_uri, userinfo_endpoint, end_session_endpoint,
+    introspection_endpoint, revocation_endpoint, RS256 id_token signing and scopes_supported. A second
+    conformant document is served for UAT.
+- id: oauth2
+  conforms: true
+  evidence: >-
+    client_credentials, authorization_code, refresh_token, token_exchange and password grants are
+    advertised in discovery; the portal documents client_credentials and password flows with
+    Content-Type application/x-www-form-urlencoded and client_secret_post credentials.
+  caveats:
+  - >-
+    The `password` (resource owner password credentials) grant is enabled in production. RFC 9700
+    (OAuth 2.0 Security BCP) says it MUST NOT be used and OAuth 2.1 removes it.
+  - >-
+    code_challenge_methods_supported advertises `plain` alongside `S256`, permitting a PKCE downgrade.
+  - >-
+    No oauth2 or openIdConnect securityScheme appears in ANY of the nine OpenAPI documents, so the
+    OAuth half of the contract is undiscoverable from the machine-readable spec.
+- id: rfc9457
+  conforms: false
+  evidence: >-
+    Errors are returned as application/json, not application/problem+json. The envelope is close in
+    spirit — MessageCode / Title / Detail map onto type / title / detail — but no operation declares
+    the problem+json media type. See errors/amtrust-financial-services-problem-types.yml.
+- id: idempotency
+  conforms: false
+  evidence: >-
+    No Idempotency-Key header, no idempotency parameter and no idempotency prose appears in any of the
+    nine documents or on either developer portal. 100+ unguarded POST operations, including
+    quote-to-policy bind, have no replay protection.
+- id: pagination
+  conforms: partial
+  evidence: >-
+    Six of nine documents carry pagination. The Digital lines use an `ApiPaging` object
+    (Request/Response) inside the shared IApiResponse envelope with pageSize; the Reinsurance Contract
+    Entry API takes pageNumber/pageSize in the request body. There is no Link header, no cursor and no
+    single cross-estate convention.
+- id: rate-limit-headers
+  conforms: false
+  evidence: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After header on the live gateway response, and no 429
+    declared on any of 387 operations.
+- id: http-caching
+  conforms: false
+  evidence: >-
+    ETag appears once, as a response-header array inside a generic RCE API model — not as an operation
+    caching contract. No If-Match / If-None-Match concurrency control anywhere.
+- id: json-api
+  conforms: false
+  evidence: Custom envelope; no application/vnd.api+json.
+- id: odata
+  conforms: false
+  evidence: No $metadata surface and no $top/$skip/$filter query conventions.
+- id: fhir
+  conforms: false
+  evidence: Not a healthcare data API; no FHIR resource shapes.
+- id: scim
+  conforms: false
+  evidence: No SCIM schema URNs; no user provisioning surface.
+- id: mtls
+  conforms: false
+  evidence: No mutualTLS securityScheme declared.
+domain_standards:
+- id: ncci-class-codes
+  standard: NCCI workers' compensation classification codes
+  conforms: true
+  evidence: >-
+    openapi/amtrust-financial-services-digital-wc-api-openapi.json, components.schemas.ClassCode:
+    "NCCI Class Code. Must be 4 numeric characters for all states except 'DE' and 'PA'". The contract
+    also exposes /api/v1/state-classes-eligibility/{state} and per-quote class-code collections keyed on
+    the same identifier scheme. An agency system that already speaks NCCI class codes — which every
+    workers' compensation rating platform does — integrates without a translation layer.
+  note: >-
+    This is the domain identifier scheme that actually carries AmTrust's workers' compensation surface,
+    and it is declared IN THE CONTRACT rather than claimed on a marketing page.
+- id: acord
+  standard: ACORD (AL3 / XML / Data Standards)
+  conforms: false
+  evidence: >-
+    No ACORD reference, namespace, transaction type or message shape appears anywhere in the nine
+    documents. AmTrust's commercial-lines APIs are proprietary JSON, not ACORD. Case-insensitive grep
+    for "acord" across all 3.2 MB of harvested contract returns nothing.
+  note: >-
+    ACORD is the named standard for this market in the insurance regulatory regime. A partner already
+    fluent in ACORD needs a bespoke connector for AmTrust.
+- id: csio
+  standard: CSIO (Canadian insurance data standards)
+  conforms: false
+  evidence: Not present; AmTrust's published APIs are US-market.
+- id: cieca-bms
+  standard: CIECA BMS
+  conforms: false
+  evidence: Not present; no auto-physical-damage estimating surface is published.
+compliance:
+  published_certifications: []
+  note: >-
+    No trust center and no named certification (SOC 2, ISO 27001, PCI DSS, HIPAA) is published on
+    amtrustfinancial.com or on either developer portal. As a US insurance carrier AmTrust is regulated
+    by state departments of insurance and files statutory statements with the NAIC, but it publishes no
+    security-attestation artifact for its API program. No Compliance pointer is emitted for that reason.

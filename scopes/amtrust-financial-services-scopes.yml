@@ -1,0 +1,59 @@
+generated: '2026-09-02'
+method: searched
+source: >-
+  https://auth.amtrustgroup.com/AuthServer/.well-known/openid-configuration (HTTP 200) and
+  https://apiportal.amtrustgroup.com/authentication (HTTP 200) — probed 2026-09-02
+docs: https://apiportal.amtrustgroup.com/authentication
+provider: AmTrust Financial Services
+providerId: amtrust-financial-services
+issuer: https://auth.amtrustgroup.com/AuthServer
+token_endpoint: https://auth.amtrustgroup.com/AuthServer/OpenIDConnect/Token
+note: >-
+  These scopes come from AmTrust's own OpenID Connect discovery document, not from any OpenAPI
+  securityScheme — none of the nine harvested OpenAPI documents declares an oauth2 or openIdConnect
+  scheme, so `derive-oauth-scopes.py` correctly found nothing to derive. The scope set is coarse: it
+  authenticates the caller and carries legacy portal identity, and does NOT partition the API surface.
+  There is no read/write split, no per-product scope (workers' comp vs BOP vs claims vs reinsurance),
+  and no per-operation scope. Authorization to a given API is enforced by the Azure API Management
+  subscription (which product a subscriber_id is entitled to), not by the token.
+scope_count: 7
+scopes:
+- name: openid
+  description: Standard OIDC scope. Requests an ID token identifying the caller.
+  requested_by: both documented flows
+- name: profile
+  description: Standard OIDC profile claims.
+  requested_by: both documented flows
+- name: offline_access
+  description: Requests a refresh token.
+  requested_by: advertised in discovery; not shown in the portal's documented flows
+- name: user
+  description: >-
+    AmTrust-specific. Advertised in discovery; the portal does not document it and does not state what
+    it grants.
+  requested_by: advertised in discovery only
+- name: legacy_id
+  description: >-
+    AmTrust-specific. Carries the caller's legacy AmTrust portal user identifier into the token.
+    Documented on the portal as part of the User Authenticated Token request.
+  requested_by: User Authenticated Token (password grant)
+- name: legacy_info
+  description: >-
+    AmTrust-specific. Carries legacy AmTrust portal user information into the token. Documented on the
+    portal as part of the User Authenticated Token request.
+  requested_by: User Authenticated Token (password grant)
+- name: legacy_permission
+  description: >-
+    AmTrust-specific. Advertised in discovery; the portal does not document it and does not state what
+    permissions it conveys.
+  requested_by: advertised in discovery only
+documented_combinations:
+- flow: General Access Token
+  grant_type: client_credentials
+  scope: openid profile
+- flow: User Authenticated Token
+  grant_type: password
+  scope: openid profile legacy_info legacy_id
+gaps:
+- No scope maps to an API product or an operation, so a token cannot express least privilege.
+- Three advertised scopes (user, legacy_permission, offline_access) are undocumented.

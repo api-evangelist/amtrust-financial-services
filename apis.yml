@@ -26,11 +26,19 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
-modified: '2026-04-19'
+modified: '2026-09-02'
 name: AmTrust Financial Services
-description: AmTrust Financial Services is a multinational specialty property and casualty insurer focused on small to mid-sized businesses. AmTrust provides APIs that enable insurance agents, 
-  brokers, and technology partners to review appetite, generate quotes, and bind policies programmatically. The API platform processes over 12 million API calls daily with 99.68% availability and 
-  supports workers' compensation, business owners' policies, general liability, and other commercial insurance products across 300+ eligible class codes.
+description: >-
+  AmTrust Financial Services is a multinational specialty property and casualty insurer focused on small
+  to mid-sized businesses, with more than 7,000 employees, 500,000+ small commercial policies in force
+  and an AM Best rating of A- (Excellent). AmTrust runs a real, production API program on Azure API
+  Management — nine externally exposed APIs at gateway.amtrustgroup.com spanning 387 operations, covering
+  workers' compensation, Businessowners Policy, cyber, Excess & Surplus and commercial package
+  quote-rate-bind, plus medical case management claims, surety bond documents and reinsurance contract
+  entry. Authentication is two-factor at the edge — an Azure API Management subscription key
+  (subscriber_id) alongside a four-hour OpenID Connect bearer token from AmTrust's own IdentityServer at
+  auth.amtrustgroup.com. Access is partner-gated; there is no self-serve signup and no published pricing,
+  and credentials follow a Digital Partner Vetting Questionnaire.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amtrust-financial-services.png
 tags:
   - Commercial Insurance
@@ -39,6 +47,12 @@ tags:
   - Small Business
   - Workers Compensation
   - Fortune 1000
+  - Underwriting
+  - Claims
+  - Policy
+  - Reinsurance
+  - Cyber Insurance
+  - Surety
 tags_raw:
   - Commercial Insurance
   - Insurance
@@ -46,72 +60,183 @@ tags_raw:
   - Small Business
   - Workers Compensation
   - Fortune 1000
+  - Underwriting
+  - Claims
+  - Policy
+  - Reinsurance
+  - Cyber Insurance
+  - Surety
 apis:
-- aid: amtrust-financial-services:amtrust-financial-services-appetite-api
-  name: AmTrust Financial Services Appetite API
-  description: Coverage appetite and eligibility checks
-  humanURL: https://amtrustfinancial.com/api
-  baseURL: https://api.amtrustservices.com
+- aid: amtrust-financial-services:amtrust-financial-services-digital-wc-api
+  name: AmTrust Digital WC API
+  description: Workers' compensation quote, rate, bind and policy-service API — 174 operations covering
+    quotes, class codes, locations, officers, endorsements, payment plans, documents, billing, loss history
+    and specialty programs. Harvested verbatim from AmTrust's own Azure API Management export.
+  humanURL: https://apiportal.amtrustgroup.com/apis
+  baseURL: https://gateway.amtrustgroup.com/DigitalAPI
   tags:
-  - Appetite
-  properties:
-  - type: OpenAPI
-    url: openapi/amtrust-financial-services-appetite-api-openapi.yml
-  - type: Documentation
-    url: https://amtrustfinancial.com/api
-  - type: Portal
-    url: https://utapiportal.amtrustgroup.com
-  - type: Authentication
-    url: https://utapiportal.amtrustgroup.com/authentication
-- aid: amtrust-financial-services:amtrust-financial-services-authentication-api
-  name: AmTrust Financial Services Authentication API
-  description: OAuth 2.0 token management
-  humanURL: https://amtrustfinancial.com/api
-  baseURL: https://api.amtrustservices.com
-  tags:
-  - Authentication
-  properties:
-  - type: OpenAPI
-    url: openapi/amtrust-financial-services-authentication-api-openapi.yml
-  - type: Documentation
-    url: https://amtrustfinancial.com/api
-  - type: Portal
-    url: https://utapiportal.amtrustgroup.com
-  - type: Authentication
-    url: https://utapiportal.amtrustgroup.com/authentication
-- aid: amtrust-financial-services:amtrust-financial-services-policies-api
-  name: AmTrust Financial Services Policies API
-  description: Policy binding and management
-  humanURL: https://amtrustfinancial.com/api
-  baseURL: https://api.amtrustservices.com
-  tags:
+  - Workers Compensation
+  - Quotes
   - Policies
   properties:
   - type: OpenAPI
-    url: openapi/amtrust-financial-services-policies-api-openapi.yml
+    url: openapi/amtrust-financial-services-digital-wc-api-openapi.json
   - type: Documentation
-    url: https://amtrustfinancial.com/api
-  - type: Portal
-    url: https://utapiportal.amtrustgroup.com
+    url: https://apiportal.amtrustgroup.com/apis
+  - type: DeveloperPortal
+    url: https://apiportal.amtrustgroup.com
   - type: Authentication
-    url: https://utapiportal.amtrustgroup.com/authentication
-- aid: amtrust-financial-services:amtrust-financial-services-quotes-api
-  name: AmTrust Financial Services Quotes API
-  description: Quote generation and management
-  humanURL: https://amtrustfinancial.com/api
-  baseURL: https://api.amtrustservices.com
+    url: https://apiportal.amtrustgroup.com/authentication
+- aid: amtrust-financial-services:amtrust-financial-services-digital-bop-api
+  name: AmTrust Digital BOP API
+  description: Businessowners Policy (BOP) quoting and binding API — locations, buildings, class codes,
+    underwriting questions, loss history, payment plans, bind, documents and policy service.
+  humanURL: https://apiportal.amtrustgroup.com/apis
+  baseURL: https://gateway.amtrustgroup.com/digital-bop
   tags:
+  - Businessowners Policy
+  - Quotes
+  - Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/amtrust-financial-services-digital-bop-api-openapi.json
+  - type: Documentation
+    url: https://apiportal.amtrustgroup.com/apis
+  - type: DeveloperPortal
+    url: https://apiportal.amtrustgroup.com
+  - type: Authentication
+    url: https://apiportal.amtrustgroup.com/authentication
+- aid: amtrust-financial-services:amtrust-financial-services-digital-cyber-api
+  name: AmTrust Digital Cyber API
+  description: Cyber insurance quoting API — quote creation and rating, underwriting questions, insured
+    clearance, payment plans, reference resources and policy issuance.
+  humanURL: https://apiportal.amtrustgroup.com/apis
+  baseURL: https://gateway.amtrustgroup.com/digital-cyber
+  tags:
+  - Cyber Insurance
+  - Quotes
+  - Underwriting
+  properties:
+  - type: OpenAPI
+    url: openapi/amtrust-financial-services-digital-cyber-api-openapi.json
+  - type: Documentation
+    url: https://apiportal.amtrustgroup.com/apis
+  - type: DeveloperPortal
+    url: https://apiportal.amtrustgroup.com
+  - type: Authentication
+    url: https://apiportal.amtrustgroup.com/authentication
+- aid: amtrust-financial-services:amtrust-financial-services-digital-es-api
+  name: AmTrust Digital E&S API
+  description: Excess & Surplus lines quoting API — locations, class codes, agent contacts and reference
+    resources for the AmTrust E&S division.
+  humanURL: https://apiportal.amtrustgroup.com/apis
+  baseURL: https://gateway.amtrustgroup.com/digital-es
+  tags:
+  - Excess and Surplus
   - Quotes
   properties:
   - type: OpenAPI
-    url: openapi/amtrust-financial-services-quotes-api-openapi.yml
+    url: openapi/amtrust-financial-services-digital-es-api-openapi.json
   - type: Documentation
-    url: https://amtrustfinancial.com/api
-  - type: Portal
-    url: https://utapiportal.amtrustgroup.com
+    url: https://apiportal.amtrustgroup.com/apis
+  - type: DeveloperPortal
+    url: https://apiportal.amtrustgroup.com
   - type: Authentication
-    url: https://utapiportal.amtrustgroup.com/authentication
+    url: https://apiportal.amtrustgroup.com/authentication
+- aid: amtrust-financial-services:amtrust-financial-services-digital-pac-api
+  name: AmTrust Digital PAC API
+  description: Commercial package (PAC) quoting API — quote creation, general liability limits, business
+    types, legal entities and reference resources.
+  humanURL: https://apiportal.amtrustgroup.com/apis
+  baseURL: https://gateway.amtrustgroup.com/digital-pac
+  tags:
+  - Commercial Package
+  - General Liability
+  - Quotes
+  properties:
+  - type: OpenAPI
+    url: openapi/amtrust-financial-services-digital-pac-api-openapi.json
+  - type: Documentation
+    url: https://apiportal.amtrustgroup.com/apis
+  - type: DeveloperPortal
+    url: https://apiportal.amtrustgroup.com
+  - type: Authentication
+    url: https://apiportal.amtrustgroup.com/authentication
+- aid: amtrust-financial-services:amtrust-financial-services-reinsurance-contract-entry-api
+  name: AmTrust Reinsurance Contract Entry API
+  description: Reinsurance contract entry and administration API (RCEWebAPI) — 98 operations across treaty
+    and contract entry, participants, layers, exceptions, sync logging and reporting.
+  humanURL: https://apiportal.amtrustgroup.com/apis
+  baseURL: https://gateway.amtrustgroup.com/RCEAPI
+  tags:
+  - Reinsurance
+  - Contract Management
+  properties:
+  - type: OpenAPI
+    url: openapi/amtrust-financial-services-reinsurance-contract-entry-api-openapi.json
+  - type: Documentation
+    url: https://apiportal.amtrustgroup.com/apis
+  - type: DeveloperPortal
+    url: https://apiportal.amtrustgroup.com
+  - type: Authentication
+    url: https://apiportal.amtrustgroup.com/authentication
+- aid: amtrust-financial-services:amtrust-financial-services-experience-claims-medical-case-api
+  name: AmTrust Experience Claims Medical Case API
+  description: Medical case management claims API — retrieve claim data, claim summaries and claim notes
+    by claim number, and save claim notes.
+  humanURL: https://apiportal.amtrustgroup.com/apis
+  baseURL: https://gateway.amtrustgroup.com/experience-claims-medical-case
+  tags:
+  - Claims
+  - Medical Case Management
+  properties:
+  - type: OpenAPI
+    url: openapi/amtrust-financial-services-experience-claims-medical-case-api-openapi.json
+  - type: Documentation
+    url: https://apiportal.amtrustgroup.com/apis
+  - type: DeveloperPortal
+    url: https://apiportal.amtrustgroup.com
+  - type: Authentication
+    url: https://apiportal.amtrustgroup.com/authentication
+- aid: amtrust-financial-services:amtrust-financial-services-experience-next-gen-bond-pro-api
+  name: AmTrust Experience Next Gen Bond Pro API
+  description: Surety bond document management API — create, retrieve, modify and remove DMS documents in
+    base64-encoded binary form, plus health checks.
+  humanURL: https://apiportal.amtrustgroup.com/apis
+  baseURL: https://gateway.amtrustgroup.com/experience-next-gen-bond-pro-api
+  tags:
+  - Surety
+  - Document Management
+  properties:
+  - type: OpenAPI
+    url: openapi/amtrust-financial-services-experience-next-gen-bond-pro-api-openapi.json
+  - type: Documentation
+    url: https://apiportal.amtrustgroup.com/apis
+  - type: DeveloperPortal
+    url: https://apiportal.amtrustgroup.com
+  - type: Authentication
+    url: https://apiportal.amtrustgroup.com/authentication
+- aid: amtrust-financial-services:amtrust-financial-services-conversa-engine-api
+  name: AmTrust Conversa Engine API
+  description: Conversational engine consent API used by AmTrust's chatbot/outbound calling experience —
+    collects call consent for a claim contact.
+  humanURL: https://apiportal.amtrustgroup.com/apis
+  baseURL: https://gateway.amtrustgroup.com/btgchatbot
+  tags:
+  - Conversational AI
+  - Consent
+  properties:
+  - type: OpenAPI
+    url: openapi/amtrust-financial-services-conversa-engine-api-openapi.json
+  - type: Documentation
+    url: https://apiportal.amtrustgroup.com/apis
+  - type: DeveloperPortal
+    url: https://apiportal.amtrustgroup.com
+  - type: Authentication
+    url: https://apiportal.amtrustgroup.com/authentication
 common:
+  - type: Website
+    url: https://amtrustfinancial.com/
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amtrust-financial-services/overview
   - type: AgenticAccess
@@ -122,26 +247,26 @@ common:
     url: security/amtrust-financial-services-domain-security.yml
   - type: Authentication
     url: authentication/amtrust-financial-services-authentication.yml
-  - type: GitHubOrganization
-    url: https://github.com/amtrust
   - type: LinkedIn
     url: https://www.linkedin.com/company/amtrust-financial-services-inc
   - type: Portal
     url: https://amtrustfinancial.com
   - type: DeveloperPortal
-    url: https://utapiportal.amtrustgroup.com
+    url: https://apiportal.amtrustgroup.com
+  - type: APIReference
+    url: https://apiportal.amtrustgroup.com/apis
   - type: Documentation
     url: https://amtrustfinancial.com/api
   - type: Authentication
-    url: https://utapiportal.amtrustgroup.com/authentication
-  - type: Signup
+    url: https://apiportal.amtrustgroup.com/authentication
+  - type: SignUp
     url: https://amtrustfinancial.com/api
   - type: Support
-    url: https://amtrustfinancial.com/contact-us
+    url: https://amtrustfinancial.com/about-us/contact-us
   - type: TermsOfService
-    url: https://amtrustfinancial.com/terms-of-use
+    url: https://amtrustfinancial.com/about-us/terms-of-use
   - type: PrivacyPolicy
-    url: https://amtrustfinancial.com/privacy-policy
+    url: https://amtrustfinancial.com/about-us/privacy-policy
   - type: Features
     data:
     - name: Appetite Check
@@ -176,6 +301,56 @@ common:
       description: Commercial lines quoting marketplace integration.
     - name: IBQ Systems
       description: Commercial lines rating platform integration.
+  - type: WellKnown
+    url: well-known/amtrust-financial-services-well-known.yml
+  - type: OpenIDConnect
+    url: well-known/amtrust-financial-services-openid-configuration.json
+  - type: LLMsTxt
+    url: llms/amtrust-financial-services-llms.txt
+  - type: OAuthScopes
+    url: scopes/amtrust-financial-services-scopes.yml
+  - type: Conventions
+    url: conventions/amtrust-financial-services-conventions.yml
+  - type: ErrorCatalog
+    url: errors/amtrust-financial-services-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/amtrust-financial-services-lifecycle.yml
+  - type: Conformance
+    url: conformance/amtrust-financial-services-conformance.yml
+  - type: DataModel
+    url: data-model/amtrust-financial-services-data-model.yml
+  - type: Sandbox
+    url: sandbox/amtrust-financial-services-sandbox.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Packages
+    url: packages/amtrust-financial-services-packages.yml
+  - type: MCP
+    url: mcp/amtrust-financial-services-mcp.yml
+  - type: Plans
+    url: plans/amtrust-financial-services-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/amtrust-financial-services-rate-limits.yml
+  - type: FinOps
+    url: finops/amtrust-financial-services-finops.yml
+  - type: Overlay
+    url: overlays/amtrust-financial-services-digital-wc-api-overlay.yaml
+  - type: Overlay
+    url: overlays/amtrust-financial-services-digital-bop-api-overlay.yaml
+  - type: Overlay
+    url: overlays/amtrust-financial-services-digital-cyber-api-overlay.yaml
+  - type: Overlay
+    url: overlays/amtrust-financial-services-digital-es-api-overlay.yaml
+  - type: Overlay
+    url: overlays/amtrust-financial-services-digital-pac-api-overlay.yaml
+  - type: Overlay
+    url: overlays/amtrust-financial-services-reinsurance-contract-entry-api-overlay.yaml
+  - type: Overlay
+    url: overlays/amtrust-financial-services-experience-claims-medical-case-api-overlay.yaml
+  - type: Overlay
+    url: overlays/amtrust-financial-services-experience-next-gen-bond-pro-api-overlay.yaml
+  - type: Overlay
+    url: overlays/amtrust-financial-services-conversa-engine-api-overlay.yaml
   - type: SpectralRules
     url: rules/amtrust-financial-services-spectral-rules.yml
   - type: JSONSchema
@@ -193,3 +368,8 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-02'
+  status: enriched
+  artifacts_added: 45
+  pass: local-v1

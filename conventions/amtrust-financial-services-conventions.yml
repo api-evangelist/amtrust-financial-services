@@ -1,0 +1,151 @@
+generated: '2026-09-02'
+method: derived
+source: >-
+  openapi/ (nine harvested AmTrust OpenAPI documents, 387 operations),
+  https://apiportal.amtrustgroup.com/authentication (HTTP 200), and a live probe of
+  https://gateway.amtrustgroup.com/digital-bop/api/v1/agent-contacts — 2026-09-02
+provider: AmTrust Financial Services
+providerId: amtrust-financial-services
+authentication:
+  style: two credentials on every call
+  api_key:
+    header: subscriber_id
+    query: subscription-key
+    note: The Conversa Engine API names its query parameter subscriber_id instead — an estate inconsistency.
+  bearer:
+    header: Authorization
+    format: Bearer <access token>
+    issuer: https://auth.amtrustgroup.com/AuthServer
+    lifetime: 4 hours
+  cross_ref: authentication/amtrust-financial-services-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  scope: null
+  retention: null
+  evidence: >-
+    No Idempotency-Key header, no idempotency request parameter and no idempotency prose exists in any
+    of the nine OpenAPI documents or on either developer portal.
+  risk: >-
+    More than a hundred POST operations are unguarded, and they are consequential ones: creating a
+    quote, saving class codes and payroll, uploading EFT/voided-check documents, submitting to an
+    underwriter, and binding a quote into a live policy
+    (post-api-v2-quotes-quoteid-bind-agent-contact-agentcontactid). A dropped response on a bind leaves
+    the caller unable to distinguish "not bound" from "bound, reply lost", and a naive retry risks a
+    duplicate policy. No Idempotency pointer is emitted in apis.yml because there is nothing to point at.
+pagination:
+  style: envelope object (Digital lines) / request-body fields (Reinsurance Contract Entry)
+  request_fields:
+  - pageSize
+  - pageNumber
+  response_fields:
+  - Paging.Request
+  - Paging.Response
+  evidence: >-
+    ApiPaging / ApiPageRequest / ApiPageResponse components appear in six of nine documents inside the
+    shared IApiResponse envelope. The RCE API instead takes pageNumber and pageSize in POST bodies.
+  gaps:
+  - No Link header, no cursor, no next/prev URL — a client must synthesise page walking.
+  - Two different pagination conventions across one estate.
+field_expansion:
+  supported: false
+sparse_fieldsets:
+  supported: false
+metadata:
+  supported: false
+  note: No customer-supplied metadata/annotation field on any resource.
+request_tracing:
+  field: CorrelationID
+  location: response body, inside the IApiResponse envelope
+  request_header: null
+  evidence: >-
+    Every IApiResponse — success and error — carries CorrelationID, and the envelope also carries ID and
+    Timestamp. This is the estate's support-escalation primitive.
+  gaps:
+  - >-
+    Tracing is RESPONSE-ONLY. There is no documented request header (no X-Request-Id, no traceparent)
+    a client can send to propagate its own correlation id inward, so a caller cannot correlate a request
+    it never got a response for — which is exactly the case where it needs to.
+versioning:
+  style: path-segment major version, applied per operation
+  observed: [v1, v2, v3, '{version}']
+  cross_ref: lifecycle/amtrust-financial-services-lifecycle.yml
+error_envelope:
+  media_type: application/json
+  shapes: 3
+  primary: IApiResponse with Errors[] of ApiMessage {MessageCode, Title, Detail, Reference}
+  secondary: BaseResponse with StatusCode, Message, AdditionalMessages, Errors (field-keyed)
+  gateway: '{ statusCode, message } on 401; { httpStatusCode, messageCode, title, detail } on 404'
+  cross_ref: errors/amtrust-financial-services-problem-types.yml
+rate_limit_signaling:
+  headers: none
+  status_on_exhaustion: undocumented
+  cross_ref: rate-limits/amtrust-financial-services-rate-limits.yml
+dry_run_mode:
+  supported: false
+  note: >-
+    No preview, validate-only or dry-run flag on any write operation. The closest thing AmTrust ships is
+    a genuine multi-step quote workflow — a quote is built up, rated, checked for eligibility
+    (get-api-v1-quotes-quoteid-eligibility) and only then bound — so the rehearsal is the quote itself
+    rather than a flag. Useful, but it is not a dry run of the bind.
+reversibility:
+  grade: documented
+  applicable: true
+  note: >-
+    Reversal paths exist and are real, but AmTrust states no window for any of them, so this grades
+    `documented` rather than `verified`. No window is asserted here that the contract does not state.
+  surfaces:
+  - write_surface: Bind a quote into a policy
+    operation: post-api-v2-quotes-quoteid-bind-agent-contact-agentcontactid
+    api: amtrust-financial-services-digital-wc-api
+    reversal: >-
+      Policy cancellation is available as an endorsement type, not as a dedicated operation:
+      post-api-v3-specialty-program-policies-policy-endorsements accepts a 'cancellation' endorsement
+      (its description enumerates 'cancellation' among insured-name-update, exposure-update,
+      legal-entity-update and others).
+    reversal_operation: post-api-v3-specialty-program-policies-policy-endorsements
+    window: null
+    window_source: null
+    grade: documented
+  - write_surface: Cancelled policy
+    operation: null
+    reversal: >-
+      A cancelled policy can be reinstated:
+      "This endpoint allows authorized users to reinstate a cancelled policy."
+    reversal_operation: post-api-v1-specialty-program-policies-policyid-reinstatement
+    api: amtrust-financial-services-digital-wc-api
+    window: null
+    window_source: null
+    grade: documented
+  - write_surface: Quote composition (class codes, officers, locations, partners, third-party notices,
+      dividends, voluntary compensation, stop-gap, additional insureds)
+    reversal: >-
+      Every quote-composition write has a matching DELETE. 29 removal operations across the WC API,
+      plus removals in BOP and E&S. Pre-bind quote state is fully reversible by the caller.
+    reversal_operation: >-
+      delete-api-v1-quotes-quoteid-classcodes-indexid,
+      delete-api-v1-quotes-quoteid-additionalinformation-officers-id,
+      delete-api-v1-quotes-quoteid-partners,
+      delete-api-v1-quotes-quoteid-voluntary-compensation,
+      delete-api-v1-quotes-quoteid-third-party-notices,
+      remove_quote_additional_information_insured,
+      delete-api-v1-quotes-quoteid-locations-locationid (E&S),
+      delete-api-v1-quotes-quoteid-additional-insured-additionalinsuredid (BOP)
+    window: null
+    window_source: null
+    grade: documented
+  - write_surface: Document upload (surety DMS)
+    operation: post-api-v1-dmsdocument-createdmsdocument
+    api: amtrust-financial-services-experience-next-gen-bond-pro-api
+    reversal: Remove a DMS document record by DocumentId.
+    reversal_operation: post-api-v1-dmsdocument-removedmsdocument
+    window: null
+    window_source: null
+    grade: documented
+  gaps:
+  - >-
+    No stated window on any reversal. An agent about to bind cannot learn from the contract how long
+    cancellation or reinstatement remains available, or whether cancellation is flat/pro-rata.
+  - >-
+    The cancellation path is buried inside a generic endorsement endpoint's prose rather than exposed
+    as its own operation, so it is not discoverable by operationId.

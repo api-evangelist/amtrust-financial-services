@@ -1,0 +1,45 @@
+generated: '2026-09-02'
+method: generated
+source: >-
+  openapi/ (nine harvested AmTrust OpenAPI documents) plus
+  https://apiportal.amtrustgroup.com/authentication — 2026-09-02
+provider: AmTrust Financial Services
+providerId: amtrust-financial-services
+note: >-
+  Packaged operating instructions for AmTrust's marquee flows. Every operationId referenced in these
+  skills was verified by grep against the harvested contracts — none is invented. AmTrust publishes no
+  skills, no AGENTS.md and no llms-full API reference, so these are generated, not searched.
+skills:
+- file: amtrust-financial-services-wc-quote-to-bind.md
+  name: amtrust-wc-quote-to-bind
+  api: amtrust-financial-services-digital-wc-api
+  description: Workers' compensation — class-code eligibility through rated quote to bound policy.
+  operations: 17
+- file: amtrust-financial-services-bop-quote-to-bind.md
+  name: amtrust-bop-quote-to-bind
+  api: amtrust-financial-services-digital-bop-api
+  description: Businessowners Policy — clearance, locations and buildings, underwriting, rate, bind.
+  operations: 23
+- file: amtrust-financial-services-cyber-quote-to-bind.md
+  name: amtrust-cyber-quote-to-bind
+  api: amtrust-financial-services-digital-cyber-api
+  description: Cyber — limits/retention, underwriting questions, underwriter referral, bind.
+  operations: 19
+- file: amtrust-financial-services-claims-medical-case.md
+  name: amtrust-claims-medical-case
+  api: amtrust-financial-services-experience-claims-medical-case-api
+  description: Medical case management claims — read claim data, summaries and notes; append notes.
+  operations: 4
+cross_cutting:
+  auth: authentication/amtrust-financial-services-authentication.yml
+  conventions: conventions/amtrust-financial-services-conventions.yml
+  errors: errors/amtrust-financial-services-problem-types.yml
+  lifecycle: lifecycle/amtrust-financial-services-lifecycle.yml
+  sandbox: sandbox/amtrust-financial-services-sandbox.yml
+warnings:
+- >-
+  No idempotency support anywhere in the estate. Every skill that writes says so explicitly at the point
+  of the write, because the consequential writes here create insurance policies.
+- >-
+  The OpenAPI documents omit the OpenID Connect bearer token that the gateway actually requires, so a
+  client generated from the spec alone will 401. Every skill states both credentials up front.

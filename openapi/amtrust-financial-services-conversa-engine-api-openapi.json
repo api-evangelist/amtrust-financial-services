@@ -1,0 +1,122 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Conversa Engine API",
+    "description": "Conversa Engine API List",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.amtrustgroup.com/btgchatbot"
+    },
+    {
+      "url": "https://prod-apim-gw.amtrustservices.com/btgchatbot"
+    }
+  ],
+  "paths": {
+    "/callconsent": {
+      "post": {
+        "summary": "Collect Consent",
+        "description": "This endpoint allows you to collect consent from an external interface",
+        "operationId": "callConsent",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "required": [
+                      "record_id",
+                      "consent"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "record_id": {
+                        "type": "integer",
+                        "description": "Unique identifier for the record (e.g., 0 or 1)"
+                      },
+                      "consent": {
+                        "type": "integer",
+                        "description": "Consent value (e.g., 0 or 1)"
+                      }
+                    }
+                  },
+                  {
+                    "required": [
+                      "op_type",
+                      "data"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "op_type": {
+                        "type": "string",
+                        "description": "Operation Type (e.g., sms/call)"
+                      },
+                      "data": {
+                        "type": "string",
+                        "description": "Data string (e.g. 123456789,modified_duty_yes)"
+                      }
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "record_id": 0,
+                "consent": 0
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Request Submitted Successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKeyHeader": {
+        "type": "apiKey",
+        "name": "subscriber_id",
+        "in": "header"
+      },
+      "apiKeyQuery": {
+        "type": "apiKey",
+        "name": "subscriber_id",
+        "in": "query"
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ]
+}

@@ -1,14 +1,128 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/amtrust-financial-services-commercial-lines-api.yaml
+generated: '2026-09-02'
+method: searched
+source: >-
+  https://apiportal.amtrustgroup.com/authentication (HTTP 200),
+  https://auth.amtrustgroup.com/AuthServer/.well-known/openid-configuration (HTTP 200),
+  https://uatauth.amtrustgroup.com/AuthServer_usertest/.well-known/openid-configuration (HTTP 200),
+  a live 401 from https://gateway.amtrustgroup.com/digital-bop/api/v1/agent-contacts, and the nine
+  harvested OpenAPI documents in openapi/ — probed 2026-09-02
+docs: https://apiportal.amtrustgroup.com/authentication
 summary:
+  model: two-factor gateway — an Azure API Management subscription key AND an OpenID Connect bearer token
   types:
-  - http
+  - apiKey
+  - openIdConnect
+  api_key_in:
+  - header
+  - query
+note: >-
+  AmTrust requires BOTH credentials on every call and the OpenAPI documents only describe one of them.
+  The specs declare the APIM subscription key (`subscriber_id` header / `subscription-key` query) and
+  nothing else; the bearer token from AmTrust's IdentityServer is documented only on the portal
+  authentication page. An integrator working from the machine-readable contract alone would build a
+  client that 401s. This gap is the single most consequential thing in AmTrust's auth surface.
 schemes:
-- name: bearerAuth
-  type: http
-  scheme: bearer
-  bearerFormat: JWT
-  description: OAuth 2.0 access token obtained from /oauth/token endpoint
+- name: apiKeyHeader
+  type: apiKey
+  in: header
+  parameter: subscriber_id
+  description: >-
+    Azure API Management subscription key. Issued per subscriber after the partner vetting process.
+    Confirmed live: the gateway answers an unauthenticated call with
+    `WWW-Authenticate: AzureApiManagementKey realm="https://gateway.amtrustgroup.com/digital-bop",name="subscriber_id",type="header"`.
   sources:
-  - openapi/amtrust-financial-services-commercial-lines-api.yaml
+  - openapi/amtrust-financial-services-conversa-engine-api-openapi.json
+  - openapi/amtrust-financial-services-digital-bop-api-openapi.json
+  - openapi/amtrust-financial-services-digital-cyber-api-openapi.json
+  - openapi/amtrust-financial-services-digital-es-api-openapi.json
+  - openapi/amtrust-financial-services-digital-pac-api-openapi.json
+  - openapi/amtrust-financial-services-digital-wc-api-openapi.json
+  - openapi/amtrust-financial-services-experience-claims-medical-case-api-openapi.json
+  - openapi/amtrust-financial-services-experience-next-gen-bond-pro-api-openapi.json
+  - openapi/amtrust-financial-services-reinsurance-contract-entry-api-openapi.json
+- name: apiKeyQuery
+  type: apiKey
+  in: query
+  parameter: subscription-key
+  description: Same subscription key passed as a query parameter instead of a header. Discouraged.
+  sources:
+  - openapi/amtrust-financial-services-digital-bop-api-openapi.json
+  - openapi/amtrust-financial-services-digital-cyber-api-openapi.json
+  - openapi/amtrust-financial-services-digital-es-api-openapi.json
+  - openapi/amtrust-financial-services-digital-pac-api-openapi.json
+  - openapi/amtrust-financial-services-digital-wc-api-openapi.json
+  - openapi/amtrust-financial-services-experience-claims-medical-case-api-openapi.json
+  - openapi/amtrust-financial-services-experience-next-gen-bond-pro-api-openapi.json
+  - openapi/amtrust-financial-services-reinsurance-contract-entry-api-openapi.json
+- name: apiKeyQueryConversa
+  type: apiKey
+  in: query
+  parameter: subscriber_id
+  description: >-
+    The Conversa Engine API alone names its query-string key `subscriber_id` rather than
+    `subscription-key` — an inconsistency across the estate.
+  sources:
+  - openapi/amtrust-financial-services-conversa-engine-api-openapi.json
+- name: amtrustIdentityServer
+  type: openIdConnect
+  openIdConnectUrl: https://auth.amtrustgroup.com/AuthServer/.well-known/openid-configuration
+  description: >-
+    AmTrust IdentityServer bearer token, sent as `Authorization: Bearer <access token>` alongside the
+    subscription key. NOT declared in any OpenAPI securityScheme — documented only on the portal.
+  sources:
+  - https://apiportal.amtrustgroup.com/authentication
+  - https://auth.amtrustgroup.com/AuthServer/.well-known/openid-configuration
+identity_provider:
+  vendor: IdentityServer (self-hosted by AmTrust)
+  environments:
+  - environment: production
+    issuer: https://auth.amtrustgroup.com/AuthServer
+    discovery: https://auth.amtrustgroup.com/AuthServer/.well-known/openid-configuration
+    token_endpoint: https://auth.amtrustgroup.com/AuthServer/OpenIDConnect/Token
+    jwks_uri: https://auth.amtrustgroup.com/AuthServer/.well-known/jwks
+    status: 200
+  - environment: uat
+    issuer: https://uatauth.amtrustgroup.com/AuthServer_usertest
+    discovery: https://uatauth.amtrustgroup.com/AuthServer_usertest/.well-known/openid-configuration
+    token_endpoint: https://uatauth.amtrustgroup.com/AuthServer_usertest/OpenIDConnect/Token
+    jwks_uri: https://uatauth.amtrustgroup.com/AuthServer_usertest/.well-known/jwks
+    status: 200
+  grant_types_supported:
+  - client_credentials
+  - token_exchange
+  - authorization_code
+  - refresh_token
+  - password
+  token_endpoint_auth_methods_supported:
+  - client_secret_basic
+  - client_secret_post
+  id_token_signing_alg_values_supported:
+  - RS256
+  code_challenge_methods_supported:
+  - plain
+  - S256
+  token_lifetime: 4 hours (documented on the portal authentication page; tokens are reusable within
+    that window)
+  flows:
+  - name: General Access Token
+    grant_type: client_credentials
+    scope: openid profile
+    use: APIs that do not need a user identity
+  - name: User Authenticated Token
+    grant_type: password
+    scope: openid profile legacy_info legacy_id
+    use: APIs that act on behalf of a named portal user
+  required_headers:
+  - Content-Type: application/x-www-form-urlencoded (on the token request)
+  - Authorization: Bearer <access token>
+  - subscriber_id: <subscriber_id>
+gaps:
+- >-
+  No securityScheme of type oauth2 or openIdConnect appears in any of the nine OpenAPI documents,
+  so the bearer-token half of the contract is invisible to code generators and agents.
+- >-
+  `plain` is advertised in code_challenge_methods_supported alongside S256, which permits a PKCE
+  downgrade for any public client using the authorization_code flow.
+- >-
+  The `password` (resource owner password credentials) grant is enabled in production. OAuth 2.1
+  removes it and RFC 9700 (BCP for OAuth 2.0 Security) explicitly says it MUST NOT be used.

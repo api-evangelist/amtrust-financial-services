@@ -1,0 +1,1392 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Experience Next Gen Bond Pro Api",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.amtrustgroup.com/experience-next-gen-bond-pro-api"
+    },
+    {
+      "url": "https://prod-apim-gw.amtrustservices.com/experience-next-gen-bond-pro-api"
+    }
+  ],
+  "paths": {
+    "/api/v1/DMSDocument/CreateDMSDocument": {
+      "post": {
+        "tags": [
+          "DmsDocument"
+        ],
+        "summary": "Creates a DMS Document (sent in base64EncodedBinary format) and upload to Box and Server. It will return DmsDocumentId when created.",
+        "description": "Creates a DMS Document (sent in base64EncodedBinary format) and upload to Box and Server. It will return DmsDocumentId when created.",
+        "operationId": "post-api-v1-dmsdocument-createdmsdocument",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DmsDocumentPostDto"
+              },
+              "example": {
+                "documentId": 0,
+                "documentName": "string",
+                "documentTags": "string",
+                "documentTransactionId": "string",
+                "documentComments": "string",
+                "documentSystemId": "string",
+                "documentUserId": "string",
+                "documentUserClientRefId": "string",
+                "documentUserEntityTypeCode": "string",
+                "documentSize": "string",
+                "documentExtension": "string",
+                "documentCreation": "string",
+                "documentContext": "string",
+                "documentSubject": "string",
+                "documentType": "string",
+                "documentTypeId": 0,
+                "keyFlag": true,
+                "sensitiveFlag": true,
+                "agencyAccessFlag": true,
+                "principalAccessFlag": true,
+                "generatedFlag": true,
+                "documentBusinessProperty": [
+                  {
+                    "entityId": 0,
+                    "entityType": "string",
+                    "enterpriseId": 0,
+                    "name": "string",
+                    "number": "string",
+                    "clientReferenceId": "string",
+                    "businessSegment": "string",
+                    "portfolio": "string",
+                    "renewalNumber": 0,
+                    "effectiveDate": "string",
+                    "expirationDate": "string"
+                  }
+                ],
+                "documentBinary": "string"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DmsDocumentPostDto"
+              },
+              "example": {
+                "documentId": 0,
+                "documentName": "string",
+                "documentTags": "string",
+                "documentTransactionId": "string",
+                "documentComments": "string",
+                "documentSystemId": "string",
+                "documentUserId": "string",
+                "documentUserClientRefId": "string",
+                "documentUserEntityTypeCode": "string",
+                "documentSize": "string",
+                "documentExtension": "string",
+                "documentCreation": "string",
+                "documentContext": "string",
+                "documentSubject": "string",
+                "documentType": "string",
+                "documentTypeId": 0,
+                "keyFlag": true,
+                "sensitiveFlag": true,
+                "agencyAccessFlag": true,
+                "principalAccessFlag": true,
+                "generatedFlag": true,
+                "documentBusinessProperty": [
+                  {
+                    "entityId": 0,
+                    "entityType": "string",
+                    "enterpriseId": 0,
+                    "name": "string",
+                    "number": "string",
+                    "clientReferenceId": "string",
+                    "businessSegment": "string",
+                    "portfolio": "string",
+                    "renewalNumber": 0,
+                    "effectiveDate": "string",
+                    "expirationDate": "string"
+                  }
+                ],
+                "documentBinary": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DmsDocumentPostDto"
+              },
+              "example": {
+                "documentId": 0,
+                "documentName": "string",
+                "documentTags": "string",
+                "documentTransactionId": "string",
+                "documentComments": "string",
+                "documentSystemId": "string",
+                "documentUserId": "string",
+                "documentUserClientRefId": "string",
+                "documentUserEntityTypeCode": "string",
+                "documentSize": "string",
+                "documentExtension": "string",
+                "documentCreation": "string",
+                "documentContext": "string",
+                "documentSubject": "string",
+                "documentType": "string",
+                "documentTypeId": 0,
+                "keyFlag": true,
+                "sensitiveFlag": true,
+                "agencyAccessFlag": true,
+                "principalAccessFlag": true,
+                "generatedFlag": true,
+                "documentBusinessProperty": [
+                  {
+                    "entityId": 0,
+                    "entityType": "string",
+                    "enterpriseId": 0,
+                    "name": "string",
+                    "number": "string",
+                    "clientReferenceId": "string",
+                    "businessSegment": "string",
+                    "portfolio": "string",
+                    "renewalNumber": 0,
+                    "effectiveDate": "string",
+                    "expirationDate": "string"
+                  }
+                ],
+                "documentBinary": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DmsDocumentPostDto"
+              },
+              "example": {
+                "documentId": 0,
+                "documentName": "string",
+                "documentTags": "string",
+                "documentTransactionId": "string",
+                "documentComments": "string",
+                "documentSystemId": "string",
+                "documentUserId": "string",
+                "documentUserClientRefId": "string",
+                "documentUserEntityTypeCode": "string",
+                "documentSize": "string",
+                "documentExtension": "string",
+                "documentCreation": "string",
+                "documentContext": "string",
+                "documentSubject": "string",
+                "documentType": "string",
+                "documentTypeId": 0,
+                "keyFlag": true,
+                "sensitiveFlag": true,
+                "agencyAccessFlag": true,
+                "principalAccessFlag": true,
+                "generatedFlag": true,
+                "documentBusinessProperty": [
+                  {
+                    "entityId": 0,
+                    "entityType": "string",
+                    "enterpriseId": 0,
+                    "name": "string",
+                    "number": "string",
+                    "clientReferenceId": "string",
+                    "businessSegment": "string",
+                    "portfolio": "string",
+                    "renewalNumber": 0,
+                    "effectiveDate": "string",
+                    "expirationDate": "string"
+                  }
+                ],
+                "documentBinary": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {},
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {}
+              },
+              "text/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DmsDocumentDto"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DmsDocumentDto"
+                },
+                "example": {
+                  "dmsDocumentId": 0
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DmsDocumentDto"
+                },
+                "example": {
+                  "dmsDocumentId": 0
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DmsDocumentDto"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DmsDocumentDto"
+                },
+                "example": {
+                  "dmsDocumentId": 0
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DmsDocumentDto"
+                },
+                "example": {
+                  "dmsDocumentId": 0
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "Hello",
+        "description": "Hello",
+        "operationId": "get-api-v1-health",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "string"
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "string"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "Return date  and machine name",
+        "description": "Some remarks",
+        "operationId": "post-api-v1-health",
+        "requestBody": {
+          "description": "Not used",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HealthExample"
+              },
+              "example": {
+                "healthCheck": "This is healthCheck end point"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HealthExample"
+              },
+              "example": {
+                "healthCheck": "This is healthCheck end point"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HealthExample"
+              },
+              "example": {
+                "healthCheck": "This is healthCheck end point"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HealthExample"
+              },
+              "example": {
+                "healthCheck": "This is healthCheck end point"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "string"
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/DMSDocument/RetrieveDMSDocument": {
+      "post": {
+        "tags": [
+          "DmsDocument"
+        ],
+        "summary": "Retrieve a DMS Document (in base64EncodedBinary format) by DmsDocumentId (library index).",
+        "description": "Request body uses a wrapper object with property name `RetrieveDMSDocument`.",
+        "operationId": "post-api-v1-dmsdocument-retrievedmsdocument",
+        "requestBody": {
+          "description": "Wrapper request model.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetrieveDMSDocumentDto"
+              },
+              "example": {
+                "retrieveDMSDocument": {
+                  "documentId": 0,
+                  "userId": "string",
+                  "documentUserClientRefId": "string",
+                  "documentUserEntityTypeCode": "string"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetrieveDMSDocumentDto"
+              },
+              "example": {
+                "retrieveDMSDocument": {
+                  "documentId": 0,
+                  "userId": "string",
+                  "documentUserClientRefId": "string",
+                  "documentUserEntityTypeCode": "string"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetrieveDMSDocumentDto"
+              },
+              "example": {
+                "retrieveDMSDocument": {
+                  "documentId": 0,
+                  "userId": "string",
+                  "documentUserClientRefId": "string",
+                  "documentUserEntityTypeCode": "string"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetrieveDMSDocumentDto"
+              },
+              "example": {
+                "retrieveDMSDocument": {
+                  "documentId": 0,
+                  "userId": "string",
+                  "documentUserClientRefId": "string",
+                  "documentUserEntityTypeCode": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "string"
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LibraryDocumentResponseDto"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LibraryDocumentResponseDto"
+                },
+                "example": {
+                  "contentType": "string",
+                  "content": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LibraryDocumentResponseDto"
+                },
+                "example": {
+                  "contentType": "string",
+                  "content": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/DMSDocument/RemoveDMSDocument": {
+      "post": {
+        "tags": [
+          "DmsDocument"
+        ],
+        "summary": "Removes a DMS Document record by DocumentId and return 200 OK. \nIt will return 200 OK as long as the record is marked as removed in database, \neven if the physical file deletion from Box/Server fails or succeeds. \nThe physical file cleanup will be handled by a separate scheduled job.\nPOST is require",
+        "description": "Request body uses a wrapper object with property name `RemoveDMSDocument`.",
+        "operationId": "post-api-v1-dmsdocument-removedmsdocument",
+        "requestBody": {
+          "description": "Wrapper request model.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveDMSDocumentDto"
+              },
+              "example": {
+                "removeDMSDocument": {
+                  "documentId": 0,
+                  "userId": "string",
+                  "documentUserClientRefId": "string",
+                  "documentUserEntityTypeCode": "string"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveDMSDocumentDto"
+              },
+              "example": {
+                "removeDMSDocument": {
+                  "documentId": 0,
+                  "userId": "string",
+                  "documentUserClientRefId": "string",
+                  "documentUserEntityTypeCode": "string"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveDMSDocumentDto"
+              },
+              "example": {
+                "removeDMSDocument": {
+                  "documentId": 0,
+                  "userId": "string",
+                  "documentUserClientRefId": "string",
+                  "documentUserEntityTypeCode": "string"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveDMSDocumentDto"
+              },
+              "example": {
+                "removeDMSDocument": {
+                  "documentId": 0,
+                  "userId": "string",
+                  "documentUserClientRefId": "string",
+                  "documentUserEntityTypeCode": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "string"
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                },
+                "example": {
+                  "type": "string",
+                  "title": "string",
+                  "status": 0,
+                  "detail": "string",
+                  "instance": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                },
+                "example": {
+                  "type": "string",
+                  "title": "string",
+                  "status": 0,
+                  "detail": "string",
+                  "instance": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                },
+                "example": {
+                  "type": "string",
+                  "title": "string",
+                  "status": 0,
+                  "detail": "string",
+                  "instance": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                },
+                "example": {
+                  "type": "string",
+                  "title": "string",
+                  "status": 0,
+                  "detail": "string",
+                  "instance": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/DMSDocument/ModifyDMSDocument": {
+      "post": {
+        "tags": [
+          "DmsDocument"
+        ],
+        "summary": "Update a DMS Document record by DocumentExtId and return 200 OK. POST is required by client",
+        "description": "Update a DMS Document record by DocumentExtId and return 200 OK. POST is required by client",
+        "operationId": "post-api-v1-dmsdocument-modifydmsdocument",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DmsDocumentPatchDto"
+              },
+              "example": {
+                "documentId": 0,
+                "documentName": "string",
+                "documentTags": "string",
+                "documentTransactionId": "string",
+                "documentComments": "string",
+                "documentSystemId": "string",
+                "documentUserId": "string",
+                "documentUserClientRefId": "string",
+                "documentUserEntityTypeCode": "string",
+                "documentSize": "string",
+                "documentExtension": "string",
+                "documentCreation": "string",
+                "documentContext": "string",
+                "documentSubject": "string",
+                "documentType": "string",
+                "documentTypeId": 0,
+                "keyFlag": true,
+                "sensitiveFlag": true,
+                "agencyAccessFlag": true,
+                "principalAccessFlag": true,
+                "generatedFlag": true,
+                "documentBusinessProperty": [
+                  {
+                    "entityId": 0,
+                    "entityType": "string",
+                    "enterpriseId": 0,
+                    "name": "string",
+                    "number": "string",
+                    "clientReferenceId": "string",
+                    "businessSegment": "string",
+                    "portfolio": "string",
+                    "renewalNumber": 0,
+                    "effectiveDate": "string",
+                    "expirationDate": "string"
+                  }
+                ],
+                "documentExtId": "string"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DmsDocumentPatchDto"
+              },
+              "example": {
+                "documentId": 0,
+                "documentName": "string",
+                "documentTags": "string",
+                "documentTransactionId": "string",
+                "documentComments": "string",
+                "documentSystemId": "string",
+                "documentUserId": "string",
+                "documentUserClientRefId": "string",
+                "documentUserEntityTypeCode": "string",
+                "documentSize": "string",
+                "documentExtension": "string",
+                "documentCreation": "string",
+                "documentContext": "string",
+                "documentSubject": "string",
+                "documentType": "string",
+                "documentTypeId": 0,
+                "keyFlag": true,
+                "sensitiveFlag": true,
+                "agencyAccessFlag": true,
+                "principalAccessFlag": true,
+                "generatedFlag": true,
+                "documentBusinessProperty": [
+                  {
+                    "entityId": 0,
+                    "entityType": "string",
+                    "enterpriseId": 0,
+                    "name": "string",
+                    "number": "string",
+                    "clientReferenceId": "string",
+                    "businessSegment": "string",
+                    "portfolio": "string",
+                    "renewalNumber": 0,
+                    "effectiveDate": "string",
+                    "expirationDate": "string"
+                  }
+                ],
+                "documentExtId": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DmsDocumentPatchDto"
+              },
+              "example": {
+                "documentId": 0,
+                "documentName": "string",
+                "documentTags": "string",
+                "documentTransactionId": "string",
+                "documentComments": "string",
+                "documentSystemId": "string",
+                "documentUserId": "string",
+                "documentUserClientRefId": "string",
+                "documentUserEntityTypeCode": "string",
+                "documentSize": "string",
+                "documentExtension": "string",
+                "documentCreation": "string",
+                "documentContext": "string",
+                "documentSubject": "string",
+                "documentType": "string",
+                "documentTypeId": 0,
+                "keyFlag": true,
+                "sensitiveFlag": true,
+                "agencyAccessFlag": true,
+                "principalAccessFlag": true,
+                "generatedFlag": true,
+                "documentBusinessProperty": [
+                  {
+                    "entityId": 0,
+                    "entityType": "string",
+                    "enterpriseId": 0,
+                    "name": "string",
+                    "number": "string",
+                    "clientReferenceId": "string",
+                    "businessSegment": "string",
+                    "portfolio": "string",
+                    "renewalNumber": 0,
+                    "effectiveDate": "string",
+                    "expirationDate": "string"
+                  }
+                ],
+                "documentExtId": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DmsDocumentPatchDto"
+              },
+              "example": {
+                "documentId": 0,
+                "documentName": "string",
+                "documentTags": "string",
+                "documentTransactionId": "string",
+                "documentComments": "string",
+                "documentSystemId": "string",
+                "documentUserId": "string",
+                "documentUserClientRefId": "string",
+                "documentUserEntityTypeCode": "string",
+                "documentSize": "string",
+                "documentExtension": "string",
+                "documentCreation": "string",
+                "documentContext": "string",
+                "documentSubject": "string",
+                "documentType": "string",
+                "documentTypeId": 0,
+                "keyFlag": true,
+                "sensitiveFlag": true,
+                "agencyAccessFlag": true,
+                "principalAccessFlag": true,
+                "generatedFlag": true,
+                "documentBusinessProperty": [
+                  {
+                    "entityId": 0,
+                    "entityType": "string",
+                    "enterpriseId": 0,
+                    "name": "string",
+                    "number": "string",
+                    "clientReferenceId": "string",
+                    "businessSegment": "string",
+                    "portfolio": "string",
+                    "renewalNumber": 0,
+                    "effectiveDate": "string",
+                    "expirationDate": "string"
+                  }
+                ],
+                "documentExtId": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "string"
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                },
+                "example": {
+                  "type": "string",
+                  "title": "string",
+                  "status": 0,
+                  "detail": "string",
+                  "instance": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                },
+                "example": {
+                  "type": "string",
+                  "title": "string",
+                  "status": 0,
+                  "detail": "string",
+                  "instance": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                },
+                "example": {
+                  "type": "string",
+                  "title": "string",
+                  "status": 0,
+                  "detail": "string",
+                  "instance": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                },
+                "example": {
+                  "type": "string",
+                  "title": "string",
+                  "status": 0,
+                  "detail": "string",
+                  "instance": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DmsDocumentDto": {
+        "type": "object",
+        "properties": {
+          "dmsDocumentId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DmsDocumentPatchDto": {
+        "required": [
+          "documentExtId"
+        ],
+        "type": "object",
+        "properties": {
+          "documentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "documentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentTags": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentTransactionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "documentComments": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentSystemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentUserClientRefId": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentUserEntityTypeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentSize": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentExtension": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentCreation": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "documentContext": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentSubject": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "keyFlag": {
+            "type": "boolean"
+          },
+          "sensitiveFlag": {
+            "type": "boolean"
+          },
+          "agencyAccessFlag": {
+            "type": "boolean"
+          },
+          "principalAccessFlag": {
+            "type": "boolean"
+          },
+          "generatedFlag": {
+            "type": "boolean"
+          },
+          "documentBusinessProperty": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentBusinessPropertyClientDto"
+            },
+            "nullable": true
+          },
+          "documentExtId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DmsDocumentPostDto": {
+        "type": "object",
+        "properties": {
+          "documentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "documentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentTags": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentTransactionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "documentComments": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentSystemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentUserClientRefId": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentUserEntityTypeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentSize": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentExtension": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentCreation": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "documentContext": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentSubject": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "keyFlag": {
+            "type": "boolean"
+          },
+          "sensitiveFlag": {
+            "type": "boolean"
+          },
+          "agencyAccessFlag": {
+            "type": "boolean"
+          },
+          "principalAccessFlag": {
+            "type": "boolean"
+          },
+          "generatedFlag": {
+            "type": "boolean"
+          },
+          "documentBusinessProperty": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentBusinessPropertyClientDto"
+            },
+            "nullable": true
+          },
+          "documentBinary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentBusinessPropertyClientDto": {
+        "type": "object",
+        "properties": {
+          "entityId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "entityType": {
+            "type": "string",
+            "nullable": true
+          },
+          "enterpriseId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "number": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientReferenceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessSegment": {
+            "type": "string",
+            "nullable": true
+          },
+          "portfolio": {
+            "type": "string",
+            "nullable": true
+          },
+          "renewalNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "effectiveDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "expirationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HealthExample": {
+        "type": "object",
+        "properties": {
+          "healthCheck": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "(This shows in the schema section)  Test string to show comments",
+            "nullable": true,
+            "example": "This is healthCheck end point"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A model to show example"
+      },
+      "LibraryDocumentRequestDto": {
+        "type": "object",
+        "properties": {
+          "documentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentUserClientRefId": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentUserEntityTypeCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LibraryDocumentResponseDto": {
+        "type": "object",
+        "properties": {
+          "contentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {}
+      },
+      "RemoveDMSDocumentDto": {
+        "type": "object",
+        "properties": {
+          "removeDMSDocument": {
+            "$ref": "#/components/schemas/LibraryDocumentRequestDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RetrieveDMSDocumentDto": {
+        "type": "object",
+        "properties": {
+          "retrieveDMSDocument": {
+            "$ref": "#/components/schemas/LibraryDocumentRequestDto"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "apiKeyHeader": {
+        "type": "apiKey",
+        "name": "subscriber_id",
+        "in": "header"
+      },
+      "apiKeyQuery": {
+        "type": "apiKey",
+        "name": "subscription-key",
+        "in": "query"
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Health"
+    },
+    {
+      "name": "DmsDocument"
+    }
+  ]
+}

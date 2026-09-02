@@ -1,0 +1,153 @@
+generated: '2026-09-02'
+method: derived
+source: >-
+  openapi/ (nine harvested AmTrust OpenAPI documents — 387 operations, 621 component schemas), derived
+  from path hierarchy and $ref/id-reference links, 2026-09-02
+provider: AmTrust Financial Services
+providerId: amtrust-financial-services
+note: >-
+  AmTrust's commercial-lines APIs share one entity graph across four product lines (WC, BOP, Cyber, E&S,
+  PAC): a Quote is the root aggregate, everything about the risk hangs off it as a sub-collection, and a
+  Bind converts the Quote into a Policy. The reinsurance and claims APIs are separate graphs that do not
+  join to it. Identifiers are opaque strings in path position (quoteId, policy, locationId, claimNumber);
+  no id-prefix convention is published.
+entities:
+- name: Quote
+  root: true
+  identifier: quoteId
+  apis: [digital-wc-api, digital-bop-api, digital-cyber-api, digital-es-api, digital-pac-api]
+  description: >-
+    The central aggregate of the commercial-lines estate — 130 of 387 operations address it. Built
+    incrementally, rated, checked for eligibility, then bound.
+  operations_sample: [post-api-v2-quotes, get-api-v1-quotes-quoteid, patch-api-v1-quotes-quoteid,
+    get-api-v1-quotes-quoteid-eligibility]
+- name: Policy
+  identifier: policy / policyId
+  apis: [digital-wc-api, digital-bop-api, digital-cyber-api]
+  description: The bound contract. Reached only through a Bind on a Quote.
+- name: Insured
+  identifier: insuredId
+  description: The business being covered. Also the subject of clearance checks before a quote is opened.
+- name: Location
+  identifier: locationId
+  description: A physical premises on a quote. Carries Buildings and location-scoped class codes.
+- name: Building
+  identifier: buildingId
+  description: A structure at a Location. BOP only.
+- name: ClassCode
+  identifier: indexId (on a quote) / classCode
+  description: >-
+    NCCI workers' compensation classification code, or a state-specific equivalent. Four numeric
+    characters except DE and PA. Drives eligibility and rating.
+- name: Officer
+  identifier: id
+  description: Included/excluded officer records on a workers' compensation quote.
+- name: AgentContact
+  identifier: agentContactId
+  description: >-
+    The producer of record. Required to bind — the bind operation is addressed by agent contact, not
+    just by quote.
+- name: PaymentPlan
+  description: Billing arrangement selected on a quote; direct debit requires an EFT/voided-check upload.
+- name: Document
+  description: Generated policy documents, binders, and uploaded EFT forms.
+- name: Endorsement
+  description: >-
+    Post-bind change to a policy. A single operation carries a typed catalogue including cancellation,
+    insured-name-update, exposure-update, legal-entity-update, officers-update, liability-limits-update
+    and waiver changes.
+- name: UnderwritingQuestion
+  description: Product-specific eligibility questionnaire attached to a quote.
+- name: LossHistory
+  description: Prior claims experience supplied on a quote.
+- name: Claim
+  identifier: claimNumber
+  apis: [experience-claims-medical-case-api]
+  description: Medical case management claim. Separate graph; does not join to Quote or Policy by id.
+- name: ClaimNote
+  description: Notes on a Claim; readable and writable.
+- name: ReinsuranceContract
+  apis: [reinsurance-contract-entry-api]
+  description: >-
+    Treaty/contract record with Layers, Participants, Business Partners and a change log. A separate
+    graph serving internal reinsurance administration.
+- name: DMSDocument
+  identifier: DocumentId / DocumentExtId
+  apis: [experience-next-gen-bond-pro-api]
+  description: Surety bond document stored as base64-encoded binary.
+relationships:
+- from: Quote
+  to: Policy
+  type: has_one
+  via: bind (post-api-v2-quotes-quoteid-bind-agent-contact-agentcontactid)
+  note: The one state transition in the estate. Irreversible except by a cancellation endorsement.
+- from: Quote
+  to: Insured
+  type: has_one
+  via: additionalInformation/insureds
+- from: Quote
+  to: Location
+  type: has_many
+  via: /quotes/{quoteId}/locations
+- from: Location
+  to: Building
+  type: has_many
+  via: /quotes/{quoteId}/locations/{locationId}/buildings/{buildingId}
+- from: Location
+  to: ClassCode
+  type: has_many
+  via: /quotes/{quoteId}/locations/{locationId}/class-codes
+- from: Quote
+  to: ClassCode
+  type: has_many
+  via: /quotes/{quoteId}/classCodes/{indexId}
+- from: Quote
+  to: Officer
+  type: has_many
+  via: /quotes/{quoteId}/additionalInformation/officers/{id}
+- from: Quote
+  to: AgentContact
+  type: belongs_to
+  via: /quotes/{quoteId}/agent-contact
+- from: Quote
+  to: PaymentPlan
+  type: has_one
+  via: /quotes/{quoteId}/payment-plans
+- from: Quote
+  to: UnderwritingQuestion
+  type: has_many
+  via: /quotes/{quoteId}/underwriting-questions
+- from: Quote
+  to: LossHistory
+  type: has_many
+- from: Policy
+  to: Endorsement
+  type: has_many
+  via: /policies/{policy}/endorsements
+- from: Policy
+  to: Document
+  type: has_many
+  via: /policies/{policy}/documents
+- from: Claim
+  to: ClaimNote
+  type: has_many
+  via: /claim-notes/{claimNumber}
+- from: ReinsuranceContract
+  to: Layer
+  type: has_many
+- from: ReinsuranceContract
+  to: Participant
+  type: has_many
+envelope:
+  note: >-
+    Every commercial-lines response is wrapped in a shared IApiResponse envelope carrying ID, Timestamp,
+    CorrelationID, HttpStatus, Messages[], Errors[], Paging and IsOk. The domain object sits inside it.
+    Clients must unwrap before reaching any entity above.
+disjoint_graphs:
+- [Quote, Policy, and their children]
+- [Claim, ClaimNote]
+- [ReinsuranceContract, Layer, Participant]
+- [DMSDocument]
+gaps:
+- No id-prefix or identifier-format convention is published for quoteId, policy, locationId or claimNumber.
+- A Claim cannot be joined to the Policy it arose from through any published field.

@@ -1,0 +1,87 @@
+generated: '2026-09-02'
+method: derived
+source: >-
+  openapi/ (nine harvested AmTrust OpenAPI documents) plus AmTrust's own Azure API Management API
+  catalog at apimanagement.amtrustgroup.com, probed 2026-09-02
+provider: AmTrust Financial Services
+providerId: amtrust-financial-services
+status: candidate
+no_pointer_reason: >-
+  No `MCPServer` pointer is emitted in apis.yml. AmTrust ships no MCP server — remote or local — and a
+  pointer would credit the provider with an agent surface it does not operate. The pointer becomes
+  correct the day AmTrust flips mcpProperties on any one of its nine APIs in Azure API Management.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: probed
+evidence:
+- kind: apim-catalog
+  source: https://apimanagement.amtrustgroup.com/.../amtrust-prod-apim/apis?api-version=2022-08-01
+  status: 200
+  finding: >-
+    Azure API Management now carries first-class MCP support, and every API object in the response
+    exposes the fields `mcpProperties`, `a2aProperties`, `isAgent`, `agent` and `jsonRpcProperties`.
+    On all nine production APIs (and all thirteen UAT APIs) mcpProperties is null, a2aProperties is
+    null, isAgent is false and agent is null. AmTrust has the platform capability available and has
+    not enabled it on a single API.
+- kind: registry-search
+  source: registry.npmjs.org, pypi.org
+  status: 200
+  finding: No AmTrust MCP package is published to npm or PyPI.
+- kind: well-known
+  source: /.well-known/ai-plugin.json on all AmTrust hosts
+  status: 404
+  finding: No AI-plugin manifest served anywhere.
+note: >-
+  No AmTrust MCP server exists — hosted or local. mode is `none`. The tool list below is a DERIVED
+  candidate showing what an MCP server over AmTrust's published contracts would expose if AmTrust chose
+  to enable APIM's MCP surface; no endpoint is asserted and none should be inferred. Every tool binds to
+  a real operationId in openapi/, verified by grep.
+candidate_tools:
+- name: check_state_class_eligibility
+  description: Retrieve the class codes eligible for workers' compensation in a given state.
+  rest: get-api-v1-state-classes-eligibility-state
+  api: amtrust-financial-services-digital-wc-api
+- name: create_wc_quote
+  description: Create a new workers' compensation quote.
+  rest: post-api-v2-quotes
+  api: amtrust-financial-services-digital-wc-api
+- name: get_wc_quote_eligibility
+  description: Retrieve the current eligibility and status of a workers' compensation quote.
+  rest: get-api-v1-quotes-quoteid-eligibility
+  api: amtrust-financial-services-digital-wc-api
+- name: bind_wc_quote
+  description: Bind a workers' compensation quote to an agent contact.
+  rest: post-api-v2-quotes-quoteid-bind-agent-contact-agentcontactid
+  api: amtrust-financial-services-digital-wc-api
+- name: create_bop_quote
+  description: Create a rated Businessowners Policy quote.
+  rest: post-api-v1-quotes-rate
+  api: amtrust-financial-services-digital-bop-api
+- name: bind_bop_quote
+  description: Bind a BOP quote to an agent contact.
+  rest: post-api-v1-quotes-quoteid-bind-agent-contact-agentcontactid
+  api: amtrust-financial-services-digital-bop-api
+- name: create_cyber_quote
+  description: Create a rated cyber insurance quote.
+  rest: post-api-v1-quotes
+  api: amtrust-financial-services-digital-cyber-api
+- name: bind_cyber_quote
+  description: Bind a cyber quote.
+  rest: post-api-v2-quotes-quoteid-bind
+  api: amtrust-financial-services-digital-cyber-api
+- name: check_insured_clearance
+  description: Run insured clearance against an existing book of business.
+  rest: post-api-v1-insured-clearance
+  api: amtrust-financial-services-digital-bop-api
+- name: get_claim_data
+  description: Retrieve medical-case claim data by claim number.
+  rest: Mcm_GetClaimData
+  api: amtrust-financial-services-experience-claims-medical-case-api
+- name: get_claim_notes
+  description: Retrieve claim notes for a claim number.
+  rest: Mcm_GetClaimNotes
+  api: amtrust-financial-services-experience-claims-medical-case-api
