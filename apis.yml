@@ -71,22 +71,6 @@ tags_raw:
   - Cyber Insurance
   - Surety
 apis:
-- aid: amtrust-financial-services:amtrust-financial-services-actionlog-api
-  name: AmTrust Financial Services Action Log API
-  description: The ActionLog API from AmTrust Financial Services — 2 operation(s) for actionlog.
-  humanURL: https://apiportal.amtrustgroup.com/apis
-  baseURL: https://gateway.amtrustgroup.com/DigitalAPI
-  tags:
-  - ActionLog
-  properties:
-  - type: OpenAPI
-    url: openapi/amtrust-financial-services-actionlog-api-openapi.yml
-  - type: Documentation
-    url: https://apiportal.amtrustgroup.com/apis
-  - type: DeveloperPortal
-    url: https://apiportal.amtrustgroup.com
-  - type: Authentication
-    url: https://apiportal.amtrustgroup.com/authentication
 - aid: amtrust-financial-services:amtrust-financial-services-admin-api
   name: AmTrust Financial Services Admin API
   description: The Admin API from AmTrust Financial Services — 31 operation(s) for admin.
@@ -603,6 +587,22 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/amtrust-financial-services-workers-comp-specialty-programs-api-openapi.yml
+  - type: Documentation
+    url: https://apiportal.amtrustgroup.com/apis
+  - type: DeveloperPortal
+    url: https://apiportal.amtrustgroup.com
+  - type: Authentication
+    url: https://apiportal.amtrustgroup.com/authentication
+- aid: amtrust-financial-services:amtrust-financial-services-action-log-api
+  name: AmTrust Financial Services Action Log API
+  description: The Action Log API from AmTrust Financial Services — 2 operation(s) for action log.
+  humanURL: https://apiportal.amtrustgroup.com/apis
+  baseURL: https://gateway.amtrustgroup.com/DigitalAPI
+  tags:
+  - Action Log
+  properties:
+  - type: OpenAPI
+    url: openapi/amtrust-financial-services-action-log-api-openapi.yml
   - type: Documentation
     url: https://apiportal.amtrustgroup.com/apis
   - type: DeveloperPortal
