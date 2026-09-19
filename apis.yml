@@ -206,6 +206,8 @@ apis:
   humanURL: https://apiportal.amtrustgroup.com/apis
   baseURL: https://gateway.amtrustgroup.com/DigitalAPI
   tags:
+  - Documents
+  tags_raw:
   - Document
   properties:
   - type: OpenAPI
@@ -433,6 +435,8 @@ apis:
   humanURL: https://apiportal.amtrustgroup.com/apis
   baseURL: https://gateway.amtrustgroup.com/DigitalAPI
   tags:
+  - Quotes
+  tags_raw:
   - Quote
   properties:
   - type: OpenAPI
