@@ -1,7 +1,9 @@
 ---
 title: AmTrust Improves Outcomes for Injured Employees with ...
 url: https://claraanalytics.com/news/amtrust-scores-a-win-win-with-small-businesses-ensuring-quality-care-for-injured-employees/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"AmTrust Financial Services" press release artificial intelligence'
 position: 1
 source: serpapi-google

@@ -1,7 +1,9 @@
 ---
 title: AmTrust partners with TCS to transform E&S clearance ...
 url: https://www.tcs.com/what-we-do/industries/insurance/case-study/amtrust-financial-services-transformation
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"AmTrust Financial Services" press release artificial intelligence'
 position: 4
 source: serpapi-google

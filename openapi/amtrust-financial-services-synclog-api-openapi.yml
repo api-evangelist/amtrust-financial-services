@@ -1,0 +1,80 @@
+openapi: 3.2.0
+info:
+  title: RCEWebAPI - Prod Sync Log API
+  description: An API for Reinsurrance Contracts Entry
+  version: '1.0'
+servers:
+- url: https://gateway.amtrustgroup.com/RCEAPI
+- url: https://prod-apim-gw.amtrustservices.com/RCEAPI
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: SyncLog
+paths:
+  /api/v{version}/SyncLog/SyncLogReport:
+    get:
+      tags:
+      - SyncLog
+      summary: SyncLog_SyncLogReport
+      operationId: SyncLog_SyncLogReport
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/SyncLog/SLRReportExcel:
+    get:
+      tags:
+      - SyncLog
+      summary: SyncLog_SLRReportExcel
+      operationId: SyncLog_SLRReportExcel
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: subscriber_id
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

@@ -1,0 +1,3101 @@
+openapi: 3.2.0
+info:
+  title: Digital Cyber Quote API
+  description: Digital Cyber API allows partners to create, edit, and bind Cyber quotes.
+  version: '1.0'
+servers:
+- url: https://gateway.amtrustgroup.com/digital-cyber
+- url: https://prod-apim-gw.amtrustservices.com/digital-cyber
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Quote
+paths:
+  /api/v1/quotes:
+    post:
+      tags:
+      - Quote
+      summary: Create a rated Quote
+      operationId: post-api-v1-quotes
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PostQuoteRequestDto'
+            example:
+              agentContactId: 1
+              naicsCode: '921110'
+              paymentPlanId: 13
+              masterAccountId: 0
+              digitalClientWorkflow: null
+              businessName: Business Inc.
+              primaryAddress:
+                line1: 800 Superior Ave
+                line2: Suite A
+                city: Cleveland
+                territory: OH
+                postalCode: '44114'
+              mailingAddress:
+                line1: 800 Superior Ave
+                line2: Suite B
+                city: Cleveland
+                territory: OH
+                postalCode: '44114'
+              fein: '123456789'
+              effectiveDate: '2026-08-08'
+              expectedGrossAnnualRevenue: 150000
+              policyLimits: 100000/2500
+              insuredContact:
+                name: Insured Name
+                phone: 202-555-0112
+                email: insured@email.com
+              companyWebsite: null
+              newMasterAccountId: false
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostQuoteRequestDto'
+            example:
+              agentContactId: 1
+              naicsCode: '921110'
+              paymentPlanId: 13
+              masterAccountId: 0
+              digitalClientWorkflow: null
+              businessName: Business Inc.
+              primaryAddress:
+                line1: 800 Superior Ave
+                line2: Suite A
+                city: Cleveland
+                territory: OH
+                postalCode: '44114'
+              mailingAddress:
+                line1: 800 Superior Ave
+                line2: Suite B
+                city: Cleveland
+                territory: OH
+                postalCode: '44114'
+              fein: '123456789'
+              effectiveDate: '2026-08-08'
+              expectedGrossAnnualRevenue: 150000
+              policyLimits: 100000/2500
+              insuredContact:
+                name: Insured Name
+                phone: 202-555-0112
+                email: insured@email.com
+              companyWebsite: null
+              newMasterAccountId: false
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostQuoteRequestDto'
+            example:
+              agentContactId: 1
+              naicsCode: '921110'
+              paymentPlanId: 13
+              masterAccountId: 0
+              digitalClientWorkflow: null
+              businessName: Business Inc.
+              primaryAddress:
+                line1: 800 Superior Ave
+                line2: Suite A
+                city: Cleveland
+                territory: OH
+                postalCode: '44114'
+              mailingAddress:
+                line1: 800 Superior Ave
+                line2: Suite B
+                city: Cleveland
+                territory: OH
+                postalCode: '44114'
+              fein: '123456789'
+              effectiveDate: '2026-08-08'
+              expectedGrossAnnualRevenue: 150000
+              policyLimits: 100000/2500
+              insuredContact:
+                name: Insured Name
+                phone: 202-555-0112
+                email: insured@email.com
+              companyWebsite: null
+              newMasterAccountId: false
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostQuoteRequestDto'
+            example:
+              agentContactId: 1
+              naicsCode: '921110'
+              paymentPlanId: 13
+              masterAccountId: 0
+              digitalClientWorkflow: null
+              businessName: Business Inc.
+              primaryAddress:
+                line1: 800 Superior Ave
+                line2: Suite A
+                city: Cleveland
+                territory: OH
+                postalCode: '44114'
+              mailingAddress:
+                line1: 800 Superior Ave
+                line2: Suite B
+                city: Cleveland
+                territory: OH
+                postalCode: '44114'
+              fein: '123456789'
+              effectiveDate: '2026-08-08'
+              expectedGrossAnnualRevenue: 150000
+              policyLimits: 100000/2500
+              insuredContact:
+                name: Insured Name
+                phone: 202-555-0112
+                email: insured@email.com
+              companyWebsite: null
+              newMasterAccountId: false
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: ad6060d3b5c9
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: f09bf48f6d9b
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorIApiResponse'
+              example:
+                responseId: 8699f49cb7db
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 400
+                isOk: false
+                errors:
+                - httpStatusCode: 400
+                  messageCode: ERR-ValidationErr
+                  title: Validation Error
+                  detail: Validation detail message
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostQuoteResponseDtoIApiResponse'
+              example:
+                data:
+                  quoteId: 123456
+                  masterAccountId: 24786342
+                  agentContact:
+                    id: 1
+                    name: Agent Name
+                    email: agent@email.com
+                  premium: 5000
+                  premiumDetails:
+                    finalPremium: 5000
+                    cityTax: null
+                    countyTax: null
+                    stateTax: null
+                    premiumOverrideAdjustment: null
+                  eligibility: Refer
+                  invoicingSchedule:
+                  - amount: 3000
+                    description: Annual Premium
+                    premiumAmount: 3000
+                    date: '2026-08-08'
+                    premiumDueDate: '2026-09-07'
+                    isDownPayment: true
+                  naicsCode: null
+                  businessName: Business Inc.
+                  primaryAddress:
+                    line1: 800 Superior Ave
+                    line2: Suite A
+                    city: Cleveland
+                    territory: OH
+                    postalCode: '44114'
+                  mailingAddress:
+                    line1: 800 Superior Ave
+                    line2: Suite B
+                    city: Cleveland
+                    territory: OH
+                    postalCode: '44114'
+                  fein: '123456789'
+                  effectiveDate: '2026-08-08'
+                  expectedGrossAnnualRevenue: 150000
+                  policyLimits: 100000/2500
+                  insuredContact:
+                    name: Insured Name
+                    phone: 202-555-0112
+                    email: insured@email.com
+                  companyWebsite: CompanyWebsite.com
+                  newMasterAccountId: false
+                responseId: 203617c80296
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 201
+                isOk: true
+                messages:
+                - httpStatusCode: 200
+                  messageCode: Deeplink
+                  title: https://online-uat.amtrustservices.com/ANANexus/AccountManagement/24786342
+                  isOk: true
+                maxMessageIndex: 0
+                _v: AD
+        '500':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorIApiResponse'
+              example:
+                responseId: 4ec1649ae663
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 400
+                isOk: false
+                errors:
+                - httpStatusCode: 400
+                  messageCode: ERR-ValidationErr
+                  title: Validation Error
+                  detail: Validation detail message
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+  /api/v1/quotes/{quoteId}:
+    get:
+      tags:
+      - Quote
+      summary: Retrieve quote information
+      operationId: get-api-v1-quotes-quoteid
+      parameters:
+      - name: quoteId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: 236ea282a72f
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: cfab9b9bfc3f
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorIApiResponse'
+              example:
+                responseId: caaaef62a96d
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 400
+                isOk: false
+                errors:
+                - httpStatusCode: 400
+                  messageCode: ERR-ValidationErr
+                  title: Validation Error
+                  detail: Validation detail message
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundErrorIApiResponse'
+              example:
+                responseId: 78d5a29d39fa
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 404
+                isOk: false
+                errors:
+                - httpStatusCode: 404
+                  messageCode: ERR-ItemNotFound
+                  title: Item was not found
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetQuoteResponseDtoIApiResponse'
+              example:
+                data:
+                  quoteId: 123456
+                  masterAccountId: 24786342
+                  effectivedate: '2026-08-07'
+                  businessName: Business Inc.
+                  primaryAddress:
+                    line1: 800 Superior Ave
+                    line2: Suite A
+                    city: Cleveland
+                    territory: OH
+                    postalCode: '44114'
+                  mailingAddress:
+                    line1: 800 Superior Ave
+                    line2: Suite B
+                    city: Cleveland
+                    territory: OH
+                    postalCode: '44114'
+                  fein: '123456789'
+                  agentContact:
+                    id: 1
+                    name: Agent
+                    email: agent@email.com
+                  insuredContact:
+                    name: Contact
+                    firstName: Contact
+                    lastName: ''
+                    phoneNumber: '1234567890'
+                    email: insured@email.com
+                  expectedGrossRevenue: 1000
+                  policyLimits: 250,000.00/2,500.00
+                  premium: 5000
+                  premiumDetails:
+                    finalPremium: 5000
+                    cityTax: null
+                    countyTax: null
+                    stateTax: null
+                    premiumOverrideAdjustment: null
+                  eligibility: Refer
+                  quoteStatus: Not Submitted
+                  companyWebsite: www.companywebsite.com
+                  naicsCode: null
+                responseId: 8c91d810dcc1
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 200
+                isOk: true
+                messages:
+                - httpStatusCode: 200
+                  messageCode: Deeplink
+                  title: https://online-uat.amtrustservices.com/ANANexus/AccountManagement/24786342
+                  isOk: true
+                maxMessageIndex: 0
+                _v: AD
+    patch:
+      tags:
+      - Quote
+      summary: Update quote information
+      operationId: patch-api-v1-quotes-quoteid
+      parameters:
+      - name: quoteId
+        in: path
+        required: true
+        schema:
+          minimum: 1.0
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+            example:
+            - value: 800 Superior Ave
+              path: /mailingAddress/line1
+              op: replace
+            - value: Suit A
+              path: /mailingAddress/line2
+              op: replace
+            - value: Cleveland
+              path: /mailingAddress/city
+              op: replace
+            - value: Insured Name
+              path: /insuredContact/name
+              op: replace
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+            example:
+            - value: 800 Superior Ave
+              path: /mailingAddress/line1
+              op: replace
+            - value: Suit A
+              path: /mailingAddress/line2
+              op: replace
+            - value: Cleveland
+              path: /mailingAddress/city
+              op: replace
+            - value: Insured Name
+              path: /insuredContact/name
+              op: replace
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+            example:
+            - value: 800 Superior Ave
+              path: /mailingAddress/line1
+              op: replace
+            - value: Suit A
+              path: /mailingAddress/line2
+              op: replace
+            - value: Cleveland
+              path: /mailingAddress/city
+              op: replace
+            - value: Insured Name
+              path: /insuredContact/name
+              op: replace
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+            example:
+            - value: 800 Superior Ave
+              path: /mailingAddress/line1
+              op: replace
+            - value: Suit A
+              path: /mailingAddress/line2
+              op: replace
+            - value: Cleveland
+              path: /mailingAddress/city
+              op: replace
+            - value: Insured Name
+              path: /insuredContact/name
+              op: replace
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: e802db88652f
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: f6ae0d5273fe
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorIApiResponse'
+              example:
+                responseId: 7cc56b00e5ce
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 400
+                isOk: false
+                errors:
+                - httpStatusCode: 400
+                  messageCode: ERR-ValidationErr
+                  title: Validation Error
+                  detail: Validation detail message
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchQuoteResponseDtoIApiResponse'
+              example:
+                data:
+                  quoteId: 123456
+                  masterAccountId: 24786342
+                  effectivedate: '2026-08-07'
+                  businessName: Business Inc.
+                  primaryAddress:
+                    line1: 800 Superior Ave
+                    line2: Suite A
+                    city: Cleveland
+                    territory: OH
+                    postalCode: '44114'
+                  mailingAddress:
+                    line1: 800 Superior Ave
+                    line2: Suite B
+                    city: Cleveland
+                    territory: OH
+                    postalCode: '44114'
+                  fein: '123456789'
+                  agentContact:
+                    id: 1
+                    name: Agent
+                    email: agent@email.com
+                  insuredContact:
+                    name: Contact
+                    firstName: Contact
+                    lastName: ''
+                    phoneNumber: '1234567890'
+                    email: insured@email.com
+                  expectedGrossAnnualRevenue: 1000
+                  policyLimits: 250,000.00/2,500.00
+                  premium: 5000
+                  eligibility: Refer
+                  companyWebsite: null
+                  quoteStatus: Not Submitted
+                  digitalClientWorkflow: DigitalClientWorkflow
+                  naicsCode: null
+                responseId: f68afe2c3ef9
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 200
+                isOk: true
+                messages:
+                - httpStatusCode: 200
+                  messageCode: Deeplink
+                  title: https://online-uat.amtrustservices.com/ANANexus/AccountManagement/24786342
+                  isOk: true
+                maxMessageIndex: 0
+                _v: AD
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundErrorIApiResponse'
+              example:
+                responseId: 28972f9c5188
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 404
+                isOk: false
+                errors:
+                - httpStatusCode: 404
+                  messageCode: ERR-ItemNotFound
+                  title: Item was not found
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+    put:
+      tags:
+      - Quote
+      summary: Update quote information
+      operationId: put-api-v1-quotes-quoteid
+      parameters:
+      - name: quoteId
+        in: path
+        required: true
+        schema:
+          minimum: 1.0
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UpdateQuoteRequestDto'
+            example:
+              businessName: string
+              effectiveDate: string
+              mailingAddress:
+                line1: string
+                line2: string
+                city: string
+                territory: string
+                postalCode: string
+              primaryAddress:
+                line1: string
+                line2: string
+                city: string
+                territory: string
+                postalCode: string
+              fein: string
+              agentContactId: 0
+              insuredContact:
+                name: string
+                phone: string
+                email: string
+              expectedGrossAnnualRevenue: 0
+              policyLimits: string
+              companyWebsite: string
+              naicsCode: string
+              digitalClientWorkflow: string
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateQuoteRequestDto'
+            example:
+              businessName: string
+              effectiveDate: string
+              mailingAddress:
+                line1: string
+                line2: string
+                city: string
+                territory: string
+                postalCode: string
+              primaryAddress:
+                line1: string
+                line2: string
+                city: string
+                territory: string
+                postalCode: string
+              fein: string
+              agentContactId: 0
+              insuredContact:
+                name: string
+                phone: string
+                email: string
+              expectedGrossAnnualRevenue: 0
+              policyLimits: string
+              companyWebsite: string
+              naicsCode: string
+              digitalClientWorkflow: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateQuoteRequestDto'
+            example:
+              businessName: string
+              effectiveDate: string
+              mailingAddress:
+                line1: string
+                line2: string
+                city: string
+                territory: string
+                postalCode: string
+              primaryAddress:
+                line1: string
+                line2: string
+                city: string
+                territory: string
+                postalCode: string
+              fein: string
+              agentContactId: 0
+              insuredContact:
+                name: string
+                phone: string
+                email: string
+              expectedGrossAnnualRevenue: 0
+              policyLimits: string
+              companyWebsite: string
+              naicsCode: string
+              digitalClientWorkflow: string
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateQuoteRequestDto'
+            example:
+              businessName: string
+              effectiveDate: string
+              mailingAddress:
+                line1: string
+                line2: string
+                city: string
+                territory: string
+                postalCode: string
+              primaryAddress:
+                line1: string
+                line2: string
+                city: string
+                territory: string
+                postalCode: string
+              fein: string
+              agentContactId: 0
+              insuredContact:
+                name: string
+                phone: string
+                email: string
+              expectedGrossAnnualRevenue: 0
+              policyLimits: string
+              companyWebsite: string
+              naicsCode: string
+              digitalClientWorkflow: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: 7aa09fcb3091
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: d5a9bead3cb7
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorIApiResponse'
+              example:
+                responseId: 6de022f9d46f
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 400
+                isOk: false
+                errors:
+                - httpStatusCode: 400
+                  messageCode: ERR-ValidationErr
+                  title: Validation Error
+                  detail: Validation detail message
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchQuoteResponseDtoIApiResponse'
+              example:
+                data:
+                  quoteId: 123456
+                  masterAccountId: 24786342
+                  effectivedate: '2026-08-07'
+                  businessName: Business Inc.
+                  primaryAddress:
+                    line1: 800 Superior Ave
+                    line2: Suite A
+                    city: Cleveland
+                    territory: OH
+                    postalCode: '44114'
+                  mailingAddress:
+                    line1: 800 Superior Ave
+                    line2: Suite B
+                    city: Cleveland
+                    territory: OH
+                    postalCode: '44114'
+                  fein: '123456789'
+                  agentContact:
+                    id: 1
+                    name: Agent
+                    email: agent@email.com
+                  insuredContact:
+                    name: Contact
+                    firstName: Contact
+                    lastName: ''
+                    phoneNumber: '1234567890'
+                    email: insured@email.com
+                  expectedGrossAnnualRevenue: 1000
+                  policyLimits: 250,000.00/2,500.00
+                  premium: 5000
+                  eligibility: Refer
+                  companyWebsite: null
+                  quoteStatus: Not Submitted
+                  digitalClientWorkflow: DigitalClientWorkflow
+                  naicsCode: null
+                responseId: c2dabf2bf781
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 200
+                isOk: true
+                messages:
+                - httpStatusCode: 200
+                  messageCode: Deeplink
+                  title: https://online-uat.amtrustservices.com/ANANexus/AccountManagement/24786342
+                  isOk: true
+                maxMessageIndex: 0
+                _v: AD
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundErrorIApiResponse'
+              example:
+                responseId: bff29ad80d04
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 404
+                isOk: false
+                errors:
+                - httpStatusCode: 404
+                  messageCode: ERR-ItemNotFound
+                  title: Item was not found
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+  /api/v1/quotes/{quoteId}/proposal:
+    get:
+      tags:
+      - Quote
+      summary: Retrieve quote proposal PDF
+      description: This endpoint will return a byte representation of the Cyber quote proposal
+      operationId: get-api-v1-quotes-quoteid-proposal
+      parameters:
+      - name: quoteId
+        in: path
+        required: true
+        schema:
+          minimum: 1.0
+          type: integer
+          format: int32
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: eb7602b168b5
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: 73edf70fd459
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorIApiResponse'
+              example:
+                responseId: fc2fcb202387
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 400
+                isOk: false
+                errors:
+                - httpStatusCode: 400
+                  messageCode: ERR-ValidationErr
+                  title: Validation Error
+                  detail: Validation detail message
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                format: byte
+              example: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundErrorIApiResponse'
+              example:
+                responseId: 6b3cb7f93264
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 404
+                isOk: false
+                errors:
+                - httpStatusCode: 404
+                  messageCode: ERR-ItemNotFound
+                  title: Item was not found
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+  /api/v1/quotes/{quoteId}/payment-plans:
+    get:
+      tags:
+      - Quote
+      summary: Retrieve available payment plans
+      description: Retrieve all payment plans available to quote, separated by billing type
+      operationId: get-api-v1-quotes-quoteid-payment-plans
+      parameters:
+      - name: quoteId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: 609a6b101011
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: 6d93f514a407
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorIApiResponse'
+              example:
+                responseId: c66cfcd6fddd
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 400
+                isOk: false
+                errors:
+                - httpStatusCode: 400
+                  messageCode: ERR-ValidationErr
+                  title: Validation Error
+                  detail: Validation detail message
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundErrorIApiResponse'
+              example:
+                responseId: c129a218db0e
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 404
+                isOk: false
+                errors:
+                - httpStatusCode: 404
+                  messageCode: ERR-ItemNotFound
+                  title: Item was not found
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPaymentPlanResponseDtoIApiResponse'
+              example:
+                data:
+                  direct:
+                  - id: 1
+                    downpaymentPercent: 100
+                    numberOfPayments: 0
+                    description: Pay In Full
+                    downpaymentDueDateDays: 15
+                    invoiceDueDateDays: 0
+                    paymentFrequency: null
+                    billingType: null
+                    invoiceSchedule:
+                    - amount: 100
+                      description: Downpayment
+                      date: '2026-08-07T11:04:11.0000000+00:00'
+                      downpayment: true
+                      premAmount: 100
+                      premDueDate: '2026-09-07T11:04:11.0000000+00:00'
+                  agency:
+                  - id: 1
+                    downpaymentPercent: 100
+                    numberOfPayments: 0
+                    description: Pay In Full
+                    downpaymentDueDateDays: 15
+                    invoiceDueDateDays: 0
+                    paymentFrequency: null
+                    billingType: null
+                    invoiceSchedule:
+                    - amount: 100
+                      description: Downpayment
+                      date: '2026-08-07T11:04:11.0000000+00:00'
+                      downpayment: true
+                      premAmount: 100
+                      premDueDate: '2026-09-07T11:04:11.0000000+00:00'
+                responseId: 7601059d4821
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 200
+                isOk: true
+                messages:
+                - httpStatusCode: 200
+                  messageCode: Deeplink
+                  title: https://online-uat.amtrustservices.com/ANANexus/AccountManagement/24786342
+                  isOk: true
+                maxMessageIndex: 0
+                _v: AD
+    post:
+      tags:
+      - Quote
+      summary: Save payment plan
+      description: This endpoint allows user to save the selected payment plan to an existing quote
+      operationId: post-api-v1-quotes-quoteid-payment-plans
+      parameters:
+      - name: quoteId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UpdatePaymentPlanDto'
+            example:
+              id: 13
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePaymentPlanDto'
+            example:
+              id: 13
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePaymentPlanDto'
+            example:
+              id: 13
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdatePaymentPlanDto'
+            example:
+              id: 13
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: d2d82dba081d
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: 6b45baed4769
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorIApiResponse'
+              example:
+                responseId: e389b6d7f9ec
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 400
+                isOk: false
+                errors:
+                - httpStatusCode: 400
+                  messageCode: ERR-ValidationErr
+                  title: Validation Error
+                  detail: Validation detail message
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundErrorIApiResponse'
+              example:
+                responseId: 206c1c047d54
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 404
+                isOk: false
+                errors:
+                - httpStatusCode: 404
+                  messageCode: ERR-ItemNotFound
+                  title: Item was not found
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringIApiResponse'
+              example:
+                data: String
+                responseId: a6f72d095728
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 200
+                isOk: true
+                _v: AD
+  /api/v1/quotes/{quoteId}/terrorism-statement:
+    post:
+      tags:
+      - Quote
+      summary: Save Terrorism Coverage Acknowledgement
+      description: This endpoint is meant to be used in conjunction with the (GET) Terrorism Coverage Statement endpoint. Insureds will need to acknowledge that they have read the statement before binding. This acknowledgement is only required for quotes with OH exposure.
+      operationId: post-api-v1-quotes-quoteid-terrorism-statement
+      parameters:
+      - name: quoteId
+        in: path
+        required: true
+        schema:
+          minimum: 1.0
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PostTerrorismCoverageDto'
+            example:
+              isAcknowledged: string
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostTerrorismCoverageDto'
+            example:
+              isAcknowledged: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostTerrorismCoverageDto'
+            example:
+              isAcknowledged: string
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostTerrorismCoverageDto'
+            example:
+              isAcknowledged: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: 7c3e91454831
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: 272d66a9c08f
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorIApiResponse'
+              example:
+                responseId: 21b96bec6d7b
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 400
+                isOk: false
+                errors:
+                - httpStatusCode: 400
+                  messageCode: ERR-ValidationErr
+                  title: Validation Error
+                  detail: Validation detail message
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundErrorIApiResponse'
+              example:
+                responseId: 7e2330dcba49
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 404
+                isOk: false
+                errors:
+                - httpStatusCode: 404
+                  messageCode: ERR-ItemNotFound
+                  title: Item was not found
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostTerrorismCoverageDtoIApiResponse'
+              examples:
+                Success Example:
+                  value:
+                    data:
+                      isAcknowledged: 'True'
+                    responseId: 6fac003fe953
+                    timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                    httpStatusCode: 201
+                    isOk: true
+                    messages:
+                    - httpStatusCode: 200
+                      detail: Acknowledgement saved successfully!
+                      isOk: true
+                    maxMessageIndex: 0
+                    _v: AD
+                Non-Success Example:
+                  value:
+                    data:
+                      isAcknowledged: 'False'
+                    responseId: 1d7e7f5f7643
+                    timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                    httpStatusCode: 201
+                    isOk: true
+                    messages:
+                    - httpStatusCode: 200
+                      detail: Disclosure must be acknowledged before quote can be bound.
+                      isOk: true
+                    maxMessageIndex: 0
+                    _v: AD
+  /api/v2/quotes/{quoteId}/bind:
+    post:
+      tags:
+      - Quote
+      summary: Bind quote to policy
+      description: This endpoint will bind a BindEligible or Underwriter Approved Cyber quote to a policy
+      operationId: post-api-v2-quotes-quoteid-bind
+      parameters:
+      - name: quoteId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: 67f367aabf6d
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: 5b41bd179dcd
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorIApiResponse'
+              example:
+                responseId: 8d33ca753d58
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 400
+                isOk: false
+                errors:
+                - httpStatusCode: 400
+                  messageCode: ERR-ValidationErr
+                  title: Validation Error
+                  detail: Validation detail message
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundErrorIApiResponse'
+              example:
+                responseId: 2741c50b1f7f
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 404
+                isOk: false
+                errors:
+                - httpStatusCode: 404
+                  messageCode: ERR-ItemNotFound
+                  title: Item was not found
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostBindQuoteResponseDtoIApiResponse'
+              example:
+                data:
+                  quoteId: 1
+                  policyNumber: CYBER21
+                  policyId: 123
+                  masterAccountId: 12
+                  effectiveDate: '2026-08-07'
+                  premium: 5000
+                responseId: 7cc0561e889c
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 201
+                isOk: true
+                _v: AD
+components:
+  schemas:
+    GetQuoteResponseDtoIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/GetQuoteResponseDto'
+      additionalProperties: false
+    UnauthorizedError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    IAgentContact:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          readOnly: true
+        name:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        email:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    UpdatePaymentPlanDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+      additionalProperties: false
+    LogException:
+      type: object
+      properties:
+        exceptionId:
+          type: string
+          format: uuid
+        module:
+          type:
+          - string
+          - 'null'
+        class:
+          type:
+          - string
+          - 'null'
+        targetSite:
+          type:
+          - string
+          - 'null'
+        httpWebEventCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatusValue:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatusCode:
+          type:
+          - string
+          - 'null'
+        httpHtmlMessage:
+          type:
+          - string
+          - 'null'
+        properties:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+        innerException:
+          $ref: '#/components/schemas/LogException'
+        message:
+          type:
+          - string
+          - 'null'
+        source:
+          type:
+          - string
+          - 'null'
+        stackTrace:
+          type:
+          - string
+          - 'null'
+        helpLink:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+        data:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+        errorCode:
+          type:
+          - string
+          - 'null'
+        exceptionType:
+          type:
+          - string
+          - 'null'
+        baseException:
+          $ref: '#/components/schemas/LogException'
+      additionalProperties: false
+    NotFoundErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/NotFoundError'
+      additionalProperties: false
+    PostQuoteRequestDto:
+      required:
+      - agentContactId
+      - businessName
+      - effectiveDate
+      - insuredContact
+      - mailingAddress
+      - naicsCode
+      - policyLimits
+      - primaryAddress
+      type: object
+      properties:
+        businessName:
+          minLength: 1
+          type: string
+        primaryAddress:
+          $ref: '#/components/schemas/AddressDto'
+        mailingAddress:
+          $ref: '#/components/schemas/AddressDto'
+        fein:
+          pattern: ^\d{9}$
+          type:
+          - string
+          - 'null'
+        effectiveDate:
+          type: string
+          format: date-time
+        expectedGrossAnnualRevenue:
+          maximum: 24999999.0
+          minimum: 0.0
+          type:
+          - integer
+          - 'null'
+          description: Required when a non-slot rate policy limit is provided, and it must be greater than zero.
+          format: int32
+        policyLimits:
+          minLength: 1
+          type: string
+        insuredContact:
+          $ref: '#/components/schemas/Contact'
+        companyWebsite:
+          type:
+          - string
+          - 'null'
+        newMasterAccountId:
+          type: boolean
+        agentContactId:
+          type: integer
+          format: int32
+        naicsCode:
+          minLength: 1
+          type: string
+        paymentPlanId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        masterAccountId:
+          type: integer
+          format: int32
+        digitalClientWorkflow:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PremiumDetailsDto:
+      type: object
+      properties:
+        finalPremium:
+          type:
+          - number
+          - 'null'
+          format: double
+        cityTax:
+          type:
+          - number
+          - 'null'
+          format: double
+        countyTax:
+          type:
+          - number
+          - 'null'
+          format: double
+        stateTax:
+          type:
+          - number
+          - 'null'
+          format: double
+        premiumOverrideAdjustment:
+          type:
+          - number
+          - 'null'
+          format: double
+      additionalProperties: false
+    HttpStatusCode:
+      enum:
+      - 100 = Continue
+      - 101 = SwitchingProtocols
+      - 102 = Processing
+      - 103 = EarlyHints
+      - 200 = OK
+      - 201 = Created
+      - 202 = Accepted
+      - 203 = NonAuthoritativeInformation
+      - 204 = NoContent
+      - 205 = ResetContent
+      - 206 = PartialContent
+      - 207 = MultiStatus
+      - 208 = AlreadyReported
+      - 226 = IMUsed
+      - 300 = MultipleChoices
+      - 300 = Ambiguous
+      - 301 = MovedPermanently
+      - 301 = Moved
+      - 302 = Found
+      - 302 = Redirect
+      - 303 = SeeOther
+      - 303 = RedirectMethod
+      - 304 = NotModified
+      - 305 = UseProxy
+      - 306 = Unused
+      - 307 = TemporaryRedirect
+      - 307 = RedirectKeepVerb
+      - 308 = PermanentRedirect
+      - 400 = BadRequest
+      - 401 = Unauthorized
+      - 402 = PaymentRequired
+      - 403 = Forbidden
+      - 404 = NotFound
+      - 405 = MethodNotAllowed
+      - 406 = NotAcceptable
+      - 407 = ProxyAuthenticationRequired
+      - 408 = RequestTimeout
+      - 409 = Conflict
+      - 410 = Gone
+      - 411 = LengthRequired
+      - 412 = PreconditionFailed
+      - 413 = RequestEntityTooLarge
+      - 414 = RequestUriTooLong
+      - 415 = UnsupportedMediaType
+      - 416 = RequestedRangeNotSatisfiable
+      - 417 = ExpectationFailed
+      - 421 = MisdirectedRequest
+      - 422 = UnprocessableEntity
+      - 422 = UnprocessableContent
+      - 423 = Locked
+      - 424 = FailedDependency
+      - 426 = UpgradeRequired
+      - 428 = PreconditionRequired
+      - 429 = TooManyRequests
+      - 431 = RequestHeaderFieldsTooLarge
+      - 451 = UnavailableForLegalReasons
+      - 500 = InternalServerError
+      - 501 = NotImplemented
+      - 502 = BadGateway
+      - 503 = ServiceUnavailable
+      - 504 = GatewayTimeout
+      - 505 = HttpVersionNotSupported
+      - 506 = VariantAlsoNegotiates
+      - 507 = InsufficientStorage
+      - 508 = LoopDetected
+      - 510 = NotExtended
+      - 511 = NetworkAuthenticationRequired
+      type: integer
+      format: int32
+    Invoice:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        description:
+          type:
+          - string
+          - 'null'
+        date:
+          type: string
+          format: date-time
+        downpayment:
+          type: boolean
+        premAmount:
+          type: number
+          format: double
+        premDueDate:
+          type: string
+          format: date-time
+      additionalProperties: false
+    PostBindQuoteResponseDtoIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/PostBindQuoteResponseDto'
+      additionalProperties: false
+    ApiPageRequest:
+      type: object
+      properties:
+        skip:
+          type: integer
+          format: int32
+        take:
+          type: integer
+          format: int32
+        count:
+          type: boolean
+      additionalProperties: false
+    PostQuoteResponseDto:
+      required:
+      - businessName
+      - effectiveDate
+      - insuredContact
+      - mailingAddress
+      - policyLimits
+      - primaryAddress
+      type: object
+      properties:
+        businessName:
+          minLength: 1
+          type: string
+        primaryAddress:
+          $ref: '#/components/schemas/AddressDto'
+        mailingAddress:
+          $ref: '#/components/schemas/AddressDto'
+        fein:
+          pattern: ^\d{9}$
+          type:
+          - string
+          - 'null'
+        effectiveDate:
+          type: string
+          format: date-time
+        expectedGrossAnnualRevenue:
+          maximum: 24999999.0
+          minimum: 0.0
+          type:
+          - integer
+          - 'null'
+          description: Required when a non-slot rate policy limit is provided, and it must be greater than zero.
+          format: int32
+        policyLimits:
+          minLength: 1
+          type: string
+        insuredContact:
+          $ref: '#/components/schemas/Contact'
+        companyWebsite:
+          type:
+          - string
+          - 'null'
+        newMasterAccountId:
+          type: boolean
+        quoteId:
+          type: integer
+          format: int32
+        masterAccountId:
+          type: integer
+          format: int32
+        agentContact:
+          $ref: '#/components/schemas/IAgentContact'
+        premium:
+          type:
+          - number
+          - 'null'
+          format: double
+        premiumDetails:
+          $ref: '#/components/schemas/PremiumDetailsDto'
+        eligibility:
+          type:
+          - string
+          - 'null'
+        invoicingSchedule:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/InvoiceDto'
+        digitalClientWorkflow:
+          type:
+          - string
+          - 'null'
+        naicsCode:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ApiPaging:
+      type: object
+      properties:
+        request:
+          $ref: '#/components/schemas/ApiPageRequest'
+        response:
+          $ref: '#/components/schemas/ApiPageResponse'
+      additionalProperties: false
+    BadRequestError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        detail:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    StringIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PaymentPlanDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        downpaymentPercent:
+          type: number
+          format: double
+        numberOfPayments:
+          type: integer
+          format: int32
+        description:
+          type:
+          - string
+          - 'null'
+        downpaymentDueDateDays:
+          type: integer
+          format: int32
+        invoiceDueDateDays:
+          type: integer
+          format: int32
+        paymentFrequency:
+          type:
+          - string
+          - 'null'
+        billingType:
+          type:
+          - string
+          - 'null'
+        invoiceSchedule:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Invoice'
+      additionalProperties: false
+    ApiPageResponse:
+      type: object
+      properties:
+        first:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+        current:
+          type:
+          - string
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        last:
+          type:
+          - string
+          - 'null'
+        pageSize:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    GetQuoteResponseDto:
+      required:
+      - businessName
+      type: object
+      properties:
+        quoteId:
+          type: integer
+          format: int32
+        masterAccountId:
+          type: integer
+          format: int32
+        effectivedate:
+          type: string
+          format: date-time
+        businessName:
+          minLength: 1
+          type: string
+        primaryAddress:
+          $ref: '#/components/schemas/AddressDto'
+        mailingAddress:
+          $ref: '#/components/schemas/AddressDto'
+        fein:
+          type:
+          - string
+          - 'null'
+        agentContact:
+          $ref: '#/components/schemas/IAgentContact'
+        insuredContact:
+          $ref: '#/components/schemas/IInsuredContact'
+        expectedGrossRevenue:
+          type:
+          - number
+          - 'null'
+          format: double
+        policyLimits:
+          type:
+          - string
+          - 'null'
+        premium:
+          type:
+          - number
+          - 'null'
+          format: double
+        premiumDetails:
+          $ref: '#/components/schemas/PremiumDetailsDto'
+        eligibility:
+          type:
+          - string
+          - 'null'
+        quoteStatus:
+          type:
+          - string
+          - 'null'
+        companyWebsite:
+          type:
+          - string
+          - 'null'
+        naicsCode:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    AddressDto:
+      required:
+      - city
+      - line1
+      - postalCode
+      - territory
+      type: object
+      properties:
+        line1:
+          minLength: 1
+          type: string
+        line2:
+          type:
+          - string
+          - 'null'
+        city:
+          minLength: 1
+          type: string
+        territory:
+          minLength: 1
+          type: string
+        postalCode:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    GetPaymentPlanResponseDtoIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/GetPaymentPlanResponseDto'
+      additionalProperties: false
+    InvoiceDto:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        description:
+          type:
+          - string
+          - 'null'
+        premiumAmount:
+          type: number
+          format: double
+        date:
+          type: string
+          format: date-time
+        premiumDueDate:
+          type: string
+          format: date-time
+        isDownPayment:
+          type: boolean
+      additionalProperties: false
+    ForbiddenError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    PatchQuoteResponseDto:
+      type: object
+      properties:
+        quoteId:
+          type: integer
+          format: int32
+        masterAccountId:
+          type: integer
+          format: int32
+        effectivedate:
+          type: string
+          format: date-time
+        businessName:
+          type:
+          - string
+          - 'null'
+        primaryAddress:
+          $ref: '#/components/schemas/AddressDto'
+        mailingAddress:
+          $ref: '#/components/schemas/AddressDto'
+        fein:
+          type:
+          - string
+          - 'null'
+        agentContact:
+          $ref: '#/components/schemas/IAgentContact'
+        insuredContact:
+          $ref: '#/components/schemas/IInsuredContact'
+        expectedGrossAnnualRevenue:
+          type: number
+          format: double
+        policyLimits:
+          type:
+          - string
+          - 'null'
+        premium:
+          type: number
+          format: double
+        eligibility:
+          type:
+          - string
+          - 'null'
+        companyWebsite:
+          type:
+          - string
+          - 'null'
+        quoteStatus:
+          type:
+          - string
+          - 'null'
+        digitalClientWorkflow:
+          type:
+          - string
+          - 'null'
+        naicsCode:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GetPaymentPlanResponseDto:
+      type: object
+      properties:
+        direct:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PaymentPlanDto'
+        agency:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PaymentPlanDto'
+      additionalProperties: false
+    ApiMessageType:
+      enum:
+      - 0 = Info
+      - 1 = Error
+      type: integer
+      format: int32
+    UnauthorizedErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/UnauthorizedError'
+      additionalProperties: false
+    PostQuoteResponseDtoIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/PostQuoteResponseDto'
+      additionalProperties: false
+    ForbiddenErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/ForbiddenError'
+      additionalProperties: false
+    OperationType:
+      enum:
+      - 0 = Add
+      - 1 = Remove
+      - 2 = Replace
+      - 3 = Move
+      - 4 = Copy
+      - 5 = Test
+      - 6 = Invalid
+      type: integer
+      format: int32
+    ApiMessage:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        title:
+          type:
+          - string
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        isOk:
+          type: boolean
+        needsSanitization:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    PostTerrorismCoverageDto:
+      required:
+      - isAcknowledged
+      type: object
+      properties:
+        isAcknowledged:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    Operation:
+      type: object
+      properties:
+        operationType:
+          $ref: '#/components/schemas/OperationType'
+        path:
+          type:
+          - string
+          - 'null'
+        op:
+          type:
+          - string
+          - 'null'
+        from:
+          type:
+          - string
+          - 'null'
+        value: {}
+      additionalProperties: false
+    PatchQuoteResponseDtoIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/PatchQuoteResponseDto'
+      additionalProperties: false
+    BadRequestErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/BadRequestError'
+      additionalProperties: false
+    PostBindQuoteResponseDto:
+      type: object
+      properties:
+        quoteId:
+          type: integer
+          format: int32
+        policyNumber:
+          type:
+          - string
+          - 'null'
+        policyId:
+          type: integer
+          format: int32
+        masterAccountId:
+          type: integer
+          format: int32
+        effectiveDate:
+          type: string
+          format: date-time
+        premium:
+          type: number
+          format: double
+      additionalProperties: false
+    UpdateQuoteRequestDto:
+      required:
+      - agentContactId
+      - businessName
+      - effectiveDate
+      - insuredContact
+      - mailingAddress
+      - policyLimits
+      - primaryAddress
+      type: object
+      properties:
+        businessName:
+          minLength: 1
+          type: string
+        effectiveDate:
+          type: string
+          format: date-time
+        mailingAddress:
+          $ref: '#/components/schemas/AddressDto'
+        primaryAddress:
+          $ref: '#/components/schemas/AddressDto'
+        fein:
+          type:
+          - string
+          - 'null'
+        agentContactId:
+          type: integer
+          format: int32
+        insuredContact:
+          $ref: '#/components/schemas/Contact'
+        expectedGrossAnnualRevenue:
+          type: number
+          description: Required when a non-slot rate policy limit is provided, and it must be greater than zero.
+          format: double
+        policyLimits:
+          minLength: 1
+          type: string
+        companyWebsite:
+          type:
+          - string
+          - 'null'
+        naicsCode:
+          type:
+          - string
+          - 'null'
+        digitalClientWorkflow:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    IInsuredContact:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        firstName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        lastName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        email:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    PostTerrorismCoverageDtoIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/PostTerrorismCoverageDto'
+      additionalProperties: false
+    Contact:
+      required:
+      - email
+      - name
+      - phone
+      type: object
+      properties:
+        name:
+          minLength: 1
+          pattern: ^[A-z0-9]+(\s[A-z0-9-']+){1,}$
+          type: string
+        phone:
+          minLength: 1
+          pattern: ((\(\d{3}\)?)|(\d{3}))([\s-./]?)(\d{3})([\s-./]?)(\d{4})
+          type: string
+        email:
+          minLength: 1
+          pattern: ^.+@.+\..+$
+          type: string
+      additionalProperties: false
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: subscriber_id
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

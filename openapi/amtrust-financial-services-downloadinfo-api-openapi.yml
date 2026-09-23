@@ -1,0 +1,47 @@
+openapi: 3.2.0
+info:
+  title: RCEWebAPI - Prod Download Info API
+  description: An API for Reinsurrance Contracts Entry
+  version: '1.0'
+servers:
+- url: https://gateway.amtrustgroup.com/RCEAPI
+- url: https://prod-apim-gw.amtrustservices.com/RCEAPI
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: DownloadInfo
+paths:
+  /api/v{version}/DownloadInfo/DownloadInfo:
+    get:
+      tags:
+      - DownloadInfo
+      summary: DownloadInfo_DownloadInfo
+      operationId: DownloadInfo_DownloadInfo
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: subscriber_id
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

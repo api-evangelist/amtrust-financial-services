@@ -1,0 +1,969 @@
+openapi: 3.2.0
+info:
+  title: Experience Next Gen Bond Pro Dms Document API
+  version: '1.0'
+servers:
+- url: https://gateway.amtrustgroup.com/experience-next-gen-bond-pro-api
+- url: https://prod-apim-gw.amtrustservices.com/experience-next-gen-bond-pro-api
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: DmsDocument
+paths:
+  /api/v1/DMSDocument/CreateDMSDocument:
+    post:
+      tags:
+      - DmsDocument
+      summary: Creates a DMS Document (sent in base64EncodedBinary format) and upload to Box…
+      description: Creates a DMS Document (sent in base64EncodedBinary format) and upload to Box and Server. It will return DmsDocumentId when created.
+      operationId: post-api-v1-dmsdocument-createdmsdocument
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/DmsDocumentPostDto'
+            example:
+              documentId: 0
+              documentName: string
+              documentTags: string
+              documentTransactionId: string
+              documentComments: string
+              documentSystemId: string
+              documentUserId: string
+              documentUserClientRefId: string
+              documentUserEntityTypeCode: string
+              documentSize: string
+              documentExtension: string
+              documentCreation: string
+              documentContext: string
+              documentSubject: string
+              documentType: string
+              documentTypeId: 0
+              keyFlag: true
+              sensitiveFlag: true
+              agencyAccessFlag: true
+              principalAccessFlag: true
+              generatedFlag: true
+              documentBusinessProperty:
+              - entityId: 0
+                entityType: string
+                enterpriseId: 0
+                name: string
+                number: string
+                clientReferenceId: string
+                businessSegment: string
+                portfolio: string
+                renewalNumber: 0
+                effectiveDate: string
+                expirationDate: string
+              documentBinary: string
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DmsDocumentPostDto'
+            example:
+              documentId: 0
+              documentName: string
+              documentTags: string
+              documentTransactionId: string
+              documentComments: string
+              documentSystemId: string
+              documentUserId: string
+              documentUserClientRefId: string
+              documentUserEntityTypeCode: string
+              documentSize: string
+              documentExtension: string
+              documentCreation: string
+              documentContext: string
+              documentSubject: string
+              documentType: string
+              documentTypeId: 0
+              keyFlag: true
+              sensitiveFlag: true
+              agencyAccessFlag: true
+              principalAccessFlag: true
+              generatedFlag: true
+              documentBusinessProperty:
+              - entityId: 0
+                entityType: string
+                enterpriseId: 0
+                name: string
+                number: string
+                clientReferenceId: string
+                businessSegment: string
+                portfolio: string
+                renewalNumber: 0
+                effectiveDate: string
+                expirationDate: string
+              documentBinary: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DmsDocumentPostDto'
+            example:
+              documentId: 0
+              documentName: string
+              documentTags: string
+              documentTransactionId: string
+              documentComments: string
+              documentSystemId: string
+              documentUserId: string
+              documentUserClientRefId: string
+              documentUserEntityTypeCode: string
+              documentSize: string
+              documentExtension: string
+              documentCreation: string
+              documentContext: string
+              documentSubject: string
+              documentType: string
+              documentTypeId: 0
+              keyFlag: true
+              sensitiveFlag: true
+              agencyAccessFlag: true
+              principalAccessFlag: true
+              generatedFlag: true
+              documentBusinessProperty:
+              - entityId: 0
+                entityType: string
+                enterpriseId: 0
+                name: string
+                number: string
+                clientReferenceId: string
+                businessSegment: string
+                portfolio: string
+                renewalNumber: 0
+                effectiveDate: string
+                expirationDate: string
+              documentBinary: string
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DmsDocumentPostDto'
+            example:
+              documentId: 0
+              documentName: string
+              documentTags: string
+              documentTransactionId: string
+              documentComments: string
+              documentSystemId: string
+              documentUserId: string
+              documentUserClientRefId: string
+              documentUserEntityTypeCode: string
+              documentSize: string
+              documentExtension: string
+              documentCreation: string
+              documentContext: string
+              documentSubject: string
+              documentType: string
+              documentTypeId: 0
+              keyFlag: true
+              sensitiveFlag: true
+              agencyAccessFlag: true
+              principalAccessFlag: true
+              generatedFlag: true
+              documentBusinessProperty:
+              - entityId: 0
+                entityType: string
+                enterpriseId: 0
+                name: string
+                number: string
+                clientReferenceId: string
+                businessSegment: string
+                portfolio: string
+                renewalNumber: 0
+                effectiveDate: string
+                expirationDate: string
+              documentBinary: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema: {}
+              examples:
+                default:
+                  value: null
+            application/json:
+              schema: {}
+            text/json:
+              schema: {}
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DmsDocumentDto'
+              examples:
+                default:
+                  value: null
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DmsDocumentDto'
+              example:
+                dmsDocumentId: 0
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DmsDocumentDto'
+              example:
+                dmsDocumentId: 0
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DmsDocumentDto'
+              examples:
+                default:
+                  value: null
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DmsDocumentDto'
+              example:
+                dmsDocumentId: 0
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DmsDocumentDto'
+              example:
+                dmsDocumentId: 0
+  /api/v1/DMSDocument/RetrieveDMSDocument:
+    post:
+      tags:
+      - DmsDocument
+      summary: Retrieve a DMS Document (in base64EncodedBinary format) by DmsDocumentId…
+      description: Request body uses a wrapper object with property name `RetrieveDMSDocument`.
+      operationId: post-api-v1-dmsdocument-retrievedmsdocument
+      requestBody:
+        description: Wrapper request model.
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/RetrieveDMSDocumentDto'
+            example:
+              retrieveDMSDocument:
+                documentId: 0
+                userId: string
+                documentUserClientRefId: string
+                documentUserEntityTypeCode: string
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetrieveDMSDocumentDto'
+            example:
+              retrieveDMSDocument:
+                documentId: 0
+                userId: string
+                documentUserClientRefId: string
+                documentUserEntityTypeCode: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/RetrieveDMSDocumentDto'
+            example:
+              retrieveDMSDocument:
+                documentId: 0
+                userId: string
+                documentUserClientRefId: string
+                documentUserEntityTypeCode: string
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RetrieveDMSDocumentDto'
+            example:
+              retrieveDMSDocument:
+                documentId: 0
+                userId: string
+                documentUserClientRefId: string
+                documentUserEntityTypeCode: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                default:
+                  value: null
+            application/json:
+              schema:
+                type: string
+              example: string
+            text/json:
+              schema:
+                type: string
+              example: string
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LibraryDocumentResponseDto'
+              examples:
+                default:
+                  value: null
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LibraryDocumentResponseDto'
+              example:
+                contentType: string
+                content: string
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LibraryDocumentResponseDto'
+              example:
+                contentType: string
+                content: string
+  /api/v1/DMSDocument/RemoveDMSDocument:
+    post:
+      tags:
+      - DmsDocument
+      summary: Removes a DMS Document record by DocumentId and return 200 OK.
+      description: Request body uses a wrapper object with property name `RemoveDMSDocument`.
+      operationId: post-api-v1-dmsdocument-removedmsdocument
+      requestBody:
+        description: Wrapper request model.
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/RemoveDMSDocumentDto'
+            example:
+              removeDMSDocument:
+                documentId: 0
+                userId: string
+                documentUserClientRefId: string
+                documentUserEntityTypeCode: string
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveDMSDocumentDto'
+            example:
+              removeDMSDocument:
+                documentId: 0
+                userId: string
+                documentUserClientRefId: string
+                documentUserEntityTypeCode: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/RemoveDMSDocumentDto'
+            example:
+              removeDMSDocument:
+                documentId: 0
+                userId: string
+                documentUserClientRefId: string
+                documentUserEntityTypeCode: string
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RemoveDMSDocumentDto'
+            example:
+              removeDMSDocument:
+                documentId: 0
+                userId: string
+                documentUserClientRefId: string
+                documentUserEntityTypeCode: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                default:
+                  value: null
+            application/json:
+              schema:
+                type: string
+              example: string
+            text/json:
+              schema:
+                type: string
+              example: string
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              examples:
+                default:
+                  value: null
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              examples:
+                default:
+                  value: null
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+  /api/v1/DMSDocument/ModifyDMSDocument:
+    post:
+      tags:
+      - DmsDocument
+      summary: Update a DMS Document record by DocumentExtId and return 200 OK.
+      description: Update a DMS Document record by DocumentExtId and return 200 OK. POST is required by client
+      operationId: post-api-v1-dmsdocument-modifydmsdocument
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/DmsDocumentPatchDto'
+            example:
+              documentId: 0
+              documentName: string
+              documentTags: string
+              documentTransactionId: string
+              documentComments: string
+              documentSystemId: string
+              documentUserId: string
+              documentUserClientRefId: string
+              documentUserEntityTypeCode: string
+              documentSize: string
+              documentExtension: string
+              documentCreation: string
+              documentContext: string
+              documentSubject: string
+              documentType: string
+              documentTypeId: 0
+              keyFlag: true
+              sensitiveFlag: true
+              agencyAccessFlag: true
+              principalAccessFlag: true
+              generatedFlag: true
+              documentBusinessProperty:
+              - entityId: 0
+                entityType: string
+                enterpriseId: 0
+                name: string
+                number: string
+                clientReferenceId: string
+                businessSegment: string
+                portfolio: string
+                renewalNumber: 0
+                effectiveDate: string
+                expirationDate: string
+              documentExtId: string
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DmsDocumentPatchDto'
+            example:
+              documentId: 0
+              documentName: string
+              documentTags: string
+              documentTransactionId: string
+              documentComments: string
+              documentSystemId: string
+              documentUserId: string
+              documentUserClientRefId: string
+              documentUserEntityTypeCode: string
+              documentSize: string
+              documentExtension: string
+              documentCreation: string
+              documentContext: string
+              documentSubject: string
+              documentType: string
+              documentTypeId: 0
+              keyFlag: true
+              sensitiveFlag: true
+              agencyAccessFlag: true
+              principalAccessFlag: true
+              generatedFlag: true
+              documentBusinessProperty:
+              - entityId: 0
+                entityType: string
+                enterpriseId: 0
+                name: string
+                number: string
+                clientReferenceId: string
+                businessSegment: string
+                portfolio: string
+                renewalNumber: 0
+                effectiveDate: string
+                expirationDate: string
+              documentExtId: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DmsDocumentPatchDto'
+            example:
+              documentId: 0
+              documentName: string
+              documentTags: string
+              documentTransactionId: string
+              documentComments: string
+              documentSystemId: string
+              documentUserId: string
+              documentUserClientRefId: string
+              documentUserEntityTypeCode: string
+              documentSize: string
+              documentExtension: string
+              documentCreation: string
+              documentContext: string
+              documentSubject: string
+              documentType: string
+              documentTypeId: 0
+              keyFlag: true
+              sensitiveFlag: true
+              agencyAccessFlag: true
+              principalAccessFlag: true
+              generatedFlag: true
+              documentBusinessProperty:
+              - entityId: 0
+                entityType: string
+                enterpriseId: 0
+                name: string
+                number: string
+                clientReferenceId: string
+                businessSegment: string
+                portfolio: string
+                renewalNumber: 0
+                effectiveDate: string
+                expirationDate: string
+              documentExtId: string
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DmsDocumentPatchDto'
+            example:
+              documentId: 0
+              documentName: string
+              documentTags: string
+              documentTransactionId: string
+              documentComments: string
+              documentSystemId: string
+              documentUserId: string
+              documentUserClientRefId: string
+              documentUserEntityTypeCode: string
+              documentSize: string
+              documentExtension: string
+              documentCreation: string
+              documentContext: string
+              documentSubject: string
+              documentType: string
+              documentTypeId: 0
+              keyFlag: true
+              sensitiveFlag: true
+              agencyAccessFlag: true
+              principalAccessFlag: true
+              generatedFlag: true
+              documentBusinessProperty:
+              - entityId: 0
+                entityType: string
+                enterpriseId: 0
+                name: string
+                number: string
+                clientReferenceId: string
+                businessSegment: string
+                portfolio: string
+                renewalNumber: 0
+                effectiveDate: string
+                expirationDate: string
+              documentExtId: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                default:
+                  value: null
+            application/json:
+              schema:
+                type: string
+              example: string
+            text/json:
+              schema:
+                type: string
+              example: string
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              examples:
+                default:
+                  value: null
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              examples:
+                default:
+                  value: null
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: string
+                title: string
+                status: 0
+                detail: string
+                instance: string
+components:
+  schemas:
+    RetrieveDMSDocumentDto:
+      type: object
+      properties:
+        retrieveDMSDocument:
+          $ref: '#/components/schemas/LibraryDocumentRequestDto'
+      additionalProperties: false
+    DmsDocumentDto:
+      type: object
+      properties:
+        dmsDocumentId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    RemoveDMSDocumentDto:
+      type: object
+      properties:
+        removeDMSDocument:
+          $ref: '#/components/schemas/LibraryDocumentRequestDto'
+      additionalProperties: false
+    LibraryDocumentResponseDto:
+      type: object
+      properties:
+        contentType:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    DmsDocumentPatchDto:
+      required:
+      - documentExtId
+      type: object
+      properties:
+        documentId:
+          type: integer
+          format: int32
+        documentName:
+          type:
+          - string
+          - 'null'
+        documentTags:
+          type:
+          - string
+          - 'null'
+        documentTransactionId:
+          type: string
+          format: uuid
+        documentComments:
+          type:
+          - string
+          - 'null'
+        documentSystemId:
+          type:
+          - string
+          - 'null'
+        documentUserId:
+          type:
+          - string
+          - 'null'
+        documentUserClientRefId:
+          type:
+          - string
+          - 'null'
+        documentUserEntityTypeCode:
+          type:
+          - string
+          - 'null'
+        documentSize:
+          type:
+          - string
+          - 'null'
+        documentExtension:
+          type:
+          - string
+          - 'null'
+        documentCreation:
+          type: string
+          format: date-time
+        documentContext:
+          type:
+          - string
+          - 'null'
+        documentSubject:
+          type:
+          - string
+          - 'null'
+        documentType:
+          type:
+          - string
+          - 'null'
+        documentTypeId:
+          type: integer
+          format: int32
+        keyFlag:
+          type: boolean
+        sensitiveFlag:
+          type: boolean
+        agencyAccessFlag:
+          type: boolean
+        principalAccessFlag:
+          type: boolean
+        generatedFlag:
+          type: boolean
+        documentBusinessProperty:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DocumentBusinessPropertyClientDto'
+        documentExtId:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    LibraryDocumentRequestDto:
+      type: object
+      properties:
+        documentId:
+          type: integer
+          format: int32
+        userId:
+          type:
+          - string
+          - 'null'
+        documentUserClientRefId:
+          type:
+          - string
+          - 'null'
+        documentUserEntityTypeCode:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    DmsDocumentPostDto:
+      type: object
+      properties:
+        documentId:
+          type: integer
+          format: int32
+        documentName:
+          type:
+          - string
+          - 'null'
+        documentTags:
+          type:
+          - string
+          - 'null'
+        documentTransactionId:
+          type: string
+          format: uuid
+        documentComments:
+          type:
+          - string
+          - 'null'
+        documentSystemId:
+          type:
+          - string
+          - 'null'
+        documentUserId:
+          type:
+          - string
+          - 'null'
+        documentUserClientRefId:
+          type:
+          - string
+          - 'null'
+        documentUserEntityTypeCode:
+          type:
+          - string
+          - 'null'
+        documentSize:
+          type:
+          - string
+          - 'null'
+        documentExtension:
+          type:
+          - string
+          - 'null'
+        documentCreation:
+          type: string
+          format: date-time
+        documentContext:
+          type:
+          - string
+          - 'null'
+        documentSubject:
+          type:
+          - string
+          - 'null'
+        documentType:
+          type:
+          - string
+          - 'null'
+        documentTypeId:
+          type: integer
+          format: int32
+        keyFlag:
+          type: boolean
+        sensitiveFlag:
+          type: boolean
+        agencyAccessFlag:
+          type: boolean
+        principalAccessFlag:
+          type: boolean
+        generatedFlag:
+          type: boolean
+        documentBusinessProperty:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DocumentBusinessPropertyClientDto'
+        documentBinary:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    DocumentBusinessPropertyClientDto:
+      type: object
+      properties:
+        entityId:
+          type: integer
+          format: int32
+        entityType:
+          type:
+          - string
+          - 'null'
+        enterpriseId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        number:
+          type:
+          - string
+          - 'null'
+        clientReferenceId:
+          type:
+          - string
+          - 'null'
+        businessSegment:
+          type:
+          - string
+          - 'null'
+        portfolio:
+          type:
+          - string
+          - 'null'
+        renewalNumber:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        effectiveDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        expirationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: subscriber_id
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

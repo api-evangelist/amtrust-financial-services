@@ -1,0 +1,796 @@
+openapi: 3.2.0
+info:
+  title: Digital Cyber Underwriting API
+  description: Digital Cyber API allows partners to create, edit, and bind Cyber quotes.
+  version: '1.0'
+servers:
+- url: https://gateway.amtrustgroup.com/digital-cyber
+- url: https://prod-apim-gw.amtrustservices.com/digital-cyber
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Underwriting
+paths:
+  /api/v2/quotes/{quoteId}/underwriter-submission:
+    post:
+      tags:
+      - Underwriting
+      summary: Submit quote to underwriter
+      description: 'This endpoint allows user to submit their referred quote to an underwriter for review.
+
+        Please note:
+
+
+        Bind Eligible or Declined quotes cannot be submitted for review
+
+
+        Once quote has been submitted, only the following information can edited, using the PATCH Quote Information endpoint:
+
+
+        Effective Date
+
+
+        Business Name
+
+
+        Insured Contact Information
+
+
+        Website
+
+
+        Mailing Address
+
+
+        Agent Contact
+
+
+        Agent Need By Date is optional; if it is not sent in, the date will be defaulted to two(2) business days from current date'
+      operationId: post-api-v2-quotes-quoteid-underwriter-submission
+      parameters:
+      - name: quoteId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SubmitQuoteRequestDto'
+            example:
+              agentNeedByDate: '2022-09-08'
+              noteToUnderwriter: Hello World
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmitQuoteRequestDto'
+            example:
+              agentNeedByDate: '2022-09-08'
+              noteToUnderwriter: Hello World
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SubmitQuoteRequestDto'
+            example:
+              agentNeedByDate: '2022-09-08'
+              noteToUnderwriter: Hello World
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SubmitQuoteRequestDto'
+            example:
+              agentNeedByDate: '2022-09-08'
+              noteToUnderwriter: Hello World
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: cc89ae2a170a
+                timeStamp: '2026-08-07T11:04:12.0000000+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: c0662be8752d
+                timeStamp: '2026-08-07T11:04:12.0000000+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorIApiResponse'
+              example:
+                responseId: bfa3e9888248
+                timeStamp: '2026-08-07T11:04:12.0000000+00:00'
+                httpStatusCode: 400
+                isOk: false
+                errors:
+                - httpStatusCode: 400
+                  messageCode: ERR-ValidationErr
+                  title: Validation Error
+                  detail: Validation detail message
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmitQuoteResponseDtoIApiResponse'
+              example:
+                businessName: John Doe
+                masterAccountId: 982022
+                submitedDate: '0001-01-01'
+                quoteInformation:
+                  quoteId: 8562098
+                  effectiveDate: '2026-08-07'
+                  product: Cyber
+                  premium: 100.05
+components:
+  schemas:
+    ApiPageRequest:
+      type: object
+      properties:
+        skip:
+          type: integer
+          format: int32
+        take:
+          type: integer
+          format: int32
+        count:
+          type: boolean
+      additionalProperties: false
+    UnauthorizedError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    SubmitQuoteResponseDto:
+      type: object
+      properties:
+        businessName:
+          type:
+          - string
+          - 'null'
+        masterAccountId:
+          type: integer
+          format: int32
+        submitedDate:
+          type: string
+          format: date-time
+        quoteInformation:
+          $ref: '#/components/schemas/QuoteSubmissionInfo'
+      additionalProperties: false
+    ApiPaging:
+      type: object
+      properties:
+        request:
+          $ref: '#/components/schemas/ApiPageRequest'
+        response:
+          $ref: '#/components/schemas/ApiPageResponse'
+      additionalProperties: false
+    SubmitQuoteResponseDtoIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/SubmitQuoteResponseDto'
+      additionalProperties: false
+    ApiMessageType:
+      enum:
+      - 0 = Info
+      - 1 = Error
+      type: integer
+      format: int32
+    UnauthorizedErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/UnauthorizedError'
+      additionalProperties: false
+    ApiPageResponse:
+      type: object
+      properties:
+        first:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+        current:
+          type:
+          - string
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        last:
+          type:
+          - string
+          - 'null'
+        pageSize:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    BadRequestErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/BadRequestError'
+      additionalProperties: false
+    BadRequestError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        detail:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    LogException:
+      type: object
+      properties:
+        exceptionId:
+          type: string
+          format: uuid
+        module:
+          type:
+          - string
+          - 'null'
+        class:
+          type:
+          - string
+          - 'null'
+        targetSite:
+          type:
+          - string
+          - 'null'
+        httpWebEventCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatusValue:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatusCode:
+          type:
+          - string
+          - 'null'
+        httpHtmlMessage:
+          type:
+          - string
+          - 'null'
+        properties:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+        innerException:
+          $ref: '#/components/schemas/LogException'
+        message:
+          type:
+          - string
+          - 'null'
+        source:
+          type:
+          - string
+          - 'null'
+        stackTrace:
+          type:
+          - string
+          - 'null'
+        helpLink:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+        data:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+        errorCode:
+          type:
+          - string
+          - 'null'
+        exceptionType:
+          type:
+          - string
+          - 'null'
+        baseException:
+          $ref: '#/components/schemas/LogException'
+      additionalProperties: false
+    SubmitQuoteRequestDto:
+      required:
+      - noteToUnderwriter
+      type: object
+      properties:
+        agentNeedByDate:
+          type:
+          - string
+          - 'null'
+          format: date
+        noteToUnderwriter:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    ForbiddenErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/ForbiddenError'
+      additionalProperties: false
+    ApiMessage:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        title:
+          type:
+          - string
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        isOk:
+          type: boolean
+        needsSanitization:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    QuoteSubmissionInfo:
+      type: object
+      properties:
+        quoteId:
+          type: integer
+          format: int32
+        effectiveDate:
+          type: string
+          format: date-time
+        product:
+          type:
+          - string
+          - 'null'
+        premium:
+          type: number
+          format: double
+      additionalProperties: false
+    HttpStatusCode:
+      enum:
+      - 100 = Continue
+      - 101 = SwitchingProtocols
+      - 102 = Processing
+      - 103 = EarlyHints
+      - 200 = OK
+      - 201 = Created
+      - 202 = Accepted
+      - 203 = NonAuthoritativeInformation
+      - 204 = NoContent
+      - 205 = ResetContent
+      - 206 = PartialContent
+      - 207 = MultiStatus
+      - 208 = AlreadyReported
+      - 226 = IMUsed
+      - 300 = MultipleChoices
+      - 300 = Ambiguous
+      - 301 = MovedPermanently
+      - 301 = Moved
+      - 302 = Found
+      - 302 = Redirect
+      - 303 = SeeOther
+      - 303 = RedirectMethod
+      - 304 = NotModified
+      - 305 = UseProxy
+      - 306 = Unused
+      - 307 = TemporaryRedirect
+      - 307 = RedirectKeepVerb
+      - 308 = PermanentRedirect
+      - 400 = BadRequest
+      - 401 = Unauthorized
+      - 402 = PaymentRequired
+      - 403 = Forbidden
+      - 404 = NotFound
+      - 405 = MethodNotAllowed
+      - 406 = NotAcceptable
+      - 407 = ProxyAuthenticationRequired
+      - 408 = RequestTimeout
+      - 409 = Conflict
+      - 410 = Gone
+      - 411 = LengthRequired
+      - 412 = PreconditionFailed
+      - 413 = RequestEntityTooLarge
+      - 414 = RequestUriTooLong
+      - 415 = UnsupportedMediaType
+      - 416 = RequestedRangeNotSatisfiable
+      - 417 = ExpectationFailed
+      - 421 = MisdirectedRequest
+      - 422 = UnprocessableEntity
+      - 422 = UnprocessableContent
+      - 423 = Locked
+      - 424 = FailedDependency
+      - 426 = UpgradeRequired
+      - 428 = PreconditionRequired
+      - 429 = TooManyRequests
+      - 431 = RequestHeaderFieldsTooLarge
+      - 451 = UnavailableForLegalReasons
+      - 500 = InternalServerError
+      - 501 = NotImplemented
+      - 502 = BadGateway
+      - 503 = ServiceUnavailable
+      - 504 = GatewayTimeout
+      - 505 = HttpVersionNotSupported
+      - 506 = VariantAlsoNegotiates
+      - 507 = InsufficientStorage
+      - 508 = LoopDetected
+      - 510 = NotExtended
+      - 511 = NetworkAuthenticationRequired
+      type: integer
+      format: int32
+    ForbiddenError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: subscriber_id
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

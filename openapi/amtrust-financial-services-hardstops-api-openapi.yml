@@ -1,0 +1,76 @@
+openapi: 3.2.0
+info:
+  title: RCEWebAPI - Prod Hard Stops API
+  description: An API for Reinsurrance Contracts Entry
+  version: '1.0'
+servers:
+- url: https://gateway.amtrustgroup.com/RCEAPI
+- url: https://prod-apim-gw.amtrustservices.com/RCEAPI
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: HardStops
+paths:
+  /api/v{version}/HardStops/HSReport:
+    get:
+      tags:
+      - HardStops
+      summary: HardStops_HSReport
+      operationId: HardStops_HSReport
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/HardStops/HSFile:
+    get:
+      tags:
+      - HardStops
+      summary: HardStops_HSFile
+      operationId: HardStops_HSFile
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: type
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: subscriber_id
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

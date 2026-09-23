@@ -1,0 +1,3221 @@
+openapi: 3.2.0
+info:
+  title: Amtrust Financial Services Payment Plans API
+  version: '1.0'
+  description: 'Operations tagged Payment Plans across 2 of this provider''s published API definitions: amtrust-financial-services-digital-bop-api-openapi.json, amtrust-financial-services-digital-cyber-api-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://gateway.amtrustgroup.com/digital-bop
+- url: https://prod-apim-gw.amtrustservices.com/digital-bop
+- url: https://gateway.amtrustgroup.com/digital-cyber
+- url: https://prod-apim-gw.amtrustservices.com/digital-cyber
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Payment Plans
+paths:
+  /api/v1/quotes/{quoteId}/payment-plans:
+    get:
+      tags:
+      - Payment Plans
+      summary: GET Payment Plans
+      description: Retrieve all payment plans available to quote
+      operationId: get-api-v1-quotes-quoteid-payment-plans
+      parameters:
+      - name: quoteId
+        in: path
+        required: true
+        schema:
+          minimum: 1.0
+          type: integer
+          format: int32
+      responses:
+        '401':
+          description: Bad or expired token. To resolve this error, generate a new or refreshed token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: 8a19329b4d6a
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: The authenticated user or client does not have required permissions to complete this request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: 125f704d4987
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentPlanResponseIApiResponse'
+              example:
+                data:
+                  agency:
+                  - paymentPlanId: 1
+                    paymentPlanDescription: Standard Payment In Full
+                    billType: null
+                  - paymentPlanId: 38
+                    paymentPlanDescription: Standard Payment 50% Down + 1 Installment
+                    billType: null
+                  direct:
+                  - paymentPlanId: 13
+                    paymentPlanDescription: Standard Payment In Full
+                    billType: null
+                  - paymentPlanId: 39
+                    paymentPlanDescription: Standard Payment 50% Down + 1 Installment
+                    billType: null
+                responseId: 7fe207b5cd8e
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 201
+                isOk: true
+                messages:
+                - httpStatusCode: 200
+                  messageCode: Deeplink
+                  title: https://devk8s.amtrustgroup.com/usertest/webapp-nexus/AccountManagement/24786342
+                  isOk: true
+                maxMessageIndex: 0
+                _v: AD
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundErrorIApiResponse'
+              example:
+                responseId: 1e734db74b37
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 404
+                isOk: false
+                errors:
+                - httpStatusCode: 404
+                  messageCode: ERR-ItemNotFound
+                  title: Item was not found
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+    post:
+      tags:
+      - Payment Plans
+      summary: Saves selected payment plan to the specific quote
+      operationId: post-api-v1-quotes-quoteid-payment-plans
+      parameters:
+      - name: quoteId
+        in: path
+        required: true
+        schema:
+          minimum: 1.0
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CreatePaymentPlanRequest'
+            example:
+              paymentPlanId: 0
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePaymentPlanRequest'
+            example:
+              paymentPlanId: 0
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreatePaymentPlanRequest'
+            example:
+              paymentPlanId: 0
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreatePaymentPlanRequest'
+            example:
+              paymentPlanId: 0
+      responses:
+        '401':
+          description: Bad or expired token. To resolve this error, generate a new or refreshed token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: 7bcc02d3c79d
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: The authenticated user or client does not have required permissions to complete this request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: 51358779da79
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentPlanPostResponseIApiResponse'
+              example:
+                responseId: 4dfe151fb54a
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 201
+                isOk: true
+                messages:
+                - httpStatusCode: 200
+                  messageCode: Deeplink
+                  title: https://devk8s.amtrustgroup.com/usertest/webapp-nexus/AccountManagement/24786342
+                  isOk: true
+                - httpStatusCode: 200
+                  messageCode: SUCCESS
+                  title: Payment plan successfully saved
+                  isOk: true
+                maxMessageIndex: 0
+                _v: AD
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundErrorIApiResponse'
+              example:
+                responseId: 9c7c223be4d6
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 404
+                isOk: false
+                errors:
+                - httpStatusCode: 404
+                  messageCode: ERR-ItemNotFound
+                  title: Item was not found
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+    servers:
+    - url: https://gateway.amtrustgroup.com/digital-bop
+    - url: https://prod-apim-gw.amtrustservices.com/digital-bop
+  /api/v1/policies/{policy}/payment-plans/direct-debit:
+    post:
+      tags:
+      - Payment Plans
+      summary: Save Direct Debit Information
+      description: Allows user to save their bank account information for direct debit payments
+      operationId: post-api-v1-policies-policy-payment-plans-direct-debit
+      parameters:
+      - name: policy
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PostDirectDebitRequest'
+            example:
+              nameOnAccount: Business Bank Account
+              routingNumber: '011111037'
+              accountNumber: '123453211111'
+              email: business@email.com
+              accountType: '1'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostDirectDebitRequest'
+            example:
+              nameOnAccount: Business Bank Account
+              routingNumber: '011111037'
+              accountNumber: '123453211111'
+              email: business@email.com
+              accountType: '1'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostDirectDebitRequest'
+            example:
+              nameOnAccount: Business Bank Account
+              routingNumber: '011111037'
+              accountNumber: '123453211111'
+              email: business@email.com
+              accountType: '1'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostDirectDebitRequest'
+            example:
+              nameOnAccount: Business Bank Account
+              routingNumber: '011111037'
+              accountNumber: '123453211111'
+              email: business@email.com
+              accountType: '1'
+      responses:
+        '401':
+          description: Bad or expired token. To resolve this error, generate a new or refreshed token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: b714c7e0ed79
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: The authenticated user or client does not have required permissions to complete this request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: df328cb02806
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostDirectDebitResponseIApiResponse'
+              example:
+                data:
+                  nameOnAccount: Business Bank Account
+                  accountNumber: '123453211111'
+                  routingNumber: '011111037'
+                  email: business@email.com
+                  accountType: 1
+                  bankName: Bank name
+                responseId: 81be133692bd
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 201
+                isOk: true
+                _v: AD
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundErrorIApiResponse'
+              example:
+                responseId: 090a1729b42d
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 404
+                isOk: false
+                errors:
+                - httpStatusCode: 404
+                  messageCode: ERR-ItemNotFound
+                  title: Item was not found
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorIApiResponse'
+              example:
+                responseId: 1d629a02c67e
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 400
+                isOk: false
+                errors:
+                - httpStatusCode: 400
+                  messageCode: ERR-ValidationErr
+                  title: Validation Error
+                  detail: Validation detail message
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+    servers:
+    - url: https://gateway.amtrustgroup.com/digital-bop
+    - url: https://prod-apim-gw.amtrustservices.com/digital-bop
+  /api/v1/policies/{policy}/PaymentPlans/DirectDebit/Documents:
+    post:
+      tags:
+      - Payment Plans
+      summary: Upload Direct Debit Documents
+      description: Allows user to upload the EFT form and/or the voided check necessary to use direct debit as a payment plan
+      operationId: post-api-v1-policies-policy-paymentplans-directdebit-documents
+      parameters:
+      - name: policy
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PostDirectDebitDocRequest'
+            example:
+              displayName: string
+              windowsFileType: string
+              fileData: string
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostDirectDebitDocRequest'
+            example:
+              displayName: string
+              windowsFileType: string
+              fileData: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostDirectDebitDocRequest'
+            example:
+              displayName: string
+              windowsFileType: string
+              fileData: string
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostDirectDebitDocRequest'
+            example:
+              displayName: string
+              windowsFileType: string
+              fileData: string
+      responses:
+        '401':
+          description: Bad or expired token. To resolve this error, generate a new or refreshed token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: f9c4b86f48bb
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: The authenticated user or client does not have required permissions to complete this request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: 551bf05ca3f4
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostDirectDebitDocResponseIApiResponse'
+              example:
+                data:
+                  libraryId: 123456
+                responseId: 73e38c4dc73c
+                timeStamp: '2026-07-23T11:04:42.0000000+00:00'
+                httpStatusCode: 200
+                isOk: true
+                messages:
+                - httpStatusCode: 200
+                  messageCode: Deeplink
+                  title: https://devk8s.amtrustgroup.com/usertest/webapp-nexus/AccountManagement/24786342
+                  isOk: true
+                - httpStatusCode: 200
+                  detail: Documentation Saved
+                  isOk: true
+                maxMessageIndex: 0
+                _v: AD
+    servers:
+    - url: https://gateway.amtrustgroup.com/digital-bop
+    - url: https://prod-apim-gw.amtrustservices.com/digital-bop
+  /api/v1/policies/{policy}/PaymentPlans/DirectDebit:
+    post:
+      tags:
+      - Payment Plans
+      summary: Save Direct Debit Information
+      description: Allows user to save their bank account information for direct debit payments
+      operationId: post-api-v1-policies-policy-paymentplans-directdebit
+      parameters:
+      - name: policy
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PostDirectDebitRequest'
+            example:
+              nameOnAccount: Business Bank Account
+              routingNumber: '011111037'
+              accountNumber: '123453211111'
+              email: business@email.com
+              accountType: '1'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostDirectDebitRequest'
+            example:
+              nameOnAccount: Business Bank Account
+              routingNumber: '011111037'
+              accountNumber: '123453211111'
+              email: business@email.com
+              accountType: '1'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostDirectDebitRequest'
+            example:
+              nameOnAccount: Business Bank Account
+              routingNumber: '011111037'
+              accountNumber: '123453211111'
+              email: business@email.com
+              accountType: '1'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostDirectDebitRequest'
+            example:
+              nameOnAccount: Business Bank Account
+              routingNumber: '011111037'
+              accountNumber: '123453211111'
+              email: business@email.com
+              accountType: '1'
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse_2'
+              example:
+                responseId: 464fc4fe9dd5
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse_2'
+              example:
+                responseId: c4333d970215
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorIApiResponse_2'
+              example:
+                responseId: f2bd3e6f1816
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 400
+                isOk: false
+                errors:
+                - httpStatusCode: 400
+                  messageCode: ERR-ValidationErr
+                  title: Validation Error
+                  detail: Validation detail message
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostDirectDebitResponseIApiResponse_2'
+              example:
+                data:
+                  nameOnAccount: Business Bank Account
+                  accountNumber: '123453211111'
+                  routingNumber: '011111037'
+                  email: business@email.com
+                  accountType: 1
+                  bankName: Bank name
+                responseId: 9fb19da1d83b
+                timeStamp: '2026-08-07T11:04:11.0000000+00:00'
+                httpStatusCode: 201
+                isOk: true
+                _v: AD
+    servers:
+    - url: https://gateway.amtrustgroup.com/digital-cyber
+    - url: https://prod-apim-gw.amtrustservices.com/digital-cyber
+components:
+  schemas:
+    UnauthorizedError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messageType:
+          enum:
+          - 0 = Info
+          - 1 = Error
+          type: integer
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+          readOnly: true
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    LogException:
+      type: object
+      properties:
+        exceptionId:
+          type: string
+          format: uuid
+        module:
+          type:
+          - string
+          - 'null'
+        class:
+          type:
+          - string
+          - 'null'
+        targetSite:
+          type:
+          - string
+          - 'null'
+        httpWebEventCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatusValue:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatusCode:
+          type:
+          - string
+          - 'null'
+        httpHtmlMessage:
+          type:
+          - string
+          - 'null'
+        properties:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+        innerException:
+          $ref: '#/components/schemas/LogException'
+        message:
+          type:
+          - string
+          - 'null'
+        source:
+          type:
+          - string
+          - 'null'
+        stackTrace:
+          type:
+          - string
+          - 'null'
+        helpLink:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+        data:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+        errorCode:
+          type:
+          - string
+          - 'null'
+        exceptionType:
+          type:
+          - string
+          - 'null'
+        baseException:
+          $ref: '#/components/schemas/LogException'
+      additionalProperties: false
+    NotFoundErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/NotFoundError'
+      additionalProperties: false
+    PaymentPlanResponseIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/PaymentPlanResponse'
+      additionalProperties: false
+    CreatePaymentPlanRequest:
+      required:
+      - paymentPlanId
+      type: object
+      properties:
+        paymentPlanId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ApiPageRequest:
+      type: object
+      properties:
+        skip:
+          type: integer
+          format: int32
+        take:
+          type: integer
+          format: int32
+        count:
+          type: boolean
+      additionalProperties: false
+    PaymentPlanPostResponse:
+      type: object
+      additionalProperties: false
+    ApiPaging:
+      type: object
+      properties:
+        request:
+          $ref: '#/components/schemas/ApiPageRequest'
+        response:
+          $ref: '#/components/schemas/ApiPageResponse'
+      additionalProperties: false
+    BadRequestError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messageType:
+          enum:
+          - 0 = Info
+          - 1 = Error
+          type: integer
+          format: int32
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+          readOnly: true
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        detail:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    ApiPageResponse:
+      type: object
+      properties:
+        first:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+        current:
+          type:
+          - string
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        last:
+          type:
+          - string
+          - 'null'
+        pageSize:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messageType:
+          enum:
+          - 0 = Info
+          - 1 = Error
+          type: integer
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+          readOnly: true
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    PostDirectDebitResponse:
+      type: object
+      properties:
+        nameOnAccount:
+          type:
+          - string
+          - 'null'
+        accountNumber:
+          type:
+          - string
+          - 'null'
+        routingNumber:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        accountType:
+          enum:
+          - 1 = Checking
+          - 2 = Savings
+          type: integer
+          format: int32
+        bankName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PaymentPlan:
+      type: object
+      properties:
+        paymentPlanId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        paymentPlanDescription:
+          type:
+          - string
+          - 'null'
+        billType:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ForbiddenError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messageType:
+          enum:
+          - 0 = Info
+          - 1 = Error
+          type: integer
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+          readOnly: true
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    PaymentPlanResponse:
+      type: object
+      properties:
+        agency:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PaymentPlan'
+        direct:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PaymentPlan'
+      additionalProperties: false
+    PostDirectDebitRequest:
+      required:
+      - accountNumber
+      - email
+      - nameOnAccount
+      - routingNumber
+      type: object
+      properties:
+        nameOnAccount:
+          minLength: 1
+          type: string
+        routingNumber:
+          minLength: 1
+          type: string
+        accountNumber:
+          minLength: 1
+          type: string
+        email:
+          minLength: 1
+          type: string
+        accountType:
+          type:
+          - string
+          - 'null'
+          description: 1 = Checking , 2 = Savings
+      additionalProperties: false
+    PostDirectDebitDocResponseIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/PostDirectDebitDocResponse'
+      additionalProperties: false
+    UnauthorizedErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/UnauthorizedError'
+      additionalProperties: false
+    ForbiddenErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/ForbiddenError'
+      additionalProperties: false
+    PaymentPlanPostResponseIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/PaymentPlanPostResponse'
+      additionalProperties: false
+    ApiMessage:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messageCode:
+          type:
+          - string
+          - 'null'
+        messageType:
+          enum:
+          - 0 = Info
+          - 1 = Error
+          type: integer
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        isOk:
+          type: boolean
+        needsSanitization:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    PostDirectDebitDocResponse:
+      type: object
+      properties:
+        libraryId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    BadRequestErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/BadRequestError'
+      additionalProperties: false
+    PostDirectDebitResponseIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/PostDirectDebitResponse'
+      additionalProperties: false
+    PostDirectDebitDocRequest:
+      type: object
+      properties:
+        displayName:
+          type:
+          - string
+          - 'null'
+        windowsFileType:
+          type:
+          - string
+          - 'null'
+        fileData:
+          type:
+          - string
+          - 'null'
+          format: byte
+      additionalProperties: false
+    UnauthorizedError_2:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    HttpStatusCode:
+      enum:
+      - 100 = Continue
+      - 101 = SwitchingProtocols
+      - 102 = Processing
+      - 103 = EarlyHints
+      - 200 = OK
+      - 201 = Created
+      - 202 = Accepted
+      - 203 = NonAuthoritativeInformation
+      - 204 = NoContent
+      - 205 = ResetContent
+      - 206 = PartialContent
+      - 207 = MultiStatus
+      - 208 = AlreadyReported
+      - 226 = IMUsed
+      - 300 = MultipleChoices
+      - 300 = Ambiguous
+      - 301 = MovedPermanently
+      - 301 = Moved
+      - 302 = Found
+      - 302 = Redirect
+      - 303 = SeeOther
+      - 303 = RedirectMethod
+      - 304 = NotModified
+      - 305 = UseProxy
+      - 306 = Unused
+      - 307 = TemporaryRedirect
+      - 307 = RedirectKeepVerb
+      - 308 = PermanentRedirect
+      - 400 = BadRequest
+      - 401 = Unauthorized
+      - 402 = PaymentRequired
+      - 403 = Forbidden
+      - 404 = NotFound
+      - 405 = MethodNotAllowed
+      - 406 = NotAcceptable
+      - 407 = ProxyAuthenticationRequired
+      - 408 = RequestTimeout
+      - 409 = Conflict
+      - 410 = Gone
+      - 411 = LengthRequired
+      - 412 = PreconditionFailed
+      - 413 = RequestEntityTooLarge
+      - 414 = RequestUriTooLong
+      - 415 = UnsupportedMediaType
+      - 416 = RequestedRangeNotSatisfiable
+      - 417 = ExpectationFailed
+      - 421 = MisdirectedRequest
+      - 422 = UnprocessableEntity
+      - 422 = UnprocessableContent
+      - 423 = Locked
+      - 424 = FailedDependency
+      - 426 = UpgradeRequired
+      - 428 = PreconditionRequired
+      - 429 = TooManyRequests
+      - 431 = RequestHeaderFieldsTooLarge
+      - 451 = UnavailableForLegalReasons
+      - 500 = InternalServerError
+      - 501 = NotImplemented
+      - 502 = BadGateway
+      - 503 = ServiceUnavailable
+      - 504 = GatewayTimeout
+      - 505 = HttpVersionNotSupported
+      - 506 = VariantAlsoNegotiates
+      - 507 = InsufficientStorage
+      - 508 = LoopDetected
+      - 510 = NotExtended
+      - 511 = NetworkAuthenticationRequired
+      type: integer
+      format: int32
+    BadRequestError_2:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        detail:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    PostDirectDebitResponse_2:
+      type: object
+      properties:
+        nameOnAccount:
+          type:
+          - string
+          - 'null'
+        accountNumber:
+          type:
+          - string
+          - 'null'
+        routingNumber:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        accountType:
+          $ref: '#/components/schemas/AccountType'
+        bankName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    AccountType:
+      enum:
+      - 1 = Checking
+      - 2 = Savings
+      type: integer
+      format: int32
+    ForbiddenError_2:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    PostDirectDebitDocResponseIApiResponse_2:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/PostDirectDebitDocResponse'
+      additionalProperties: false
+    ApiMessageType:
+      enum:
+      - 0 = Info
+      - 1 = Error
+      type: integer
+      format: int32
+    UnauthorizedErrorIApiResponse_2:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/UnauthorizedError_2'
+      additionalProperties: false
+    ForbiddenErrorIApiResponse_2:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/ForbiddenError_2'
+      additionalProperties: false
+    ApiMessage_2:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        title:
+          type:
+          - string
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        isOk:
+          type: boolean
+        needsSanitization:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    BadRequestErrorIApiResponse_2:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/BadRequestError_2'
+      additionalProperties: false
+    PostDirectDebitResponseIApiResponse_2:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/PostDirectDebitResponse_2'
+      additionalProperties: false
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: subscriber_id
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+x-refined-from:
+- amtrust-financial-services-digital-bop-api-openapi.json
+- amtrust-financial-services-digital-cyber-api-openapi.json

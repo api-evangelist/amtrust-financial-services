@@ -1,0 +1,135 @@
+openapi: 3.2.0
+info:
+  title: RCEWebAPI - Prod Action Log API
+  description: An API for Reinsurrance Contracts Entry
+  version: '1.0'
+servers:
+- url: https://gateway.amtrustgroup.com/RCEAPI
+- url: https://prod-apim-gw.amtrustservices.com/RCEAPI
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Action Log
+paths:
+  /api/v{version}/ActionLog/ActionLogs:
+    post:
+      tags:
+      - Action Log
+      summary: ActionLog_ActionLogs
+      operationId: ActionLog_ActionLogs
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActionLogDto'
+            example:
+              businessSegment: string
+              createdDateFrom: string
+              createdDateTo: string
+              contractName: string
+              filter:
+              - string
+              contractLineId: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/ActionLog/ActionLogsFile:
+    post:
+      tags:
+      - Action Log
+      summary: ActionLog_GetFile
+      operationId: ActionLog_GetFile
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: type
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActionLogDto'
+            example:
+              businessSegment: string
+              createdDateFrom: string
+              createdDateTo: string
+              contractName: string
+              filter:
+              - string
+              contractLineId: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+components:
+  schemas:
+    ActionLogDto:
+      type: object
+      properties:
+        businessSegment:
+          type:
+          - string
+          - 'null'
+        createdDateFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createdDateTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        contractName:
+          type:
+          - string
+          - 'null'
+        filter:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contractLineId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: subscriber_id
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

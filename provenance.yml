@@ -7,32 +7,44 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   authentication/amtrust-financial-services-authentication.yml:
-    method: derived
+    method: searched
     evidence: declared in the artifact
   collections/amtrust-financial-services-appetite-api.opencollection.json:
-    method: derived
-    evidence: openapi/amtrust-financial-services-appetite-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amtrust-financial-services-appetite-api.postman_collection.json:
-    method: derived
-    evidence: openapi/amtrust-financial-services-appetite-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amtrust-financial-services-authentication-api.opencollection.json:
-    method: derived
-    evidence: openapi/amtrust-financial-services-authentication-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amtrust-financial-services-authentication-api.postman_collection.json:
-    method: derived
-    evidence: openapi/amtrust-financial-services-authentication-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amtrust-financial-services-policies-api.opencollection.json:
-    method: derived
-    evidence: openapi/amtrust-financial-services-policies-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amtrust-financial-services-policies-api.postman_collection.json:
-    method: derived
-    evidence: openapi/amtrust-financial-services-policies-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amtrust-financial-services-quotes-api.opencollection.json:
-    method: derived
-    evidence: openapi/amtrust-financial-services-quotes-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amtrust-financial-services-quotes-api.postman_collection.json:
+    method: unknown
+    evidence: no authorship recorded
+  conformance/amtrust-financial-services-conformance.yml:
     method: derived
-    evidence: openapi/amtrust-financial-services-quotes-api
+    evidence: declared in the artifact
+  conventions/amtrust-financial-services-conventions.yml:
+    method: derived
+    evidence: declared in the artifact
+  data-model/amtrust-financial-services-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/amtrust-financial-services-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   examples/amtrust-financial-services-appetite-request-example.json:
     method: unknown
     evidence: no authorship recorded
@@ -93,70 +105,7 @@ artifacts:
   json-structure/amtrust-financial-services-quote-response-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-23T094130.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-23T182523.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-26T223651.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-27T083119.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-27T190208.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T115055.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T170848.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T172558.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T192327.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T200725.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T133250.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T151044.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T162206.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T202106.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T163141.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T163302.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T171935.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-03T113057.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-03T161012.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-04T083143.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-05T153418.yml:
+  kin/checks-2026-09-05T072335.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-06T210741.yml:
@@ -240,33 +189,165 @@ artifacts:
   kin/score-2026-08-28T221322.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  openapi/amtrust-financial-services-appetite-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/amtrust-financial-services-authentication-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/amtrust-financial-services-policies-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/amtrust-financial-services-quotes-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  plans/amtrust-financial-services-plans-pricing.yml:
+  kin/score-2026-08-29T213958.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-29T230545.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-30T203505.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-30T220315.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-31T223420.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T063623.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T210448.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T222808.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-02T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-02T224043.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-03T161828.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-03T174231.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T062714.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T212454.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T224856.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T055819.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T072335.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  lifecycle/amtrust-financial-services-lifecycle.yml:
+    method: derived
+    evidence: declared in the artifact
+  llms/amtrust-financial-services-llms.txt:
+    method: searched
+    evidence: 'derive-llms-provenance.py: harvested'
+  mcp/amtrust-financial-services-mcp.yml:
+    method: derived
+    evidence: declared in the artifact
+  openapi/_original/amtrust-financial-services-conversa-engine-api-openapi.json:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/amtrust-financial-services-digital-bop-api-openapi.json:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/amtrust-financial-services-digital-cyber-api-openapi.json:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/amtrust-financial-services-digital-es-api-openapi.json:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/amtrust-financial-services-digital-pac-api-openapi.json:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/amtrust-financial-services-digital-wc-api-openapi.json:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/amtrust-financial-services-experience-claims-medical-case-api-openapi.json:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/amtrust-financial-services-experience-next-gen-bond-pro-api-openapi.json:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/amtrust-financial-services-reinsurance-contract-entry-api-openapi.json:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/amtrust-financial-services-conversa-engine-api-openapi.json:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amtrust-financial-services-digital-bop-api-openapi.json:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amtrust-financial-services-digital-cyber-api-openapi.json:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amtrust-financial-services-digital-es-api-openapi.json:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amtrust-financial-services-digital-pac-api-openapi.json:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amtrust-financial-services-digital-wc-api-openapi.json:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amtrust-financial-services-experience-claims-medical-case-api-openapi.json:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amtrust-financial-services-experience-next-gen-bond-pro-api-openapi.json:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amtrust-financial-services-reinsurance-contract-entry-api-openapi.json:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  overlays/amtrust-financial-services-conversa-engine-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/amtrust-financial-services-digital-bop-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/amtrust-financial-services-digital-cyber-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/amtrust-financial-services-digital-es-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/amtrust-financial-services-digital-pac-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/amtrust-financial-services-digital-wc-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/amtrust-financial-services-experience-claims-medical-case-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/amtrust-financial-services-experience-next-gen-bond-pro-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/amtrust-financial-services-reinsurance-contract-entry-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  packages/amtrust-financial-services-packages.yml:
+    method: searched
+    evidence: declared in the artifact
+  plans/amtrust-financial-services-plans-pricing.yml:
+    method: unknown
+    evidence: no authorship recorded
   postman/amtrust-financial-services-appetite-api.postman_collection.json:
-    method: derived
-    evidence: openapi/amtrust-financial-services-appetite-api
+    method: unknown
+    evidence: no authorship recorded
   postman/amtrust-financial-services-authentication-api.postman_collection.json:
-    method: derived
-    evidence: openapi/amtrust-financial-services-authentication-api
+    method: unknown
+    evidence: no authorship recorded
   postman/amtrust-financial-services-policies-api.postman_collection.json:
-    method: derived
-    evidence: openapi/amtrust-financial-services-policies-api
+    method: unknown
+    evidence: no authorship recorded
   postman/amtrust-financial-services-quotes-api.postman_collection.json:
-    method: derived
-    evidence: openapi/amtrust-financial-services-quotes-api
+    method: unknown
+    evidence: no authorship recorded
   press/2026-05-25-01-amtrust-improves-outcomes-for-injured-employees-with.md:
     method: unknown
     evidence: no authorship recorded
@@ -283,13 +364,19 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   rate-limits/amtrust-financial-services-rate-limits.yml:
-    method: generated
-    evidence: declared in the artifact
+    method: unknown
+    evidence: no authorship recorded
   rules/amtrust-financial-services-jsonschema-spectral-rules.yml:
     method: generated
     evidence: declared in the artifact
   rules/amtrust-financial-services-spectral-rules.yml:
     method: generated
+    evidence: declared in the artifact
+  sandbox/amtrust-financial-services-sandbox.yml:
+    method: unknown
+    evidence: no authorship recorded
+  scopes/amtrust-financial-services-scopes.yml:
+    method: searched
     evidence: declared in the artifact
   search/2026-05-25-01-ai-and-the-insurance-industry.md:
     method: unknown
@@ -310,8 +397,32 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   security/amtrust-financial-services-vulnerability-disclosure.yml:
-    method: searched
+    method: unknown
+    evidence: no authorship recorded
+  skills/_index.yml:
+    method: generated
+    evidence: declared in the artifact
+  skills/amtrust-financial-services-bop-quote-to-bind.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/amtrust-financial-services-claims-medical-case.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/amtrust-financial-services-cyber-quote-to-bind.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/amtrust-financial-services-wc-quote-to-bind.md:
+    method: generated
     evidence: declared in the artifact
   vocabulary/amtrust-financial-services-vocabulary.yaml:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amtrust-financial-services-openid-configuration.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amtrust-financial-services-uat-openid-configuration.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amtrust-financial-services-well-known.yml:
     method: unknown
     evidence: no authorship recorded

@@ -1,0 +1,1162 @@
+openapi: 3.2.0
+info:
+  title: Digital PAC Liability Limits API
+  description: Digital PAC API allows users to submit, rate, quote and bind policies, and match the insured’s exposures with a wide range of optional and enhanced coverages.
+  version: '1.0'
+servers:
+- url: https://gateway.amtrustgroup.com/digital-pac
+- url: https://prod-apim-gw.amtrustservices.com/digital-pac
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Liability Limits
+paths:
+  /api/v1/quotes/{quoteId}/liability-limits:
+    get:
+      tags:
+      - Liability Limits
+      summary: Retrieve Available Liability Limits by Quote
+      description: Returns all general liability limits that are available for the specific quote
+      operationId: get-api-v1-quotes-quoteid-liability-limits
+      parameters:
+      - name: quoteId
+        in: path
+        description: Format - int32.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '401':
+          description: Bad or expired token. To resolve this error, generate a new or refreshed token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: d61f51f8b311
+                timeStamp: '2023-08-25T01:04:41.5833659+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: The authenticated user or client does not have required permissions to complete this request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: eac02409545a
+                timeStamp: '2023-08-25T01:04:41.5835689+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundErrorIApiResponse'
+              example:
+                responseId: 5fbb884dc8a6
+                timeStamp: '2023-08-25T01:04:41.5837225+00:00'
+                httpStatusCode: 404
+                isOk: false
+                errors:
+                - httpStatusCode: 404
+                  messageCode: ERR-ItemNotFound
+                  title: Item was not found
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiabilityLimitsContainerDtoIApiResponse'
+              example:
+                data:
+                  liabilityOccurrence:
+                    options:
+                    - '100000'
+                    - '300000'
+                    - '500000'
+                    - '1000000'
+                    - '2000000'
+                    default: '1000000'
+                  generalAggregate:
+                    options:
+                    - '100000'
+                    - '200000'
+                    - '300000'
+                    - '500000'
+                    - '600000'
+                    - '1000000'
+                    - '2000000'
+                    - '4000000'
+                    default: '2000000'
+                  productsAggregate:
+                    options:
+                    - '100000'
+                    - '200000'
+                    - '300000'
+                    - '500000'
+                    - '600000'
+                    - '1000000'
+                    - '2000000'
+                    - '4000000'
+                    - Excluded
+                    default: '1000000'
+                  medicalExpense:
+                    options:
+                    - '0'
+                    - '5000'
+                    - '10000'
+                    - '15000'
+                    default: '5000'
+                  damageToPremisesRentedToYou:
+                    options:
+                    - '100000'
+                    - '300000'
+                    - '500000'
+                    - '1000000'
+                    default: '100000'
+                responseId: 7a93ed7fe9ed
+                timeStamp: '2023-08-25T01:04:41.5838541+00:00'
+                httpStatusCode: 200
+                isOk: true
+                _v: AD
+    post:
+      tags:
+      - Liability Limits
+      summary: Add General Liability Limits
+      description: This endpoint saves general liability limits to the quote
+      operationId: post-api-v1-quotes-quoteid-liability-limits
+      parameters:
+      - name: quoteId
+        in: path
+        description: Format - int32.
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PostLiabilityLimitsDto'
+            example:
+              liabilityOccurrence: '1000000'
+              generalAggregate: '2000000'
+              productsAggregate: '50000'
+              medicalExpense: 0 (Excluded)
+              damageToPremisesRentedToYou: 0 (Excluded)
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostLiabilityLimitsDto'
+            example:
+              liabilityOccurrence: '1000000'
+              generalAggregate: '2000000'
+              productsAggregate: '50000'
+              medicalExpense: 0 (Excluded)
+              damageToPremisesRentedToYou: 0 (Excluded)
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostLiabilityLimitsDto'
+            example:
+              liabilityOccurrence: '1000000'
+              generalAggregate: '2000000'
+              productsAggregate: '50000'
+              medicalExpense: 0 (Excluded)
+              damageToPremisesRentedToYou: 0 (Excluded)
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostLiabilityLimitsDto'
+            example:
+              liabilityOccurrence: '1000000'
+              generalAggregate: '2000000'
+              productsAggregate: '50000'
+              medicalExpense: 0 (Excluded)
+              damageToPremisesRentedToYou: 0 (Excluded)
+      responses:
+        '401':
+          description: Bad or expired token. To resolve this error, generate a new or refreshed token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedErrorIApiResponse'
+              example:
+                responseId: 931bce89f6b0
+                timeStamp: '2023-08-25T01:04:41.6199754+00:00'
+                httpStatusCode: 401
+                isOk: false
+                errors:
+                - httpStatusCode: 401
+                  messageCode: ERR-NOTAUTHORIZED
+                  title: Bearer token is not authorized
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '403':
+          description: The authenticated user or client does not have required permissions to complete this request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenErrorIApiResponse'
+              example:
+                responseId: 0542d761f261
+                timeStamp: '2023-08-25T01:04:41.6201055+00:00'
+                httpStatusCode: 403
+                isOk: false
+                errors:
+                - httpStatusCode: 403
+                  messageCode: ERR-FORBIDDEN
+                  title: The token provided does not have permissions for the requested action
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundErrorIApiResponse'
+              example:
+                responseId: e7b3d56c846d
+                timeStamp: '2023-08-25T01:04:41.6202656+00:00'
+                httpStatusCode: 404
+                isOk: false
+                errors:
+                - httpStatusCode: 404
+                  messageCode: ERR-ItemNotFound
+                  title: Item was not found
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostLiabilityLimitsResponseDtoIApiResponse'
+              example:
+                data:
+                  accountInformation:
+                    quoteId: 983428
+                    masterAccountId: 32529301
+                  liabilityLimits:
+                    liabilityOccurrence: '1000000'
+                    generalAggregate: '2000000'
+                    personalAndAdvInjury: '1000000'
+                    productsAggregate: '50000'
+                    medicalExpense: 0 (Excluded)
+                    damageToPremisesRentedToYou: 0 (Excluded)
+                  premiumDetails:
+                    generalLiability:
+                      premium: 1200
+                      taxes: 0
+                    commercialProperty:
+                      premium: 1389
+                      taxes: 1
+                    netPremium: 1
+                responseId: 2a78421739b2
+                timeStamp: '2023-08-25T01:04:41.6204311+00:00'
+                httpStatusCode: 201
+                isOk: true
+                messages:
+                - httpStatusCode: 200
+                  messageCode: Deeplink
+                  title: https://devk8s.amtrustgroup.com/usertest/webapp-nexus/AccountManagement/24786342
+                  isOk: true
+                maxMessageIndex: 0
+                _v: AD
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestErrorIApiResponse'
+              example:
+                responseId: 64fffb858005
+                timeStamp: '2023-08-25T01:04:41.6206070+00:00'
+                httpStatusCode: 400
+                isOk: false
+                errors:
+                - httpStatusCode: 400
+                  messageCode: ERR-ValidationErr
+                  title: Validation Error
+                  detail: Validation detail message
+                  isOk: false
+                maxErrorIndex: 0
+                _v: AD
+components:
+  schemas:
+    UnauthorizedError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    LogException:
+      type: object
+      properties:
+        exceptionId:
+          type: string
+          format: uuid
+        module:
+          type:
+          - string
+          - 'null'
+        class:
+          type:
+          - string
+          - 'null'
+        targetSite:
+          type:
+          - string
+          - 'null'
+        httpWebEventCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatusValue:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatusCode:
+          type:
+          - string
+          - 'null'
+        httpHtmlMessage:
+          type:
+          - string
+          - 'null'
+        properties:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        innerException:
+          $ref: '#/components/schemas/LogException'
+        message:
+          type:
+          - string
+          - 'null'
+        source:
+          type:
+          - string
+          - 'null'
+        stackTrace:
+          type:
+          - string
+          - 'null'
+        helpLink:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+        data:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        errorCode:
+          type:
+          - string
+          - 'null'
+        exceptionType:
+          type:
+          - string
+          - 'null'
+        baseException:
+          $ref: '#/components/schemas/LogException'
+      additionalProperties: false
+    NotFoundErrorIApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/NotFoundError'
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    LiabilityLimitDto:
+      type: object
+      properties:
+        options:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        default:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PostLiabilityLimitsResponseDtoIApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/PostLiabilityLimitsResponseDto'
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    HttpStatusCode:
+      enum:
+      - 100 = Continue
+      - 101 = SwitchingProtocols
+      - 102 = Processing
+      - 103 = EarlyHints
+      - 200 = OK
+      - 201 = Created
+      - 202 = Accepted
+      - 203 = NonAuthoritativeInformation
+      - 204 = NoContent
+      - 205 = ResetContent
+      - 206 = PartialContent
+      - 207 = MultiStatus
+      - 208 = AlreadyReported
+      - 226 = IMUsed
+      - 300 = MultipleChoices
+      - 300 = Ambiguous
+      - 301 = MovedPermanently
+      - 301 = Moved
+      - 302 = Found
+      - 302 = Redirect
+      - 303 = SeeOther
+      - 303 = RedirectMethod
+      - 304 = NotModified
+      - 305 = UseProxy
+      - 306 = Unused
+      - 307 = TemporaryRedirect
+      - 307 = RedirectKeepVerb
+      - 308 = PermanentRedirect
+      - 400 = BadRequest
+      - 401 = Unauthorized
+      - 402 = PaymentRequired
+      - 403 = Forbidden
+      - 404 = NotFound
+      - 405 = MethodNotAllowed
+      - 406 = NotAcceptable
+      - 407 = ProxyAuthenticationRequired
+      - 408 = RequestTimeout
+      - 409 = Conflict
+      - 410 = Gone
+      - 411 = LengthRequired
+      - 412 = PreconditionFailed
+      - 413 = RequestEntityTooLarge
+      - 414 = RequestUriTooLong
+      - 415 = UnsupportedMediaType
+      - 416 = RequestedRangeNotSatisfiable
+      - 417 = ExpectationFailed
+      - 421 = MisdirectedRequest
+      - 422 = UnprocessableEntity
+      - 423 = Locked
+      - 424 = FailedDependency
+      - 426 = UpgradeRequired
+      - 428 = PreconditionRequired
+      - 429 = TooManyRequests
+      - 431 = RequestHeaderFieldsTooLarge
+      - 451 = UnavailableForLegalReasons
+      - 500 = InternalServerError
+      - 501 = NotImplemented
+      - 502 = BadGateway
+      - 503 = ServiceUnavailable
+      - 504 = GatewayTimeout
+      - 505 = HttpVersionNotSupported
+      - 506 = VariantAlsoNegotiates
+      - 507 = InsufficientStorage
+      - 508 = LoopDetected
+      - 510 = NotExtended
+      - 511 = NetworkAuthenticationRequired
+      type: integer
+      format: int32
+    GetLiabilityLimitsDto:
+      type: object
+      properties:
+        liabilityOccurrence:
+          type:
+          - string
+          - 'null'
+        generalAggregate:
+          type:
+          - string
+          - 'null'
+        personalAndAdvInjury:
+          type:
+          - string
+          - 'null'
+        productsAggregate:
+          type:
+          - string
+          - 'null'
+        medicalExpense:
+          type:
+          - string
+          - 'null'
+        damageToPremisesRentedToYou:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ApiPageRequest:
+      type: object
+      properties:
+        skip:
+          type: integer
+          format: int32
+        take:
+          type: integer
+          format: int32
+        count:
+          type: boolean
+      additionalProperties: false
+    ApiPaging:
+      type: object
+      properties:
+        request:
+          $ref: '#/components/schemas/ApiPageRequest'
+        response:
+          $ref: '#/components/schemas/ApiPageResponse'
+      additionalProperties: false
+    PostLiabilityLimitsDto:
+      type: object
+      properties:
+        liabilityOccurrence:
+          type:
+          - string
+          - 'null'
+        generalAggregate:
+          type:
+          - string
+          - 'null'
+        productsAggregate:
+          type:
+          - string
+          - 'null'
+        medicalExpense:
+          type:
+          - string
+          - 'null'
+        damageToPremisesRentedToYou:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    BadRequestError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        detail:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    ApiPageResponse:
+      type: object
+      properties:
+        first:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+        current:
+          type:
+          - string
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        last:
+          type:
+          - string
+          - 'null'
+        pageSize:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    AccountInformation:
+      type: object
+      properties:
+        quoteId:
+          type: integer
+          format: int32
+        masterAccountId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    LiabilityLimitsContainerDtoIApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/LiabilityLimitsContainerDto'
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    PremiumDetailsResponseDto:
+      type: object
+      properties:
+        premium:
+          type: number
+          format: double
+        taxes:
+          type: number
+          format: double
+      additionalProperties: false
+    ForbiddenError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    ApiMessageType:
+      enum:
+      - 0 = Info
+      - 1 = Error
+      type: integer
+      format: int32
+    UnauthorizedErrorIApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UnauthorizedError'
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    ForbiddenErrorIApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ForbiddenError'
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    ApiMessage:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        title:
+          type:
+          - string
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        isOk:
+          type: boolean
+        needsSanitization:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    BadRequestErrorIApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/BadRequestError'
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    PostLiabilityLimitsResponseDto:
+      type: object
+      properties:
+        accountInformation:
+          $ref: '#/components/schemas/AccountInformation'
+        liabilityLimits:
+          $ref: '#/components/schemas/GetLiabilityLimitsDto'
+        premiumDetails:
+          $ref: '#/components/schemas/PremiumDetailsContainerDto'
+      additionalProperties: false
+    LiabilityLimitsContainerDto:
+      type: object
+      properties:
+        liabilityOccurrence:
+          $ref: '#/components/schemas/LiabilityLimitDto'
+        generalAggregate:
+          $ref: '#/components/schemas/LiabilityLimitDto'
+        productsAggregate:
+          $ref: '#/components/schemas/LiabilityLimitDto'
+        medicalExpense:
+          $ref: '#/components/schemas/LiabilityLimitDto'
+        damageToPremisesRentedToYou:
+          $ref: '#/components/schemas/LiabilityLimitDto'
+      additionalProperties: false
+      description: '<ul><li>generalAggregate - The options available for this limit will always be the limit  equal to Occurrence Limit selection, or limit 2X the Occurrence Limit.  Example:  If the Occurrence Limit selected is $500,000 and the limit sent for General Aggregate is NOT $500,000 or $1M, an error throw and the save will not be successful</li>
+
+        <li>productsAggregate - The options available for this limit will always be equal to the following: the General Aggregate selection, the  limit equal to the Occurrence Limit selection, OR Excluded. Example: If General Aggregate selection is $1M, and limit sent for Products Aggregate is NOT $500,000 or $1M, or Excluded, an error will throw and save will not be successful. Please note: If the General Aggregate selection is $500,00 the ONLY options available for the Products Aggregate will be $500,000 or Excluded</li>
+
+        <li>DamageToPremisesRentedToYou - Available options will not exceed the Occurrence Limit selection.  If quote is in NY or NJ, and Occurrence Limit selection is $100,000 ONLY option for this limit will be $100,000</li></ul>
+
+        '
+    PremiumDetailsContainerDto:
+      type: object
+      properties:
+        generalLiability:
+          $ref: '#/components/schemas/PremiumDetailsResponseDto'
+        commercialProperty:
+          $ref: '#/components/schemas/PremiumDetailsResponseDto'
+        netPremium:
+          type: number
+          format: double
+      additionalProperties: false
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: subscriber_id
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

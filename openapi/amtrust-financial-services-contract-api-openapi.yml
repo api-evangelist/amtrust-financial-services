@@ -1,0 +1,4665 @@
+openapi: 3.2.0
+info:
+  title: RCEWebAPI - Prod Contract API
+  description: An API for Reinsurrance Contracts Entry
+  version: '1.0'
+servers:
+- url: https://gateway.amtrustgroup.com/RCEAPI
+- url: https://prod-apim-gw.amtrustservices.com/RCEAPI
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Contract
+paths:
+  /api/v{version}/Contract/WIPContract:
+    put:
+      tags:
+      - Contract
+      summary: Contract_ModifyWIPContract
+      operationId: Contract_ModifyWIPContract
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WipContracts'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+    get:
+      tags:
+      - Contract
+      summary: Contract_GetWIPContract
+      operationId: Contract_GetWIPContract
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+    delete:
+      tags:
+      - Contract
+      summary: Contract_DeleteWIPContract
+      operationId: Contract_DeleteWIPContract
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WipContracts'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/ProdContract:
+    get:
+      tags:
+      - Contract
+      summary: Contract_GetProdContract
+      operationId: Contract_GetProdContract
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+    post:
+      tags:
+      - Contract
+      summary: Contract_ModifyProdContract
+      operationId: Contract_ModifyProdContract
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: isEndorsement
+        in: query
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contracts'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/DownloadData:
+    get:
+      tags:
+      - Contract
+      summary: Contract_RunDownloadData
+      operationId: Contract_RunDownloadData
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/WipContract:
+    post:
+      tags:
+      - Contract
+      summary: Contract_AddWipContract
+      operationId: Contract_AddWipContract
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WipContracts'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/Firms:
+    get:
+      tags:
+      - Contract
+      summary: Contract_GetFirms
+      operationId: Contract_GetFirms
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/Asls:
+    get:
+      tags:
+      - Contract
+      summary: Contract_GetAsls
+      operationId: Contract_GetAsls
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/Email:
+    post:
+      tags:
+      - Contract
+      summary: Contract_SendEmail
+      operationId: Contract_SendEmail
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendEmailDto'
+            example:
+              subject: string
+              body: string
+              group: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/ProdContractForEndorsement:
+    post:
+      tags:
+      - Contract
+      summary: Contract_EndorseProdContract
+      operationId: Contract_EndorseProdContract
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contracts'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/ContractApproving:
+    get:
+      tags:
+      - Contract
+      summary: Contract_ApproveContract
+      operationId: Contract_ApproveContract
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: contractId
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/ContractRejecting:
+    get:
+      tags:
+      - Contract
+      summary: Contract_RejectContract
+      operationId: Contract_RejectContract
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: contractId
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/ContractsApproving:
+    post:
+      tags:
+      - Contract
+      summary: Contract_ApproveContracts
+      operationId: Contract_ApproveContracts
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: integer
+                format: int32
+            example:
+            - 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/ContractsRejecting:
+    post:
+      tags:
+      - Contract
+      summary: Contract_RejectContracts
+      operationId: Contract_RejectContracts
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: integer
+                format: int32
+            example:
+            - 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/BrokerAndReinsurerKeys:
+    get:
+      tags:
+      - Contract
+      summary: Contract_GetBrokerAndReinsurerKeys
+      operationId: Contract_GetBrokerAndReinsurerKeys
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/Contracts:
+    post:
+      tags:
+      - Contract
+      summary: Contract_GetAllContracts
+      operationId: Contract_GetAllContracts
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractSearchDto'
+            example:
+              contractUWYear:
+              - string
+              contract: string
+              contractSuffix: string
+              contractEndmt: string
+              contractNameLayer: string
+              contractNameLayerSort: string
+              specific:
+              - string
+              contractType:
+              - string
+              assumedCeded: string
+              counterParty:
+              - string
+              isSpecificSelection: true
+              sourceType: string
+              pageSize: 0
+              pageNumber: 0
+              pageCount: 0
+              searchMode: string
+              businessSegment: string
+              reinsurers:
+              - string
+              asls:
+              - string
+              brokers:
+              - string
+              effectiveDateFrom: string
+              effectiveDateTo: string
+              lastModifiedFrom: string
+              lastModifiedTo: string
+              automate: string
+              userName: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/CompleteContract:
+    get:
+      tags:
+      - Contract
+      summary: Contract_CompleteContract
+      operationId: Contract_CompleteContract
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/SearchTemplates:
+    get:
+      tags:
+      - Contract
+      summary: Contract_GetSearchTemplates
+      operationId: Contract_GetSearchTemplates
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/SearchTemplate:
+    put:
+      tags:
+      - Contract
+      summary: Contract_PutSearchTemplate
+      operationId: Contract_PutSearchTemplate
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchTemplate'
+            example:
+              id: 0
+              name: string
+              contractNumber: string
+              endorsement: string
+              contractName: string
+              ceded: string
+              contractType: string
+              searchMode: string
+              year: string
+              specific: string
+              source: string
+              businessSegment: string
+              counterParty: string
+              suffix: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+    delete:
+      tags:
+      - Contract
+      summary: Contract_DeleteSearchTemplate
+      operationId: Contract_DeleteSearchTemplate
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchTemplate'
+            example:
+              id: 0
+              name: string
+              contractNumber: string
+              endorsement: string
+              contractName: string
+              ceded: string
+              contractType: string
+              searchMode: string
+              year: string
+              specific: string
+              source: string
+              businessSegment: string
+              counterParty: string
+              suffix: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/WipContractToExcel:
+    post:
+      tags:
+      - Contract
+      summary: Contract_GetWipContractToExcel
+      operationId: Contract_GetWipContractToExcel
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContractToExport'
+            example:
+            - source: string
+              id: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/NewReinsurers:
+    get:
+      tags:
+      - Contract
+      summary: Contract_GetNewReinsurers
+      operationId: Contract_GetNewReinsurers
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: StartDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: EndDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/ExcelToWIP:
+    post:
+      tags:
+      - Contract
+      summary: Contract_GetExceltoWIPContract
+      operationId: Contract_GetExceltoWIPContract
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: EditMode
+        in: header
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendFileToServerDto'
+            example:
+              content: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/FileFormExcelToWIP:
+    post:
+      tags:
+      - Contract
+      summary: Contract_GetExceltoWIPContract2
+      operationId: Contract_GetExceltoWIPContract2
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: EditMode
+        in: header
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                ContentType:
+                  type: string
+                ContentDisposition:
+                  type: string
+                Headers:
+                  $ref: '#/components/schemas/IHeaderDictionary'
+                Length:
+                  type: integer
+                  format: int64
+                Name:
+                  type: string
+                FileName:
+                  type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/DeleteProdContract:
+    get:
+      tags:
+      - Contract
+      summary: Contract_DeleteProdContract
+      operationId: Contract_DeleteProdContract
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: contractKey
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Contract/ChangeProdContractStatus:
+    post:
+      tags:
+      - Contract
+      summary: Contract_ChangeProdContractStatus
+      operationId: Contract_ChangeProdContractStatus
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeProdStatusDto'
+            example:
+              id: 0
+              status: string
+              name: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+components:
+  schemas:
+    SearchTemplate:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        contractNumber:
+          type:
+          - string
+          - 'null'
+        endorsement:
+          type:
+          - string
+          - 'null'
+        contractName:
+          type:
+          - string
+          - 'null'
+        ceded:
+          type:
+          - string
+          - 'null'
+        contractType:
+          type:
+          - string
+          - 'null'
+        searchMode:
+          type:
+          - string
+          - 'null'
+        year:
+          type:
+          - string
+          - 'null'
+        specific:
+          type:
+          - string
+          - 'null'
+        source:
+          type:
+          - string
+          - 'null'
+        businessSegment:
+          type:
+          - string
+          - 'null'
+        counterParty:
+          type:
+          - string
+          - 'null'
+        suffix:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    WipContractASL:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        contractLineID:
+          title: Contract Line ID
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractKey:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        contract:
+          $ref: '#/components/schemas/WipContracts'
+        aslCode:
+          title: ASL Code
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        aslDescription:
+          title: ASL Description
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        createdDate:
+          title: Created Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createdBy:
+          title: Created By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        modifiedDate:
+          title: Modified Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        modifiedBy:
+          title: Modified By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        batchID:
+          title: Batch ID
+          type: integer
+          format: int32
+        activityID:
+          title: Activity ID
+          type: integer
+          format: int32
+        wipAction:
+          title: Action
+          maxLength: 25
+          minLength: 0
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ContractToExport:
+      type: object
+      properties:
+        source:
+          type:
+          - string
+          - 'null'
+        id:
+          type: integer
+          format: int32
+      additionalProperties: false
+    SendEmailDto:
+      type: object
+      properties:
+        subject:
+          type:
+          - string
+          - 'null'
+        body:
+          type:
+          - string
+          - 'null'
+        group:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ContractASL:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        contractLineID:
+          title: Contract Line ID
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractKey:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        contract:
+          $ref: '#/components/schemas/Contracts'
+        aslCode:
+          title: ASL Code
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        aslDescription:
+          title: ASL Description
+          type:
+          - string
+          - 'null'
+        createdDate:
+          title: Created Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createdBy:
+          title: Created By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        modifiedDate:
+          title: Modified Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        modifiedBy:
+          title: Modified By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        eomdAte:
+          title: EOM Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dataSource:
+          title: Data Source
+          maxLength: 200
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        batchID:
+          title: Batch ID
+          type: integer
+          format: int32
+        activityID:
+          title: Activity ID
+          type: integer
+          format: int32
+      additionalProperties: false
+    Contracts:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        businessSegment:
+          title: Business Segment
+          maxLength: 30
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractLineID:
+          title: Contract Line ID
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractEffDate:
+          title: Contract Eff. Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        contractExpDate:
+          title: Contract Exp. Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        actContractExpDate:
+          title: Contract Cutoff Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        originalOrder:
+          title: Original Order
+          type:
+          - integer
+          - 'null'
+          format: int32
+        contractUWYear:
+          title: Contract UW Year
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contract:
+          title: Contract
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractSuffix:
+          title: Contract Suffix
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractEndmt:
+          title: Contract Endorsement
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractNameLayer:
+          title: Contract Layer
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        specific:
+          title: Specific Type
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        protectionType:
+          title: Protection Type
+          maxLength: 20
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        attachmentBasis:
+          title: Attachment Basis
+          maxLength: 20
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        automate:
+          title: Is Automated
+          maxLength: 5
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractClass:
+          title: Contract Class
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        subjectPremium:
+          title: Subject Premium
+          type:
+          - integer
+          - 'null'
+          format: int32
+        contractInuring:
+          title: Contract Inuring
+          type:
+          - integer
+          - 'null'
+          format: int32
+        contractType:
+          title: Contract Type
+          maxLength: 5
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        basis:
+          title: Basis
+          maxLength: 5
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        currency:
+          title: Currency
+          maxLength: 5
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        aggRetention:
+          title: Aggregate Retention
+          type:
+          - integer
+          - 'null'
+          format: int64
+        occurrenceLimit:
+          title: Occurence Limit
+          type:
+          - number
+          - 'null'
+          format: decimal
+        retention:
+          title: Retention
+          type:
+          - number
+          - 'null'
+          format: float
+        aggLimit:
+          title: Aggregate Limit
+          type:
+          - integer
+          - 'null'
+          format: int32
+        limitType:
+          title: Limit Type
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        retentionType:
+          title: Retention Type
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reinst:
+          title: Reinst
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractPremiumType:
+          title: Contract Premium Type
+          maxLength: 20
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        cedingRate:
+          title: Ceding Rate
+          type:
+          - number
+          - 'null'
+          format: double
+        variableRate:
+          title: Variable Rate
+          maxLength: 1
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        flatRate:
+          title: Flat Rate
+          type:
+          - integer
+          - 'null'
+          format: int32
+        cedingComm:
+          title: Ceding Commision
+          type:
+          - number
+          - 'null'
+          format: double
+        placed:
+          title: Placed
+          type:
+          - number
+          - 'null'
+          format: double
+        contractBroker:
+          title: Contract Broker
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractCoverage:
+          title: Contract Coverage
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        triaIncl:
+          title: TRIA Included
+          maxLength: 3
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        alaeIncl:
+          title: ALA Included
+          maxLength: 3
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        cancTerms:
+          title: Cancellation Terms
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        createdDate:
+          title: Created Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        location:
+          title: Location
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        auiContract:
+          title: AUI Contract
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        excludeExpenseConstant:
+          title: Excluded Expense Constant
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        recordCreated:
+          title: Record Created
+          type:
+          - string
+          - 'null'
+          format: date-time
+        signedBound:
+          title: Signed Bound
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        date_Signed:
+          title: Date Signed
+          type:
+          - string
+          - 'null'
+          format: date-time
+        commuted:
+          title: Commuted
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        cancDate:
+          title: Cancel Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        collateral:
+          title: Collateral
+          maximum: 99999.99
+          minimum: 0.0
+          type:
+          - number
+          - 'null'
+          format: decimal
+        availableForRelease:
+          title: Available for Release
+          maximum: 99999.99
+          minimum: 0.0
+          type:
+          - number
+          - 'null'
+          format: decimal
+        deductionsCommRate:
+          title: Deductions Comm Rate
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        deductionsClaimsCostRate:
+          title: Deductions Claims Cost Rate
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        expensesTLFRate:
+          title: Expense TLF Rate
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        expensesFETRate:
+          title: Expense FET Rate
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        expensesFrontingFeeRate:
+          title: Expense Fronting Fee Rate
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        captiveAggRate:
+          title: Captive Aggregate Rate
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        minimumAggRate:
+          title: Minimum Aggregate Rate
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        captiveAggXSLimit:
+          title: Captive Aggregate XS Limit
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        layerExp:
+          title: Layer Expense
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        participant:
+          title: Participant
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reinContractNum:
+          title: Reinsurance Contract Number
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reInsNum:
+          title: Reinsurance Num
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reInsName:
+          title: Reinsurance Name
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractLineTemp:
+          title: Contract Line Temp
+          maxLength: 20
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        renInd:
+          title: Renewal Indicator
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        createdBy:
+          title: Created By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        modifiedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        modifiedBy:
+          title: Modified By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        eomDate:
+          title: EOM Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dataSource:
+          title: Data Source
+          maxLength: 300
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        batchID:
+          title: Batch ID
+          type:
+          - integer
+          - 'null'
+          format: int32
+        activityID:
+          title: Activity ID
+          type:
+          - integer
+          - 'null'
+          format: int32
+        subjectPremiumCeiling:
+          title: Subject Premium Ceiling
+          type:
+          - boolean
+          - 'null'
+        assumedCeded:
+          title: Assumed Ceded
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractRerun:
+          title: Contract Rerun
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+          format: date-time
+        cededNet:
+          title: Net Ceded
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        intercompany:
+          title: Intercompany
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        lossCorridorTo:
+          title: Loss Corridor To
+          type:
+          - number
+          - 'null'
+          format: double
+        lossCorridorFrom:
+          title: Loss Corridor From
+          type:
+          - number
+          - 'null'
+          format: double
+        reinstated:
+          title: Reinstated
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        oracleCode:
+          title: Counter Party
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        ulaeIncl:
+          title: ULAE Included
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        minimum:
+          title: Minimum
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        deposit:
+          title: Deposit
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        maol:
+          title: MAOL
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reinOracleCode:
+          title: Reinstated Oracle Code
+          maxLength: 4
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        maiden:
+          title: Maiden
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        origCCY:
+          title: Original Currency
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        roe:
+          title: Rate of Exchange
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contingentComm:
+          type:
+          - string
+          - 'null'
+        findersFees:
+          type:
+          - string
+          - 'null'
+        inureTo:
+          type:
+          - string
+          - 'null'
+        contractPremiumJEType:
+          type:
+          - string
+          - 'null'
+        isOverwritten:
+          type: boolean
+        multiInsured:
+          type:
+          - string
+          - 'null'
+        profitComm:
+          type:
+          - string
+          - 'null'
+        riskTransferDate:
+          title: Risk Transfer Date
+          type:
+          - string
+          - 'null'
+        riskTransferTested:
+          type:
+          - string
+          - 'null'
+        sunsetClause:
+          type:
+          - string
+          - 'null'
+        sunsetTollDate:
+          title: Sunset Toll Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        maximumSubjectBase:
+          title: Max Subject Base
+          type:
+          - number
+          - 'null'
+          format: decimal
+        experienceAdjustment:
+          title: Experience Adjustment
+          type:
+          - string
+          - 'null'
+        deductible:
+          title: Deductible
+          type:
+          - string
+          - 'null'
+        roeDate:
+          title: ROE Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        roeSource:
+          title: ROE Source
+          type:
+          - string
+          - 'null'
+        numOfInstallments:
+          title: Number Of Installments
+          type:
+          - integer
+          - 'null'
+          format: int32
+        frequency:
+          title: Frequency
+          type:
+          - string
+          - 'null'
+        depositStartDate:
+          title: Deposit Start Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        depositPayable:
+          title: Deposit Payable
+          type:
+          - number
+          - 'null'
+          format: decimal
+        depositDueDate:
+          title: Deposit Due Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        additionalInstallment:
+          title: Additional Installments
+          type:
+          - integer
+          - 'null'
+          format: int32
+        additionalFreq:
+          title: ' Additional Frequency'
+          type:
+          - string
+          - 'null'
+        additionalStartDate:
+          title: Additional Start Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        additionalDepPayable:
+          title: Add. Deposit Payable
+          type:
+          - number
+          - 'null'
+          format: decimal
+        additionalDepDueDate:
+          title: Add. Deposit Due Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        totalDeposits:
+          title: Total Deposits
+          type:
+          - number
+          - 'null'
+          format: decimal
+        riskLimit:
+          title: Risk Limit
+          type:
+          - integer
+          - 'null'
+          format: int32
+        contractShortName:
+          title: Contract Short Name
+          maxLength: 30
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        agreementType:
+          type:
+          - string
+          - 'null'
+        status:
+          title: Status
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        notes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ContractNote'
+        changes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ArchiveViewModel'
+        source:
+          type:
+          - string
+          - 'null'
+        isUSCurrency:
+          type: boolean
+        contractFirms:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ContractFirm'
+        contractASLs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ContractASL'
+        contractExceptions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ContractException'
+        contractParticipants:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ContractParticipant'
+        contractVariableRates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ContractVariableRates'
+      additionalProperties: false
+    ContractParticipant:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        contractKey:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        contractLineID:
+          title: Contract Line ID
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contract:
+          $ref: '#/components/schemas/Contracts'
+        brokerKey:
+          title: Broker Key
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reinsurerKey:
+          title: Reinsurer Key
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        partStartDate:
+          title: Participant Start Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        participantRate:
+          title: Participant Rate
+          type:
+          - number
+          - 'null'
+          format: double
+        batchID:
+          title: Batch ID
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        activityID:
+          title: Activity ID
+          type:
+          - integer
+          - 'null'
+          format: int32
+        createdDate:
+          title: Created Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createdby:
+          title: Created By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        modifiedDate:
+          title: Modified Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        modifiedBy:
+          title: Modified By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractBroker:
+          title: Contract Broker
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        brokerRef:
+          title: Broker Ref
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        businessPartnerShortName:
+          title: Business Partner SHort Name
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        naic:
+          title: NAIC
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        feiN_AIIN:
+          title: FEIN_AIIN
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractClass:
+          title: Contract Class
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        commuted:
+          title: Commuted
+          maxLength: 8
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        partCommuteDate:
+          title: Reins. Commuted Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        brokerage:
+          title: Brokerage
+          maxLength: 150
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        businessSegment:
+          title: Business Segment
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        commutationNotes:
+          title: Commutation Notes
+          maxLength: 400
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        commutedReceivable:
+          title: Commuted Receivable
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        openReserveBalance:
+          title: Open Reserve Balance
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        stateOfDomicile:
+          title: State Of Domicile
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        country:
+          title: Country
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        amBestRating:
+          title: AM Best Rating
+          maxLength: 5
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        underwriter:
+          title: Underwriter Name
+          maxLength: 150
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        oracleCode2:
+          title: Oracle Code2
+          maxLength: 4
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        groupShortName:
+          title: Group Short Name
+          type:
+          - string
+          - 'null'
+        groupNumber:
+          title: Group Number
+          type:
+          - string
+          - 'null'
+        ownerDepartment:
+          title: Owner Department
+          type:
+          - string
+          - 'null'
+        ownerRecoverableBilling:
+          title: Owner Rec Billing
+          type:
+          - string
+          - 'null'
+        collateralKeyFundsHeld:
+          title: Collateral Key Funds Held
+          type:
+          - string
+          - 'null'
+        collateralKeyLOC:
+          title: Collateral Key LOC
+          type:
+          - string
+          - 'null'
+        collateralKeySBTTrust:
+          title: Collateral Key SBT Trust
+          type:
+          - string
+          - 'null'
+        collateralKeyOther:
+          title: Collateral Key Other
+          type:
+          - string
+          - 'null'
+        authorizedNY:
+          title: Authorized NY
+          type:
+          - string
+          - 'null'
+        authorizedDE:
+          title: Authorized DE
+          type:
+          - string
+          - 'null'
+        authorizedFL:
+          title: Authorized FL
+          type:
+          - string
+          - 'null'
+        authorizedTX:
+          title: Authorized TX
+          type:
+          - string
+          - 'null'
+        authorizedCA:
+          title: Authorized CA
+          type:
+          - string
+          - 'null'
+        authorizedPA:
+          title: Authorized PA
+          type:
+          - string
+          - 'null'
+        authorizedAZ:
+          title: Authorized AZ
+          type:
+          - string
+          - 'null'
+        authorizedOK:
+          title: Authorized OK
+          type:
+          - string
+          - 'null'
+        apSupplierNumber:
+          type:
+          - string
+          - 'null'
+        remitToSupplierName:
+          title: RemitToSupplierName
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        supplierSite:
+          title: SupplierSite
+          maxLength: 15
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reviewedSiteRequestorID:
+          title: ReviewedSiteRequestorID
+          maxLength: 5
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        brokerName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    WipContractVariableRates:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        contractKey:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        contractLineID:
+          title: Contract Line ID
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        policyOccurrenceLimitFrom:
+          title: Policy Occurrence Limit From
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        policyOccurrenceLimitTo:
+          title: Policy Occurrence Limit To
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        limitAggregate:
+          title: Limit Aggregate
+          type:
+          - number
+          - 'null'
+          format: decimal
+        increasedLimitFactors:
+          title: Increased Limit Factor
+          maxLength: 5
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        rate:
+          title: Rate
+          type:
+          - number
+          - 'null'
+          format: double
+        lob:
+          title: LOB
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        asl:
+          title: ASL
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        aslDescription:
+          title: ASL Description
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        subline:
+          title: Subline
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        programID:
+          title: Program ID
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        coverageCode:
+          title: Coverage Code
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        sourceType:
+          title: Source Type
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        batchExecutionID:
+          title: Batch ID
+          type:
+          - integer
+          - 'null'
+          format: int64
+        activityExecutionID:
+          title: Activity ID
+          type:
+          - integer
+          - 'null'
+          format: int64
+        createDate:
+          title: Created Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        modifiedDate:
+          title: Modified Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        modifiedBy:
+          title: Modified By
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        variableRatesOrder:
+          title: Variable Rate Order
+          type:
+          - integer
+          - 'null'
+          format: int32
+        wipAction:
+          title: Action
+          maxLength: 25
+          minLength: 0
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    WipContractParticipant:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        contractKey:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        contractLineID:
+          title: Contract Line ID
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contract:
+          $ref: '#/components/schemas/WipContracts'
+        brokerKey:
+          title: Broker Key
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reinsurerKey:
+          title: Reinsurer Key
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        partStartDate:
+          title: Part. Start Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        partCommuteDate:
+          title: Reins. Commuted Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        participantRate:
+          title: Participant Rate
+          type:
+          - number
+          - 'null'
+          format: double
+        batchID:
+          title: Batch ID
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        activityID:
+          title: Activity ID
+          type:
+          - integer
+          - 'null'
+          format: int32
+        createdDate:
+          title: Created Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createdby:
+          title: Created By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        modifiedDate:
+          title: Modified Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        modifiedBy:
+          title: Modified By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractBroker:
+          title: Contract Broker
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        brokerRef:
+          title: Broker Ref
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        businessPartnerShortName:
+          title: Business Partner SHort Name
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        naic:
+          title: NAIC
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        feiN_AIIN:
+          title: FEIN_AIIN
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractClass:
+          title: Contract Class
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        isCommuted:
+          title: Commuted
+          type: boolean
+        wipAction:
+          title: Action
+          maxLength: 25
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        brokerage:
+          title: Brokerage
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        businessSegment:
+          title: Business Segment
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        commutationNotes:
+          title: Commutation Notes
+          maxLength: 400
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        commutedReceivable:
+          title: Comuted Receivable
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        openReserveBalance:
+          title: Open Reserve Balance
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        stateOfDomicile:
+          title: State Of Domicile
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        country:
+          title: Country
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        amBestRating:
+          title: AM Best Rating
+          maxLength: 5
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        underwriter:
+          title: Underwriter Name
+          maxLength: 150
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        oracleCode2:
+          title: Oracle Code2
+          maxLength: 4
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        groupShortName:
+          title: Group Short Name
+          type:
+          - string
+          - 'null'
+        groupNumber:
+          title: Group Number
+          type:
+          - string
+          - 'null'
+        ownerDepartment:
+          title: Owner Department
+          type:
+          - string
+          - 'null'
+        ownerRecoverableBilling:
+          title: Owner Rec Billing
+          type:
+          - string
+          - 'null'
+        collateralKeyFundsHeld:
+          title: Collateral Key Funds Held
+          type:
+          - string
+          - 'null'
+        collateralKeyLOC:
+          title: Collateral Key LOC
+          type:
+          - string
+          - 'null'
+        collateralKeySBTTrust:
+          title: Collateral Key SBT Trust
+          type:
+          - string
+          - 'null'
+        collateralKeyOther:
+          title: Collateral Key Other
+          type:
+          - string
+          - 'null'
+        authorizedNY:
+          title: Authorized NY
+          type:
+          - string
+          - 'null'
+        authorizedDE:
+          title: Authorized DE
+          type:
+          - string
+          - 'null'
+        authorizedFL:
+          title: Authorized FL
+          type:
+          - string
+          - 'null'
+        authorizedTX:
+          title: Authorized TX
+          type:
+          - string
+          - 'null'
+        authorizedCA:
+          title: Authorized CA
+          type:
+          - string
+          - 'null'
+        authorizedPA:
+          title: Authorized PA
+          type:
+          - string
+          - 'null'
+        authorizedAZ:
+          type:
+          - string
+          - 'null'
+        authorizedOK:
+          type:
+          - string
+          - 'null'
+        apSupplierNumber:
+          title: APSupplierNumber
+          maxLength: 30
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        remitToSupplierName:
+          title: RemitToSupplierName
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        supplierSite:
+          title: SupplierSite
+          maxLength: 15
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reviewedSiteRequestorID:
+          title: ReviewedSiteRequestorID
+          maxLength: 5
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        brokerName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ContractFirm:
+      required:
+      - contractLineID
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        contractLineID:
+          title: Contract Line ID
+          maxLength: 50
+          minLength: 0
+          type: string
+        contract:
+          $ref: '#/components/schemas/Contracts'
+        firmID:
+          title: Firm ID
+          type:
+          - integer
+          - 'null'
+          format: int32
+        abbr:
+          title: Abbr
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        firmName:
+          title: Firm Name
+          maxLength: 500
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        firmNameShort:
+          title: Firm Short Name
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        naic:
+          title: NAIC
+          type:
+          - integer
+          - 'null'
+          format: int32
+        feinaiin:
+          title: FEINAIIN
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        createdDate:
+          title: Created Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createdBy:
+          title: Created By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        modifiedDate:
+          title: Modified Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        modifiedBy:
+          title: Modified By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractKey:
+          type: integer
+          format: int32
+        eomDate:
+          title: EOM Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dataSource:
+          title: Data Source
+          maxLength: 200
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        batchID:
+          title: Batch ID
+          type: integer
+          format: int32
+        activityID:
+          title: Activity ID
+          type: integer
+          format: int32
+        company:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ArchiveViewModel:
+      type: object
+      properties:
+        createdDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        changes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ContractChangesArchive'
+      additionalProperties: false
+    ContractVariableRates:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        contractKey:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        contractLineID:
+          title: Contract Line ID
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        policyOccurrenceLimitFrom:
+          title: Policy Occurrence Limit From
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        policyOccurrenceLimitTo:
+          title: Policy Occurrence Limit To
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        limitAggregate:
+          title: Limit Aggregate
+          type:
+          - number
+          - 'null'
+          format: decimal
+        increasedLimitFactors:
+          title: Increased Limit Factor
+          maxLength: 5
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        rate:
+          title: Rate
+          type:
+          - number
+          - 'null'
+          format: double
+        lob:
+          title: LOB
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        asl:
+          title: ASL
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        aslDescription:
+          title: ASL Description
+          type:
+          - string
+          - 'null'
+        subline:
+          title: Subline
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        programID:
+          title: Program ID
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        coverageCode:
+          title: Coverage Code
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        sourceType:
+          title: Source Type
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        batchExecutionID:
+          title: Batch ID
+          type:
+          - integer
+          - 'null'
+          format: int64
+        activityExecutionID:
+          title: Activity ID
+          type:
+          - integer
+          - 'null'
+          format: int64
+        createDate:
+          title: Created Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        modifiedDate:
+          title: Modified Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        modifiedBy:
+          title: Modified By
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        variableRatesOrder:
+          title: Variable Rate Order
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    WipContracts:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        businessSegment:
+          title: Business Segment
+          maxLength: 30
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractLineID:
+          title: Contract Line ID
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractEffDate:
+          title: Contract Eff. Date
+          type: string
+          format: date-time
+        contractExpDate:
+          title: Contract Exp. Date
+          type: string
+          format: date-time
+        actContractExpDate:
+          title: Contract Cutoff Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        contractUWYear:
+          title: Contract UW Year
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contract:
+          title: Contract
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractSuffix:
+          title: Contract Suffix
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractEndmt:
+          title: Contract Endorsement
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractNameLayer:
+          title: Contract Name
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        specific:
+          title: Specific Type
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        protectionType:
+          title: Protection Type
+          maxLength: 20
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        automate:
+          title: Is Automated
+          maxLength: 5
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        attachmentBasis:
+          title: Attachment Basis
+          maxLength: 20
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractClass:
+          title: Contract Class
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        subjectPremium:
+          title: Subject Premium
+          type:
+          - integer
+          - 'null'
+          format: int32
+        contractInuring:
+          title: Contract Inuring
+          type:
+          - integer
+          - 'null'
+          format: int32
+        contractType:
+          title: Contract Type
+          maxLength: 5
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        basis:
+          title: Basis
+          maxLength: 5
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        currency:
+          title: Currency
+          maxLength: 5
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        aggRetention:
+          title: Aggregate Retention
+          type:
+          - integer
+          - 'null'
+          format: int64
+        occurrenceLimit:
+          title: Occurence Limit
+          type:
+          - number
+          - 'null'
+          format: decimal
+        retention:
+          title: Retention
+          type:
+          - number
+          - 'null'
+          format: float
+        aggLimit:
+          title: Aggregate Limit
+          type:
+          - integer
+          - 'null'
+          format: int32
+        limitType:
+          title: Limit Type
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        retentionType:
+          title: Retention Type
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reinst:
+          title: Reinst
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractPremiumType:
+          title: Contract Premium Type
+          maxLength: 20
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractPremiumJEType:
+          title: Contract Premium JE Type
+          maxLength: 20
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        cedingRate:
+          title: Ceding Rate
+          type:
+          - number
+          - 'null'
+          format: double
+        variableRate:
+          title: Variable Rate
+          maxLength: 1
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        flatRate:
+          title: Flat Rate
+          type:
+          - integer
+          - 'null'
+          format: int32
+        cedingComm:
+          title: Ceding Commision
+          type:
+          - number
+          - 'null'
+          format: double
+        placed:
+          title: Placed
+          type:
+          - number
+          - 'null'
+          format: double
+        contractBroker:
+          title: Contract Broker
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractCoverage:
+          title: Contract Coverage
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        triaIncl:
+          title: TRIA Included
+          maxLength: 3
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        alaeIncl:
+          title: ALA Included
+          maxLength: 3
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        cancTerms:
+          title: Cancellation Terms
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        createdDate:
+          title: Created Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        signedBound:
+          title: Signed Bound
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        date_Signed:
+          title: Signed Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        recordCreated:
+          title: Record Created
+          type:
+          - string
+          - 'null'
+          format: date-time
+        commuted:
+          title: Commuted
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        excludeExpenseConstant:
+          title: Excluded Expense Constant
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        deductionsCommRate:
+          title: Deductions Comm Rate
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        deductionsClaimsCostRate:
+          title: Deductions Claims Cost Rate
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        expensesTLFRate:
+          title: Expense TLF Rate
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        expensesFETRate:
+          title: Expense FET Rate
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        expensesFrontingFeeRate:
+          title: Expense Fronting Fee Rate
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        participant:
+          title: Participant
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        renInd:
+          title: Renewal Indicator
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        createdBy:
+          title: Created By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        modifiedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        modifiedBy:
+          title: Modified By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        batchID:
+          title: Batch ID
+          type:
+          - integer
+          - 'null'
+          format: int32
+        activityID:
+          title: Activity ID
+          type:
+          - integer
+          - 'null'
+          format: int32
+        assumedCeded:
+          title: Assumed Ceded
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        intercompany:
+          title: Intercompany
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        lossCorridorTo:
+          title: Loss Corridor To
+          type:
+          - number
+          - 'null'
+          format: double
+        lossCorridorFrom:
+          title: Loss Corridor From
+          type:
+          - number
+          - 'null'
+          format: double
+        reinstated:
+          title: Reinstated
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        wipAction:
+          title: Wip Status
+          maxLength: 25
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        originalContractKey:
+          title: Original Contract Key
+          type:
+          - string
+          - 'null'
+        originalContractSource:
+          title: Original Contract Source
+          maxLength: 25
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        originalFunction:
+          title: Original Function
+          maxLength: 25
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        renewedFrom:
+          title: Renewed From
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        oracleCode:
+          title: Counter Party
+          maxLength: 7
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        maiden:
+          title: Maiden
+          maxLength: 1
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        origCCY:
+          title: Original Currency
+          maxLength: 15
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        roe:
+          title: Rate of Exchange
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        auiContract:
+          title: AUI Contract
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        availableForRelease:
+          title: Available for Release
+          maximum: 99999.99
+          minimum: 0.0
+          type:
+          - number
+          - 'null'
+          format: decimal
+        captiveAggRate:
+          title: Captive Agg Rate
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        captiveAggXSLimit:
+          title: Captive Agg XS Rate
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        cededNet:
+          title: Ceded Net
+          maxLength: 3
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contingentComm:
+          title: Contingent Commision
+          maxLength: 15
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractRerun:
+          title: Contract Rerun
+          type:
+          - string
+          - 'null'
+          format: date-time
+        deposit:
+          title: Deposit
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        findersFees:
+          title: Finders Fee
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        collateral:
+          title: Collateral
+          maximum: 99999.99
+          minimum: 0.0
+          type:
+          - number
+          - 'null'
+          format: decimal
+        ulaeIncl:
+          title: ULAE Included
+          maxLength: 5
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        inureTo:
+          title: Inure To
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        isOverwritten:
+          title: Is Overwritten
+          type: boolean
+        layerExp:
+          title: Layer Expense
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        location:
+          title: Location
+          maxLength: 150
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        maol:
+          title: MAOL
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        minimum:
+          title: Minimum
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        minimumAggRate:
+          title: Minimum Agg Rate
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        multiInsured:
+          title: Multi-Insured
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        originalOrder:
+          title: Original Order
+          type:
+          - integer
+          - 'null'
+          format: int32
+        profitComm:
+          title: Profit Commission
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reinContractNum:
+          title: Rein. Contract Number
+          maxLength: 150
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reinOracleCode:
+          title: Rein. Oracle Code
+          maxLength: 4
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reInsName:
+          title: Rein. Name
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reInsNum:
+          title: Rein. Number
+          maxLength: 25
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        riskTransferDate:
+          title: Risk Transfer Date
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        riskTransferTested:
+          title: Risk Transfer Tested
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        subjectPremiumCeiling:
+          title: Subject Premium Ceiling
+          type: boolean
+        sunsetClause:
+          title: Sunset Clause
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        sunsetTollDate:
+          title: Sunset Toll Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        cancDate:
+          title: Cancel Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        maximumSubjectBase:
+          title: Max Subject Base
+          type:
+          - number
+          - 'null'
+          format: decimal
+        experienceAdjustment:
+          title: Experience Adjustment
+          type:
+          - string
+          - 'null'
+        deductible:
+          title: Deductible
+          type:
+          - string
+          - 'null'
+        roeDate:
+          title: ROE Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        roeSource:
+          title: ROE Source
+          type:
+          - string
+          - 'null'
+        numOfInstallments:
+          title: Number Of Installments
+          type:
+          - integer
+          - 'null'
+          format: int32
+        frequency:
+          title: Frequency
+          type:
+          - string
+          - 'null'
+        depositStartDate:
+          title: Deposit Start Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        depositPayable:
+          title: Deposit Payable
+          type:
+          - number
+          - 'null'
+          format: decimal
+        depositDueDate:
+          title: Deposit Due Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        additionalInstallment:
+          title: Additional Installments
+          type:
+          - integer
+          - 'null'
+          format: int32
+        additionalFreq:
+          title: ' Additional Frequency'
+          type:
+          - string
+          - 'null'
+        additionalStartDate:
+          title: Additional Start Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        additionalDepPayable:
+          title: Add. Deposit Payable
+          type:
+          - number
+          - 'null'
+          format: decimal
+        additionalDepDueDate:
+          title: Add. Deposit Due Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        totalDeposits:
+          title: Total Deposits
+          type:
+          - number
+          - 'null'
+          format: decimal
+        riskLimit:
+          title: Risk Limit
+          type:
+          - integer
+          - 'null'
+          format: int32
+        contractShortName:
+          title: Contract Short Name
+          maxLength: 30
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reviewCarefully:
+          title: Automated Changed
+          type: boolean
+        agreementType:
+          type:
+          - string
+          - 'null'
+        rejected:
+          title: IsRejected
+          type: boolean
+        originalProd:
+          title: Original Production Contract
+          type:
+          - integer
+          - 'null'
+          format: int32
+        source:
+          type:
+          - string
+          - 'null'
+        notes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ContractNote'
+        changes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ArchiveViewModel'
+        contractLineTemp:
+          type:
+          - string
+          - 'null'
+        hasSpecific:
+          type:
+          - string
+          - 'null'
+        hasExpAdj:
+          type:
+          - string
+          - 'null'
+        isUSCurrency:
+          type: boolean
+        status:
+          type:
+          - string
+          - 'null'
+        contractFirms:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WipContractFirm'
+        contractASLs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WipContractASL'
+        contractExceptions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WipContractException'
+        contractParticipants:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WipContractParticipant'
+        contractVariableRates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WipContractVariableRates'
+      additionalProperties: false
+    ContractChangesArchive:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        contractLineId:
+          type:
+          - string
+          - 'null'
+        createdDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        user:
+          type:
+          - string
+          - 'null'
+        source:
+          type:
+          - string
+          - 'null'
+        field:
+          type:
+          - string
+          - 'null'
+        oldValue:
+          type:
+          - string
+          - 'null'
+        newValue:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ContractException:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        contractLineID:
+          title: Contract Line ID
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contract:
+          $ref: '#/components/schemas/Contracts'
+        contractProgramName:
+          title: Contract Program Name
+          maxLength: 150
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        cellType:
+          title: Cell Type
+          maxLength: 20
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        exceptionCategory:
+          title: Exception Category
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        exceptionType:
+          title: Exception Type
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        exceptionValue:
+          title: Exception Value
+          maxLength: 225
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        createdDate:
+          title: Created Date
+          type: string
+          format: date-time
+        batchID:
+          type: integer
+          format: int32
+        activityID:
+          type: integer
+          format: int32
+        createdby:
+          title: Created By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        modifiedDate:
+          title: Modified Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        modifiedBy:
+          title: Modified By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractKey:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        eomDate:
+          title: EOM Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dataSource:
+          title: Data Source
+          maxLength: 200
+          minLength: 0
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ContractSearchDto:
+      type: object
+      properties:
+        contractUWYear:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contract:
+          title: Contract
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractSuffix:
+          title: Contract Suffix
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractEndmt:
+          title: Contract Endorsement
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractNameLayer:
+          title: Contract Layer
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractNameLayerSort:
+          type:
+          - string
+          - 'null'
+        specific:
+          title: Specific Type
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contractType:
+          title: Contract Type
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        assumedCeded:
+          title: Assumed Ceded
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        counterParty:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        isSpecificSelection:
+          type: boolean
+        sourceType:
+          type:
+          - string
+          - 'null'
+        pageSize:
+          type: integer
+          format: int32
+        pageNumber:
+          type: integer
+          format: int32
+        pageCount:
+          type: integer
+          format: int32
+        searchMode:
+          type:
+          - string
+          - 'null'
+        businessSegment:
+          type:
+          - string
+          - 'null'
+        reinsurers:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        asls:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        brokers:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        effectiveDateFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        effectiveDateTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastModifiedFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastModifiedTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        automate:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ChangeProdStatusDto:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        status:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SendFileToServerDto:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          format: byte
+      additionalProperties: false
+    ContractNote:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        contractKey:
+          type: integer
+          format: int32
+        contractLineId:
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractType:
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        user:
+          maxLength: 150
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        logEntryNumber:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        notes:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    IHeaderDictionary:
+      type: object
+      properties:
+        Item:
+          type: array
+          items: {}
+        ContentLength:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        Accept:
+          type: array
+          items: {}
+        AcceptCharset:
+          type: array
+          items: {}
+        AcceptEncoding:
+          type: array
+          items: {}
+        AcceptLanguage:
+          type: array
+          items: {}
+        AcceptRanges:
+          type: array
+          items: {}
+        AccessControlAllowCredentials:
+          type: array
+          items: {}
+        AccessControlAllowHeaders:
+          type: array
+          items: {}
+        AccessControlAllowMethods:
+          type: array
+          items: {}
+        AccessControlAllowOrigin:
+          type: array
+          items: {}
+        AccessControlExposeHeaders:
+          type: array
+          items: {}
+        AccessControlMaxAge:
+          type: array
+          items: {}
+        AccessControlRequestHeaders:
+          type: array
+          items: {}
+        AccessControlRequestMethod:
+          type: array
+          items: {}
+        Age:
+          type: array
+          items: {}
+        Allow:
+          type: array
+          items: {}
+        AltSvc:
+          type: array
+          items: {}
+        Authorization:
+          type: array
+          items: {}
+        Baggage:
+          type: array
+          items: {}
+        CacheControl:
+          type: array
+          items: {}
+        Connection:
+          type: array
+          items: {}
+        ContentDisposition:
+          type: array
+          items: {}
+        ContentEncoding:
+          type: array
+          items: {}
+        ContentLanguage:
+          type: array
+          items: {}
+        ContentLocation:
+          type: array
+          items: {}
+        ContentMD5:
+          type: array
+          items: {}
+        ContentRange:
+          type: array
+          items: {}
+        ContentSecurityPolicy:
+          type: array
+          items: {}
+        ContentSecurityPolicyReportOnly:
+          type: array
+          items: {}
+        ContentType:
+          type: array
+          items: {}
+        CorrelationContext:
+          type: array
+          items: {}
+        Cookie:
+          type: array
+          items: {}
+        Date:
+          type: array
+          items: {}
+        ETag:
+          type: array
+          items: {}
+        Expires:
+          type: array
+          items: {}
+        Expect:
+          type: array
+          items: {}
+        From:
+          type: array
+          items: {}
+        GrpcAcceptEncoding:
+          type: array
+          items: {}
+        GrpcEncoding:
+          type: array
+          items: {}
+        GrpcMessage:
+          type: array
+          items: {}
+        GrpcStatus:
+          type: array
+          items: {}
+        GrpcTimeout:
+          type: array
+          items: {}
+        Host:
+          type: array
+          items: {}
+        KeepAlive:
+          type: array
+          items: {}
+        IfMatch:
+          type: array
+          items: {}
+        IfModifiedSince:
+          type: array
+          items: {}
+        IfNoneMatch:
+          type: array
+          items: {}
+        IfRange:
+          type: array
+          items: {}
+        IfUnmodifiedSince:
+          type: array
+          items: {}
+        LastModified:
+          type: array
+          items: {}
+        Link:
+          type: array
+          items: {}
+        Location:
+          type: array
+          items: {}
+        MaxForwards:
+          type: array
+          items: {}
+        Origin:
+          type: array
+          items: {}
+        Pragma:
+          type: array
+          items: {}
+        ProxyAuthenticate:
+          type: array
+          items: {}
+        ProxyAuthorization:
+          type: array
+          items: {}
+        ProxyConnection:
+          type: array
+          items: {}
+        Range:
+          type: array
+          items: {}
+        Referer:
+          type: array
+          items: {}
+        RetryAfter:
+          type: array
+          items: {}
+        RequestId:
+          type: array
+          items: {}
+        SecWebSocketAccept:
+          type: array
+          items: {}
+        SecWebSocketKey:
+          type: array
+          items: {}
+        SecWebSocketProtocol:
+          type: array
+          items: {}
+        SecWebSocketVersion:
+          type: array
+          items: {}
+        SecWebSocketExtensions:
+          type: array
+          items: {}
+        Server:
+          type: array
+          items: {}
+        SetCookie:
+          type: array
+          items: {}
+        StrictTransportSecurity:
+          type: array
+          items: {}
+        TE:
+          type: array
+          items: {}
+        Trailer:
+          type: array
+          items: {}
+        TransferEncoding:
+          type: array
+          items: {}
+        Translate:
+          type: array
+          items: {}
+        TraceParent:
+          type: array
+          items: {}
+        TraceState:
+          type: array
+          items: {}
+        Upgrade:
+          type: array
+          items: {}
+        UpgradeInsecureRequests:
+          type: array
+          items: {}
+        UserAgent:
+          type: array
+          items: {}
+        Vary:
+          type: array
+          items: {}
+        Via:
+          type: array
+          items: {}
+        Warning:
+          type: array
+          items: {}
+        WebSocketSubProtocols:
+          type: array
+          items: {}
+        WWWAuthenticate:
+          type: array
+          items: {}
+        XContentTypeOptions:
+          type: array
+          items: {}
+        XFrameOptions:
+          type: array
+          items: {}
+        XPoweredBy:
+          type: array
+          items: {}
+        XRequestedWith:
+          type: array
+          items: {}
+        XUACompatible:
+          type: array
+          items: {}
+        XXSSProtection:
+          type: array
+          items: {}
+      additionalProperties: false
+      x-abstract: true
+    WipContractException:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        contractLineID:
+          title: Contract Line ID
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contract:
+          $ref: '#/components/schemas/WipContracts'
+        cellType:
+          title: Cell Type
+          maxLength: 20
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        exceptionCategory:
+          title: Exception Category
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        exceptionType:
+          title: Exception Type
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        exceptionValue:
+          title: Exception Value
+          maxLength: 225
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        createdDate:
+          title: Created Date
+          type: string
+          format: date-time
+        batchID:
+          type: integer
+          format: int32
+        activityID:
+          type: integer
+          format: int32
+        createdby:
+          title: Created By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        modifiedDate:
+          title: Modified Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        modifiedBy:
+          title: Modified By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractKey:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        wipAction:
+          title: Action
+          maxLength: 25
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractProgramName:
+          title: Contract Prog Name
+          maxLength: 150
+          minLength: 0
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    WipContractFirm:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        contractLineID:
+          title: Contract Line ID
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contract:
+          $ref: '#/components/schemas/WipContracts'
+        firmID:
+          title: Firm ID
+          type:
+          - integer
+          - 'null'
+          format: int32
+        abbr:
+          title: Abbr
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        firmName:
+          title: Firm Name
+          maxLength: 500
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        firmNameShort:
+          title: Firm Short Name
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        naic:
+          title: NAIC
+          type:
+          - integer
+          - 'null'
+          format: int32
+        feinaiin:
+          title: FEINAIIN
+          maxLength: 50
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        createdDate:
+          title: Created Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createdBy:
+          title: Created By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        modifiedDate:
+          title: Modified Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        modifiedBy:
+          title: Modified By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        contractKey:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        batchID:
+          title: Batch ID
+          type: integer
+          format: int32
+        activityID:
+          title: Activity ID
+          type: integer
+          format: int32
+        wipAction:
+          title: Action
+          maxLength: 25
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        company:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: subscriber_id
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

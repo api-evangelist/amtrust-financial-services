@@ -1,0 +1,108 @@
+openapi: 3.2.0
+info:
+  title: Experience Next Gen Bond Pro Health API
+  version: '1.0'
+servers:
+- url: https://gateway.amtrustgroup.com/experience-next-gen-bond-pro-api
+- url: https://prod-apim-gw.amtrustservices.com/experience-next-gen-bond-pro-api
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Health
+paths:
+  /api/v1/Health:
+    get:
+      tags:
+      - Health
+      summary: Hello
+      operationId: get-api-v1-health
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                default:
+                  value: null
+            application/json:
+              schema:
+                type: string
+              example: string
+            text/json:
+              schema:
+                type: string
+              example: string
+    post:
+      tags:
+      - Health
+      summary: Return date and machine name
+      description: Some remarks
+      operationId: post-api-v1-health
+      requestBody:
+        description: Not used
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/HealthExample'
+            example:
+              healthCheck: This is healthCheck end point
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HealthExample'
+            example:
+              healthCheck: This is healthCheck end point
+          text/json:
+            schema:
+              $ref: '#/components/schemas/HealthExample'
+            example:
+              healthCheck: This is healthCheck end point
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/HealthExample'
+            example:
+              healthCheck: This is healthCheck end point
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                default:
+                  value: null
+            application/json:
+              schema:
+                type: string
+              example: string
+            text/json:
+              schema:
+                type: string
+              example: string
+components:
+  schemas:
+    HealthExample:
+      type: object
+      properties:
+        healthCheck:
+          maxLength: 100
+          minLength: 1
+          type:
+          - string
+          - 'null'
+          description: (This shows in the schema section)  Test string to show comments
+          example: This is healthCheck end point
+      additionalProperties: false
+      description: A model to show example
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: subscriber_id
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

@@ -1,0 +1,503 @@
+openapi: 3.2.0
+info:
+  title: RCEWebAPI - Prod Shared API
+  description: An API for Reinsurrance Contracts Entry
+  version: '1.0'
+servers:
+- url: https://gateway.amtrustgroup.com/RCEAPI
+- url: https://prod-apim-gw.amtrustservices.com/RCEAPI
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Shared
+paths:
+  /api/v{version}/Shared/DropDownLists:
+    get:
+      tags:
+      - Shared
+      summary: Shared_DropDownLists
+      operationId: Shared_DropDownLists
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Shared/GlasLobs:
+    get:
+      tags:
+      - Shared
+      summary: Shared_Glaslob
+      operationId: Shared_Glaslob
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Shared/ExceptionDropdowns:
+    get:
+      tags:
+      - Shared
+      summary: Shared_ExceptionDropdowns
+      operationId: Shared_ExceptionDropdowns
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: header
+        schema:
+          type:
+          - string
+          - 'null'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Shared/ParticipantShortNames:
+    get:
+      tags:
+      - Shared
+      summary: Shared_ParticipantShortNames
+      operationId: Shared_ParticipantShortNames
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Shared/Users:
+    get:
+      tags:
+      - Shared
+      summary: Shared_Users
+      operationId: Shared_Users
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Shared/UserRoles:
+    get:
+      tags:
+      - Shared
+      summary: Shared_GetUserRoles
+      operationId: Shared_GetUserRoles
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+    put:
+      tags:
+      - Shared
+      summary: Shared_PutUserRoles
+      operationId: Shared_PutUserRoles
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/RCEUserRole'
+            example:
+            - rceUserRolesId: 0
+              firstName: string
+              lastName: string
+              emailAddress: string
+              businessSegment: string
+              userRole: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Shared/User:
+    post:
+      tags:
+      - Shared
+      summary: Shared_PostUser
+      operationId: Shared_PostUser
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RCEUserRole'
+            example:
+              rceUserRolesId: 0
+              firstName: string
+              lastName: string
+              emailAddress: string
+              businessSegment: string
+              userRole: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+    delete:
+      tags:
+      - Shared
+      summary: Shared_DeleteUser
+      operationId: Shared_DeleteUser
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RCEUserRole'
+            example:
+              rceUserRolesId: 0
+              firstName: string
+              lastName: string
+              emailAddress: string
+              businessSegment: string
+              userRole: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Shared/GroupNumbers:
+    get:
+      tags:
+      - Shared
+      summary: Shared_GetGroupNumbers
+      operationId: Shared_GetGroupNumbers
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Shared/OracleCodes:
+    get:
+      tags:
+      - Shared
+      summary: Shared_GetOracleCodes
+      operationId: Shared_GetOracleCodes
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Shared/DimCurrency:
+    get:
+      tags:
+      - Shared
+      summary: Shared_GetDimCurrency
+      operationId: Shared_GetDimCurrency
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Shared/DimProductMapping:
+    get:
+      tags:
+      - Shared
+      summary: Shared_GetDimProductMapping
+      operationId: Shared_GetDimProductMapping
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Shared/DropdownData:
+    get:
+      tags:
+      - Shared
+      summary: Shared_GetDropdownData
+      operationId: Shared_GetDropdownData
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Shared/MissingKeys:
+    get:
+      tags:
+      - Shared
+      summary: Shared_GetMissingKeys
+      operationId: Shared_GetMissingKeys
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: header
+        schema:
+          type:
+          - string
+          - 'null'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Shared/ContractMissingFirm38:
+    get:
+      tags:
+      - Shared
+      summary: Shared_GetContractMissingFirm38
+      operationId: Shared_GetContractMissingFirm38
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Shared/ExportMissingKeys:
+    get:
+      tags:
+      - Shared
+      summary: Shared_ExportMissingTables
+      operationId: Shared_ExportMissingTables
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: header
+        schema:
+          type:
+          - string
+          - 'null'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+components:
+  schemas:
+    RCEUserRole:
+      type: object
+      properties:
+        rceUserRolesId:
+          type: integer
+          format: int32
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        emailAddress:
+          type:
+          - string
+          - 'null'
+        businessSegment:
+          type:
+          - string
+          - 'null'
+        userRole:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: subscriber_id
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

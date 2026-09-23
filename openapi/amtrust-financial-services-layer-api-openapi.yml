@@ -1,0 +1,408 @@
+openapi: 3.2.0
+info:
+  title: RCEWebAPI - Prod Layer API
+  description: An API for Reinsurrance Contracts Entry
+  version: '1.0'
+servers:
+- url: https://gateway.amtrustgroup.com/RCEAPI
+- url: https://prod-apim-gw.amtrustservices.com/RCEAPI
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Layer
+paths:
+  /api/v{version}/Layer/LayerReport:
+    post:
+      tags:
+      - Layer
+      summary: Layer_LayerReport
+      operationId: Layer_LayerReport
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LayerReportDto'
+            example:
+              uwYear:
+              - string
+              contractName: string
+              contractNumber: string
+              contractClass:
+              - string
+              broker: string
+              reinsurer: string
+              specific:
+              - string
+              firm:
+              - string
+              asl:
+              - string
+              businessSegment: string
+              effectiveDateFrom: string
+              effectiveDateTo: string
+              pageNumber: 0
+              pageSize: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Layer/Specifics:
+    get:
+      tags:
+      - Layer
+      summary: Layer_Specifics
+      operationId: Layer_Specifics
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Layer/ContractClasses:
+    get:
+      tags:
+      - Layer
+      summary: Layer_ContractClasses
+      operationId: Layer_ContractClasses
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Layer/ContractBrokers:
+    get:
+      tags:
+      - Layer
+      summary: Layer_ContractBrokers
+      operationId: Layer_ContractBrokers
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Layer/ContractUWYears:
+    get:
+      tags:
+      - Layer
+      summary: Layer_ContractUWYears
+      operationId: Layer_ContractUWYears
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Layer/ContractFirms:
+    get:
+      tags:
+      - Layer
+      summary: Layer_ContractFirms
+      operationId: Layer_ContractFirms
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Layer/ContractsList:
+    post:
+      tags:
+      - Layer
+      summary: Layer_ContractsList
+      operationId: Layer_ContractsList
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LayerReportDto'
+            example:
+              uwYear:
+              - string
+              contractName: string
+              contractNumber: string
+              contractClass:
+              - string
+              broker: string
+              reinsurer: string
+              specific:
+              - string
+              firm:
+              - string
+              asl:
+              - string
+              businessSegment: string
+              effectiveDateFrom: string
+              effectiveDateTo: string
+              pageNumber: 0
+              pageSize: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Layer/ContractNamesList:
+    post:
+      tags:
+      - Layer
+      summary: Layer_ContractNamesList
+      operationId: Layer_ContractNamesList
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LayerReportDto'
+            example:
+              uwYear:
+              - string
+              contractName: string
+              contractNumber: string
+              contractClass:
+              - string
+              broker: string
+              reinsurer: string
+              specific:
+              - string
+              firm:
+              - string
+              asl:
+              - string
+              businessSegment: string
+              effectiveDateFrom: string
+              effectiveDateTo: string
+              pageNumber: 0
+              pageSize: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Layer/GetFile:
+    post:
+      tags:
+      - Layer
+      summary: Layer_GetFile
+      operationId: Layer_GetFile
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: type
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LayerReportDto'
+            example:
+              uwYear:
+              - string
+              contractName: string
+              contractNumber: string
+              contractClass:
+              - string
+              broker: string
+              reinsurer: string
+              specific:
+              - string
+              firm:
+              - string
+              asl:
+              - string
+              businessSegment: string
+              effectiveDateFrom: string
+              effectiveDateTo: string
+              pageNumber: 0
+              pageSize: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+components:
+  schemas:
+    LayerReportDto:
+      type: object
+      properties:
+        uwYear:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        contractName:
+          type:
+          - string
+          - 'null'
+        contractNumber:
+          type:
+          - string
+          - 'null'
+        contractClass:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        broker:
+          type:
+          - string
+          - 'null'
+        reinsurer:
+          type:
+          - string
+          - 'null'
+        specific:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        firm:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        asl:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        businessSegment:
+          type:
+          - string
+          - 'null'
+        effectiveDateFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        effectiveDateTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+      additionalProperties: false
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: subscriber_id
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

@@ -1,0 +1,2433 @@
+openapi: 3.2.0
+info:
+  title: RCEWebAPI - Prod Admin API
+  description: An API for Reinsurrance Contracts Entry
+  version: '1.0'
+servers:
+- url: https://gateway.amtrustgroup.com/RCEAPI
+- url: https://prod-apim-gw.amtrustservices.com/RCEAPI
+security:
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Admin
+paths:
+  /api/v{version}/Admin/Firm:
+    delete:
+      tags:
+      - Admin
+      summary: Admin_DeleteFirm
+      operationId: Admin_DeleteFirm
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DimCompanyDaily'
+            example:
+              firm: 0
+              firmName: string
+              firmNameShort: string
+              lastLoaded: string
+              lastLoadedBy: string
+              dimCompany_DailyID: 0
+              ibnR_Abbr: string
+              company: 0
+              feinNum: string
+              naicNum: 0
+              active: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+    put:
+      tags:
+      - Admin
+      summary: Admin_PutFirm
+      operationId: Admin_PutFirm
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DimCompanyDaily'
+            example:
+              firm: 0
+              firmName: string
+              firmNameShort: string
+              lastLoaded: string
+              lastLoadedBy: string
+              dimCompany_DailyID: 0
+              ibnR_Abbr: string
+              company: 0
+              feinNum: string
+              naicNum: 0
+              active: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/Glaslob:
+    delete:
+      tags:
+      - Admin
+      summary: Admin_DeleteGlaslob
+      operationId: Admin_DeleteGlaslob
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Glaslob'
+            example:
+              oracleASLOB: string
+              description: string
+              aslobCode: string
+              showOnWeb: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+    put:
+      tags:
+      - Admin
+      summary: Admin_PutGlaslob
+      operationId: Admin_PutGlaslob
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Glaslob'
+            example:
+              oracleASLOB: string
+              description: string
+              aslobCode: string
+              showOnWeb: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/DropDownValue:
+    delete:
+      tags:
+      - Admin
+      summary: Admin_DeleteDropDownValue
+      operationId: Admin_DeleteDropDownValue
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DropDownLists'
+            example:
+              id: 0
+              ddKey: string
+              ddText: string
+              ddValue: string
+              active: true
+              sortOrder: 0
+              pc: true
+              sr: true
+              international: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+    put:
+      tags:
+      - Admin
+      summary: Admin_PutDropDownValue
+      operationId: Admin_PutDropDownValue
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DropDownLists'
+            example:
+              id: 0
+              ddKey: string
+              ddText: string
+              ddValue: string
+              active: true
+              sortOrder: 0
+              pc: true
+              sr: true
+              international: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/ContractBusinessPartners:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetContractBusinessPartners
+      operationId: Admin_GetContractBusinessPartners
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/Firms:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetFirms
+      operationId: Admin_GetFirms
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/DropDownValues:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetDropDownValues
+      operationId: Admin_GetDropDownValues
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/ContractBusinessPartner:
+    put:
+      tags:
+      - Admin
+      summary: Admin_PutContractBusinessPartner
+      operationId: Admin_PutContractBusinessPartner
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractBusinessPartner'
+            example:
+              id: 0
+              businessPartnerID: string
+              businessPartnerName: string
+              businessPartnerShortName: string
+              businessPartnerType: string
+              firmId: string
+              country: string
+              domicile: string
+              naic: string
+              fein: string
+              authorizedPA: string
+              authorizedCA: string
+              authorizedDE: string
+              authorizedFL: string
+              authorizedNY: string
+              authorizedTX: string
+              authorizedAZ: string
+              authorizedOK: string
+              affiliated: string
+              amBestNum: string
+              amBestRating: string
+              alternativeNames: string
+              brokerKey: string
+              reinsurerKey: string
+              amBestRatingDate: string
+              amBestGroupNum: string
+              amBestGroupName: string
+              batchId: 0
+              activityId: 0
+              createDate: string
+              createBy: string
+              modifiedDate: string
+              modifiedBy: string
+              spRating: string
+              spRatingDate: string
+              certifiedRating: string
+              certifiedDate: string
+              reciprocalDate: string
+              certifiedRatingDate: string
+              pool: string
+              oracleCodeSegment9: string
+              collateralType: string
+              figuresasof: string
+              fundsHeld: string
+              letterofCredit: string
+              reinsuranceRecoverable: string
+              phsusdMillions: string
+              phsAsOf: string
+              offsetItems: string
+              moodyRate: string
+              moodyEffDate: string
+              nyCertifiedRating: string
+              nyCertifiedDate: string
+              nyReciprocalDate: string
+              deCertifiedRating: string
+              deCertifiedDate: string
+              deReciprocalDate: string
+              flCertifiedRating: string
+              flCertifiedDate: string
+              flReciprocalDate: string
+              txCertifiedRating: string
+              txCertifiedDate: string
+              txReciprocalDate: string
+              caCertifiedRating: string
+              caCertifiedDate: string
+              caReciprocalDate: string
+              paCertifiedRating: string
+              paCertifiedDate: string
+              paReciprocalDate: string
+              azCertifiedRating: string
+              azCertifiedDate: string
+              azReciprocalDate: string
+              okCertifiedRating: string
+              okCertifiedDate: string
+              okReciprocalDate: string
+              active: true
+              approvalStatus: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+    delete:
+      tags:
+      - Admin
+      summary: Admin_DeleteContractBusinessPartner
+      operationId: Admin_DeleteContractBusinessPartner
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractBusinessPartner'
+            example:
+              id: 0
+              businessPartnerID: string
+              businessPartnerName: string
+              businessPartnerShortName: string
+              businessPartnerType: string
+              firmId: string
+              country: string
+              domicile: string
+              naic: string
+              fein: string
+              authorizedPA: string
+              authorizedCA: string
+              authorizedDE: string
+              authorizedFL: string
+              authorizedNY: string
+              authorizedTX: string
+              authorizedAZ: string
+              authorizedOK: string
+              affiliated: string
+              amBestNum: string
+              amBestRating: string
+              alternativeNames: string
+              brokerKey: string
+              reinsurerKey: string
+              amBestRatingDate: string
+              amBestGroupNum: string
+              amBestGroupName: string
+              batchId: 0
+              activityId: 0
+              createDate: string
+              createBy: string
+              modifiedDate: string
+              modifiedBy: string
+              spRating: string
+              spRatingDate: string
+              certifiedRating: string
+              certifiedDate: string
+              reciprocalDate: string
+              certifiedRatingDate: string
+              pool: string
+              oracleCodeSegment9: string
+              collateralType: string
+              figuresasof: string
+              fundsHeld: string
+              letterofCredit: string
+              reinsuranceRecoverable: string
+              phsusdMillions: string
+              phsAsOf: string
+              offsetItems: string
+              moodyRate: string
+              moodyEffDate: string
+              nyCertifiedRating: string
+              nyCertifiedDate: string
+              nyReciprocalDate: string
+              deCertifiedRating: string
+              deCertifiedDate: string
+              deReciprocalDate: string
+              flCertifiedRating: string
+              flCertifiedDate: string
+              flReciprocalDate: string
+              txCertifiedRating: string
+              txCertifiedDate: string
+              txReciprocalDate: string
+              caCertifiedRating: string
+              caCertifiedDate: string
+              caReciprocalDate: string
+              paCertifiedRating: string
+              paCertifiedDate: string
+              paReciprocalDate: string
+              azCertifiedRating: string
+              azCertifiedDate: string
+              azReciprocalDate: string
+              okCertifiedRating: string
+              okCertifiedDate: string
+              okReciprocalDate: string
+              active: true
+              approvalStatus: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/GroupNumbers:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetGroupNumbers
+      operationId: Admin_GetGroupNumbers
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/GroupNumber:
+    put:
+      tags:
+      - Admin
+      summary: Admin_PutGroupNumbers
+      operationId: Admin_PutGroupNumbers
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupNumbers'
+            example:
+              id: 0
+              groupNumber: string
+              groupShortName: string
+              ownerDepartment: string
+              ownerRecoverableBilling: string
+              active: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+    delete:
+      tags:
+      - Admin
+      summary: Admin_DeleteGroupNumber
+      operationId: Admin_DeleteGroupNumber
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupNumbers'
+            example:
+              id: 0
+              groupNumber: string
+              groupShortName: string
+              ownerDepartment: string
+              ownerRecoverableBilling: string
+              active: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/ContractChangeLogs:
+    post:
+      tags:
+      - Admin
+      summary: Admin_PostContractChangeLogs
+      operationId: Admin_PostContractChangeLogs
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeLogSearchDto'
+            example:
+              contact: string
+              completed: string
+              businessSegment: string
+              dateReceived: string
+              dateCompleted: string
+              dateApprovedFrom: string
+              dateApprovedTo: string
+              note: string
+              userName: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/ContractChangeLog:
+    put:
+      tags:
+      - Admin
+      summary: Admin_PutContractChangeLogs
+      operationId: Admin_PutContractChangeLogs
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractChangesLog'
+            example:
+              id: 0
+              logEntryNumber: 0
+              emailSubject: string
+              contact: string
+              dateReceived: string
+              notes: string
+              completed: string
+              dateComplited: string
+              category: string
+              changesMade: string
+              impactPrior: string
+              downStream: string
+              manualEntry: string
+              dateCorrecting: string
+              filesUpdated: string
+              approverNotes: string
+              dateApproved: string
+              businessSegment: string
+              file: string
+              fileFullName: string
+              approverCompleted: string
+              pageCount: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+    delete:
+      tags:
+      - Admin
+      summary: Admin_DeleteContractChangeLog
+      operationId: Admin_DeleteContractChangeLog
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractChangesLog'
+            example:
+              id: 0
+              logEntryNumber: 0
+              emailSubject: string
+              contact: string
+              dateReceived: string
+              notes: string
+              completed: string
+              dateComplited: string
+              category: string
+              changesMade: string
+              impactPrior: string
+              downStream: string
+              manualEntry: string
+              dateCorrecting: string
+              filesUpdated: string
+              approverNotes: string
+              dateApproved: string
+              businessSegment: string
+              file: string
+              fileFullName: string
+              approverCompleted: string
+              pageCount: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/NextLogEntryNumber:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetNextLogEntryNumber
+      operationId: Admin_GetNextLogEntryNumber
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/NewReinsurers:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetNewReinsurers
+      operationId: Admin_GetNewReinsurers
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/ContractBusinessPartnerExcel:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetContractBusinessPartnersExcel
+      operationId: Admin_GetContractBusinessPartnersExcel
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Id
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/AllContractBusinessPartnersExcel:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetContractBusinessPartnersExcel2
+      operationId: Admin_GetContractBusinessPartnersExcel2
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/GroupNumbersExcel:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetGroupNumbersExcel
+      operationId: Admin_GetGroupNumbersExcel
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/ChangeLogsExcel:
+    post:
+      tags:
+      - Admin
+      summary: Admin_GetChangeLogsExcel
+      operationId: Admin_GetChangeLogsExcel
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeLogSearchDto'
+            example:
+              contact: string
+              completed: string
+              businessSegment: string
+              dateReceived: string
+              dateCompleted: string
+              dateApprovedFrom: string
+              dateApprovedTo: string
+              note: string
+              userName: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/ContractBusinessPartnersCharts:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetContractBusinessPartnersCharts
+      operationId: Admin_GetContractBusinessPartnersCharts
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: StartDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: EndDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/ContractBusinessPartnersChartsExcel:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetContractBusinessPartnersChartsExcel
+      operationId: Admin_GetContractBusinessPartnersChartsExcel
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: StartDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: EndDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/GetReinsurersExcel:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetReinsurersExcel
+      operationId: Admin_GetReinsurersExcel
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: StartDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: EndDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/GetBrokersExcel:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetBrokersExcel
+      operationId: Admin_GetBrokersExcel
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: StartDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: EndDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/AHTreaty:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetAHTreaty
+      operationId: Admin_GetAHTreaty
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: StartDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: EndDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/AHTreatyExcel:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetAHTreatyExcel
+      operationId: Admin_GetAHTreatyExcel
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: StartDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: EndDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/RIReport:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetRIReport
+      operationId: Admin_GetRIReport
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: StartDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: EndDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/RIReportExcel:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetRIReportExcel
+      operationId: Admin_GetRIReportExcel
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: StartDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: EndDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/ContractBusinessPartnersUpdateViaFile:
+    post:
+      tags:
+      - Admin
+      summary: Admin_UpdateBusinessPartnersViaExcel
+      operationId: Admin_UpdateBusinessPartnersViaExcel
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendFileToServerDto'
+            example:
+              content: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/ContractBusinessPartnersUpdateViaFileForm:
+    post:
+      tags:
+      - Admin
+      summary: Admin_UpdateBusinessPartnersViaExcel2
+      operationId: Admin_UpdateBusinessPartnersViaExcel2
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                ContentType:
+                  type: string
+                ContentDisposition:
+                  type: string
+                Headers:
+                  $ref: '#/components/schemas/IHeaderDictionary'
+                Length:
+                  type: integer
+                  format: int64
+                Name:
+                  type: string
+                FileName:
+                  type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/ContractChangesFiles:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetContractChangesFiles
+      operationId: Admin_GetContractChangesFiles
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: logId
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/ContractChangesFile:
+    put:
+      tags:
+      - Admin
+      summary: Admin_PutContractChangesFile
+      operationId: Admin_PutContractChangesFile
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractChangesFiles'
+            example:
+              fileId: 0
+              fileName: string
+              fileContent: string
+              uploadedAt: string
+              logId: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+    delete:
+      tags:
+      - Admin
+      summary: Admin_DeleteContractChangesFile
+      operationId: Admin_DeleteContractChangesFile
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractChangesFiles'
+            example:
+              fileId: 0
+              fileName: string
+              fileContent: string
+              uploadedAt: string
+              logId: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/ControlReport:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetControlReport
+      operationId: Admin_GetControlReport
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: mode
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: businessSegment
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+  /api/v{version}/Admin/ControlReportExcel:
+    get:
+      tags:
+      - Admin
+      summary: Admin_GetControlReportExcel
+      operationId: Admin_GetControlReportExcel
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: mode
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: businessSegment
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                default:
+                  value: null
+components:
+  schemas:
+    SendFileToServerDto:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          format: byte
+      additionalProperties: false
+    ContractChangesFiles:
+      type: object
+      properties:
+        fileId:
+          type: integer
+          format: int32
+        fileName:
+          type:
+          - string
+          - 'null'
+        fileContent:
+          type:
+          - string
+          - 'null'
+          format: byte
+        uploadedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        logId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    IHeaderDictionary:
+      type: object
+      properties:
+        Item:
+          type: array
+          items: {}
+        ContentLength:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        Accept:
+          type: array
+          items: {}
+        AcceptCharset:
+          type: array
+          items: {}
+        AcceptEncoding:
+          type: array
+          items: {}
+        AcceptLanguage:
+          type: array
+          items: {}
+        AcceptRanges:
+          type: array
+          items: {}
+        AccessControlAllowCredentials:
+          type: array
+          items: {}
+        AccessControlAllowHeaders:
+          type: array
+          items: {}
+        AccessControlAllowMethods:
+          type: array
+          items: {}
+        AccessControlAllowOrigin:
+          type: array
+          items: {}
+        AccessControlExposeHeaders:
+          type: array
+          items: {}
+        AccessControlMaxAge:
+          type: array
+          items: {}
+        AccessControlRequestHeaders:
+          type: array
+          items: {}
+        AccessControlRequestMethod:
+          type: array
+          items: {}
+        Age:
+          type: array
+          items: {}
+        Allow:
+          type: array
+          items: {}
+        AltSvc:
+          type: array
+          items: {}
+        Authorization:
+          type: array
+          items: {}
+        Baggage:
+          type: array
+          items: {}
+        CacheControl:
+          type: array
+          items: {}
+        Connection:
+          type: array
+          items: {}
+        ContentDisposition:
+          type: array
+          items: {}
+        ContentEncoding:
+          type: array
+          items: {}
+        ContentLanguage:
+          type: array
+          items: {}
+        ContentLocation:
+          type: array
+          items: {}
+        ContentMD5:
+          type: array
+          items: {}
+        ContentRange:
+          type: array
+          items: {}
+        ContentSecurityPolicy:
+          type: array
+          items: {}
+        ContentSecurityPolicyReportOnly:
+          type: array
+          items: {}
+        ContentType:
+          type: array
+          items: {}
+        CorrelationContext:
+          type: array
+          items: {}
+        Cookie:
+          type: array
+          items: {}
+        Date:
+          type: array
+          items: {}
+        ETag:
+          type: array
+          items: {}
+        Expires:
+          type: array
+          items: {}
+        Expect:
+          type: array
+          items: {}
+        From:
+          type: array
+          items: {}
+        GrpcAcceptEncoding:
+          type: array
+          items: {}
+        GrpcEncoding:
+          type: array
+          items: {}
+        GrpcMessage:
+          type: array
+          items: {}
+        GrpcStatus:
+          type: array
+          items: {}
+        GrpcTimeout:
+          type: array
+          items: {}
+        Host:
+          type: array
+          items: {}
+        KeepAlive:
+          type: array
+          items: {}
+        IfMatch:
+          type: array
+          items: {}
+        IfModifiedSince:
+          type: array
+          items: {}
+        IfNoneMatch:
+          type: array
+          items: {}
+        IfRange:
+          type: array
+          items: {}
+        IfUnmodifiedSince:
+          type: array
+          items: {}
+        LastModified:
+          type: array
+          items: {}
+        Link:
+          type: array
+          items: {}
+        Location:
+          type: array
+          items: {}
+        MaxForwards:
+          type: array
+          items: {}
+        Origin:
+          type: array
+          items: {}
+        Pragma:
+          type: array
+          items: {}
+        ProxyAuthenticate:
+          type: array
+          items: {}
+        ProxyAuthorization:
+          type: array
+          items: {}
+        ProxyConnection:
+          type: array
+          items: {}
+        Range:
+          type: array
+          items: {}
+        Referer:
+          type: array
+          items: {}
+        RetryAfter:
+          type: array
+          items: {}
+        RequestId:
+          type: array
+          items: {}
+        SecWebSocketAccept:
+          type: array
+          items: {}
+        SecWebSocketKey:
+          type: array
+          items: {}
+        SecWebSocketProtocol:
+          type: array
+          items: {}
+        SecWebSocketVersion:
+          type: array
+          items: {}
+        SecWebSocketExtensions:
+          type: array
+          items: {}
+        Server:
+          type: array
+          items: {}
+        SetCookie:
+          type: array
+          items: {}
+        StrictTransportSecurity:
+          type: array
+          items: {}
+        TE:
+          type: array
+          items: {}
+        Trailer:
+          type: array
+          items: {}
+        TransferEncoding:
+          type: array
+          items: {}
+        Translate:
+          type: array
+          items: {}
+        TraceParent:
+          type: array
+          items: {}
+        TraceState:
+          type: array
+          items: {}
+        Upgrade:
+          type: array
+          items: {}
+        UpgradeInsecureRequests:
+          type: array
+          items: {}
+        UserAgent:
+          type: array
+          items: {}
+        Vary:
+          type: array
+          items: {}
+        Via:
+          type: array
+          items: {}
+        Warning:
+          type: array
+          items: {}
+        WebSocketSubProtocols:
+          type: array
+          items: {}
+        WWWAuthenticate:
+          type: array
+          items: {}
+        XContentTypeOptions:
+          type: array
+          items: {}
+        XFrameOptions:
+          type: array
+          items: {}
+        XPoweredBy:
+          type: array
+          items: {}
+        XRequestedWith:
+          type: array
+          items: {}
+        XUACompatible:
+          type: array
+          items: {}
+        XXSSProtection:
+          type: array
+          items: {}
+      additionalProperties: false
+      x-abstract: true
+    GroupNumbers:
+      required:
+      - groupNumber
+      - groupShortName
+      - ownerDepartment
+      - ownerRecoverableBilling
+      - active
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        groupNumber:
+          title: Group Number
+          minLength: 1
+          type: string
+        groupShortName:
+          title: Group Short Name
+          minLength: 1
+          type: string
+        ownerDepartment:
+          title: Owner Department
+          minLength: 1
+          type: string
+        ownerRecoverableBilling:
+          title: Owner Rec Billing
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+      additionalProperties: false
+    ContractChangesLog:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        logEntryNumber:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        emailSubject:
+          type:
+          - string
+          - 'null'
+        contact:
+          type:
+          - string
+          - 'null'
+        dateReceived:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        notes:
+          type:
+          - string
+          - 'null'
+        completed:
+          type:
+          - string
+          - 'null'
+        dateComplited:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        category:
+          type:
+          - string
+          - 'null'
+        changesMade:
+          type:
+          - string
+          - 'null'
+        impactPrior:
+          type:
+          - string
+          - 'null'
+        downStream:
+          type:
+          - string
+          - 'null'
+        manualEntry:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateCorrecting:
+          type:
+          - string
+          - 'null'
+        filesUpdated:
+          type:
+          - string
+          - 'null'
+        approverNotes:
+          type:
+          - string
+          - 'null'
+        dateApproved:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        businessSegment:
+          type:
+          - string
+          - 'null'
+        file:
+          type:
+          - string
+          - 'null'
+          format: byte
+        fileFullName:
+          type:
+          - string
+          - 'null'
+        approverCompleted:
+          type:
+          - string
+          - 'null'
+        pageCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ChangeLogSearchDto:
+      type: object
+      properties:
+        contact:
+          type:
+          - string
+          - 'null'
+        completed:
+          type:
+          - string
+          - 'null'
+        businessSegment:
+          type:
+          - string
+          - 'null'
+        dateReceived:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateCompleted:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateApprovedFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateApprovedTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        note:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Glaslob:
+      type: object
+      properties:
+        oracleASLOB:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        aslobCode:
+          type:
+          - string
+          - 'null'
+        showOnWeb:
+          type: boolean
+      additionalProperties: false
+    DropDownLists:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        ddKey:
+          type:
+          - string
+          - 'null'
+        ddText:
+          type:
+          - string
+          - 'null'
+        ddValue:
+          type:
+          - string
+          - 'null'
+        active:
+          type: boolean
+        sortOrder:
+          type: integer
+          format: int32
+        pc:
+          type:
+          - boolean
+          - 'null'
+        sr:
+          type:
+          - boolean
+          - 'null'
+        international:
+          type:
+          - boolean
+          - 'null'
+      additionalProperties: false
+    DimCompanyDaily:
+      type: object
+      properties:
+        firm:
+          type: integer
+        firmName:
+          type:
+          - string
+          - 'null'
+        firmNameShort:
+          type:
+          - string
+          - 'null'
+        lastLoaded:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastLoadedBy:
+          type:
+          - string
+          - 'null'
+        dimCompany_DailyID:
+          type: integer
+          format: int32
+        ibnR_Abbr:
+          type:
+          - string
+          - 'null'
+        company:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        feinNum:
+          type:
+          - string
+          - 'null'
+        naicNum:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        active:
+          type:
+          - boolean
+          - 'null'
+      additionalProperties: false
+    ContractBusinessPartner:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        businessPartnerID:
+          title: Business Partner ID
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        businessPartnerName:
+          title: Business Partner Name
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        businessPartnerShortName:
+          title: Business Partner Short Name
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        businessPartnerType:
+          title: Business Partner Type
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        firmId:
+          title: Firm ID
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        country:
+          title: Country
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        domicile:
+          title: Domicile
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        naic:
+          title: NAIC
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        fein:
+          title: FEIN
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        authorizedPA:
+          title: Authorized
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        authorizedCA:
+          type:
+          - string
+          - 'null'
+        authorizedDE:
+          type:
+          - string
+          - 'null'
+        authorizedFL:
+          type:
+          - string
+          - 'null'
+        authorizedNY:
+          type:
+          - string
+          - 'null'
+        authorizedTX:
+          type:
+          - string
+          - 'null'
+        authorizedAZ:
+          type:
+          - string
+          - 'null'
+        authorizedOK:
+          type:
+          - string
+          - 'null'
+        affiliated:
+          title: Affiliated
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        amBestNum:
+          title: AM Best Number
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        amBestRating:
+          title: AM Best Rating
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        alternativeNames:
+          title: Alternative Names
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        brokerKey:
+          title: Broker Key
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        reinsurerKey:
+          title: Reinsurer Key
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        amBestRatingDate:
+          title: AM Best Rating Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        amBestGroupNum:
+          title: AM Best Group Number
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        amBestGroupName:
+          title: AM Best Group Name
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        batchId:
+          title: Batch ID
+          type: integer
+          format: int32
+        activityId:
+          title: Activity ID
+          type: integer
+          format: int32
+        createDate:
+          title: Created Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createBy:
+          title: Created By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        modifiedDate:
+          title: Modified Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        modifiedBy:
+          title: Modified By
+          maxLength: 100
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        spRating:
+          title: S&P Rating
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        spRatingDate:
+          title: S&P Rating Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        certifiedRating:
+          title: Certified Rating
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        certifiedDate:
+          title: Certified Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        reciprocalDate:
+          title: Reciprocal Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        certifiedRatingDate:
+          title: Certified Rating Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        pool:
+          title: Pool
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        oracleCodeSegment9:
+          title: Oracle Code Segment 9
+          maxLength: 255
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        collateralType:
+          type:
+          - string
+          - 'null'
+        figuresasof:
+          type:
+          - string
+          - 'null'
+        fundsHeld:
+          type:
+          - string
+          - 'null'
+        letterofCredit:
+          type:
+          - string
+          - 'null'
+        reinsuranceRecoverable:
+          type:
+          - string
+          - 'null'
+        phsusdMillions:
+          type:
+          - string
+          - 'null'
+        phsAsOf:
+          type:
+          - string
+          - 'null'
+        offsetItems:
+          type:
+          - string
+          - 'null'
+        moodyRate:
+          title: MoodyRate
+          maxLength: 10
+          minLength: 0
+          type:
+          - string
+          - 'null'
+        moodyEffDate:
+          title: MoodyEffDate
+          type:
+          - string
+          - 'null'
+          format: date-time
+        nyCertifiedRating:
+          type:
+          - string
+          - 'null'
+        nyCertifiedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        nyReciprocalDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        deCertifiedRating:
+          type:
+          - string
+          - 'null'
+        deCertifiedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        deReciprocalDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        flCertifiedRating:
+          type:
+          - string
+          - 'null'
+        flCertifiedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        flReciprocalDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        txCertifiedRating:
+          type:
+          - string
+          - 'null'
+        txCertifiedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        txReciprocalDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        caCertifiedRating:
+          type:
+          - string
+          - 'null'
+        caCertifiedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        caReciprocalDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        paCertifiedRating:
+          type:
+          - string
+          - 'null'
+        paCertifiedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        paReciprocalDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        azCertifiedRating:
+          type:
+          - string
+          - 'null'
+        azCertifiedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        azReciprocalDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        okCertifiedRating:
+          type:
+          - string
+          - 'null'
+        okCertifiedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        okReciprocalDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        active:
+          type:
+          - boolean
+          - 'null'
+        approvalStatus:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: subscriber_id
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
