@@ -82,6 +82,22 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    TokenResponse:
+      type: object
+      description: OAuth 2.0 token response
+      properties:
+        access_token:
+          type: string
+          description: Access token for API calls
+          example: eyJhbGciOiJSUzI1NiJ9...
+        token_type:
+          type: string
+          description: Token type
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Token expiry in seconds (14400 = 4 hours)
+          example: 14400
     ErrorResponse:
       type: object
       description: Error response
@@ -99,22 +115,6 @@ components:
           items:
             type: string
           description: Additional error details
-    TokenResponse:
-      type: object
-      description: OAuth 2.0 token response
-      properties:
-        access_token:
-          type: string
-          description: Access token for API calls
-          example: eyJhbGciOiJSUzI1NiJ9...
-        token_type:
-          type: string
-          description: Token type
-          example: Bearer
-        expires_in:
-          type: integer
-          description: Token expiry in seconds (14400 = 4 hours)
-          example: 14400
   securitySchemes:
     bearerAuth:
       type: http

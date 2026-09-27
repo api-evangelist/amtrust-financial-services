@@ -75,6 +75,46 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    AppetiteResponse:
+      type: object
+      description: Coverage appetite check result
+      properties:
+        eligible:
+          type: boolean
+          description: Whether AmTrust has appetite for this risk
+          example: true
+        products:
+          type: array
+          description: Available products for this risk
+          items:
+            type: string
+          example:
+          - workers_compensation
+        bind_online:
+          type: boolean
+          description: Whether the policy can be bound online
+          example: true
+        reason:
+          type: string
+          description: Reason if not eligible
+          example: Eligible for online quoting and binding
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid class code for the specified state
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
     AppetiteRequest:
       type: object
       description: Request to check coverage appetite
@@ -104,46 +144,6 @@ components:
           type: number
           description: Annual payroll amount
           example: 500000
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: Invalid class code for the specified state
-        details:
-          type: array
-          items:
-            type: string
-          description: Additional error details
-    AppetiteResponse:
-      type: object
-      description: Coverage appetite check result
-      properties:
-        eligible:
-          type: boolean
-          description: Whether AmTrust has appetite for this risk
-          example: true
-        products:
-          type: array
-          description: Available products for this risk
-          items:
-            type: string
-          example:
-          - workers_compensation
-        bind_online:
-          type: boolean
-          description: Whether the policy can be bound online
-          example: true
-        reason:
-          type: string
-          description: Reason if not eligible
-          example: Eligible for online quoting and binding
   securitySchemes:
     bearerAuth:
       type: http

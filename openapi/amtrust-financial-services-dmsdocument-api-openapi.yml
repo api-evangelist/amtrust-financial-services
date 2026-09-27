@@ -663,36 +663,62 @@ paths:
                 instance: string
 components:
   schemas:
+    DocumentBusinessPropertyClientDto:
+      type: object
+      properties:
+        entityId:
+          type: integer
+          format: int32
+        entityType:
+          type:
+          - string
+          - 'null'
+        enterpriseId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        number:
+          type:
+          - string
+          - 'null'
+        clientReferenceId:
+          type:
+          - string
+          - 'null'
+        businessSegment:
+          type:
+          - string
+          - 'null'
+        portfolio:
+          type:
+          - string
+          - 'null'
+        renewalNumber:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        effectiveDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        expirationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
     RetrieveDMSDocumentDto:
       type: object
       properties:
         retrieveDMSDocument:
           $ref: '#/components/schemas/LibraryDocumentRequestDto'
-      additionalProperties: false
-    DmsDocumentDto:
-      type: object
-      properties:
-        dmsDocumentId:
-          type: integer
-          format: int32
-      additionalProperties: false
-    RemoveDMSDocumentDto:
-      type: object
-      properties:
-        removeDMSDocument:
-          $ref: '#/components/schemas/LibraryDocumentRequestDto'
-      additionalProperties: false
-    LibraryDocumentResponseDto:
-      type: object
-      properties:
-        contentType:
-          type:
-          - string
-          - 'null'
-        content:
-          type:
-          - string
-          - 'null'
       additionalProperties: false
     DmsDocumentPatchDto:
       required:
@@ -779,25 +805,31 @@ components:
           minLength: 1
           type: string
       additionalProperties: false
-    LibraryDocumentRequestDto:
+    ProblemDetails:
       type: object
       properties:
-        documentId:
-          type: integer
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
           format: int32
-        userId:
+        detail:
           type:
           - string
           - 'null'
-        documentUserClientRefId:
+        instance:
           type:
           - string
           - 'null'
-        documentUserEntityTypeCode:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
+      additionalProperties: {}
     DmsDocumentPostDto:
       type: object
       properties:
@@ -882,82 +914,50 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    DocumentBusinessPropertyClientDto:
+    LibraryDocumentResponseDto:
       type: object
       properties:
-        entityId:
+        contentType:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    LibraryDocumentRequestDto:
+      type: object
+      properties:
+        documentId:
           type: integer
           format: int32
-        entityType:
+        userId:
           type:
           - string
           - 'null'
-        enterpriseId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        name:
+        documentUserClientRefId:
           type:
           - string
           - 'null'
-        number:
+        documentUserEntityTypeCode:
           type:
           - string
           - 'null'
-        clientReferenceId:
-          type:
-          - string
-          - 'null'
-        businessSegment:
-          type:
-          - string
-          - 'null'
-        portfolio:
-          type:
-          - string
-          - 'null'
-        renewalNumber:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        effectiveDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        expirationDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
       additionalProperties: false
-    ProblemDetails:
+    DmsDocumentDto:
       type: object
       properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
+        dmsDocumentId:
+          type: integer
           format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
+      additionalProperties: false
+    RemoveDMSDocumentDto:
+      type: object
+      properties:
+        removeDMSDocument:
+          $ref: '#/components/schemas/LibraryDocumentRequestDto'
+      additionalProperties: false
   securitySchemes:
     apiKeyHeader:
       type: apiKey

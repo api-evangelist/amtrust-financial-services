@@ -1418,15 +1418,6 @@ paths:
                   value: null
 components:
   schemas:
-    SendFileToServerDto:
-      type: object
-      properties:
-        content:
-          type:
-          - string
-          - 'null'
-          format: byte
-      additionalProperties: false
     ContractChangesFiles:
       type: object
       properties:
@@ -1450,559 +1441,6 @@ components:
         logId:
           type: integer
           format: int32
-      additionalProperties: false
-    IHeaderDictionary:
-      type: object
-      properties:
-        Item:
-          type: array
-          items: {}
-        ContentLength:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        Accept:
-          type: array
-          items: {}
-        AcceptCharset:
-          type: array
-          items: {}
-        AcceptEncoding:
-          type: array
-          items: {}
-        AcceptLanguage:
-          type: array
-          items: {}
-        AcceptRanges:
-          type: array
-          items: {}
-        AccessControlAllowCredentials:
-          type: array
-          items: {}
-        AccessControlAllowHeaders:
-          type: array
-          items: {}
-        AccessControlAllowMethods:
-          type: array
-          items: {}
-        AccessControlAllowOrigin:
-          type: array
-          items: {}
-        AccessControlExposeHeaders:
-          type: array
-          items: {}
-        AccessControlMaxAge:
-          type: array
-          items: {}
-        AccessControlRequestHeaders:
-          type: array
-          items: {}
-        AccessControlRequestMethod:
-          type: array
-          items: {}
-        Age:
-          type: array
-          items: {}
-        Allow:
-          type: array
-          items: {}
-        AltSvc:
-          type: array
-          items: {}
-        Authorization:
-          type: array
-          items: {}
-        Baggage:
-          type: array
-          items: {}
-        CacheControl:
-          type: array
-          items: {}
-        Connection:
-          type: array
-          items: {}
-        ContentDisposition:
-          type: array
-          items: {}
-        ContentEncoding:
-          type: array
-          items: {}
-        ContentLanguage:
-          type: array
-          items: {}
-        ContentLocation:
-          type: array
-          items: {}
-        ContentMD5:
-          type: array
-          items: {}
-        ContentRange:
-          type: array
-          items: {}
-        ContentSecurityPolicy:
-          type: array
-          items: {}
-        ContentSecurityPolicyReportOnly:
-          type: array
-          items: {}
-        ContentType:
-          type: array
-          items: {}
-        CorrelationContext:
-          type: array
-          items: {}
-        Cookie:
-          type: array
-          items: {}
-        Date:
-          type: array
-          items: {}
-        ETag:
-          type: array
-          items: {}
-        Expires:
-          type: array
-          items: {}
-        Expect:
-          type: array
-          items: {}
-        From:
-          type: array
-          items: {}
-        GrpcAcceptEncoding:
-          type: array
-          items: {}
-        GrpcEncoding:
-          type: array
-          items: {}
-        GrpcMessage:
-          type: array
-          items: {}
-        GrpcStatus:
-          type: array
-          items: {}
-        GrpcTimeout:
-          type: array
-          items: {}
-        Host:
-          type: array
-          items: {}
-        KeepAlive:
-          type: array
-          items: {}
-        IfMatch:
-          type: array
-          items: {}
-        IfModifiedSince:
-          type: array
-          items: {}
-        IfNoneMatch:
-          type: array
-          items: {}
-        IfRange:
-          type: array
-          items: {}
-        IfUnmodifiedSince:
-          type: array
-          items: {}
-        LastModified:
-          type: array
-          items: {}
-        Link:
-          type: array
-          items: {}
-        Location:
-          type: array
-          items: {}
-        MaxForwards:
-          type: array
-          items: {}
-        Origin:
-          type: array
-          items: {}
-        Pragma:
-          type: array
-          items: {}
-        ProxyAuthenticate:
-          type: array
-          items: {}
-        ProxyAuthorization:
-          type: array
-          items: {}
-        ProxyConnection:
-          type: array
-          items: {}
-        Range:
-          type: array
-          items: {}
-        Referer:
-          type: array
-          items: {}
-        RetryAfter:
-          type: array
-          items: {}
-        RequestId:
-          type: array
-          items: {}
-        SecWebSocketAccept:
-          type: array
-          items: {}
-        SecWebSocketKey:
-          type: array
-          items: {}
-        SecWebSocketProtocol:
-          type: array
-          items: {}
-        SecWebSocketVersion:
-          type: array
-          items: {}
-        SecWebSocketExtensions:
-          type: array
-          items: {}
-        Server:
-          type: array
-          items: {}
-        SetCookie:
-          type: array
-          items: {}
-        StrictTransportSecurity:
-          type: array
-          items: {}
-        TE:
-          type: array
-          items: {}
-        Trailer:
-          type: array
-          items: {}
-        TransferEncoding:
-          type: array
-          items: {}
-        Translate:
-          type: array
-          items: {}
-        TraceParent:
-          type: array
-          items: {}
-        TraceState:
-          type: array
-          items: {}
-        Upgrade:
-          type: array
-          items: {}
-        UpgradeInsecureRequests:
-          type: array
-          items: {}
-        UserAgent:
-          type: array
-          items: {}
-        Vary:
-          type: array
-          items: {}
-        Via:
-          type: array
-          items: {}
-        Warning:
-          type: array
-          items: {}
-        WebSocketSubProtocols:
-          type: array
-          items: {}
-        WWWAuthenticate:
-          type: array
-          items: {}
-        XContentTypeOptions:
-          type: array
-          items: {}
-        XFrameOptions:
-          type: array
-          items: {}
-        XPoweredBy:
-          type: array
-          items: {}
-        XRequestedWith:
-          type: array
-          items: {}
-        XUACompatible:
-          type: array
-          items: {}
-        XXSSProtection:
-          type: array
-          items: {}
-      additionalProperties: false
-      x-abstract: true
-    GroupNumbers:
-      required:
-      - groupNumber
-      - groupShortName
-      - ownerDepartment
-      - ownerRecoverableBilling
-      - active
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        groupNumber:
-          title: Group Number
-          minLength: 1
-          type: string
-        groupShortName:
-          title: Group Short Name
-          minLength: 1
-          type: string
-        ownerDepartment:
-          title: Owner Department
-          minLength: 1
-          type: string
-        ownerRecoverableBilling:
-          title: Owner Rec Billing
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-      additionalProperties: false
-    ContractChangesLog:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        logEntryNumber:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        emailSubject:
-          type:
-          - string
-          - 'null'
-        contact:
-          type:
-          - string
-          - 'null'
-        dateReceived:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        notes:
-          type:
-          - string
-          - 'null'
-        completed:
-          type:
-          - string
-          - 'null'
-        dateComplited:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        category:
-          type:
-          - string
-          - 'null'
-        changesMade:
-          type:
-          - string
-          - 'null'
-        impactPrior:
-          type:
-          - string
-          - 'null'
-        downStream:
-          type:
-          - string
-          - 'null'
-        manualEntry:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        dateCorrecting:
-          type:
-          - string
-          - 'null'
-        filesUpdated:
-          type:
-          - string
-          - 'null'
-        approverNotes:
-          type:
-          - string
-          - 'null'
-        dateApproved:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        businessSegment:
-          type:
-          - string
-          - 'null'
-        file:
-          type:
-          - string
-          - 'null'
-          format: byte
-        fileFullName:
-          type:
-          - string
-          - 'null'
-        approverCompleted:
-          type:
-          - string
-          - 'null'
-        pageCount:
-          type: integer
-          format: int32
-      additionalProperties: false
-    ChangeLogSearchDto:
-      type: object
-      properties:
-        contact:
-          type:
-          - string
-          - 'null'
-        completed:
-          type:
-          - string
-          - 'null'
-        businessSegment:
-          type:
-          - string
-          - 'null'
-        dateReceived:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        dateCompleted:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        dateApprovedFrom:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        dateApprovedTo:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        note:
-          type:
-          - string
-          - 'null'
-        userName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Glaslob:
-      type: object
-      properties:
-        oracleASLOB:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        aslobCode:
-          type:
-          - string
-          - 'null'
-        showOnWeb:
-          type: boolean
-      additionalProperties: false
-    DropDownLists:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        ddKey:
-          type:
-          - string
-          - 'null'
-        ddText:
-          type:
-          - string
-          - 'null'
-        ddValue:
-          type:
-          - string
-          - 'null'
-        active:
-          type: boolean
-        sortOrder:
-          type: integer
-          format: int32
-        pc:
-          type:
-          - boolean
-          - 'null'
-        sr:
-          type:
-          - boolean
-          - 'null'
-        international:
-          type:
-          - boolean
-          - 'null'
-      additionalProperties: false
-    DimCompanyDaily:
-      type: object
-      properties:
-        firm:
-          type: integer
-        firmName:
-          type:
-          - string
-          - 'null'
-        firmNameShort:
-          type:
-          - string
-          - 'null'
-        lastLoaded:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        lastLoadedBy:
-          type:
-          - string
-          - 'null'
-        dimCompany_DailyID:
-          type: integer
-          format: int32
-        ibnR_Abbr:
-          type:
-          - string
-          - 'null'
-        company:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        feinNum:
-          type:
-          - string
-          - 'null'
-        naicNum:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        active:
-          type:
-          - boolean
-          - 'null'
       additionalProperties: false
     ContractBusinessPartner:
       type: object
@@ -2420,6 +1858,568 @@ components:
         approvalStatus:
           type:
           - string
+          - 'null'
+      additionalProperties: false
+    GroupNumbers:
+      required:
+      - groupNumber
+      - groupShortName
+      - ownerDepartment
+      - ownerRecoverableBilling
+      - active
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        groupNumber:
+          title: Group Number
+          minLength: 1
+          type: string
+        groupShortName:
+          title: Group Short Name
+          minLength: 1
+          type: string
+        ownerDepartment:
+          title: Owner Department
+          minLength: 1
+          type: string
+        ownerRecoverableBilling:
+          title: Owner Rec Billing
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+      additionalProperties: false
+    DimCompanyDaily:
+      type: object
+      properties:
+        firm:
+          type: integer
+        firmName:
+          type:
+          - string
+          - 'null'
+        firmNameShort:
+          type:
+          - string
+          - 'null'
+        lastLoaded:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastLoadedBy:
+          type:
+          - string
+          - 'null'
+        dimCompany_DailyID:
+          type: integer
+          format: int32
+        ibnR_Abbr:
+          type:
+          - string
+          - 'null'
+        company:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        feinNum:
+          type:
+          - string
+          - 'null'
+        naicNum:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        active:
+          type:
+          - boolean
+          - 'null'
+      additionalProperties: false
+    Glaslob:
+      type: object
+      properties:
+        oracleASLOB:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        aslobCode:
+          type:
+          - string
+          - 'null'
+        showOnWeb:
+          type: boolean
+      additionalProperties: false
+    SendFileToServerDto:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          format: byte
+      additionalProperties: false
+    IHeaderDictionary:
+      type: object
+      properties:
+        Item:
+          type: array
+          items: {}
+        ContentLength:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        Accept:
+          type: array
+          items: {}
+        AcceptCharset:
+          type: array
+          items: {}
+        AcceptEncoding:
+          type: array
+          items: {}
+        AcceptLanguage:
+          type: array
+          items: {}
+        AcceptRanges:
+          type: array
+          items: {}
+        AccessControlAllowCredentials:
+          type: array
+          items: {}
+        AccessControlAllowHeaders:
+          type: array
+          items: {}
+        AccessControlAllowMethods:
+          type: array
+          items: {}
+        AccessControlAllowOrigin:
+          type: array
+          items: {}
+        AccessControlExposeHeaders:
+          type: array
+          items: {}
+        AccessControlMaxAge:
+          type: array
+          items: {}
+        AccessControlRequestHeaders:
+          type: array
+          items: {}
+        AccessControlRequestMethod:
+          type: array
+          items: {}
+        Age:
+          type: array
+          items: {}
+        Allow:
+          type: array
+          items: {}
+        AltSvc:
+          type: array
+          items: {}
+        Authorization:
+          type: array
+          items: {}
+        Baggage:
+          type: array
+          items: {}
+        CacheControl:
+          type: array
+          items: {}
+        Connection:
+          type: array
+          items: {}
+        ContentDisposition:
+          type: array
+          items: {}
+        ContentEncoding:
+          type: array
+          items: {}
+        ContentLanguage:
+          type: array
+          items: {}
+        ContentLocation:
+          type: array
+          items: {}
+        ContentMD5:
+          type: array
+          items: {}
+        ContentRange:
+          type: array
+          items: {}
+        ContentSecurityPolicy:
+          type: array
+          items: {}
+        ContentSecurityPolicyReportOnly:
+          type: array
+          items: {}
+        ContentType:
+          type: array
+          items: {}
+        CorrelationContext:
+          type: array
+          items: {}
+        Cookie:
+          type: array
+          items: {}
+        Date:
+          type: array
+          items: {}
+        ETag:
+          type: array
+          items: {}
+        Expires:
+          type: array
+          items: {}
+        Expect:
+          type: array
+          items: {}
+        From:
+          type: array
+          items: {}
+        GrpcAcceptEncoding:
+          type: array
+          items: {}
+        GrpcEncoding:
+          type: array
+          items: {}
+        GrpcMessage:
+          type: array
+          items: {}
+        GrpcStatus:
+          type: array
+          items: {}
+        GrpcTimeout:
+          type: array
+          items: {}
+        Host:
+          type: array
+          items: {}
+        KeepAlive:
+          type: array
+          items: {}
+        IfMatch:
+          type: array
+          items: {}
+        IfModifiedSince:
+          type: array
+          items: {}
+        IfNoneMatch:
+          type: array
+          items: {}
+        IfRange:
+          type: array
+          items: {}
+        IfUnmodifiedSince:
+          type: array
+          items: {}
+        LastModified:
+          type: array
+          items: {}
+        Link:
+          type: array
+          items: {}
+        Location:
+          type: array
+          items: {}
+        MaxForwards:
+          type: array
+          items: {}
+        Origin:
+          type: array
+          items: {}
+        Pragma:
+          type: array
+          items: {}
+        ProxyAuthenticate:
+          type: array
+          items: {}
+        ProxyAuthorization:
+          type: array
+          items: {}
+        ProxyConnection:
+          type: array
+          items: {}
+        Range:
+          type: array
+          items: {}
+        Referer:
+          type: array
+          items: {}
+        RetryAfter:
+          type: array
+          items: {}
+        RequestId:
+          type: array
+          items: {}
+        SecWebSocketAccept:
+          type: array
+          items: {}
+        SecWebSocketKey:
+          type: array
+          items: {}
+        SecWebSocketProtocol:
+          type: array
+          items: {}
+        SecWebSocketVersion:
+          type: array
+          items: {}
+        SecWebSocketExtensions:
+          type: array
+          items: {}
+        Server:
+          type: array
+          items: {}
+        SetCookie:
+          type: array
+          items: {}
+        StrictTransportSecurity:
+          type: array
+          items: {}
+        TE:
+          type: array
+          items: {}
+        Trailer:
+          type: array
+          items: {}
+        TransferEncoding:
+          type: array
+          items: {}
+        Translate:
+          type: array
+          items: {}
+        TraceParent:
+          type: array
+          items: {}
+        TraceState:
+          type: array
+          items: {}
+        Upgrade:
+          type: array
+          items: {}
+        UpgradeInsecureRequests:
+          type: array
+          items: {}
+        UserAgent:
+          type: array
+          items: {}
+        Vary:
+          type: array
+          items: {}
+        Via:
+          type: array
+          items: {}
+        Warning:
+          type: array
+          items: {}
+        WebSocketSubProtocols:
+          type: array
+          items: {}
+        WWWAuthenticate:
+          type: array
+          items: {}
+        XContentTypeOptions:
+          type: array
+          items: {}
+        XFrameOptions:
+          type: array
+          items: {}
+        XPoweredBy:
+          type: array
+          items: {}
+        XRequestedWith:
+          type: array
+          items: {}
+        XUACompatible:
+          type: array
+          items: {}
+        XXSSProtection:
+          type: array
+          items: {}
+      additionalProperties: false
+      x-abstract: true
+    ContractChangesLog:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        logEntryNumber:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        emailSubject:
+          type:
+          - string
+          - 'null'
+        contact:
+          type:
+          - string
+          - 'null'
+        dateReceived:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        notes:
+          type:
+          - string
+          - 'null'
+        completed:
+          type:
+          - string
+          - 'null'
+        dateComplited:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        category:
+          type:
+          - string
+          - 'null'
+        changesMade:
+          type:
+          - string
+          - 'null'
+        impactPrior:
+          type:
+          - string
+          - 'null'
+        downStream:
+          type:
+          - string
+          - 'null'
+        manualEntry:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateCorrecting:
+          type:
+          - string
+          - 'null'
+        filesUpdated:
+          type:
+          - string
+          - 'null'
+        approverNotes:
+          type:
+          - string
+          - 'null'
+        dateApproved:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        businessSegment:
+          type:
+          - string
+          - 'null'
+        file:
+          type:
+          - string
+          - 'null'
+          format: byte
+        fileFullName:
+          type:
+          - string
+          - 'null'
+        approverCompleted:
+          type:
+          - string
+          - 'null'
+        pageCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ChangeLogSearchDto:
+      type: object
+      properties:
+        contact:
+          type:
+          - string
+          - 'null'
+        completed:
+          type:
+          - string
+          - 'null'
+        businessSegment:
+          type:
+          - string
+          - 'null'
+        dateReceived:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateCompleted:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateApprovedFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateApprovedTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        note:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    DropDownLists:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        ddKey:
+          type:
+          - string
+          - 'null'
+        ddText:
+          type:
+          - string
+          - 'null'
+        ddValue:
+          type:
+          - string
+          - 'null'
+        active:
+          type: boolean
+        sortOrder:
+          type: integer
+          format: int32
+        pc:
+          type:
+          - boolean
+          - 'null'
+        sr:
+          type:
+          - boolean
+          - 'null'
+        international:
+          type:
+          - boolean
           - 'null'
       additionalProperties: false
   securitySchemes:

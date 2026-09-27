@@ -513,13 +513,368 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    ApiPaging:
+    LossHistoryPostResponseDto:
       type: object
       properties:
-        request:
-          $ref: '#/components/schemas/ApiPageRequest'
-        response:
-          $ref: '#/components/schemas/ApiPageResponse'
+        hasPriorCarrier:
+          type: boolean
+        hasZeroClaimsInLastThreeYears:
+          type: boolean
+        lossApplication:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    NotFoundErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/NotFoundError'
+      additionalProperties: false
+    LossHistoryPostResponseDtoIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/LossHistoryPostResponseDto'
+      additionalProperties: false
+    ForbiddenErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/ForbiddenError'
       additionalProperties: false
     BadRequestErrorIApiResponse:
       type: object
@@ -827,6 +1182,48 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
+    ApiPaging:
+      type: object
+      properties:
+        request:
+          $ref: '#/components/schemas/ApiPageRequest'
+        response:
+          $ref: '#/components/schemas/ApiPageResponse'
+      additionalProperties: false
+    ApiPageResponse:
+      type: object
+      properties:
+        first:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+        current:
+          type:
+          - string
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        last:
+          type:
+          - string
+          - 'null'
+        pageSize:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
     UnauthorizedErrorIApiResponse:
       type: object
       properties:
@@ -944,38 +1341,21 @@ components:
         data:
           $ref: '#/components/schemas/UnauthorizedError'
       additionalProperties: false
-    ApiPageResponse:
+    LossHistoryPostRequestDto:
+      required:
+      - hasPriorCarrier
+      - lossApplication
       type: object
       properties:
-        first:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-        current:
-          type:
-          - string
-          - 'null'
-        next:
-          type:
-          - string
-          - 'null'
-        last:
-          type:
-          - string
-          - 'null'
-        pageSize:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        count:
-          type:
-          - integer
-          - 'null'
+        hasPriorCarrier:
+          type: boolean
+        hasZeroClaimsInLastThreeYears:
+          type: boolean
+        lossApplication:
+          maximum: 6.0
+          minimum: 0.0
+          type: integer
+          description: 1 - Single Loss < $5,000<br/>2 - Single Non - Weather Loss $5, 000 - $10, 000<br/>3 - Single Non - Weather Loss > $10, 000<br/>4 - Single Weather Loss $5, 000 - $25, 000<br/>5 - Single Weather Loss > 25, 000<br/>6 - Two or More Losses
           format: int32
       additionalProperties: false
     LogException:
@@ -1062,240 +1442,6 @@ components:
           - 'null'
         baseException:
           $ref: '#/components/schemas/LogException'
-      additionalProperties: false
-    ForbiddenErrorIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/ForbiddenError'
-      additionalProperties: false
-    NotFoundErrorIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/NotFoundError'
       additionalProperties: false
     NotFoundError:
       type: object
@@ -1485,265 +1631,6 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    LossHistoryPostRequestDto:
-      required:
-      - hasPriorCarrier
-      - lossApplication
-      type: object
-      properties:
-        hasPriorCarrier:
-          type: boolean
-        hasZeroClaimsInLastThreeYears:
-          type: boolean
-        lossApplication:
-          maximum: 6.0
-          minimum: 0.0
-          type: integer
-          description: 1 - Single Loss < $5,000<br/>2 - Single Non - Weather Loss $5, 000 - $10, 000<br/>3 - Single Non - Weather Loss > $10, 000<br/>4 - Single Weather Loss $5, 000 - $25, 000<br/>5 - Single Weather Loss > 25, 000<br/>6 - Two or More Losses
-          format: int32
-      additionalProperties: false
-    LossHistoryPostResponseDtoIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/LossHistoryPostResponseDto'
-      additionalProperties: false
-    LossHistoryPostResponseDto:
-      type: object
-      properties:
-        hasPriorCarrier:
-          type: boolean
-        hasZeroClaimsInLastThreeYears:
-          type: boolean
-        lossApplication:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ApiMessage:
-      type: object
-      properties:
-        id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-        messageCode:
-          type:
-          - string
-          - 'null'
-        messageType:
-          enum:
-          - 0 = Info
-          - 1 = Error
-          type: integer
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        internal:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        exception:
-          $ref: '#/components/schemas/LogException'
-        isOk:
-          type: boolean
-        needsSanitization:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
     ForbiddenError:
       type: object
       properties:
@@ -1929,6 +1816,119 @@ components:
           - 'null'
           readOnly: true
         isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    ApiMessage:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messageCode:
+          type:
+          - string
+          - 'null'
+        messageType:
+          enum:
+          - 0 = Info
+          - 1 = Error
+          type: integer
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        isOk:
+          type: boolean
+        needsSanitization:
           type: boolean
           readOnly: true
       additionalProperties: false

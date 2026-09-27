@@ -198,31 +198,6 @@ components:
           type: integer
           description: Total number of employees
           example: 25
-    Address:
-      type: object
-      description: Physical address
-      required:
-      - street
-      - city
-      - state
-      - zip
-      properties:
-        street:
-          type: string
-          description: Street address
-          example: 123 Main St
-        city:
-          type: string
-          description: City
-          example: Austin
-        state:
-          type: string
-          description: State abbreviation
-          example: TX
-        zip:
-          type: string
-          description: ZIP code
-          example: '78701'
     PolicyResponse:
       type: object
       description: Bound policy details
@@ -261,6 +236,31 @@ components:
           type: string
           format: date-time
           example: '2025-03-15T15:00:00Z'
+    Address:
+      type: object
+      description: Physical address
+      required:
+      - street
+      - city
+      - state
+      - zip
+      properties:
+        street:
+          type: string
+          description: Street address
+          example: 123 Main St
+        city:
+          type: string
+          description: City
+          example: Austin
+        state:
+          type: string
+          description: State abbreviation
+          example: TX
+        zip:
+          type: string
+          description: ZIP code
+          example: '78701'
   securitySchemes:
     bearerAuth:
       type: http

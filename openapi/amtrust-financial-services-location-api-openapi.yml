@@ -2735,388 +2735,7 @@ paths:
     - url: https://prod-apim-gw.amtrustservices.com/digital-pac
 components:
   schemas:
-    UnauthorizedError:
-      type: object
-      properties:
-        id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-        messageType:
-          enum:
-          - 0 = Info
-          - 1 = Error
-          type: integer
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        internal:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        exception:
-          $ref: '#/components/schemas/LogException'
-        needsSanitization:
-          type: boolean
-          readOnly: true
-        httpStatusCode:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-          readOnly: true
-        messageCode:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        title:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        isOk:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
-    BuildingResponseDtoV2:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        classCode:
-          $ref: '#/components/schemas/ClassCodeGetDto'
-        annualSales:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        annualPayroll:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        numberOfEmployees:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        constructionCategoryCode:
-          type: integer
-          format: int32
-        totalSquareFootage:
-          type: integer
-          format: int32
-        squareFootageOccupied:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        totalStories:
-          type: integer
-          format: int32
-        yearBuilt:
-          type: integer
-          format: int32
-        yearRoofUpdated:
-          type: integer
-          format: int32
-        yearElectricalUpdated:
-          type: integer
-          format: int32
-        yearPlumbingUpdated:
-          type: integer
-          format: int32
-        yearHeatingUpdated:
-          type: integer
-          format: int32
-        hasCentralStationFireAlarm:
-          type: boolean
-        hasCentralStationBurglarAlarm:
-          type: boolean
-        isSprinkleredBuilding:
-          type: boolean
-        roofType:
-          type:
-          - string
-          - 'null'
-        highestStoryOccupied:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        lessorLiability:
-          type:
-          - boolean
-          - 'null'
-      additionalProperties: false
-    PremiumDetails:
-      type: object
-      properties:
-        priceIndication:
-          type: number
-          format: double
-        generalLiabilityLimits:
-          type:
-          - string
-          - 'null'
-        medicalPayments:
-          type:
-          - string
-          - 'null'
-        damagesToPremisesLiabilityLimit:
-          type:
-          - string
-          - 'null'
-        businessPersonalProperty:
-          type:
-          - string
-          - 'null'
-        propertyDeductible:
-          type:
-          - string
-          - 'null'
-        expansionEndorsement:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    LogException:
-      type: object
-      properties:
-        exceptionId:
-          type: string
-          format: uuid
-        module:
-          type:
-          - string
-          - 'null'
-        class:
-          type:
-          - string
-          - 'null'
-        targetSite:
-          type:
-          - string
-          - 'null'
-        httpWebEventCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        httpStatusValue:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        httpStatusCode:
-          type:
-          - string
-          - 'null'
-        httpHtmlMessage:
-          type:
-          - string
-          - 'null'
-        properties:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - string
-            - 'null'
-        innerException:
-          $ref: '#/components/schemas/LogException'
-        message:
-          type:
-          - string
-          - 'null'
-        source:
-          type:
-          - string
-          - 'null'
-        stackTrace:
-          type:
-          - string
-          - 'null'
-        helpLink:
-          type:
-          - string
-          - 'null'
-        method:
-          type:
-          - string
-          - 'null'
-        data:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - string
-            - 'null'
-        errorCode:
-          type:
-          - string
-          - 'null'
-        exceptionType:
-          type:
-          - string
-          - 'null'
-        baseException:
-          $ref: '#/components/schemas/LogException'
-      additionalProperties: false
-    JsonPatchDocument:
-      type: array
-      items:
-        $ref: '#/components/schemas/Operation'
-      description: Array of operations to perform
-    NotFoundErrorIApiResponse:
+    PatchBuildingResponseV1IApiResponse:
       type: object
       properties:
         id:
@@ -3231,9 +2850,83 @@ components:
           - 'null'
           readOnly: true
         data:
-          $ref: '#/components/schemas/NotFoundError'
+          $ref: '#/components/schemas/PatchBuildingResponseV1'
       additionalProperties: false
-    LocationPatchResponseDto:
+    PatchBuildingResponseV2:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        classCode:
+          $ref: '#/components/schemas/ClassCodeGetDto'
+        annualSales:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        annualPayroll:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        numberOfEmployees:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        constructionCategoryCode:
+          type: integer
+          format: int32
+        totalSquareFootage:
+          type: integer
+          format: int32
+        squareFootageOccupied:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        totalStories:
+          type: integer
+          format: int32
+        yearBuilt:
+          type: integer
+          format: int32
+        yearRoofUpdated:
+          type: integer
+          format: int32
+        yearElectricalUpdated:
+          type: integer
+          format: int32
+        yearPlumbingUpdated:
+          type: integer
+          format: int32
+        yearHeatingUpdated:
+          type: integer
+          format: int32
+        hasCentralStationFireAlarm:
+          type: boolean
+        hasCentralStationBurglarAlarm:
+          type: boolean
+        isSprinkleredBuilding:
+          type: boolean
+        roofType:
+          type:
+          - string
+          - 'null'
+        highestStoryOccupied:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        premiumDetails:
+          $ref: '#/components/schemas/PremiumDetails'
+        lessorLiability:
+          type:
+          - boolean
+          - 'null'
+      additionalProperties: false
+    LocationGetDtoV2:
       required:
       - city
       - line1
@@ -3265,151 +2958,280 @@ components:
           type:
           - string
           - 'null'
+        buildings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/BuildingResponseDtoV2'
       additionalProperties: false
-    ClassCodeGetDto:
+    ForbiddenErrorIApiResponse:
       type: object
       properties:
-        classCodeId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        classCode:
+        id:
           type:
           - string
           - 'null'
-        classDescriptionCode:
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
           type:
           - string
           - 'null'
-        personalPropertyCoverage:
-          $ref: '#/components/schemas/ClassCodeCoverageGetDto'
-        buildingCoverage:
-          $ref: '#/components/schemas/ClassCodeCoverageGetDto'
-      additionalProperties: false
-    PostBuildingRequestV2:
-      required:
-      - classCode
-      - constructionCategoryCode
-      - hasCentralStationBurglarAlarm
-      - hasCentralStationFireAlarm
-      - highestStoryOccupied
-      - isSprinkleredBuilding
-      - totalSquareFootage
-      - totalStories
-      - yearBuilt
-      type: object
-      properties:
-        roofType:
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
           type:
           - string
           - 'null'
-          description: AsphaltShingles<br/>BuiltUpRoofing<br/>ClayTiles<br/>MetalRoofPanels<br/>ConcretePaver<br/>RubberMembrane<br/>StoneBallast
-        highestStoryOccupied:
-          type: integer
-          format: int32
-        classCode:
-          $ref: '#/components/schemas/ClassCodePostDtoV1'
-        annualSales:
-          type:
-          - integer
-          - 'null'
-          description: 'This field is required if the class code included is one of the following: 74111, 74231, 74511, 74541, 74601, 74661, 74751, 74781, 74841, 74901, 75641, 75791, 75821, and 75881'
-          format: int32
-        annualPayroll:
-          type:
-          - integer
-          - 'null'
-          description: 'This field is required if the class code included is one of the following: 74111, 74231, 74511, 74541, 74601, 74661, 74751, 74781, 74841, 74901, 75641, 75791, 75821, and 75881'
-          format: int32
-        numberOfEmployees:
-          type:
-          - integer
-          - 'null'
-          description: 'This field is required if the class code included is one of the following: 74111, 74231, 74511, 74541, 74601, 74661, 74751, 74781, 74841, 74901, 75641, 75791, 75821, and 75881'
-          format: int32
-        constructionCategoryCode:
-          maximum: 6.0
-          minimum: 1.0
-          type: integer
-          description: 1 --> Frame<br/>2 --> Joisted Masonry<br/>3 --> Noncombustible<br/>4 --> Masonry Noncombustible<br/>5 --> Modified Fire Resistive<br/>6 --> Fire Resistive
-          format: int32
-        totalSquareFootage:
-          type: integer
-          format: int32
-        squareFootageOccupied:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        totalStories:
-          maximum: 2147483647.0
-          minimum: 1.0
-          type: integer
-          format: int32
-        yearBuilt:
-          maximum: 2147483647.0
-          minimum: 1.0
-          type: integer
-          format: int32
-        yearRoofUpdated:
-          type: integer
-          description: Only required if building is over 20 years old
-          format: int32
-        yearElectricalUpdated:
-          type: integer
-          description: Only required if building is over 20 years old
-          format: int32
-        yearPlumbingUpdated:
-          type: integer
-          description: Only required if building is over 20 years old
-          format: int32
-        yearHeatingUpdated:
-          type: integer
-          description: Only required if building is over 20 years old
-          format: int32
-        hasCentralStationFireAlarm:
-          type: boolean
-        hasCentralStationBurglarAlarm:
-          type: boolean
-        isSprinkleredBuilding:
-          type: boolean
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/ForbiddenError'
       additionalProperties: false
-    ApiPageRequest:
+    BadRequestErrorIApiResponse:
       type: object
       properties:
-        skip:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
           type: integer
           format: int32
-        take:
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
           type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/BadRequestError'
+      additionalProperties: false
+    ApiPageResponse:
+      type: object
+      properties:
+        first:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+        current:
+          type:
+          - string
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        last:
+          type:
+          - string
+          - 'null'
+        pageSize:
+          type:
+          - integer
+          - 'null'
           format: int32
         count:
-          type: boolean
-      additionalProperties: false
-    ClassCodeCoveragePostDto:
-      required:
-      - coverageLimit
-      - valuation
-      type: object
-      properties:
-        coverageLimit:
-          maximum: 999999999.0
-          minimum: 0.0
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-        valuation:
-          minLength: 1
-          type: string
-          description: Replacement Cost<br/>Actual Cash Value
-      additionalProperties: false
-    ApiPaging:
-      type: object
-      properties:
-        request:
-          $ref: '#/components/schemas/ApiPageRequest'
-        response:
-          $ref: '#/components/schemas/ApiPageResponse'
       additionalProperties: false
     BadRequestError:
       type: object
@@ -3600,298 +3422,6 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    ApiPageResponse:
-      type: object
-      properties:
-        first:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-        current:
-          type:
-          - string
-          - 'null'
-        next:
-          type:
-          - string
-          - 'null'
-        last:
-          type:
-          - string
-          - 'null'
-        pageSize:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        count:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      additionalProperties: false
-    PostBuildingResponseV3IApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/PostBuildingResponseV3'
-      additionalProperties: false
-    PatchBuildingResponseV1IApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/PatchBuildingResponseV1'
-      additionalProperties: false
-    ClassCodePostDtoV1:
-      type: object
-      properties:
-        classCodeId:
-          type:
-          - integer
-          - 'null'
-          description: This is optional. It is NOT required if a class code with class description code are entered.
-          format: int32
-        classCode:
-          type:
-          - string
-          - 'null'
-          description: This is optional at this time. This is required if not providing a classCodeId.
-        classDescriptionCode:
-          type:
-          - string
-          - 'null'
-          description: This is only required if a classCode is included in the request body.
-        personalPropertyCoverage:
-          $ref: '#/components/schemas/ClassCodeCoveragePostDto'
-        buildingCoverage:
-          $ref: '#/components/schemas/ClassCodeCoveragePostDto'
-      additionalProperties: false
     NotFoundError:
       type: object
       properties:
@@ -4080,141 +3610,338 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    LocationGetDtoV2IEnumerableIApiResponse:
+    LogException:
       type: object
       properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
+        exceptionId:
           type: string
-          format: date-time
-        correlationID:
+          format: uuid
+        module:
           type:
           - string
           - 'null'
-        httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
+        class:
           type:
           - string
           - 'null'
-          readOnly: true
-        data:
+        targetSite:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/LocationGetDtoV2'
-      additionalProperties: false
-    ClassCodeCoverageGetDto:
-      type: object
-      properties:
-        coverageLimit:
+        httpWebEventCode:
           type:
           - integer
           - 'null'
           format: int32
-        valuation:
+        httpStatusValue:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatusCode:
           type:
           - string
           - 'null'
+        httpHtmlMessage:
+          type:
+          - string
+          - 'null'
+        properties:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+        innerException:
+          $ref: '#/components/schemas/LogException'
+        message:
+          type:
+          - string
+          - 'null'
+        source:
+          type:
+          - string
+          - 'null'
+        stackTrace:
+          type:
+          - string
+          - 'null'
+        helpLink:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+        data:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+        errorCode:
+          type:
+          - string
+          - 'null'
+        exceptionType:
+          type:
+          - string
+          - 'null'
+        baseException:
+          $ref: '#/components/schemas/LogException'
       additionalProperties: false
-    LocationGetDtoIEnumerableIApiResponse:
+    BuildingResponseDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        classCode:
+          $ref: '#/components/schemas/ClassCodeGetDto'
+        annualSales:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        annualPayroll:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        numberOfEmployees:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        constructionCategoryCode:
+          type: integer
+          format: int32
+        totalSquareFootage:
+          type: integer
+          format: int32
+        squareFootageOccupied:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        totalStories:
+          type: integer
+          format: int32
+        yearBuilt:
+          type: integer
+          format: int32
+        yearRoofUpdated:
+          type: integer
+          format: int32
+        yearElectricalUpdated:
+          type: integer
+          format: int32
+        yearPlumbingUpdated:
+          type: integer
+          format: int32
+        yearHeatingUpdated:
+          type: integer
+          format: int32
+        hasCentralStationFireAlarm:
+          type: boolean
+        hasCentralStationBurglarAlarm:
+          type: boolean
+        isSprinkleredBuilding:
+          type: boolean
+        roofType:
+          type:
+          - string
+          - 'null'
+        highestStoryOccupied:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    BuildingResponseDtoV2:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        classCode:
+          $ref: '#/components/schemas/ClassCodeGetDto'
+        annualSales:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        annualPayroll:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        numberOfEmployees:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        constructionCategoryCode:
+          type: integer
+          format: int32
+        totalSquareFootage:
+          type: integer
+          format: int32
+        squareFootageOccupied:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        totalStories:
+          type: integer
+          format: int32
+        yearBuilt:
+          type: integer
+          format: int32
+        yearRoofUpdated:
+          type: integer
+          format: int32
+        yearElectricalUpdated:
+          type: integer
+          format: int32
+        yearPlumbingUpdated:
+          type: integer
+          format: int32
+        yearHeatingUpdated:
+          type: integer
+          format: int32
+        hasCentralStationFireAlarm:
+          type: boolean
+        hasCentralStationBurglarAlarm:
+          type: boolean
+        isSprinkleredBuilding:
+          type: boolean
+        roofType:
+          type:
+          - string
+          - 'null'
+        highestStoryOccupied:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        lessorLiability:
+          type:
+          - boolean
+          - 'null'
+      additionalProperties: false
+    PostBuildingResponseV2:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        classCode:
+          $ref: '#/components/schemas/ClassCodePostDtoV1'
+        annualSales:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        annualPayroll:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        numberOfEmployees:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        constructionCategoryCode:
+          type: integer
+          format: int32
+        totalSquareFootage:
+          type: integer
+          format: int32
+        squareFootageOccupied:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        totalStories:
+          type: integer
+          format: int32
+        yearBuilt:
+          type: integer
+          format: int32
+        yearRoofUpdated:
+          type: integer
+          format: int32
+        yearElectricalUpdated:
+          type: integer
+          format: int32
+        yearPlumbingUpdated:
+          type: integer
+          format: int32
+        yearHeatingUpdated:
+          type: integer
+          format: int32
+        hasCentralStationFireAlarm:
+          type: boolean
+        hasCentralStationBurglarAlarm:
+          type: boolean
+        isSprinkleredBuilding:
+          type: boolean
+        roofType:
+          type:
+          - string
+          - 'null'
+        highestStoryOccupied:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        premiumDetails:
+          $ref: '#/components/schemas/PremiumDetails'
+      additionalProperties: false
+    ClassCodePostDtoV1:
+      type: object
+      properties:
+        classCodeId:
+          type:
+          - integer
+          - 'null'
+          description: This is optional. It is NOT required if a class code with class description code are entered.
+          format: int32
+        classCode:
+          type:
+          - string
+          - 'null'
+          description: This is optional at this time. This is required if not providing a classCodeId.
+        classDescriptionCode:
+          type:
+          - string
+          - 'null'
+          description: This is only required if a classCode is included in the request body.
+        personalPropertyCoverage:
+          $ref: '#/components/schemas/ClassCodeCoveragePostDto'
+        buildingCoverage:
+          $ref: '#/components/schemas/ClassCodeCoveragePostDto'
+      additionalProperties: false
+    ApiPageRequest:
+      type: object
+      properties:
+        skip:
+          type: integer
+          format: int32
+        take:
+          type: integer
+          format: int32
+        count:
+          type: boolean
+      additionalProperties: false
+    LocationPatchResponseDtoIApiResponse:
       type: object
       properties:
         id:
@@ -4329,11 +4056,353 @@ components:
           - 'null'
           readOnly: true
         data:
+          $ref: '#/components/schemas/LocationPatchResponseDto'
+      additionalProperties: false
+    NotFoundErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/LocationGetDto'
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/NotFoundError'
+      additionalProperties: false
+    ApiPaging:
+      type: object
+      properties:
+        request:
+          $ref: '#/components/schemas/ApiPageRequest'
+        response:
+          $ref: '#/components/schemas/ApiPageResponse'
+      additionalProperties: false
+    UnauthorizedErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/UnauthorizedError'
+      additionalProperties: false
+    PostBuildingRequestV2:
+      required:
+      - classCode
+      - constructionCategoryCode
+      - hasCentralStationBurglarAlarm
+      - hasCentralStationFireAlarm
+      - highestStoryOccupied
+      - isSprinkleredBuilding
+      - totalSquareFootage
+      - totalStories
+      - yearBuilt
+      type: object
+      properties:
+        roofType:
+          type:
+          - string
+          - 'null'
+          description: AsphaltShingles<br/>BuiltUpRoofing<br/>ClayTiles<br/>MetalRoofPanels<br/>ConcretePaver<br/>RubberMembrane<br/>StoneBallast
+        highestStoryOccupied:
+          type: integer
+          format: int32
+        classCode:
+          $ref: '#/components/schemas/ClassCodePostDtoV1'
+        annualSales:
+          type:
+          - integer
+          - 'null'
+          description: 'This field is required if the class code included is one of the following: 74111, 74231, 74511, 74541, 74601, 74661, 74751, 74781, 74841, 74901, 75641, 75791, 75821, and 75881'
+          format: int32
+        annualPayroll:
+          type:
+          - integer
+          - 'null'
+          description: 'This field is required if the class code included is one of the following: 74111, 74231, 74511, 74541, 74601, 74661, 74751, 74781, 74841, 74901, 75641, 75791, 75821, and 75881'
+          format: int32
+        numberOfEmployees:
+          type:
+          - integer
+          - 'null'
+          description: 'This field is required if the class code included is one of the following: 74111, 74231, 74511, 74541, 74601, 74661, 74751, 74781, 74841, 74901, 75641, 75791, 75821, and 75881'
+          format: int32
+        constructionCategoryCode:
+          maximum: 6.0
+          minimum: 1.0
+          type: integer
+          description: 1 --> Frame<br/>2 --> Joisted Masonry<br/>3 --> Noncombustible<br/>4 --> Masonry Noncombustible<br/>5 --> Modified Fire Resistive<br/>6 --> Fire Resistive
+          format: int32
+        totalSquareFootage:
+          type: integer
+          format: int32
+        squareFootageOccupied:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        totalStories:
+          maximum: 2147483647.0
+          minimum: 1.0
+          type: integer
+          format: int32
+        yearBuilt:
+          maximum: 2147483647.0
+          minimum: 1.0
+          type: integer
+          format: int32
+        yearRoofUpdated:
+          type: integer
+          description: Only required if building is over 20 years old
+          format: int32
+        yearElectricalUpdated:
+          type: integer
+          description: Only required if building is over 20 years old
+          format: int32
+        yearPlumbingUpdated:
+          type: integer
+          description: Only required if building is over 20 years old
+          format: int32
+        yearHeatingUpdated:
+          type: integer
+          description: Only required if building is over 20 years old
+          format: int32
+        hasCentralStationFireAlarm:
+          type: boolean
+        hasCentralStationBurglarAlarm:
+          type: boolean
+        isSprinkleredBuilding:
+          type: boolean
+      additionalProperties: false
+    ClassCodeCoveragePostDto:
+      required:
+      - coverageLimit
+      - valuation
+      type: object
+      properties:
+        coverageLimit:
+          maximum: 999999999.0
+          minimum: 0.0
+          type: integer
+          format: int32
+        valuation:
+          minLength: 1
+          type: string
+          description: Replacement Cost<br/>Actual Cash Value
       additionalProperties: false
     ForbiddenError:
       type: object
@@ -4523,7 +4592,63 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    LocationPatchResponseDtoIApiResponse:
+    LocationDto:
+      required:
+      - city
+      - line1
+      - postalCode
+      - territory
+      type: object
+      properties:
+        line1:
+          minLength: 1
+          type: string
+        line2:
+          type:
+          - string
+          - 'null'
+        city:
+          minLength: 1
+          type: string
+        territory:
+          minLength: 1
+          type: string
+        postalCode:
+          minLength: 1
+          pattern: ^\d{5}(-\d{4})?$
+          type: string
+        propertyDeductible:
+          type:
+          - string
+          - 'null'
+          description: "\nIf unsent, the value will be defaulted to $500.\n\nAccepted values:\n<ul>\n  <li>$250</li>\n  <li>$500</li>\n  <li>$1,000</li>\n  <li>$2,500</li>\n</ul>"
+        propertyDeductable:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ClassCodeGetDto:
+      type: object
+      properties:
+        classCodeId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        classCode:
+          type:
+          - string
+          - 'null'
+        classDescriptionCode:
+          type:
+          - string
+          - 'null'
+        personalPropertyCoverage:
+          $ref: '#/components/schemas/ClassCodeCoverageGetDto'
+        buildingCoverage:
+          $ref: '#/components/schemas/ClassCodeCoverageGetDto'
+      additionalProperties: false
+    LocationGetDtoIApiResponse:
       type: object
       properties:
         id:
@@ -4638,9 +4763,122 @@ components:
           - 'null'
           readOnly: true
         data:
-          $ref: '#/components/schemas/LocationPatchResponseDto'
+          $ref: '#/components/schemas/LocationGetDto'
       additionalProperties: false
-    UnauthorizedErrorIApiResponse:
+    ApiMessage:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messageCode:
+          type:
+          - string
+          - 'null'
+        messageType:
+          enum:
+          - 0 = Info
+          - 1 = Error
+          type: integer
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        isOk:
+          type: boolean
+        needsSanitization:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    PatchBuildingResponseV2IApiResponse:
       type: object
       properties:
         id:
@@ -4755,8 +4993,721 @@ components:
           - 'null'
           readOnly: true
         data:
-          $ref: '#/components/schemas/UnauthorizedError'
+          $ref: '#/components/schemas/PatchBuildingResponseV2'
       additionalProperties: false
+    PostBuildingResponseV3:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        classCode:
+          $ref: '#/components/schemas/ClassCodePostDtoV1'
+        annualSales:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        annualPayroll:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        numberOfEmployees:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        constructionCategoryCode:
+          type: integer
+          format: int32
+        totalSquareFootage:
+          type: integer
+          format: int32
+        squareFootageOccupied:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        totalStories:
+          type: integer
+          format: int32
+        yearBuilt:
+          type: integer
+          format: int32
+        yearRoofUpdated:
+          type: integer
+          format: int32
+        yearElectricalUpdated:
+          type: integer
+          format: int32
+        yearPlumbingUpdated:
+          type: integer
+          format: int32
+        yearHeatingUpdated:
+          type: integer
+          format: int32
+        hasCentralStationFireAlarm:
+          type: boolean
+        hasCentralStationBurglarAlarm:
+          type: boolean
+        isSprinkleredBuilding:
+          type: boolean
+        roofType:
+          type:
+          - string
+          - 'null'
+        highestStoryOccupied:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        lessorLiability:
+          type:
+          - boolean
+          - 'null'
+        premiumDetails:
+          $ref: '#/components/schemas/PremiumDetails'
+      additionalProperties: false
+    LocationPatchResponseDto:
+      required:
+      - city
+      - line1
+      - postalCode
+      - territory
+      type: object
+      properties:
+        line1:
+          minLength: 1
+          type: string
+        line2:
+          type:
+          - string
+          - 'null'
+        city:
+          minLength: 1
+          type: string
+        territory:
+          minLength: 1
+          type: string
+        postalCode:
+          minLength: 1
+          pattern: ^\d{5}(-\d{4})?$
+          type: string
+        id:
+          type: integer
+          format: int32
+        propertyDeductible:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    LocationGetDto:
+      required:
+      - city
+      - line1
+      - postalCode
+      - territory
+      type: object
+      properties:
+        line1:
+          minLength: 1
+          type: string
+        line2:
+          type:
+          - string
+          - 'null'
+        city:
+          minLength: 1
+          type: string
+        territory:
+          minLength: 1
+          type: string
+        postalCode:
+          minLength: 1
+          pattern: ^\d{5}(-\d{4})?$
+          type: string
+        id:
+          type: integer
+          format: int32
+        propertyDeductible:
+          type:
+          - string
+          - 'null'
+        buildings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/BuildingResponseDto'
+      additionalProperties: false
+    UnauthorizedError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messageType:
+          enum:
+          - 0 = Info
+          - 1 = Error
+          type: integer
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+          readOnly: true
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    PostBuildingResponseV3IApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/PostBuildingResponseV3'
+      additionalProperties: false
+    LocationGetDtoV2IEnumerableIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/LocationGetDtoV2'
+      additionalProperties: false
+    LocationGetDtoIEnumerableIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/LocationGetDto'
+      additionalProperties: false
+    Operation:
+      type: object
+      properties:
+        op:
+          type: string
+          description: Type of operation (add, replace, copy, or move)
+        value:
+          type: string
+          description: Value to be patched (if performing an add, replace, copy, or move)
+        path:
+          type: string
+          description: 'The name of the property to be patched, using this format:  /propertyName'
+        from:
+          type: string
+          description: 'Copies a value from one location to another within the JSON document using format: /fromPropertyName'
+    JsonPatchDocument:
+      type: array
+      items:
+        $ref: '#/components/schemas/Operation'
+      description: Array of operations to perform
     PatchBuildingResponseV1:
       type: object
       properties:
@@ -4920,123 +5871,6 @@ components:
           - 'null'
           description: -Is required for the state of WA</br>-If select True you must include Building Coverage
       additionalProperties: false
-    ForbiddenErrorIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/ForbiddenError'
-      additionalProperties: false
     PostBuildingResponseV2IApiResponse:
       type: object
       properties:
@@ -5154,7 +5988,149 @@ components:
         data:
           $ref: '#/components/schemas/PostBuildingResponseV2'
       additionalProperties: false
-    PatchBuildingResponseV2IApiResponse:
+    PremiumDetails:
+      type: object
+      properties:
+        priceIndication:
+          type: number
+          format: double
+        generalLiabilityLimits:
+          type:
+          - string
+          - 'null'
+        medicalPayments:
+          type:
+          - string
+          - 'null'
+        damagesToPremisesLiabilityLimit:
+          type:
+          - string
+          - 'null'
+        businessPersonalProperty:
+          type:
+          - string
+          - 'null'
+        propertyDeductible:
+          type:
+          - string
+          - 'null'
+        expansionEndorsement:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ClassCodeCoverageGetDto:
+      type: object
+      properties:
+        coverageLimit:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        valuation:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    BusinessIncomeWithExtraExpenseCoverageDto:
+      required:
+      - coverageBasis
+      - limit
+      - monthlyLimitation
+      - typeOfRisk
+      type: object
+      properties:
+        coverageBasis:
+          minLength: 1
+          type: string
+        limit:
+          type: integer
+          format: int32
+        monthlyLimitation:
+          minLength: 1
+          type: string
+        typeOfRisk:
+          minLength: 1
+          type: string
+        coinsurance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PostCommercialPropertyResponseDtoV2:
+      type: object
+      properties:
+        quoteId:
+          type: integer
+          format: int32
+        masterAccountId:
+          type: integer
+          format: int32
+        locationId:
+          type: integer
+          format: int32
+        priceComponents:
+          $ref: '#/components/schemas/PriceComponentsResponseDto'
+        deductible:
+          type: integer
+          format: int32
+        generalLiabilityLimits:
+          $ref: '#/components/schemas/GeneralLiabilityLimits'
+        packageModification:
+          type:
+          - string
+          - 'null'
+        cpDeductible:
+          type:
+          - string
+          - 'null'
+        windHailDeductible:
+          type:
+          - string
+          - 'null'
+        protectionClass:
+          type:
+          - string
+          - 'null'
+        buildings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommercialPropertyBuildingResponseV2'
+      additionalProperties: false
+    WildfireReport:
+      type: object
+      properties:
+        distanceToHighRisk:
+          type:
+          - string
+          - 'null'
+        distanceToHighRiskInMiles:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        riskLevel:
+          type:
+          - string
+          - 'null'
+        riskScore:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ClassCodeResponseDto:
+      type: object
+      properties:
+        classCode:
+          type: integer
+          format: int32
+        exposure:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ForbiddenErrorIApiResponse_2:
       type: object
       properties:
         id:
@@ -5169,88 +6145,19 @@ components:
           - string
           - 'null'
         httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
+          $ref: '#/components/schemas/HttpStatusCode'
         messages:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/ApiMessage'
+            $ref: '#/components/schemas/ApiMessage_2'
         errors:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/ApiMessage'
+            $ref: '#/components/schemas/ApiMessage_2'
         paging:
           $ref: '#/components/schemas/ApiPaging'
         maxMsgIndex:
@@ -5269,122 +6176,128 @@ components:
           - 'null'
           readOnly: true
         data:
-          $ref: '#/components/schemas/PatchBuildingResponseV2'
+          $ref: '#/components/schemas/ForbiddenError_2'
       additionalProperties: false
-    PatchBuildingResponseV2:
+    BadRequestErrorIApiResponse_2:
       type: object
       properties:
         id:
-          type: integer
-          format: int32
-        classCode:
-          $ref: '#/components/schemas/ClassCodeGetDto'
-        annualSales:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        annualPayroll:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        numberOfEmployees:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        constructionCategoryCode:
-          type: integer
-          format: int32
-        totalSquareFootage:
-          type: integer
-          format: int32
-        squareFootageOccupied:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        totalStories:
-          type: integer
-          format: int32
-        yearBuilt:
-          type: integer
-          format: int32
-        yearRoofUpdated:
-          type: integer
-          format: int32
-        yearElectricalUpdated:
-          type: integer
-          format: int32
-        yearPlumbingUpdated:
-          type: integer
-          format: int32
-        yearHeatingUpdated:
-          type: integer
-          format: int32
-        hasCentralStationFireAlarm:
-          type: boolean
-        hasCentralStationBurglarAlarm:
-          type: boolean
-        isSprinkleredBuilding:
-          type: boolean
-        roofType:
           type:
           - string
           - 'null'
-        highestStoryOccupied:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        premiumDetails:
-          $ref: '#/components/schemas/PremiumDetails'
-        lessorLiability:
-          type:
-          - boolean
-          - 'null'
-      additionalProperties: false
-    LocationGetDto:
-      required:
-      - city
-      - line1
-      - postalCode
-      - territory
-      type: object
-      properties:
-        line1:
-          minLength: 1
+        timestamp:
           type: string
-        line2:
+          format: date-time
+        correlationID:
           type:
           - string
           - 'null'
-        city:
-          minLength: 1
-          type: string
-        territory:
-          minLength: 1
-          type: string
-        postalCode:
-          minLength: 1
-          pattern: ^\d{5}(-\d{4})?$
-          type: string
-        id:
-          type: integer
-          format: int32
-        propertyDeductible:
-          type:
-          - string
-          - 'null'
-        buildings:
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/BuildingResponseDto'
+            $ref: '#/components/schemas/ApiMessage_2'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/BadRequestError_2'
       additionalProperties: false
-    ApiMessage:
+    HttpStatusCode:
+      enum:
+      - 100 = Continue
+      - 101 = SwitchingProtocols
+      - 102 = Processing
+      - 103 = EarlyHints
+      - 200 = OK
+      - 201 = Created
+      - 202 = Accepted
+      - 203 = NonAuthoritativeInformation
+      - 204 = NoContent
+      - 205 = ResetContent
+      - 206 = PartialContent
+      - 207 = MultiStatus
+      - 208 = AlreadyReported
+      - 226 = IMUsed
+      - 300 = MultipleChoices
+      - 300 = Ambiguous
+      - 301 = MovedPermanently
+      - 301 = Moved
+      - 302 = Found
+      - 302 = Redirect
+      - 303 = SeeOther
+      - 303 = RedirectMethod
+      - 304 = NotModified
+      - 305 = UseProxy
+      - 306 = Unused
+      - 307 = TemporaryRedirect
+      - 307 = RedirectKeepVerb
+      - 308 = PermanentRedirect
+      - 400 = BadRequest
+      - 401 = Unauthorized
+      - 402 = PaymentRequired
+      - 403 = Forbidden
+      - 404 = NotFound
+      - 405 = MethodNotAllowed
+      - 406 = NotAcceptable
+      - 407 = ProxyAuthenticationRequired
+      - 408 = RequestTimeout
+      - 409 = Conflict
+      - 410 = Gone
+      - 411 = LengthRequired
+      - 412 = PreconditionFailed
+      - 413 = RequestEntityTooLarge
+      - 414 = RequestUriTooLong
+      - 415 = UnsupportedMediaType
+      - 416 = RequestedRangeNotSatisfiable
+      - 417 = ExpectationFailed
+      - 421 = MisdirectedRequest
+      - 422 = UnprocessableEntity
+      - 422 = UnprocessableContent
+      - 423 = Locked
+      - 424 = FailedDependency
+      - 426 = UpgradeRequired
+      - 428 = PreconditionRequired
+      - 429 = TooManyRequests
+      - 431 = RequestHeaderFieldsTooLarge
+      - 451 = UnavailableForLegalReasons
+      - 500 = InternalServerError
+      - 501 = NotImplemented
+      - 502 = BadGateway
+      - 503 = ServiceUnavailable
+      - 504 = GatewayTimeout
+      - 505 = HttpVersionNotSupported
+      - 506 = VariantAlsoNegotiates
+      - 507 = InsufficientStorage
+      - 508 = LoopDetected
+      - 510 = NotExtended
+      - 511 = NetworkAuthenticationRequired
+      type: integer
+      format: int32
+    BadRequestError_2:
       type: object
       properties:
         id:
@@ -5393,94 +6306,9 @@ components:
           - 'null'
           format: int32
         httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-        messageCode:
-          type:
-          - string
-          - 'null'
+          $ref: '#/components/schemas/HttpStatusCode'
         messageType:
-          enum:
-          - 0 = Info
-          - 1 = Error
-          type: integer
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
+          $ref: '#/components/schemas/ApiMessageType'
         internal:
           type:
           - string
@@ -5491,548 +6319,31 @@ components:
           - 'null'
         exception:
           $ref: '#/components/schemas/LogException'
-        isOk:
-          type: boolean
         needsSanitization:
           type: boolean
           readOnly: true
-      additionalProperties: false
-    PostBuildingResponseV2:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        classCode:
-          $ref: '#/components/schemas/ClassCodePostDtoV1'
-        annualSales:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        annualPayroll:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        numberOfEmployees:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        constructionCategoryCode:
-          type: integer
-          format: int32
-        totalSquareFootage:
-          type: integer
-          format: int32
-        squareFootageOccupied:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        totalStories:
-          type: integer
-          format: int32
-        yearBuilt:
-          type: integer
-          format: int32
-        yearRoofUpdated:
-          type: integer
-          format: int32
-        yearElectricalUpdated:
-          type: integer
-          format: int32
-        yearPlumbingUpdated:
-          type: integer
-          format: int32
-        yearHeatingUpdated:
-          type: integer
-          format: int32
-        hasCentralStationFireAlarm:
-          type: boolean
-        hasCentralStationBurglarAlarm:
-          type: boolean
-        isSprinkleredBuilding:
-          type: boolean
-        roofType:
-          type:
-          - string
-          - 'null'
-        highestStoryOccupied:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        premiumDetails:
-          $ref: '#/components/schemas/PremiumDetails'
-      additionalProperties: false
-    Operation:
-      type: object
-      properties:
-        op:
-          type: string
-          description: Type of operation (add, replace, copy, or move)
-        value:
-          type: string
-          description: Value to be patched (if performing an add, replace, copy, or move)
-        path:
-          type: string
-          description: 'The name of the property to be patched, using this format:  /propertyName'
-        from:
-          type: string
-          description: 'Copies a value from one location to another within the JSON document using format: /fromPropertyName'
-    BadRequestErrorIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
           type:
           - string
           - 'null'
           readOnly: true
-        data:
-          $ref: '#/components/schemas/BadRequestError'
-      additionalProperties: false
-    LocationGetDtoV2:
-      required:
-      - city
-      - line1
-      - postalCode
-      - territory
-      type: object
-      properties:
-        line1:
-          minLength: 1
-          type: string
-        line2:
+        title:
           type:
           - string
           - 'null'
-        city:
-          minLength: 1
-          type: string
-        territory:
-          minLength: 1
-          type: string
-        postalCode:
-          minLength: 1
-          pattern: ^\d{5}(-\d{4})?$
-          type: string
-        id:
-          type: integer
-          format: int32
-        propertyDeductible:
-          type:
-          - string
-          - 'null'
-        buildings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/BuildingResponseDtoV2'
-      additionalProperties: false
-    LocationGetDtoIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
           readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
+        detail:
           type:
           - string
           - 'null'
           readOnly: true
-        data:
-          $ref: '#/components/schemas/LocationGetDto'
+        isOk:
+          type: boolean
+          readOnly: true
       additionalProperties: false
-    BuildingResponseDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        classCode:
-          $ref: '#/components/schemas/ClassCodeGetDto'
-        annualSales:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        annualPayroll:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        numberOfEmployees:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        constructionCategoryCode:
-          type: integer
-          format: int32
-        totalSquareFootage:
-          type: integer
-          format: int32
-        squareFootageOccupied:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        totalStories:
-          type: integer
-          format: int32
-        yearBuilt:
-          type: integer
-          format: int32
-        yearRoofUpdated:
-          type: integer
-          format: int32
-        yearElectricalUpdated:
-          type: integer
-          format: int32
-        yearPlumbingUpdated:
-          type: integer
-          format: int32
-        yearHeatingUpdated:
-          type: integer
-          format: int32
-        hasCentralStationFireAlarm:
-          type: boolean
-        hasCentralStationBurglarAlarm:
-          type: boolean
-        isSprinkleredBuilding:
-          type: boolean
-        roofType:
-          type:
-          - string
-          - 'null'
-        highestStoryOccupied:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      additionalProperties: false
-    LocationDto:
-      required:
-      - city
-      - line1
-      - postalCode
-      - territory
-      type: object
-      properties:
-        line1:
-          minLength: 1
-          type: string
-        line2:
-          type:
-          - string
-          - 'null'
-        city:
-          minLength: 1
-          type: string
-        territory:
-          minLength: 1
-          type: string
-        postalCode:
-          minLength: 1
-          pattern: ^\d{5}(-\d{4})?$
-          type: string
-        propertyDeductible:
-          type:
-          - string
-          - 'null'
-          description: "\nIf unsent, the value will be defaulted to $500.\n\nAccepted values:\n<ul>\n  <li>$250</li>\n  <li>$500</li>\n  <li>$1,000</li>\n  <li>$2,500</li>\n</ul>"
-        propertyDeductable:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    PostBuildingResponseV3:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        classCode:
-          $ref: '#/components/schemas/ClassCodePostDtoV1'
-        annualSales:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        annualPayroll:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        numberOfEmployees:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        constructionCategoryCode:
-          type: integer
-          format: int32
-        totalSquareFootage:
-          type: integer
-          format: int32
-        squareFootageOccupied:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        totalStories:
-          type: integer
-          format: int32
-        yearBuilt:
-          type: integer
-          format: int32
-        yearRoofUpdated:
-          type: integer
-          format: int32
-        yearElectricalUpdated:
-          type: integer
-          format: int32
-        yearPlumbingUpdated:
-          type: integer
-          format: int32
-        yearHeatingUpdated:
-          type: integer
-          format: int32
-        hasCentralStationFireAlarm:
-          type: boolean
-        hasCentralStationBurglarAlarm:
-          type: boolean
-        isSprinkleredBuilding:
-          type: boolean
-        roofType:
-          type:
-          - string
-          - 'null'
-        highestStoryOccupied:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        lessorLiability:
-          type:
-          - boolean
-          - 'null'
-        premiumDetails:
-          $ref: '#/components/schemas/PremiumDetails'
-      additionalProperties: false
-    UnauthorizedError_2:
+    NotFoundError_2:
       type: object
       properties:
         id:
@@ -6077,120 +6388,23 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    GeneralLiabilityLimits:
+    HailReport:
       type: object
       properties:
-        liabilityOccurrence:
-          type:
-          - string
-          - 'null'
-        generalAggregate:
-          type:
-          - string
-          - 'null'
-        productsAggregate:
-          type:
-          - string
-          - 'null'
-        personalAdvAndInjury:
-          type:
-          - string
-          - 'null'
-        medicalExpenses:
-          type:
-          - string
-          - 'null'
-        damagesToPremisesRentedToYou:
+        riskScore:
           type:
           - string
           - 'null'
       additionalProperties: false
-    LocationGetResponse:
+    CoveragesContainerDtoV2:
       type: object
       properties:
-        id:
-          type: integer
-          format: int32
-        line1:
-          type:
-          - string
-          - 'null'
-        line2:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        territory:
-          type:
-          - string
-          - 'null'
-        postalCode:
-          type:
-          - string
-          - 'null'
-        classCodes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ClassCodeDto'
-        hail:
-          $ref: '#/components/schemas/HailReport'
-        wildfire:
-          $ref: '#/components/schemas/WildfireReport'
-        locationScheduleOnFile:
-          type: boolean
-      additionalProperties: false
-    NotFoundErrorIApiResponse_2:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_2'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_2'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/NotFoundError_2'
+        building:
+          $ref: '#/components/schemas/BuildingCoverageDto'
+        contents:
+          $ref: '#/components/schemas/ContentsCoverageDtoV2'
+        businessIncomeWithExtraExpense:
+          $ref: '#/components/schemas/BusinessIncomeWithExtraExpenseCoverageDto'
       additionalProperties: false
     PostBuildingDtoV2:
       required:
@@ -6272,92 +6486,182 @@ components:
         coveragesContainer:
           $ref: '#/components/schemas/CoveragesContainerDtoV2'
       additionalProperties: false
-    HttpStatusCode:
-      enum:
-      - 100 = Continue
-      - 101 = SwitchingProtocols
-      - 102 = Processing
-      - 103 = EarlyHints
-      - 200 = OK
-      - 201 = Created
-      - 202 = Accepted
-      - 203 = NonAuthoritativeInformation
-      - 204 = NoContent
-      - 205 = ResetContent
-      - 206 = PartialContent
-      - 207 = MultiStatus
-      - 208 = AlreadyReported
-      - 226 = IMUsed
-      - 300 = MultipleChoices
-      - 300 = Ambiguous
-      - 301 = MovedPermanently
-      - 301 = Moved
-      - 302 = Found
-      - 302 = Redirect
-      - 303 = SeeOther
-      - 303 = RedirectMethod
-      - 304 = NotModified
-      - 305 = UseProxy
-      - 306 = Unused
-      - 307 = TemporaryRedirect
-      - 307 = RedirectKeepVerb
-      - 308 = PermanentRedirect
-      - 400 = BadRequest
-      - 401 = Unauthorized
-      - 402 = PaymentRequired
-      - 403 = Forbidden
-      - 404 = NotFound
-      - 405 = MethodNotAllowed
-      - 406 = NotAcceptable
-      - 407 = ProxyAuthenticationRequired
-      - 408 = RequestTimeout
-      - 409 = Conflict
-      - 410 = Gone
-      - 411 = LengthRequired
-      - 412 = PreconditionFailed
-      - 413 = RequestEntityTooLarge
-      - 414 = RequestUriTooLong
-      - 415 = UnsupportedMediaType
-      - 416 = RequestedRangeNotSatisfiable
-      - 417 = ExpectationFailed
-      - 421 = MisdirectedRequest
-      - 422 = UnprocessableEntity
-      - 422 = UnprocessableContent
-      - 423 = Locked
-      - 424 = FailedDependency
-      - 426 = UpgradeRequired
-      - 428 = PreconditionRequired
-      - 429 = TooManyRequests
-      - 431 = RequestHeaderFieldsTooLarge
-      - 451 = UnavailableForLegalReasons
-      - 500 = InternalServerError
-      - 501 = NotImplemented
-      - 502 = BadGateway
-      - 503 = ServiceUnavailable
-      - 504 = GatewayTimeout
-      - 505 = HttpVersionNotSupported
-      - 506 = VariantAlsoNegotiates
-      - 507 = InsufficientStorage
-      - 508 = LoopDetected
-      - 510 = NotExtended
-      - 511 = NetworkAuthenticationRequired
-      type: integer
-      format: int32
-    PriceComponentsResponseDto:
+    PersonalPropertyOfOthersDtoV2:
+      required:
+      - coinsurance
+      - limit
+      - personalPropertyValuation
       type: object
       properties:
-        glPremium:
-          type: number
-          format: double
-        propertyPremium:
-          type: number
-          format: double
-        totalPremium:
-          type: number
-          format: double
-        fees:
-          type: number
-          format: double
+        limit:
+          type: integer
+          format: int32
+        coinsurance:
+          minLength: 1
+          type: string
+        alarmConnection:
+          type:
+          - string
+          - 'null'
+        alarmProtection:
+          type:
+          - string
+          - 'null'
+        personalPropertyValuation:
+          minLength: 1
+          type: string
+        watchman:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    LocationGetResponseIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/LocationGetResponse'
+      additionalProperties: false
+    NotFoundErrorIApiResponse_2:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/NotFoundError_2'
+      additionalProperties: false
+    ClassCodeResponseDtoIEnumerableIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ClassCodeResponseDto'
       additionalProperties: false
     CoveragesContainerResponseDtoV2:
       type: object
@@ -6369,296 +6673,6 @@ components:
         businessIncomeWithExtraExpense:
           $ref: '#/components/schemas/BusinessIncomeWithExtraExpenseCoverageResponseDto'
       additionalProperties: false
-    PersonalPropertyOfOthersResponseDtoV2:
-      type: object
-      properties:
-        limit:
-          type: integer
-          format: int32
-        coinsurance:
-          type:
-          - string
-          - 'null'
-        causeOfLoss:
-          type:
-          - string
-          - 'null'
-        alarmConnection:
-          type:
-          - string
-          - 'null'
-        watchman:
-          type:
-          - string
-          - 'null'
-        personalPropertyValuation:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    BadRequestError_2:
-      type: object
-      properties:
-        id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messageType:
-          $ref: '#/components/schemas/ApiMessageType'
-        internal:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        exception:
-          $ref: '#/components/schemas/LogException'
-        needsSanitization:
-          type: boolean
-          readOnly: true
-        httpStatusCode:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messageCode:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        title:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        detail:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        isOk:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
-    PostCommercialPropertyResponseDtoV2:
-      type: object
-      properties:
-        quoteId:
-          type: integer
-          format: int32
-        masterAccountId:
-          type: integer
-          format: int32
-        locationId:
-          type: integer
-          format: int32
-        priceComponents:
-          $ref: '#/components/schemas/PriceComponentsResponseDto'
-        deductible:
-          type: integer
-          format: int32
-        generalLiabilityLimits:
-          $ref: '#/components/schemas/GeneralLiabilityLimits'
-        packageModification:
-          type:
-          - string
-          - 'null'
-        cpDeductible:
-          type:
-          - string
-          - 'null'
-        windHailDeductible:
-          type:
-          - string
-          - 'null'
-        protectionClass:
-          type:
-          - string
-          - 'null'
-        buildings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommercialPropertyBuildingResponseV2'
-      additionalProperties: false
-    NotFoundError_2:
-      type: object
-      properties:
-        id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messageType:
-          $ref: '#/components/schemas/ApiMessageType'
-        detail:
-          type:
-          - string
-          - 'null'
-        internal:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        exception:
-          $ref: '#/components/schemas/LogException'
-        needsSanitization:
-          type: boolean
-          readOnly: true
-        httpStatusCode:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messageCode:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        title:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        isOk:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
-    BusinessIncomeWithExtraExpenseCoverageResponseDto:
-      type: object
-      properties:
-        coverageBasis:
-          type:
-          - string
-          - 'null'
-        limit:
-          type: integer
-          format: int32
-        monthlyLimitation:
-          type:
-          - string
-          - 'null'
-        typeOfRisk:
-          type:
-          - string
-          - 'null'
-        causeOfLoss:
-          type:
-          - string
-          - 'null'
-        coinsurance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ClassCodeDto:
-      required:
-      - classCode
-      - exposure
-      type: object
-      properties:
-        classCode:
-          type: integer
-          format: int32
-        exposure:
-          maximum: 2147483647.0
-          minimum: 1.0
-          type: integer
-          format: int32
-      additionalProperties: false
-    ContentsCoverageDtoV2:
-      type: object
-      properties:
-        personalProperty:
-          $ref: '#/components/schemas/PersonalPropertyDto'
-        personalPropertyOfOthers:
-          $ref: '#/components/schemas/PersonalPropertyOfOthersDtoV2'
-      additionalProperties: false
-    ForbiddenError_2:
-      type: object
-      properties:
-        id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messageType:
-          $ref: '#/components/schemas/ApiMessageType'
-        detail:
-          type:
-          - string
-          - 'null'
-        internal:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        exception:
-          $ref: '#/components/schemas/LogException'
-        needsSanitization:
-          type: boolean
-          readOnly: true
-        httpStatusCode:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messageCode:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        title:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        isOk:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
-    PersonalPropertyDto:
-      required:
-      - coinsurance
-      - limit
-      type: object
-      properties:
-        limit:
-          type: integer
-          format: int32
-        coinsurance:
-          minLength: 1
-          type: string
-      additionalProperties: false
-    HailReport:
-      type: object
-      properties:
-        riskScore:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ContentsCoverageResponseDtoV2:
-      type: object
-      properties:
-        personalProperty:
-          $ref: '#/components/schemas/PersonalPropertyResponseDto'
-        personalPropertyOfOthers:
-          $ref: '#/components/schemas/PersonalPropertyOfOthersResponseDtoV2'
-      additionalProperties: false
-    ApiMessageType:
-      enum:
-      - 0 = Info
-      - 1 = Error
-      type: integer
-      format: int32
     UnauthorizedErrorIApiResponse_2:
       type: object
       properties:
@@ -6707,63 +6721,94 @@ components:
         data:
           $ref: '#/components/schemas/UnauthorizedError_2'
       additionalProperties: false
-    Construction:
-      enum:
-      - 1 = Frame
-      - 2 = JoistedMasonry
-      - 3 = NonCombustible
-      - 4 = MasonryNonCombustible
-      - 5 = ModifiedFireResistive
-      - 6 = FireResistive
-      type: integer
-      format: int32
-    ForbiddenErrorIApiResponse_2:
+    ContentsCoverageResponseDtoV2:
+      type: object
+      properties:
+        personalProperty:
+          $ref: '#/components/schemas/PersonalPropertyResponseDto'
+        personalPropertyOfOthers:
+          $ref: '#/components/schemas/PersonalPropertyOfOthersResponseDtoV2'
+      additionalProperties: false
+    ForbiddenError_2:
       type: object
       properties:
         id:
           type:
-          - string
+          - integer
           - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
+          format: int32
         httpStatus:
           $ref: '#/components/schemas/HttpStatusCode'
-        messages:
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        detail:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_2'
-        errors:
+        internal:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_2'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
           readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
           readOnly: true
         isOk:
           type: boolean
-        apiResponseVersion:
+          readOnly: true
+      additionalProperties: false
+    LocationDto_2:
+      required:
+      - city
+      - line1
+      - postalCode
+      - territory
+      type: object
+      properties:
+        line1:
+          minLength: 1
+          type: string
+        line2:
           type:
           - string
           - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/ForbiddenError_2'
+        city:
+          minLength: 1
+          type: string
+        territory:
+          minLength: 1
+          type: string
+        postalCode:
+          minLength: 1
+          pattern: ^\d{5}(-\d{4})?$
+          type: string
+        classCodes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ClassCodeDto'
+          description: This field is only required if General Liability is included on the quote.
+        locationScheduleOnFile:
+          type: boolean
+          description: When selected, supporting location validation is not automatically processed. Broker is responsible for validating location information is within binding authority.
       additionalProperties: false
     PostCommercialPropertyDtoV2:
       required:
@@ -6786,16 +6831,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PostBuildingDtoV2'
-      additionalProperties: false
-    ClassCodeResponseDto:
-      type: object
-      properties:
-        classCode:
-          type: integer
-          format: int32
-        exposure:
-          type: integer
-          format: int32
       additionalProperties: false
     ApiMessage_2:
       type: object
@@ -6837,30 +6872,52 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    BuildingCoverageResponseDto:
+    UnauthorizedError_2:
       type: object
       properties:
-        buildingType:
+        id:
           type:
-          - string
+          - integer
           - 'null'
-        limit:
-          type: integer
           format: int32
-        causeOfLoss:
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        detail:
           type:
           - string
           - 'null'
-        coinsurance:
+        internal:
           type:
           - string
           - 'null'
-        buildingValuation:
+        reference:
           type:
           - string
           - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
       additionalProperties: false
-    BadRequestErrorIApiResponse_2:
+    PostCommercialPropertyResponseDtoV2IApiResponse:
       type: object
       properties:
         id:
@@ -6906,8 +6963,76 @@ components:
           - 'null'
           readOnly: true
         data:
-          $ref: '#/components/schemas/BadRequestError_2'
+          $ref: '#/components/schemas/PostCommercialPropertyResponseDtoV2'
       additionalProperties: false
+    Construction:
+      enum:
+      - 1 = Frame
+      - 2 = JoistedMasonry
+      - 3 = NonCombustible
+      - 4 = MasonryNonCombustible
+      - 5 = ModifiedFireResistive
+      - 6 = FireResistive
+      type: integer
+      format: int32
+    LocationGetResponseIEnumerableIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/LocationGetResponse'
+      additionalProperties: false
+    ApiMessageType:
+      enum:
+      - 0 = Info
+      - 1 = Error
+      type: integer
+      format: int32
     PersonalPropertyResponseDto:
       type: object
       properties:
@@ -6922,6 +7047,184 @@ components:
           type:
           - string
           - 'null'
+      additionalProperties: false
+    GeneralLiabilityLimits:
+      type: object
+      properties:
+        liabilityOccurrence:
+          type:
+          - string
+          - 'null'
+        generalAggregate:
+          type:
+          - string
+          - 'null'
+        productsAggregate:
+          type:
+          - string
+          - 'null'
+        personalAdvAndInjury:
+          type:
+          - string
+          - 'null'
+        medicalExpenses:
+          type:
+          - string
+          - 'null'
+        damagesToPremisesRentedToYou:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    BuildingCoverageResponseDto:
+      type: object
+      properties:
+        buildingType:
+          type:
+          - string
+          - 'null'
+        limit:
+          type: integer
+          format: int32
+        causeOfLoss:
+          type:
+          - string
+          - 'null'
+        coinsurance:
+          type:
+          - string
+          - 'null'
+        buildingValuation:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PriceComponentsResponseDto:
+      type: object
+      properties:
+        glPremium:
+          type: number
+          format: double
+        propertyPremium:
+          type: number
+          format: double
+        totalPremium:
+          type: number
+          format: double
+        fees:
+          type: number
+          format: double
+      additionalProperties: false
+    BusinessIncomeWithExtraExpenseCoverageResponseDto:
+      type: object
+      properties:
+        coverageBasis:
+          type:
+          - string
+          - 'null'
+        limit:
+          type: integer
+          format: int32
+        monthlyLimitation:
+          type:
+          - string
+          - 'null'
+        typeOfRisk:
+          type:
+          - string
+          - 'null'
+        causeOfLoss:
+          type:
+          - string
+          - 'null'
+        coinsurance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ContentsCoverageDtoV2:
+      type: object
+      properties:
+        personalProperty:
+          $ref: '#/components/schemas/PersonalPropertyDto'
+        personalPropertyOfOthers:
+          $ref: '#/components/schemas/PersonalPropertyOfOthersDtoV2'
+      additionalProperties: false
+    BuildingCoverageDto:
+      required:
+      - buildingType
+      - buildingValuation
+      - coinsurance
+      - limit
+      type: object
+      properties:
+        buildingType:
+          minLength: 1
+          type: string
+        limit:
+          type: integer
+          format: int32
+        coinsurance:
+          minLength: 1
+          type: string
+        buildingValuation:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    PersonalPropertyDto:
+      required:
+      - coinsurance
+      - limit
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        coinsurance:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    PersonalPropertyOfOthersResponseDtoV2:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        coinsurance:
+          type:
+          - string
+          - 'null'
+        causeOfLoss:
+          type:
+          - string
+          - 'null'
+        alarmConnection:
+          type:
+          - string
+          - 'null'
+        watchman:
+          type:
+          - string
+          - 'null'
+        personalPropertyValuation:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ClassCodeDto:
+      required:
+      - classCode
+      - exposure
+      type: object
+      properties:
+        classCode:
+          type: integer
+          format: int32
+        exposure:
+          maximum: 2147483647.0
+          minimum: 1.0
+          type: integer
+          format: int32
       additionalProperties: false
     CommercialPropertyBuildingResponseV2:
       type: object
@@ -7011,197 +7314,73 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    ClassCodeResponseDtoIEnumerableIApiResponse:
+    LocationGetResponse:
       type: object
       properties:
         id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_2'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_2'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
           type: integer
           format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ClassCodeResponseDto'
-      additionalProperties: false
-    LocationGetResponseIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_2'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_2'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/LocationGetResponse'
-      additionalProperties: false
-    WildfireReport:
-      type: object
-      properties:
-        distanceToHighRisk:
-          type:
-          - string
-          - 'null'
-        distanceToHighRiskInMiles:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        riskLevel:
-          type:
-          - string
-          - 'null'
-        riskScore:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    LocationDto_2:
-      required:
-      - city
-      - line1
-      - postalCode
-      - territory
-      type: object
-      properties:
         line1:
-          minLength: 1
-          type: string
+          type:
+          - string
+          - 'null'
         line2:
           type:
           - string
           - 'null'
         city:
-          minLength: 1
-          type: string
+          type:
+          - string
+          - 'null'
         territory:
-          minLength: 1
-          type: string
+          type:
+          - string
+          - 'null'
         postalCode:
-          minLength: 1
-          pattern: ^\d{5}(-\d{4})?$
-          type: string
+          type:
+          - string
+          - 'null'
         classCodes:
           type:
           - array
           - 'null'
           items:
             $ref: '#/components/schemas/ClassCodeDto'
-          description: This field is only required if General Liability is included on the quote.
+        hail:
+          $ref: '#/components/schemas/HailReport'
+        wildfire:
+          $ref: '#/components/schemas/WildfireReport'
         locationScheduleOnFile:
           type: boolean
-          description: When selected, supporting location validation is not automatically processed. Broker is responsible for validating location information is within binding authority.
       additionalProperties: false
-    BuildingCoverageDto:
-      required:
-      - buildingType
-      - buildingValuation
-      - coinsurance
-      - limit
+    ClassCodeResponseDto_2:
       type: object
       properties:
-        buildingType:
-          minLength: 1
-          type: string
-        limit:
+        classCode:
+          type:
+          - string
+          - 'null'
+        classCodeDescription:
+          type:
+          - string
+          - 'null'
+        exposure:
           type: integer
           format: int32
-        coinsurance:
-          minLength: 1
-          type: string
-        buildingValuation:
-          minLength: 1
-          type: string
       additionalProperties: false
-    CoveragesContainerDtoV2:
+    CoveragesContainerDto:
       type: object
       properties:
         building:
-          $ref: '#/components/schemas/BuildingCoverageDto'
-        contents:
-          $ref: '#/components/schemas/ContentsCoverageDtoV2'
-        businessIncomeWithExtraExpense:
-          $ref: '#/components/schemas/BusinessIncomeWithExtraExpenseCoverageDto'
+          $ref: '#/components/schemas/BuildingCoverageDto_2'
+        contens:
+          $ref: '#/components/schemas/ContensCoverageDto'
       additionalProperties: false
-    PostCommercialPropertyResponseDtoV2IApiResponse:
+    ForbiddenErrorIApiResponse_3:
       type: object
       properties:
+        data:
+          $ref: '#/components/schemas/ForbiddenError_3'
         id:
           type:
           - string
@@ -7214,19 +7393,19 @@ components:
           - string
           - 'null'
         httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
+          $ref: '#/components/schemas/HttpStatusCode_2'
         messages:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/ApiMessage_2'
+            $ref: '#/components/schemas/ApiMessage_3'
         errors:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/ApiMessage_2'
+            $ref: '#/components/schemas/ApiMessage_3'
         paging:
           $ref: '#/components/schemas/ApiPaging'
         maxMsgIndex:
@@ -7244,66 +7423,12 @@ components:
           - string
           - 'null'
           readOnly: true
+      additionalProperties: false
+    BadRequestErrorIApiResponse_3:
+      type: object
+      properties:
         data:
-          $ref: '#/components/schemas/PostCommercialPropertyResponseDtoV2'
-      additionalProperties: false
-    BusinessIncomeWithExtraExpenseCoverageDto:
-      required:
-      - coverageBasis
-      - limit
-      - monthlyLimitation
-      - typeOfRisk
-      type: object
-      properties:
-        coverageBasis:
-          minLength: 1
-          type: string
-        limit:
-          type: integer
-          format: int32
-        monthlyLimitation:
-          minLength: 1
-          type: string
-        typeOfRisk:
-          minLength: 1
-          type: string
-        coinsurance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    PersonalPropertyOfOthersDtoV2:
-      required:
-      - coinsurance
-      - limit
-      - personalPropertyValuation
-      type: object
-      properties:
-        limit:
-          type: integer
-          format: int32
-        coinsurance:
-          minLength: 1
-          type: string
-        alarmConnection:
-          type:
-          - string
-          - 'null'
-        alarmProtection:
-          type:
-          - string
-          - 'null'
-        personalPropertyValuation:
-          minLength: 1
-          type: string
-        watchman:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    LocationGetResponseIEnumerableIApiResponse:
-      type: object
-      properties:
+          $ref: '#/components/schemas/BadRequestError_3'
         id:
           type:
           - string
@@ -7316,19 +7441,19 @@ components:
           - string
           - 'null'
         httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
+          $ref: '#/components/schemas/HttpStatusCode_2'
         messages:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/ApiMessage_2'
+            $ref: '#/components/schemas/ApiMessage_3'
         errors:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/ApiMessage_2'
+            $ref: '#/components/schemas/ApiMessage_3'
         paging:
           $ref: '#/components/schemas/ApiPaging'
         maxMsgIndex:
@@ -7346,14 +7471,134 @@ components:
           - string
           - 'null'
           readOnly: true
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/LocationGetResponse'
       additionalProperties: false
-    UnauthorizedError_3:
+    HttpStatusCode_2:
+      enum:
+      - 100 = Continue
+      - 101 = SwitchingProtocols
+      - 102 = Processing
+      - 103 = EarlyHints
+      - 200 = OK
+      - 201 = Created
+      - 202 = Accepted
+      - 203 = NonAuthoritativeInformation
+      - 204 = NoContent
+      - 205 = ResetContent
+      - 206 = PartialContent
+      - 207 = MultiStatus
+      - 208 = AlreadyReported
+      - 226 = IMUsed
+      - 300 = MultipleChoices
+      - 300 = Ambiguous
+      - 301 = MovedPermanently
+      - 301 = Moved
+      - 302 = Found
+      - 302 = Redirect
+      - 303 = SeeOther
+      - 303 = RedirectMethod
+      - 304 = NotModified
+      - 305 = UseProxy
+      - 306 = Unused
+      - 307 = TemporaryRedirect
+      - 307 = RedirectKeepVerb
+      - 308 = PermanentRedirect
+      - 400 = BadRequest
+      - 401 = Unauthorized
+      - 402 = PaymentRequired
+      - 403 = Forbidden
+      - 404 = NotFound
+      - 405 = MethodNotAllowed
+      - 406 = NotAcceptable
+      - 407 = ProxyAuthenticationRequired
+      - 408 = RequestTimeout
+      - 409 = Conflict
+      - 410 = Gone
+      - 411 = LengthRequired
+      - 412 = PreconditionFailed
+      - 413 = RequestEntityTooLarge
+      - 414 = RequestUriTooLong
+      - 415 = UnsupportedMediaType
+      - 416 = RequestedRangeNotSatisfiable
+      - 417 = ExpectationFailed
+      - 421 = MisdirectedRequest
+      - 422 = UnprocessableEntity
+      - 423 = Locked
+      - 424 = FailedDependency
+      - 426 = UpgradeRequired
+      - 428 = PreconditionRequired
+      - 429 = TooManyRequests
+      - 431 = RequestHeaderFieldsTooLarge
+      - 451 = UnavailableForLegalReasons
+      - 500 = InternalServerError
+      - 501 = NotImplemented
+      - 502 = BadGateway
+      - 503 = ServiceUnavailable
+      - 504 = GatewayTimeout
+      - 505 = HttpVersionNotSupported
+      - 506 = VariantAlsoNegotiates
+      - 507 = InsufficientStorage
+      - 508 = LoopDetected
+      - 510 = NotExtended
+      - 511 = NetworkAuthenticationRequired
+      type: integer
+      format: int32
+    AccountInformation:
+      type: object
+      properties:
+        quoteId:
+          type: integer
+          format: int32
+        masterAccountId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    BadRequestError_3:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode_2'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException_2'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode_2'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        detail:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    NotFoundError_3:
       type: object
       properties:
         id:
@@ -7396,81 +7641,6 @@ components:
           readOnly: true
         isOk:
           type: boolean
-          readOnly: true
-      additionalProperties: false
-    ContentsCoverageResponseDto:
-      type: object
-      properties:
-        personalProperty:
-          $ref: '#/components/schemas/PersonalPropertyResponseDto'
-        personalPropertyOfOthers:
-          $ref: '#/components/schemas/PersonalPropertyOfOthersResponseDto'
-      additionalProperties: false
-    GLSpecificLocationDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        address:
-          $ref: '#/components/schemas/AddressDto'
-        glTerritoryName:
-          type:
-          - string
-          - 'null'
-        classCodes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ClassCodeResponseDto_2'
-      additionalProperties: false
-    PostClassCodesResponseDtoIApiResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/PostClassCodesResponseDto'
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
           readOnly: true
       additionalProperties: false
     LogException_2:
@@ -7554,423 +7724,13 @@ components:
         baseException:
           $ref: '#/components/schemas/LogException_2'
       additionalProperties: false
-    PostCommercialPropertyDto:
-      required:
-      - buildings
-      - deductible
-      type: object
-      properties:
-        deductible:
-          enum:
-          - '500'
-          - '1000'
-          - '2500'
-          - '5000'
-          - '10000'
-          - '25000'
-          type: integer
-          format: int32
-        buildings:
-          type: array
-          items:
-            $ref: '#/components/schemas/PostBuildingDto'
-      additionalProperties: false
-    NotFoundErrorIApiResponse_3:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/NotFoundError_3'
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-      additionalProperties: false
-    ContensCoverageDto:
+    ContentsCoverageResponseDto:
       type: object
       properties:
         personalProperty:
-          $ref: '#/components/schemas/PersonalPropertyDto_2'
+          $ref: '#/components/schemas/PersonalPropertyResponseDto'
         personalPropertyOfOthers:
-          $ref: '#/components/schemas/PersonalPropertyOfOthersDto'
-      additionalProperties: false
-    PersonalPropertyOfOthersDto:
-      required:
-      - alarmConnection
-      - coinsurance
-      - limit
-      - personalPropertyValuation
-      type: object
-      properties:
-        limit:
-          type: integer
-          format: int32
-        coinsurance:
-          minLength: 1
-          enum:
-          - '80'
-          - '90'
-          - '100'
-          type: string
-        alarmConnection:
-          minLength: 1
-          enum:
-          - NotApplicable
-          - CentralStationWithKeys
-          - CentralStationWithoutKeys
-          - LocalAlarm
-          type: string
-        alarmProtection:
-          enum:
-          - High
-          - Low
-          - Moderate
-          type:
-          - string
-          - 'null'
-        personalPropertyValuation:
-          minLength: 1
-          enum:
-          - ActualCashValue
-          - ReplacementExcludingStock
-          - ReplacementIncludingStock
-          - Functional
-          type: string
-      additionalProperties: false
-    HttpStatusCode_2:
-      enum:
-      - 100 = Continue
-      - 101 = SwitchingProtocols
-      - 102 = Processing
-      - 103 = EarlyHints
-      - 200 = OK
-      - 201 = Created
-      - 202 = Accepted
-      - 203 = NonAuthoritativeInformation
-      - 204 = NoContent
-      - 205 = ResetContent
-      - 206 = PartialContent
-      - 207 = MultiStatus
-      - 208 = AlreadyReported
-      - 226 = IMUsed
-      - 300 = MultipleChoices
-      - 300 = Ambiguous
-      - 301 = MovedPermanently
-      - 301 = Moved
-      - 302 = Found
-      - 302 = Redirect
-      - 303 = SeeOther
-      - 303 = RedirectMethod
-      - 304 = NotModified
-      - 305 = UseProxy
-      - 306 = Unused
-      - 307 = TemporaryRedirect
-      - 307 = RedirectKeepVerb
-      - 308 = PermanentRedirect
-      - 400 = BadRequest
-      - 401 = Unauthorized
-      - 402 = PaymentRequired
-      - 403 = Forbidden
-      - 404 = NotFound
-      - 405 = MethodNotAllowed
-      - 406 = NotAcceptable
-      - 407 = ProxyAuthenticationRequired
-      - 408 = RequestTimeout
-      - 409 = Conflict
-      - 410 = Gone
-      - 411 = LengthRequired
-      - 412 = PreconditionFailed
-      - 413 = RequestEntityTooLarge
-      - 414 = RequestUriTooLong
-      - 415 = UnsupportedMediaType
-      - 416 = RequestedRangeNotSatisfiable
-      - 417 = ExpectationFailed
-      - 421 = MisdirectedRequest
-      - 422 = UnprocessableEntity
-      - 423 = Locked
-      - 424 = FailedDependency
-      - 426 = UpgradeRequired
-      - 428 = PreconditionRequired
-      - 429 = TooManyRequests
-      - 431 = RequestHeaderFieldsTooLarge
-      - 451 = UnavailableForLegalReasons
-      - 500 = InternalServerError
-      - 501 = NotImplemented
-      - 502 = BadGateway
-      - 503 = ServiceUnavailable
-      - 504 = GatewayTimeout
-      - 505 = HttpVersionNotSupported
-      - 506 = VariantAlsoNegotiates
-      - 507 = InsufficientStorage
-      - 508 = LoopDetected
-      - 510 = NotExtended
-      - 511 = NetworkAuthenticationRequired
-      type: integer
-      format: int32
-    CoveragesContainerDto:
-      type: object
-      properties:
-        building:
-          $ref: '#/components/schemas/BuildingCoverageDto_2'
-        contens:
-          $ref: '#/components/schemas/ContensCoverageDto'
-      additionalProperties: false
-    CommercialPropertyResponseDtoIApiResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CommercialPropertyResponseDto'
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-      additionalProperties: false
-    BadRequestError_3:
-      type: object
-      properties:
-        id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messageType:
-          $ref: '#/components/schemas/ApiMessageType'
-        internal:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        exception:
-          $ref: '#/components/schemas/LogException_2'
-        needsSanitization:
-          type: boolean
-          readOnly: true
-        httpStatusCode:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messageCode:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        title:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        detail:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        isOk:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
-    AccountInformation:
-      type: object
-      properties:
-        quoteId:
-          type: integer
-          format: int32
-        masterAccountId:
-          type: integer
-          format: int32
-      additionalProperties: false
-    NotFoundError_3:
-      type: object
-      properties:
-        id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messageType:
-          $ref: '#/components/schemas/ApiMessageType'
-        detail:
-          type:
-          - string
-          - 'null'
-        internal:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        exception:
-          $ref: '#/components/schemas/LogException_2'
-        needsSanitization:
-          type: boolean
-          readOnly: true
-        httpStatusCode:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messageCode:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        title:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        isOk:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
-    AddressDto:
-      required:
-      - city
-      - line1
-      - postalCode
-      - territory
-      type: object
-      properties:
-        line1:
-          minLength: 1
-          type: string
-        line2:
-          type:
-          - string
-          - 'null'
-        city:
-          minLength: 1
-          type: string
-        territory:
-          minLength: 1
-          type: string
-        postalCode:
-          minLength: 1
-          pattern: ^\d{5}(-\d{4})?$
-          type: string
-      additionalProperties: false
-    PremiumDetailsResponseDto:
-      type: object
-      properties:
-        premium:
-          type: number
-          format: double
-        taxes:
-          type: number
-          format: double
-      additionalProperties: false
-    PersonalPropertyOfOthersResponseDto:
-      type: object
-      properties:
-        limit:
-          type: integer
-          format: int32
-        coinsurance:
-          type:
-          - string
-          - 'null'
-        causeOfLoss:
-          type:
-          - string
-          - 'null'
-        alarmConnection:
-          type:
-          - string
-          - 'null'
-        alarmProtection:
-          type:
-          - string
-          - 'null'
-        personalPropertyValuation:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    CoveragesContainerResponseDto:
-      type: object
-      properties:
-        building:
-          $ref: '#/components/schemas/BuildingCoverageResponseDto_2'
-        contents:
-          $ref: '#/components/schemas/ContentsCoverageResponseDto'
+          $ref: '#/components/schemas/PersonalPropertyOfOthersResponseDto'
       additionalProperties: false
     PostLocationResponseDtoIApiResponse:
       type: object
@@ -8020,7 +7780,389 @@ components:
           - 'null'
           readOnly: true
       additionalProperties: false
+    PremiumDetailsContainerDto:
+      type: object
+      properties:
+        generalLiability:
+          $ref: '#/components/schemas/PremiumDetailsResponseDto'
+        commercialProperty:
+          $ref: '#/components/schemas/PremiumDetailsResponseDto'
+        netPremium:
+          type: number
+          format: double
+      additionalProperties: false
+    PostCommercialPropertyDto:
+      required:
+      - buildings
+      - deductible
+      type: object
+      properties:
+        deductible:
+          enum:
+          - '500'
+          - '1000'
+          - '2500'
+          - '5000'
+          - '10000'
+          - '25000'
+          type: integer
+          format: int32
+        buildings:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostBuildingDto'
+      additionalProperties: false
+    GLSpecificLocationDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        address:
+          $ref: '#/components/schemas/AddressDto'
+        glTerritoryName:
+          type:
+          - string
+          - 'null'
+        classCodes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ClassCodeResponseDto_2'
+      additionalProperties: false
+    NotFoundErrorIApiResponse_3:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/NotFoundError_3'
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode_2'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    UnauthorizedErrorIApiResponse_3:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UnauthorizedError_3'
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode_2'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    AddressDto:
+      required:
+      - city
+      - line1
+      - postalCode
+      - territory
+      type: object
+      properties:
+        line1:
+          minLength: 1
+          type: string
+        line2:
+          type:
+          - string
+          - 'null'
+        city:
+          minLength: 1
+          type: string
+        territory:
+          minLength: 1
+          type: string
+        postalCode:
+          minLength: 1
+          pattern: ^\d{5}(-\d{4})?$
+          type: string
+      additionalProperties: false
+    CommercialPropertyResponseDtoIApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CommercialPropertyResponseDto'
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode_2'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
     ForbiddenError_3:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode_2'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException_2'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode_2'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    PostClassCodesResponseDtoIApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/PostClassCodesResponseDto'
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode_2'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    ApiMessage_3:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode_2'
+        messageCode:
+          type:
+          - string
+          - 'null'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        title:
+          type:
+          - string
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException_2'
+        isOk:
+          type: boolean
+        needsSanitization:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    LocationGetDto_2:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        address:
+          $ref: '#/components/schemas/AddressDto'
+        deductible:
+          type: integer
+          format: int32
+        protectionClass:
+          type:
+          - string
+          - 'null'
+        territoryName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ContensCoverageDto:
+      type: object
+      properties:
+        personalProperty:
+          $ref: '#/components/schemas/PersonalPropertyDto_2'
+        personalPropertyOfOthers:
+          $ref: '#/components/schemas/PersonalPropertyOfOthersDto'
+      additionalProperties: false
+    UnauthorizedError_3:
       type: object
       properties:
         id:
@@ -8131,352 +8273,6 @@ components:
         coveragesContainer:
           $ref: '#/components/schemas/CoveragesContainerResponseDto'
       additionalProperties: false
-    PersonalPropertyDto_2:
-      required:
-      - coinsurance
-      - limit
-      type: object
-      properties:
-        limit:
-          type: integer
-          format: int32
-        coinsurance:
-          minLength: 1
-          enum:
-          - '80'
-          - '90'
-          - '100'
-          type: string
-      additionalProperties: false
-    UnauthorizedErrorIApiResponse_3:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/UnauthorizedError_3'
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-      additionalProperties: false
-    PostClassCodeDto:
-      required:
-      - classCode
-      - exposure
-      type: object
-      properties:
-        classCode:
-          minLength: 1
-          type: string
-        exposure:
-          type: integer
-          format: int32
-      additionalProperties: false
-    CommercialPropertyResponseDto:
-      type: object
-      properties:
-        quoteId:
-          type: integer
-          format: int32
-        masterAccountId:
-          type: integer
-          format: int32
-        locationId:
-          type: integer
-          format: int32
-        locationAddress:
-          $ref: '#/components/schemas/AddressDto'
-        protectionClass:
-          type:
-          - string
-          - 'null'
-        deductible:
-          type: integer
-          format: int32
-        buildings:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CommercialPropertyBuildingsResponse'
-        premiumDetails:
-          $ref: '#/components/schemas/PremiumDetailsContainerDto'
-      additionalProperties: false
-    PostLocationResponseDto:
-      type: object
-      properties:
-        accountInformation:
-          $ref: '#/components/schemas/AccountInformation'
-        locations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/LocationGetDto_2'
-      additionalProperties: false
-    ForbiddenErrorIApiResponse_3:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ForbiddenError_3'
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-      additionalProperties: false
-    RoofType:
-      enum:
-      - 3 = BuiltUpRoofing
-      - 4 = MetalRoofPanels
-      - 5 = AsphaltShingles
-      - 6 = ClayTiles
-      - 7 = ConcretePaver
-      - 8 = RubberMembrane
-      - 9 = StoneBallast
-      type: integer
-      description: 'Note for Built-up Roofing: Common on commercial buildings'
-      format: int32
-    ClassCodeResponseDto_2:
-      type: object
-      properties:
-        classCode:
-          type:
-          - string
-          - 'null'
-        classCodeDescription:
-          type:
-          - string
-          - 'null'
-        exposure:
-          type: integer
-          format: int32
-      additionalProperties: false
-    LocationGetDto_2:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        address:
-          $ref: '#/components/schemas/AddressDto'
-        deductible:
-          type: integer
-          format: int32
-        protectionClass:
-          type:
-          - string
-          - 'null'
-        territoryName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ApiMessage_3:
-      type: object
-      properties:
-        id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messageCode:
-          type:
-          - string
-          - 'null'
-        messageType:
-          $ref: '#/components/schemas/ApiMessageType'
-        title:
-          type:
-          - string
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        internal:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        exception:
-          $ref: '#/components/schemas/LogException_2'
-        isOk:
-          type: boolean
-        needsSanitization:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
-    PostClassCodesResponseDto:
-      type: object
-      properties:
-        accountInformation:
-          $ref: '#/components/schemas/AccountInformation'
-        location:
-          $ref: '#/components/schemas/GLSpecificLocationDto'
-      additionalProperties: false
-    BuildingCoverageResponseDto_2:
-      type: object
-      properties:
-        buildingType:
-          type:
-          - string
-          - 'null'
-        limit:
-          type: integer
-          format: int32
-        couseOfLouse:
-          type:
-          - string
-          - 'null'
-        coinsurance:
-          type:
-          - string
-          - 'null'
-        buildingValuation:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    BadRequestErrorIApiResponse_3:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/BadRequestError_3'
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-      additionalProperties: false
-    LocationPostDto:
-      required:
-      - address
-      type: object
-      properties:
-        deductible:
-          type: integer
-          description: Only applicable if commercial property is True on quote. </br> If not sent in, and commercial property exists on quote, deductible will be defaulted to $1,000
-          format: int32
-        address:
-          $ref: '#/components/schemas/AddressDto'
-      additionalProperties: false
     PostBuildingDto:
       required:
       - causeOfLoss
@@ -8562,6 +8358,102 @@ components:
         coveragesContainer:
           $ref: '#/components/schemas/CoveragesContainerDto'
       additionalProperties: false
+    PremiumDetailsResponseDto:
+      type: object
+      properties:
+        premium:
+          type: number
+          format: double
+        taxes:
+          type: number
+          format: double
+      additionalProperties: false
+    BuildingCoverageResponseDto_2:
+      type: object
+      properties:
+        buildingType:
+          type:
+          - string
+          - 'null'
+        limit:
+          type: integer
+          format: int32
+        couseOfLouse:
+          type:
+          - string
+          - 'null'
+        coinsurance:
+          type:
+          - string
+          - 'null'
+        buildingValuation:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PostClassCodesResponseDto:
+      type: object
+      properties:
+        accountInformation:
+          $ref: '#/components/schemas/AccountInformation'
+        location:
+          $ref: '#/components/schemas/GLSpecificLocationDto'
+      additionalProperties: false
+    PersonalPropertyOfOthersDto:
+      required:
+      - alarmConnection
+      - coinsurance
+      - limit
+      - personalPropertyValuation
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        coinsurance:
+          minLength: 1
+          enum:
+          - '80'
+          - '90'
+          - '100'
+          type: string
+        alarmConnection:
+          minLength: 1
+          enum:
+          - NotApplicable
+          - CentralStationWithKeys
+          - CentralStationWithoutKeys
+          - LocalAlarm
+          type: string
+        alarmProtection:
+          enum:
+          - High
+          - Low
+          - Moderate
+          type:
+          - string
+          - 'null'
+        personalPropertyValuation:
+          minLength: 1
+          enum:
+          - ActualCashValue
+          - ReplacementExcludingStock
+          - ReplacementIncludingStock
+          - Functional
+          type: string
+      additionalProperties: false
+    PostLocationResponseDto:
+      type: object
+      properties:
+        accountInformation:
+          $ref: '#/components/schemas/AccountInformation'
+        locations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/LocationGetDto_2'
+      additionalProperties: false
     BuildingCoverageDto_2:
       required:
       - buildingType
@@ -8627,16 +8519,124 @@ components:
           - 'null'
           description: Required if additional occupants do not occupy more than 20% of building
       additionalProperties: false
-    PremiumDetailsContainerDto:
+    CommercialPropertyResponseDto:
       type: object
       properties:
-        generalLiability:
-          $ref: '#/components/schemas/PremiumDetailsResponseDto'
-        commercialProperty:
-          $ref: '#/components/schemas/PremiumDetailsResponseDto'
-        netPremium:
-          type: number
-          format: double
+        quoteId:
+          type: integer
+          format: int32
+        masterAccountId:
+          type: integer
+          format: int32
+        locationId:
+          type: integer
+          format: int32
+        locationAddress:
+          $ref: '#/components/schemas/AddressDto'
+        protectionClass:
+          type:
+          - string
+          - 'null'
+        deductible:
+          type: integer
+          format: int32
+        buildings:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CommercialPropertyBuildingsResponse'
+        premiumDetails:
+          $ref: '#/components/schemas/PremiumDetailsContainerDto'
+      additionalProperties: false
+    CoveragesContainerResponseDto:
+      type: object
+      properties:
+        building:
+          $ref: '#/components/schemas/BuildingCoverageResponseDto_2'
+        contents:
+          $ref: '#/components/schemas/ContentsCoverageResponseDto'
+      additionalProperties: false
+    PersonalPropertyOfOthersResponseDto:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        coinsurance:
+          type:
+          - string
+          - 'null'
+        causeOfLoss:
+          type:
+          - string
+          - 'null'
+        alarmConnection:
+          type:
+          - string
+          - 'null'
+        alarmProtection:
+          type:
+          - string
+          - 'null'
+        personalPropertyValuation:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PersonalPropertyDto_2:
+      required:
+      - coinsurance
+      - limit
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        coinsurance:
+          minLength: 1
+          enum:
+          - '80'
+          - '90'
+          - '100'
+          type: string
+      additionalProperties: false
+    RoofType:
+      enum:
+      - 3 = BuiltUpRoofing
+      - 4 = MetalRoofPanels
+      - 5 = AsphaltShingles
+      - 6 = ClayTiles
+      - 7 = ConcretePaver
+      - 8 = RubberMembrane
+      - 9 = StoneBallast
+      type: integer
+      description: 'Note for Built-up Roofing: Common on commercial buildings'
+      format: int32
+    LocationPostDto:
+      required:
+      - address
+      type: object
+      properties:
+        deductible:
+          type: integer
+          description: Only applicable if commercial property is True on quote. </br> If not sent in, and commercial property exists on quote, deductible will be defaulted to $1,000
+          format: int32
+        address:
+          $ref: '#/components/schemas/AddressDto'
+      additionalProperties: false
+    PostClassCodeDto:
+      required:
+      - classCode
+      - exposure
+      type: object
+      properties:
+        classCode:
+          minLength: 1
+          type: string
+        exposure:
+          type: integer
+          format: int32
       additionalProperties: false
   securitySchemes:
     apiKeyHeader:
