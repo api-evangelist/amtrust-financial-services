@@ -1520,28 +1520,34 @@ paths:
                 _v: AD
 components:
   schemas:
-    PostBindQuoteResponseDto:
+    IInsuredContact:
       type: object
       properties:
-        quoteId:
-          type: integer
-          format: int32
-        policyNumber:
+        name:
           type:
           - string
           - 'null'
-        policyId:
-          type: integer
-          format: int32
-        masterAccountId:
-          type: integer
-          format: int32
-        effectiveDate:
-          type: string
-          format: date-time
-        premium:
-          type: number
-          format: double
+          readOnly: true
+        firstName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        lastName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        email:
+          type:
+          - string
+          - 'null'
+          readOnly: true
       additionalProperties: false
     ForbiddenErrorIApiResponse:
       type: object
@@ -1590,250 +1596,6 @@ components:
           readOnly: true
         data:
           $ref: '#/components/schemas/ForbiddenError'
-      additionalProperties: false
-    BadRequestErrorIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/BadRequestError'
-      additionalProperties: false
-    HttpStatusCode:
-      enum:
-      - 100 = Continue
-      - 101 = SwitchingProtocols
-      - 102 = Processing
-      - 103 = EarlyHints
-      - 200 = OK
-      - 201 = Created
-      - 202 = Accepted
-      - 203 = NonAuthoritativeInformation
-      - 204 = NoContent
-      - 205 = ResetContent
-      - 206 = PartialContent
-      - 207 = MultiStatus
-      - 208 = AlreadyReported
-      - 226 = IMUsed
-      - 300 = MultipleChoices
-      - 300 = Ambiguous
-      - 301 = MovedPermanently
-      - 301 = Moved
-      - 302 = Found
-      - 302 = Redirect
-      - 303 = SeeOther
-      - 303 = RedirectMethod
-      - 304 = NotModified
-      - 305 = UseProxy
-      - 306 = Unused
-      - 307 = TemporaryRedirect
-      - 307 = RedirectKeepVerb
-      - 308 = PermanentRedirect
-      - 400 = BadRequest
-      - 401 = Unauthorized
-      - 402 = PaymentRequired
-      - 403 = Forbidden
-      - 404 = NotFound
-      - 405 = MethodNotAllowed
-      - 406 = NotAcceptable
-      - 407 = ProxyAuthenticationRequired
-      - 408 = RequestTimeout
-      - 409 = Conflict
-      - 410 = Gone
-      - 411 = LengthRequired
-      - 412 = PreconditionFailed
-      - 413 = RequestEntityTooLarge
-      - 414 = RequestUriTooLong
-      - 415 = UnsupportedMediaType
-      - 416 = RequestedRangeNotSatisfiable
-      - 417 = ExpectationFailed
-      - 421 = MisdirectedRequest
-      - 422 = UnprocessableEntity
-      - 422 = UnprocessableContent
-      - 423 = Locked
-      - 424 = FailedDependency
-      - 426 = UpgradeRequired
-      - 428 = PreconditionRequired
-      - 429 = TooManyRequests
-      - 431 = RequestHeaderFieldsTooLarge
-      - 451 = UnavailableForLegalReasons
-      - 500 = InternalServerError
-      - 501 = NotImplemented
-      - 502 = BadGateway
-      - 503 = ServiceUnavailable
-      - 504 = GatewayTimeout
-      - 505 = HttpVersionNotSupported
-      - 506 = VariantAlsoNegotiates
-      - 507 = InsufficientStorage
-      - 508 = LoopDetected
-      - 510 = NotExtended
-      - 511 = NetworkAuthenticationRequired
-      type: integer
-      format: int32
-    ApiPageResponse:
-      type: object
-      properties:
-        first:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-        current:
-          type:
-          - string
-          - 'null'
-        next:
-          type:
-          - string
-          - 'null'
-        last:
-          type:
-          - string
-          - 'null'
-        pageSize:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        count:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      additionalProperties: false
-    BadRequestError:
-      type: object
-      properties:
-        id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messageType:
-          $ref: '#/components/schemas/ApiMessageType'
-        internal:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        exception:
-          $ref: '#/components/schemas/LogException'
-        needsSanitization:
-          type: boolean
-          readOnly: true
-        httpStatusCode:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messageCode:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        title:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        detail:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        isOk:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messageType:
-          $ref: '#/components/schemas/ApiMessageType'
-        detail:
-          type:
-          - string
-          - 'null'
-        internal:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        exception:
-          $ref: '#/components/schemas/LogException'
-        needsSanitization:
-          type: boolean
-          readOnly: true
-        httpStatusCode:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messageCode:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        title:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        isOk:
-          type: boolean
-          readOnly: true
       additionalProperties: false
     LogException:
       type: object
@@ -1920,27 +1682,69 @@ components:
         baseException:
           $ref: '#/components/schemas/LogException'
       additionalProperties: false
-    Contact:
+    GetQuoteResponseDto:
       required:
-      - email
-      - name
-      - phone
+      - businessName
       type: object
       properties:
-        name:
-          minLength: 1
-          pattern: ^[A-z0-9]+(\s[A-z0-9-']+){1,}$
+        quoteId:
+          type: integer
+          format: int32
+        masterAccountId:
+          type: integer
+          format: int32
+        effectivedate:
           type: string
-        phone:
+          format: date-time
+        businessName:
           minLength: 1
-          pattern: ((\(\d{3}\)?)|(\d{3}))([\s-./]?)(\d{3})([\s-./]?)(\d{4})
           type: string
-        email:
-          minLength: 1
-          pattern: ^.+@.+\..+$
-          type: string
+        primaryAddress:
+          $ref: '#/components/schemas/AddressDto'
+        mailingAddress:
+          $ref: '#/components/schemas/AddressDto'
+        fein:
+          type:
+          - string
+          - 'null'
+        agentContact:
+          $ref: '#/components/schemas/IAgentContact'
+        insuredContact:
+          $ref: '#/components/schemas/IInsuredContact'
+        expectedGrossRevenue:
+          type:
+          - number
+          - 'null'
+          format: double
+        policyLimits:
+          type:
+          - string
+          - 'null'
+        premium:
+          type:
+          - number
+          - 'null'
+          format: double
+        premiumDetails:
+          $ref: '#/components/schemas/PremiumDetailsDto'
+        eligibility:
+          type:
+          - string
+          - 'null'
+        quoteStatus:
+          type:
+          - string
+          - 'null'
+        companyWebsite:
+          type:
+          - string
+          - 'null'
+        naicsCode:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    PostBindQuoteResponseDtoIApiResponse:
+    PostQuoteResponseDtoIApiResponse:
       type: object
       properties:
         id:
@@ -1986,86 +1790,7 @@ components:
           - 'null'
           readOnly: true
         data:
-          $ref: '#/components/schemas/PostBindQuoteResponseDto'
-      additionalProperties: false
-    ApiPageRequest:
-      type: object
-      properties:
-        skip:
-          type: integer
-          format: int32
-        take:
-          type: integer
-          format: int32
-        count:
-          type: boolean
-      additionalProperties: false
-    OperationType:
-      enum:
-      - 0 = Add
-      - 1 = Remove
-      - 2 = Replace
-      - 3 = Move
-      - 4 = Copy
-      - 5 = Test
-      - 6 = Invalid
-      type: integer
-      format: int32
-    NotFoundErrorIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/NotFoundError'
-      additionalProperties: false
-    ApiPaging:
-      type: object
-      properties:
-        request:
-          $ref: '#/components/schemas/ApiPageRequest'
-        response:
-          $ref: '#/components/schemas/ApiPageResponse'
+          $ref: '#/components/schemas/PostQuoteResponseDto'
       additionalProperties: false
     UnauthorizedErrorIApiResponse:
       type: object
@@ -2115,31 +1840,199 @@ components:
         data:
           $ref: '#/components/schemas/UnauthorizedError'
       additionalProperties: false
-    AddressDto:
-      required:
-      - city
-      - line1
-      - postalCode
-      - territory
+    StringIApiResponse:
       type: object
       properties:
-        line1:
-          minLength: 1
-          type: string
-        line2:
+        id:
           type:
           - string
           - 'null'
-        city:
-          minLength: 1
+        timestamp:
           type: string
-        territory:
-          minLength: 1
-          type: string
-        postalCode:
-          minLength: 1
-          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
+    UpdateQuoteRequestDto:
+      required:
+      - agentContactId
+      - businessName
+      - effectiveDate
+      - insuredContact
+      - mailingAddress
+      - policyLimits
+      - primaryAddress
+      type: object
+      properties:
+        businessName:
+          minLength: 1
+          type: string
+        effectiveDate:
+          type: string
+          format: date-time
+        mailingAddress:
+          $ref: '#/components/schemas/AddressDto'
+        primaryAddress:
+          $ref: '#/components/schemas/AddressDto'
+        fein:
+          type:
+          - string
+          - 'null'
+        agentContactId:
+          type: integer
+          format: int32
+        insuredContact:
+          $ref: '#/components/schemas/Contact'
+        expectedGrossAnnualRevenue:
+          type: number
+          description: Required when a non-slot rate policy limit is provided, and it must be greater than zero.
+          format: double
+        policyLimits:
+          minLength: 1
+          type: string
+        companyWebsite:
+          type:
+          - string
+          - 'null'
+        naicsCode:
+          type:
+          - string
+          - 'null'
+        digitalClientWorkflow:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ApiPageResponse:
+      type: object
+      properties:
+        first:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+        current:
+          type:
+          - string
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        last:
+          type:
+          - string
+          - 'null'
+        pageSize:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    GetQuoteResponseDtoIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/GetQuoteResponseDto'
+      additionalProperties: false
+    OperationType:
+      enum:
+      - 0 = Add
+      - 1 = Remove
+      - 2 = Replace
+      - 3 = Move
+      - 4 = Copy
+      - 5 = Test
+      - 6 = Invalid
+      type: integer
+      format: int32
     PostQuoteRequestDto:
       required:
       - agentContactId
@@ -2250,116 +2143,6 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    PostQuoteResponseDtoIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/PostQuoteResponseDto'
-      additionalProperties: false
-    GetQuoteResponseDto:
-      required:
-      - businessName
-      type: object
-      properties:
-        quoteId:
-          type: integer
-          format: int32
-        masterAccountId:
-          type: integer
-          format: int32
-        effectivedate:
-          type: string
-          format: date-time
-        businessName:
-          minLength: 1
-          type: string
-        primaryAddress:
-          $ref: '#/components/schemas/AddressDto'
-        mailingAddress:
-          $ref: '#/components/schemas/AddressDto'
-        fein:
-          type:
-          - string
-          - 'null'
-        agentContact:
-          $ref: '#/components/schemas/IAgentContact'
-        insuredContact:
-          $ref: '#/components/schemas/IInsuredContact'
-        expectedGrossRevenue:
-          type:
-          - number
-          - 'null'
-          format: double
-        policyLimits:
-          type:
-          - string
-          - 'null'
-        premium:
-          type:
-          - number
-          - 'null'
-          format: double
-        premiumDetails:
-          $ref: '#/components/schemas/PremiumDetailsDto'
-        eligibility:
-          type:
-          - string
-          - 'null'
-        quoteStatus:
-          type:
-          - string
-          - 'null'
-        companyWebsite:
-          type:
-          - string
-          - 'null'
-        naicsCode:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     InvoiceDto:
       type: object
       properties:
@@ -2382,47 +2165,19 @@ components:
         isDownPayment:
           type: boolean
       additionalProperties: false
-    ApiMessage:
+    ApiPageRequest:
       type: object
       properties:
-        id:
-          type:
-          - integer
-          - 'null'
+        skip:
+          type: integer
           format: int32
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messageCode:
-          type:
-          - string
-          - 'null'
-        messageType:
-          $ref: '#/components/schemas/ApiMessageType'
-        title:
-          type:
-          - string
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        internal:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        exception:
-          $ref: '#/components/schemas/LogException'
-        isOk:
+        take:
+          type: integer
+          format: int32
+        count:
           type: boolean
-        needsSanitization:
-          type: boolean
-          readOnly: true
       additionalProperties: false
-    GetQuoteResponseDtoIApiResponse:
+    NotFoundErrorIApiResponse:
       type: object
       properties:
         id:
@@ -2468,38 +2223,18 @@ components:
           - 'null'
           readOnly: true
         data:
-          $ref: '#/components/schemas/GetQuoteResponseDto'
+          $ref: '#/components/schemas/NotFoundError'
       additionalProperties: false
-    PremiumDetailsDto:
+    PostTerrorismCoverageDto:
+      required:
+      - isAcknowledged
       type: object
       properties:
-        finalPremium:
-          type:
-          - number
-          - 'null'
-          format: double
-        cityTax:
-          type:
-          - number
-          - 'null'
-          format: double
-        countyTax:
-          type:
-          - number
-          - 'null'
-          format: double
-        stateTax:
-          type:
-          - number
-          - 'null'
-          format: double
-        premiumOverrideAdjustment:
-          type:
-          - number
-          - 'null'
-          format: double
+        isAcknowledged:
+          minLength: 1
+          type: string
       additionalProperties: false
-    UnauthorizedError:
+    NotFoundError:
       type: object
       properties:
         id:
@@ -2543,6 +2278,506 @@ components:
         isOk:
           type: boolean
           readOnly: true
+      additionalProperties: false
+    Invoice:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        description:
+          type:
+          - string
+          - 'null'
+        date:
+          type: string
+          format: date-time
+        downpayment:
+          type: boolean
+        premAmount:
+          type: number
+          format: double
+        premDueDate:
+          type: string
+          format: date-time
+      additionalProperties: false
+    BadRequestErrorIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/BadRequestError'
+      additionalProperties: false
+    GetPaymentPlanResponseDto:
+      type: object
+      properties:
+        direct:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PaymentPlanDto'
+        agency:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PaymentPlanDto'
+      additionalProperties: false
+    PostBindQuoteResponseDto:
+      type: object
+      properties:
+        quoteId:
+          type: integer
+          format: int32
+        policyNumber:
+          type:
+          - string
+          - 'null'
+        policyId:
+          type: integer
+          format: int32
+        masterAccountId:
+          type: integer
+          format: int32
+        effectiveDate:
+          type: string
+          format: date-time
+        premium:
+          type: number
+          format: double
+      additionalProperties: false
+    Operation:
+      type: object
+      properties:
+        operationType:
+          $ref: '#/components/schemas/OperationType'
+        path:
+          type:
+          - string
+          - 'null'
+        op:
+          type:
+          - string
+          - 'null'
+        from:
+          type:
+          - string
+          - 'null'
+        value: {}
+      additionalProperties: false
+    HttpStatusCode:
+      enum:
+      - 100 = Continue
+      - 101 = SwitchingProtocols
+      - 102 = Processing
+      - 103 = EarlyHints
+      - 200 = OK
+      - 201 = Created
+      - 202 = Accepted
+      - 203 = NonAuthoritativeInformation
+      - 204 = NoContent
+      - 205 = ResetContent
+      - 206 = PartialContent
+      - 207 = MultiStatus
+      - 208 = AlreadyReported
+      - 226 = IMUsed
+      - 300 = MultipleChoices
+      - 300 = Ambiguous
+      - 301 = MovedPermanently
+      - 301 = Moved
+      - 302 = Found
+      - 302 = Redirect
+      - 303 = SeeOther
+      - 303 = RedirectMethod
+      - 304 = NotModified
+      - 305 = UseProxy
+      - 306 = Unused
+      - 307 = TemporaryRedirect
+      - 307 = RedirectKeepVerb
+      - 308 = PermanentRedirect
+      - 400 = BadRequest
+      - 401 = Unauthorized
+      - 402 = PaymentRequired
+      - 403 = Forbidden
+      - 404 = NotFound
+      - 405 = MethodNotAllowed
+      - 406 = NotAcceptable
+      - 407 = ProxyAuthenticationRequired
+      - 408 = RequestTimeout
+      - 409 = Conflict
+      - 410 = Gone
+      - 411 = LengthRequired
+      - 412 = PreconditionFailed
+      - 413 = RequestEntityTooLarge
+      - 414 = RequestUriTooLong
+      - 415 = UnsupportedMediaType
+      - 416 = RequestedRangeNotSatisfiable
+      - 417 = ExpectationFailed
+      - 421 = MisdirectedRequest
+      - 422 = UnprocessableEntity
+      - 422 = UnprocessableContent
+      - 423 = Locked
+      - 424 = FailedDependency
+      - 426 = UpgradeRequired
+      - 428 = PreconditionRequired
+      - 429 = TooManyRequests
+      - 431 = RequestHeaderFieldsTooLarge
+      - 451 = UnavailableForLegalReasons
+      - 500 = InternalServerError
+      - 501 = NotImplemented
+      - 502 = BadGateway
+      - 503 = ServiceUnavailable
+      - 504 = GatewayTimeout
+      - 505 = HttpVersionNotSupported
+      - 506 = VariantAlsoNegotiates
+      - 507 = InsufficientStorage
+      - 508 = LoopDetected
+      - 510 = NotExtended
+      - 511 = NetworkAuthenticationRequired
+      type: integer
+      format: int32
+    ApiPaging:
+      type: object
+      properties:
+        request:
+          $ref: '#/components/schemas/ApiPageRequest'
+        response:
+          $ref: '#/components/schemas/ApiPageResponse'
+      additionalProperties: false
+    Contact:
+      required:
+      - email
+      - name
+      - phone
+      type: object
+      properties:
+        name:
+          minLength: 1
+          pattern: ^[A-z0-9]+(\s[A-z0-9-']+){1,}$
+          type: string
+        phone:
+          minLength: 1
+          pattern: ((\(\d{3}\)?)|(\d{3}))([\s-./]?)(\d{3})([\s-./]?)(\d{4})
+          type: string
+        email:
+          minLength: 1
+          pattern: ^.+@.+\..+$
+          type: string
+      additionalProperties: false
+    PostBindQuoteResponseDtoIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/PostBindQuoteResponseDto'
+      additionalProperties: false
+    PatchQuoteResponseDtoIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/PatchQuoteResponseDto'
+      additionalProperties: false
+    AddressDto:
+      required:
+      - city
+      - line1
+      - postalCode
+      - territory
+      type: object
+      properties:
+        line1:
+          minLength: 1
+          type: string
+        line2:
+          type:
+          - string
+          - 'null'
+        city:
+          minLength: 1
+          type: string
+        territory:
+          minLength: 1
+          type: string
+        postalCode:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    ApiMessage:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        title:
+          type:
+          - string
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        isOk:
+          type: boolean
+        needsSanitization:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    PremiumDetailsDto:
+      type: object
+      properties:
+        finalPremium:
+          type:
+          - number
+          - 'null'
+          format: double
+        cityTax:
+          type:
+          - number
+          - 'null'
+          format: double
+        countyTax:
+          type:
+          - number
+          - 'null'
+          format: double
+        stateTax:
+          type:
+          - number
+          - 'null'
+          format: double
+        premiumOverrideAdjustment:
+          type:
+          - number
+          - 'null'
+          format: double
+      additionalProperties: false
+    BadRequestError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        detail:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    PaymentPlanDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        downpaymentPercent:
+          type: number
+          format: double
+        numberOfPayments:
+          type: integer
+          format: int32
+        description:
+          type:
+          - string
+          - 'null'
+        downpaymentDueDateDays:
+          type: integer
+          format: int32
+        invoiceDueDateDays:
+          type: integer
+          format: int32
+        paymentFrequency:
+          type:
+          - string
+          - 'null'
+        billingType:
+          type:
+          - string
+          - 'null'
+        invoiceSchedule:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Invoice'
       additionalProperties: false
     GetPaymentPlanResponseDtoIApiResponse:
       type: object
@@ -2592,166 +2827,6 @@ components:
         data:
           $ref: '#/components/schemas/GetPaymentPlanResponseDto'
       additionalProperties: false
-    ApiMessageType:
-      enum:
-      - 0 = Info
-      - 1 = Error
-      type: integer
-      format: int32
-    Invoice:
-      type: object
-      properties:
-        amount:
-          type: number
-          format: double
-        description:
-          type:
-          - string
-          - 'null'
-        date:
-          type: string
-          format: date-time
-        downpayment:
-          type: boolean
-        premAmount:
-          type: number
-          format: double
-        premDueDate:
-          type: string
-          format: date-time
-      additionalProperties: false
-    GetPaymentPlanResponseDto:
-      type: object
-      properties:
-        direct:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PaymentPlanDto'
-        agency:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PaymentPlanDto'
-      additionalProperties: false
-    PostTerrorismCoverageDto:
-      required:
-      - isAcknowledged
-      type: object
-      properties:
-        isAcknowledged:
-          minLength: 1
-          type: string
-      additionalProperties: false
-    PatchQuoteResponseDto:
-      type: object
-      properties:
-        quoteId:
-          type: integer
-          format: int32
-        masterAccountId:
-          type: integer
-          format: int32
-        effectivedate:
-          type: string
-          format: date-time
-        businessName:
-          type:
-          - string
-          - 'null'
-        primaryAddress:
-          $ref: '#/components/schemas/AddressDto'
-        mailingAddress:
-          $ref: '#/components/schemas/AddressDto'
-        fein:
-          type:
-          - string
-          - 'null'
-        agentContact:
-          $ref: '#/components/schemas/IAgentContact'
-        insuredContact:
-          $ref: '#/components/schemas/IInsuredContact'
-        expectedGrossAnnualRevenue:
-          type: number
-          format: double
-        policyLimits:
-          type:
-          - string
-          - 'null'
-        premium:
-          type: number
-          format: double
-        eligibility:
-          type:
-          - string
-          - 'null'
-        companyWebsite:
-          type:
-          - string
-          - 'null'
-        quoteStatus:
-          type:
-          - string
-          - 'null'
-        digitalClientWorkflow:
-          type:
-          - string
-          - 'null'
-        naicsCode:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    IInsuredContact:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        firstName:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        lastName:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        phoneNumber:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        email:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-      additionalProperties: false
-    Operation:
-      type: object
-      properties:
-        operationType:
-          $ref: '#/components/schemas/OperationType'
-        path:
-          type:
-          - string
-          - 'null'
-        op:
-          type:
-          - string
-          - 'null'
-        from:
-          type:
-          - string
-          - 'null'
-        value: {}
-      additionalProperties: false
     PostTerrorismCoverageDtoIApiResponse:
       type: object
       properties:
@@ -2799,61 +2874,6 @@ components:
           readOnly: true
         data:
           $ref: '#/components/schemas/PostTerrorismCoverageDto'
-      additionalProperties: false
-    PaymentPlanDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        downpaymentPercent:
-          type: number
-          format: double
-        numberOfPayments:
-          type: integer
-          format: int32
-        description:
-          type:
-          - string
-          - 'null'
-        downpaymentDueDateDays:
-          type: integer
-          format: int32
-        invoiceDueDateDays:
-          type: integer
-          format: int32
-        paymentFrequency:
-          type:
-          - string
-          - 'null'
-        billingType:
-          type:
-          - string
-          - 'null'
-        invoiceSchedule:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Invoice'
-      additionalProperties: false
-    IAgentContact:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-          readOnly: true
-        name:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        email:
-          type:
-          - string
-          - 'null'
-          readOnly: true
       additionalProperties: false
     PostQuoteResponseDto:
       required:
@@ -2933,48 +2953,53 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    UpdateQuoteRequestDto:
-      required:
-      - agentContactId
-      - businessName
-      - effectiveDate
-      - insuredContact
-      - mailingAddress
-      - policyLimits
-      - primaryAddress
+    PatchQuoteResponseDto:
       type: object
       properties:
-        businessName:
-          minLength: 1
-          type: string
-        effectiveDate:
+        quoteId:
+          type: integer
+          format: int32
+        masterAccountId:
+          type: integer
+          format: int32
+        effectivedate:
           type: string
           format: date-time
-        mailingAddress:
-          $ref: '#/components/schemas/AddressDto'
+        businessName:
+          type:
+          - string
+          - 'null'
         primaryAddress:
+          $ref: '#/components/schemas/AddressDto'
+        mailingAddress:
           $ref: '#/components/schemas/AddressDto'
         fein:
           type:
           - string
           - 'null'
-        agentContactId:
-          type: integer
-          format: int32
+        agentContact:
+          $ref: '#/components/schemas/IAgentContact'
         insuredContact:
-          $ref: '#/components/schemas/Contact'
+          $ref: '#/components/schemas/IInsuredContact'
         expectedGrossAnnualRevenue:
           type: number
-          description: Required when a non-slot rate policy limit is provided, and it must be greater than zero.
           format: double
         policyLimits:
-          minLength: 1
-          type: string
+          type:
+          - string
+          - 'null'
+        premium:
+          type: number
+          format: double
+        eligibility:
+          type:
+          - string
+          - 'null'
         companyWebsite:
           type:
           - string
           - 'null'
-        naicsCode:
+        quoteStatus:
           type:
           - string
           - 'null'
@@ -2982,105 +3007,62 @@ components:
           type:
           - string
           - 'null'
+        naicsCode:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    StringIApiResponse:
+    UnauthorizedError:
       type: object
       properties:
         id:
           type:
-          - string
+          - integer
           - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
+          format: int32
         httpStatus:
           $ref: '#/components/schemas/HttpStatusCode'
-        messages:
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        detail:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
+        internal:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
           readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
           readOnly: true
         isOk:
           type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
           readOnly: true
-        data:
-          type:
-          - string
-          - 'null'
       additionalProperties: false
-    PatchQuoteResponseDtoIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/PatchQuoteResponseDto'
-      additionalProperties: false
+    ApiMessageType:
+      enum:
+      - 0 = Info
+      - 1 = Error
+      type: integer
+      format: int32
     UpdatePaymentPlanDto:
       required:
       - id
@@ -3089,6 +3071,24 @@ components:
         id:
           type: integer
           format: int32
+      additionalProperties: false
+    IAgentContact:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          readOnly: true
+        name:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        email:
+          type:
+          - string
+          - 'null'
+          readOnly: true
       additionalProperties: false
   securitySchemes:
     apiKeyHeader:

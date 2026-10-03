@@ -1418,6 +1418,15 @@ paths:
                   value: null
 components:
   schemas:
+    SendFileToServerDto:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          format: byte
+      additionalProperties: false
     ContractChangesFiles:
       type: object
       properties:
@@ -1860,37 +1869,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    GroupNumbers:
-      required:
-      - groupNumber
-      - groupShortName
-      - ownerDepartment
-      - ownerRecoverableBilling
-      - active
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        groupNumber:
-          title: Group Number
-          minLength: 1
-          type: string
-        groupShortName:
-          title: Group Short Name
-          minLength: 1
-          type: string
-        ownerDepartment:
-          title: Owner Department
-          minLength: 1
-          type: string
-        ownerRecoverableBilling:
-          title: Owner Rec Billing
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-      additionalProperties: false
     DimCompanyDaily:
       type: object
       properties:
@@ -1939,32 +1917,72 @@ components:
           - boolean
           - 'null'
       additionalProperties: false
-    Glaslob:
+    GroupNumbers:
+      required:
+      - groupNumber
+      - groupShortName
+      - ownerDepartment
+      - ownerRecoverableBilling
+      - active
       type: object
       properties:
-        oracleASLOB:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        aslobCode:
-          type:
-          - string
-          - 'null'
-        showOnWeb:
+        id:
+          type: integer
+          format: int32
+        groupNumber:
+          title: Group Number
+          minLength: 1
+          type: string
+        groupShortName:
+          title: Group Short Name
+          minLength: 1
+          type: string
+        ownerDepartment:
+          title: Owner Department
+          minLength: 1
+          type: string
+        ownerRecoverableBilling:
+          title: Owner Rec Billing
+          minLength: 1
+          type: string
+        active:
           type: boolean
       additionalProperties: false
-    SendFileToServerDto:
+    DropDownLists:
       type: object
       properties:
-        content:
+        id:
+          type: integer
+          format: int32
+        ddKey:
           type:
           - string
           - 'null'
-          format: byte
+        ddText:
+          type:
+          - string
+          - 'null'
+        ddValue:
+          type:
+          - string
+          - 'null'
+        active:
+          type: boolean
+        sortOrder:
+          type: integer
+          format: int32
+        pc:
+          type:
+          - boolean
+          - 'null'
+        sr:
+          type:
+          - boolean
+          - 'null'
+        international:
+          type:
+          - boolean
+          - 'null'
       additionalProperties: false
     IHeaderDictionary:
       type: object
@@ -2246,6 +2264,24 @@ components:
           items: {}
       additionalProperties: false
       x-abstract: true
+    Glaslob:
+      type: object
+      properties:
+        oracleASLOB:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        aslobCode:
+          type:
+          - string
+          - 'null'
+        showOnWeb:
+          type: boolean
+      additionalProperties: false
     ContractChangesLog:
       type: object
       properties:
@@ -2384,42 +2420,6 @@ components:
         userName:
           type:
           - string
-          - 'null'
-      additionalProperties: false
-    DropDownLists:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        ddKey:
-          type:
-          - string
-          - 'null'
-        ddText:
-          type:
-          - string
-          - 'null'
-        ddValue:
-          type:
-          - string
-          - 'null'
-        active:
-          type: boolean
-        sortOrder:
-          type: integer
-          format: int32
-        pc:
-          type:
-          - boolean
-          - 'null'
-        sr:
-          type:
-          - boolean
-          - 'null'
-        international:
-          type:
-          - boolean
           - 'null'
       additionalProperties: false
   securitySchemes:

@@ -126,44 +126,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: Invalid class code for the specified state
-        details:
-          type: array
-          items:
-            type: string
-          description: Additional error details
-    BindRequest:
-      type: object
-      description: Request to bind a quoted policy
-      required:
-      - agent_signature
-      properties:
-        agent_signature:
-          type: string
-          description: Agent electronic signature confirming bind intent
-          example: John Smith
-        payment_method:
-          type: string
-          description: Payment method for premium
-          enum:
-          - direct_bill
-          - agency_bill
-          example: direct_bill
-        additional_notes:
-          type: string
-          description: Optional notes for the policy
-          example: Insured prefers monthly installments
     Insured:
       type: object
       description: Business insured information
@@ -261,6 +223,44 @@ components:
           type: string
           description: ZIP code
           example: '78701'
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid class code for the specified state
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
+    BindRequest:
+      type: object
+      description: Request to bind a quoted policy
+      required:
+      - agent_signature
+      properties:
+        agent_signature:
+          type: string
+          description: Agent electronic signature confirming bind intent
+          example: John Smith
+        payment_method:
+          type: string
+          description: Payment method for premium
+          enum:
+          - direct_bill
+          - agency_bill
+          example: direct_bill
+        additional_notes:
+          type: string
+          description: Optional notes for the policy
+          example: Insured prefers monthly installments
   securitySchemes:
     bearerAuth:
       type: http

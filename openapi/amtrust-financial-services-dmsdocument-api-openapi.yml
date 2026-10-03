@@ -663,6 +663,38 @@ paths:
                 instance: string
 components:
   schemas:
+    LibraryDocumentRequestDto:
+      type: object
+      properties:
+        documentId:
+          type: integer
+          format: int32
+        userId:
+          type:
+          - string
+          - 'null'
+        documentUserClientRefId:
+          type:
+          - string
+          - 'null'
+        documentUserEntityTypeCode:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    RemoveDMSDocumentDto:
+      type: object
+      properties:
+        removeDMSDocument:
+          $ref: '#/components/schemas/LibraryDocumentRequestDto'
+      additionalProperties: false
+    DmsDocumentDto:
+      type: object
+      properties:
+        dmsDocumentId:
+          type: integer
+          format: int32
+      additionalProperties: false
     DocumentBusinessPropertyClientDto:
       type: object
       properties:
@@ -720,6 +752,43 @@ components:
         retrieveDMSDocument:
           $ref: '#/components/schemas/LibraryDocumentRequestDto'
       additionalProperties: false
+    LibraryDocumentResponseDto:
+      type: object
+      properties:
+        contentType:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
     DmsDocumentPatchDto:
       required:
       - documentExtId
@@ -805,31 +874,6 @@ components:
           minLength: 1
           type: string
       additionalProperties: false
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
     DmsDocumentPostDto:
       type: object
       properties:
@@ -913,50 +957,6 @@ components:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    LibraryDocumentResponseDto:
-      type: object
-      properties:
-        contentType:
-          type:
-          - string
-          - 'null'
-        content:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    LibraryDocumentRequestDto:
-      type: object
-      properties:
-        documentId:
-          type: integer
-          format: int32
-        userId:
-          type:
-          - string
-          - 'null'
-        documentUserClientRefId:
-          type:
-          - string
-          - 'null'
-        documentUserEntityTypeCode:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    DmsDocumentDto:
-      type: object
-      properties:
-        dmsDocumentId:
-          type: integer
-          format: int32
-      additionalProperties: false
-    RemoveDMSDocumentDto:
-      type: object
-      properties:
-        removeDMSDocument:
-          $ref: '#/components/schemas/LibraryDocumentRequestDto'
       additionalProperties: false
   securitySchemes:
     apiKeyHeader:
