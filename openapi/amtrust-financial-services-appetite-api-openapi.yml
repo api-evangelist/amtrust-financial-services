@@ -75,6 +75,23 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid class code for the specified state
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
     AppetiteRequest:
       type: object
       description: Request to check coverage appetite
@@ -127,23 +144,6 @@ components:
           type: string
           description: Reason if not eligible
           example: Eligible for online quoting and binding
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: Invalid class code for the specified state
-        details:
-          type: array
-          items:
-            type: string
-          description: Additional error details
   securitySchemes:
     bearerAuth:
       type: http

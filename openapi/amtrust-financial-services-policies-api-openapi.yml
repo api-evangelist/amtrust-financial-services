@@ -126,40 +126,44 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Insured:
+    BindRequest:
       type: object
-      description: Business insured information
+      description: Request to bind a quoted policy
       required:
-      - name
-      - address
-      - class_code
+      - agent_signature
       properties:
-        name:
+        agent_signature:
           type: string
-          description: Legal business name
-          example: Acme Contracting LLC
-        fein:
+          description: Agent electronic signature confirming bind intent
+          example: John Smith
+        payment_method:
           type: string
-          description: Federal Employer Identification Number
-          example: 12-3456789
-        class_code:
+          description: Payment method for premium
+          enum:
+          - direct_bill
+          - agency_bill
+          example: direct_bill
+        additional_notes:
           type: string
-          description: NCCI or state class code
-          example: '8810'
-        address:
-          $ref: '#/components/schemas/Address'
-        years_in_business:
-          type: integer
-          description: Years the business has been operating
-          example: 5
-        payroll:
-          type: number
-          description: Total annual payroll
-          example: 750000
-        employee_count:
-          type: integer
-          description: Total number of employees
-          example: 25
+          description: Optional notes for the policy
+          example: Insured prefers monthly installments
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid class code for the specified state
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
     PolicyResponse:
       type: object
       description: Bound policy details
@@ -198,6 +202,40 @@ components:
           type: string
           format: date-time
           example: '2025-03-15T15:00:00Z'
+    Insured:
+      type: object
+      description: Business insured information
+      required:
+      - name
+      - address
+      - class_code
+      properties:
+        name:
+          type: string
+          description: Legal business name
+          example: Acme Contracting LLC
+        fein:
+          type: string
+          description: Federal Employer Identification Number
+          example: 12-3456789
+        class_code:
+          type: string
+          description: NCCI or state class code
+          example: '8810'
+        address:
+          $ref: '#/components/schemas/Address'
+        years_in_business:
+          type: integer
+          description: Years the business has been operating
+          example: 5
+        payroll:
+          type: number
+          description: Total annual payroll
+          example: 750000
+        employee_count:
+          type: integer
+          description: Total number of employees
+          example: 25
     Address:
       type: object
       description: Physical address
@@ -223,44 +261,6 @@ components:
           type: string
           description: ZIP code
           example: '78701'
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: Invalid class code for the specified state
-        details:
-          type: array
-          items:
-            type: string
-          description: Additional error details
-    BindRequest:
-      type: object
-      description: Request to bind a quoted policy
-      required:
-      - agent_signature
-      properties:
-        agent_signature:
-          type: string
-          description: Agent electronic signature confirming bind intent
-          example: John Smith
-        payment_method:
-          type: string
-          description: Payment method for premium
-          enum:
-          - direct_bill
-          - agency_bill
-          example: direct_bill
-        additional_notes:
-          type: string
-          description: Optional notes for the policy
-          example: Insured prefers monthly installments
   securitySchemes:
     bearerAuth:
       type: http

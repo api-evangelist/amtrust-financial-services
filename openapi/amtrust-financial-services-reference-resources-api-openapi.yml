@@ -1018,7 +1018,7 @@ paths:
     - url: https://prod-apim-gw.amtrustservices.com/digital-pac
 components:
   schemas:
-    StringIApiResponse:
+    ClassCodeDtoV2IEnumerableIApiResponse:
       type: object
       properties:
         id:
@@ -1134,93 +1134,78 @@ components:
           readOnly: true
         data:
           type:
-          - string
+          - array
           - 'null'
+          items:
+            $ref: '#/components/schemas/ClassCodeDtoV2'
       additionalProperties: false
-    LogException:
+    RequirementConditions:
       type: object
       properties:
-        exceptionId:
-          type: string
-          format: uuid
-        module:
+        conditions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Conditions'
+      additionalProperties: false
+    StateUwQuestionAnswerDto:
+      type: object
+      properties:
+        answer:
           type:
           - string
           - 'null'
-        class:
+        questionId:
           type:
           - string
           - 'null'
-        targetSite:
+        questionType:
           type:
           - string
           - 'null'
-        httpWebEventCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        httpStatusValue:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        httpStatusCode:
+        text:
           type:
           - string
           - 'null'
-        httpHtmlMessage:
+        potentialResponses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        childQuestions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChildGetUnderwritingQuestionDto'
+        requirementConditions:
+          $ref: '#/components/schemas/RequirementConditions'
+        includedStates:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        excludedStates:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    Conditions:
+      type: object
+      properties:
+        qualifyingParentAnswer:
           type:
           - string
           - 'null'
-        properties:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - string
-            - 'null'
-        innerException:
-          $ref: '#/components/schemas/LogException'
-        message:
+        qualifyingOperator:
           type:
           - string
           - 'null'
-        source:
-          type:
-          - string
-          - 'null'
-        stackTrace:
-          type:
-          - string
-          - 'null'
-        helpLink:
-          type:
-          - string
-          - 'null'
-        method:
-          type:
-          - string
-          - 'null'
-        data:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - string
-            - 'null'
-        errorCode:
-          type:
-          - string
-          - 'null'
-        exceptionType:
-          type:
-          - string
-          - 'null'
-        baseException:
-          $ref: '#/components/schemas/LogException'
       additionalProperties: false
     UnauthorizedErrorIApiResponse:
       type: object
@@ -1339,227 +1324,6 @@ components:
         data:
           $ref: '#/components/schemas/UnauthorizedError'
       additionalProperties: false
-    ApiPageResponse:
-      type: object
-      properties:
-        first:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-        current:
-          type:
-          - string
-          - 'null'
-        next:
-          type:
-          - string
-          - 'null'
-        last:
-          type:
-          - string
-          - 'null'
-        pageSize:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        count:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      additionalProperties: false
-    ClassUwQuestionAnswerDto:
-      type: object
-      properties:
-        answer:
-          type:
-          - string
-          - 'null'
-        questionId:
-          type:
-          - string
-          - 'null'
-        questionType:
-          type:
-          - string
-          - 'null'
-        text:
-          type:
-          - string
-          - 'null'
-        potentialResponses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        childQuestions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ChildGetUnderwritingQuestionDto'
-        requirementConditions:
-          $ref: '#/components/schemas/RequirementConditions'
-        includedStates:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        excludedStates:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        classCode:
-          type:
-          - string
-          - 'null'
-        classCodeDescription:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    GetQuestionsDto:
-      type: object
-      properties:
-        generalQuestions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/GetUnderwritingQuestionAnswerDto'
-        classCodeQuestions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/GetUnderwritingQuestionAnswerDto'
-      additionalProperties: false
-    GetQuestionsDtoIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/GetQuestionsDto'
-      additionalProperties: false
     ApiPageRequest:
       type: object
       properties:
@@ -1570,97 +1334,6 @@ components:
           type: integer
           format: int32
         count:
-          type: boolean
-      additionalProperties: false
-    ClassCodeDtoV2:
-      type: object
-      properties:
-        classDescriptionCode:
-          type:
-          - string
-          - 'null'
-        classCode:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        naics:
-          type:
-          - string
-          - 'null'
-        sic:
-          type:
-          - string
-          - 'null'
-        requiresPersonalPropertyCoverage:
-          type: boolean
-        requiresBuildingCoverage:
-          type: boolean
-        stateLimitation:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ClassCodeBaseDto:
-      type: object
-      properties:
-        classCodeId:
-          type: integer
-          format: int32
-        classCode:
-          type:
-          - string
-          - 'null'
-        classDescriptionCode:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        naics:
-          type:
-          - string
-          - 'null'
-        sic:
-          type:
-          - string
-          - 'null'
-        requiresPersonalPropertyCoverage:
-          type: boolean
-        requiresBuildingCoverage:
-          type: boolean
-      additionalProperties: false
-    ClassCodeBaseDtoV2:
-      type: object
-      properties:
-        classCode:
-          type:
-          - string
-          - 'null'
-        classDescriptionCode:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        naics:
-          type:
-          - string
-          - 'null'
-        sic:
-          type:
-          - string
-          - 'null'
-        requiresPersonalPropertyCoverage:
-          type: boolean
-        requiresBuildingCoverage:
           type: boolean
       additionalProperties: false
     ClassCodeBaseDtoV2IEnumerableIApiResponse:
@@ -1784,26 +1457,6 @@ components:
           items:
             $ref: '#/components/schemas/ClassCodeBaseDtoV2'
       additionalProperties: false
-    ApiPaging:
-      type: object
-      properties:
-        request:
-          $ref: '#/components/schemas/ApiPageRequest'
-        response:
-          $ref: '#/components/schemas/ApiPageResponse'
-      additionalProperties: false
-    Conditions:
-      type: object
-      properties:
-        qualifyingParentAnswer:
-          type:
-          - string
-          - 'null'
-        qualifyingOperator:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     ClassCodeBaseDtoIEnumerableIApiResponse:
       type: object
       properties:
@@ -1925,49 +1578,70 @@ components:
           items:
             $ref: '#/components/schemas/ClassCodeBaseDto'
       additionalProperties: false
-    RequirementConditions:
+    ApiPageResponse:
       type: object
       properties:
-        conditions:
+        first:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/Conditions'
+        previous:
+          type:
+          - string
+          - 'null'
+        current:
+          type:
+          - string
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        last:
+          type:
+          - string
+          - 'null'
+        pageSize:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int32
       additionalProperties: false
-    GetUnderwritingQuestionAnswerDto:
+    ClassCodeBaseDto:
       type: object
       properties:
-        questionId:
+        classCodeId:
+          type: integer
+          format: int32
+        classCode:
           type:
           - string
           - 'null'
-        questionType:
+        classDescriptionCode:
           type:
           - string
           - 'null'
-        text:
+        description:
           type:
           - string
           - 'null'
-        potentialResponses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        childQuestions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ChildGetUnderwritingQuestionDto'
-        requirementConditions:
-          $ref: '#/components/schemas/RequirementConditions'
-        answer:
+        naics:
           type:
           - string
           - 'null'
+        sic:
+          type:
+          - string
+          - 'null'
+        requiresPersonalPropertyCoverage:
+          type: boolean
+        requiresBuildingCoverage:
+          type: boolean
       additionalProperties: false
     ChildGetUnderwritingQuestionDto:
       type: object
@@ -2002,6 +1676,615 @@ components:
             $ref: '#/components/schemas/ChildGetUnderwritingQuestionDto'
         requirementConditions:
           $ref: '#/components/schemas/RequirementConditions'
+      additionalProperties: false
+    LogException:
+      type: object
+      properties:
+        exceptionId:
+          type: string
+          format: uuid
+        module:
+          type:
+          - string
+          - 'null'
+        class:
+          type:
+          - string
+          - 'null'
+        targetSite:
+          type:
+          - string
+          - 'null'
+        httpWebEventCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatusValue:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatusCode:
+          type:
+          - string
+          - 'null'
+        httpHtmlMessage:
+          type:
+          - string
+          - 'null'
+        properties:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+        innerException:
+          $ref: '#/components/schemas/LogException'
+        message:
+          type:
+          - string
+          - 'null'
+        source:
+          type:
+          - string
+          - 'null'
+        stackTrace:
+          type:
+          - string
+          - 'null'
+        helpLink:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+        data:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+        errorCode:
+          type:
+          - string
+          - 'null'
+        exceptionType:
+          type:
+          - string
+          - 'null'
+        baseException:
+          $ref: '#/components/schemas/LogException'
+      additionalProperties: false
+    ClassCodeBaseDtoV2:
+      type: object
+      properties:
+        classCode:
+          type:
+          - string
+          - 'null'
+        classDescriptionCode:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        naics:
+          type:
+          - string
+          - 'null'
+        sic:
+          type:
+          - string
+          - 'null'
+        requiresPersonalPropertyCoverage:
+          type: boolean
+        requiresBuildingCoverage:
+          type: boolean
+      additionalProperties: false
+    ClassCodeDto:
+      type: object
+      properties:
+        classCodeId:
+          type: integer
+          format: int32
+        classCode:
+          type:
+          - string
+          - 'null'
+        classDescriptionCode:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        naics:
+          type:
+          - string
+          - 'null'
+        sic:
+          type:
+          - string
+          - 'null'
+        requiresPersonalPropertyCoverage:
+          type: boolean
+        requiresBuildingCoverage:
+          type: boolean
+        stateLimitation:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ApiPaging:
+      type: object
+      properties:
+        request:
+          $ref: '#/components/schemas/ApiPageRequest'
+        response:
+          $ref: '#/components/schemas/ApiPageResponse'
+      additionalProperties: false
+    GetAllUwQuestionsDto:
+      type: object
+      properties:
+        generalQuestions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StateUwQuestionAnswerDto'
+        classCodeQuestions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ClassUwQuestionAnswerDto'
+      additionalProperties: false
+    ClassCodeDtoIEnumerableIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ClassCodeDto'
+      additionalProperties: false
+    GetQuestionsDtoIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/GetQuestionsDto'
+      additionalProperties: false
+    ClassCodeDtoV2:
+      type: object
+      properties:
+        classDescriptionCode:
+          type:
+          - string
+          - 'null'
+        classCode:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        naics:
+          type:
+          - string
+          - 'null'
+        sic:
+          type:
+          - string
+          - 'null'
+        requiresPersonalPropertyCoverage:
+          type: boolean
+        requiresBuildingCoverage:
+          type: boolean
+        stateLimitation:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ClassUwQuestionAnswerDto:
+      type: object
+      properties:
+        answer:
+          type:
+          - string
+          - 'null'
+        questionId:
+          type:
+          - string
+          - 'null'
+        questionType:
+          type:
+          - string
+          - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        potentialResponses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        childQuestions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChildGetUnderwritingQuestionDto'
+        requirementConditions:
+          $ref: '#/components/schemas/RequirementConditions'
+        includedStates:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        excludedStates:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        classCode:
+          type:
+          - string
+          - 'null'
+        classCodeDescription:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ApiMessage:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          enum:
+          - 100 = Continue
+          - 101 = SwitchingProtocols
+          - 102 = Processing
+          - 103 = EarlyHints
+          - 200 = OK
+          - 201 = Created
+          - 202 = Accepted
+          - 203 = NonAuthoritativeInformation
+          - 204 = NoContent
+          - 205 = ResetContent
+          - 206 = PartialContent
+          - 207 = MultiStatus
+          - 208 = AlreadyReported
+          - 226 = IMUsed
+          - 300 = MultipleChoices
+          - 300 = Ambiguous
+          - 301 = MovedPermanently
+          - 301 = Moved
+          - 302 = Found
+          - 302 = Redirect
+          - 303 = SeeOther
+          - 303 = RedirectMethod
+          - 304 = NotModified
+          - 305 = UseProxy
+          - 306 = Unused
+          - 307 = TemporaryRedirect
+          - 307 = RedirectKeepVerb
+          - 308 = PermanentRedirect
+          - 400 = BadRequest
+          - 401 = Unauthorized
+          - 402 = PaymentRequired
+          - 403 = Forbidden
+          - 404 = NotFound
+          - 405 = MethodNotAllowed
+          - 406 = NotAcceptable
+          - 407 = ProxyAuthenticationRequired
+          - 408 = RequestTimeout
+          - 409 = Conflict
+          - 410 = Gone
+          - 411 = LengthRequired
+          - 412 = PreconditionFailed
+          - 413 = RequestEntityTooLarge
+          - 414 = RequestUriTooLong
+          - 415 = UnsupportedMediaType
+          - 416 = RequestedRangeNotSatisfiable
+          - 417 = ExpectationFailed
+          - 421 = MisdirectedRequest
+          - 422 = UnprocessableEntity
+          - 422 = UnprocessableContent
+          - 423 = Locked
+          - 424 = FailedDependency
+          - 426 = UpgradeRequired
+          - 428 = PreconditionRequired
+          - 429 = TooManyRequests
+          - 431 = RequestHeaderFieldsTooLarge
+          - 451 = UnavailableForLegalReasons
+          - 500 = InternalServerError
+          - 501 = NotImplemented
+          - 502 = BadGateway
+          - 503 = ServiceUnavailable
+          - 504 = GatewayTimeout
+          - 505 = HttpVersionNotSupported
+          - 506 = VariantAlsoNegotiates
+          - 507 = InsufficientStorage
+          - 508 = LoopDetected
+          - 510 = NotExtended
+          - 511 = NetworkAuthenticationRequired
+          type: integer
+          format: int32
+        messageCode:
+          type:
+          - string
+          - 'null'
+        messageType:
+          enum:
+          - 0 = Info
+          - 1 = Error
+          type: integer
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        isOk:
+          type: boolean
+        needsSanitization:
+          type: boolean
+          readOnly: true
       additionalProperties: false
     GetAllUwQuestionsDtoIApiResponse:
       type: object
@@ -2120,182 +2403,7 @@ components:
         data:
           $ref: '#/components/schemas/GetAllUwQuestionsDto'
       additionalProperties: false
-    GetAllUwQuestionsDto:
-      type: object
-      properties:
-        generalQuestions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StateUwQuestionAnswerDto'
-        classCodeQuestions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ClassUwQuestionAnswerDto'
-      additionalProperties: false
-    ApiMessage:
-      type: object
-      properties:
-        id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-        messageCode:
-          type:
-          - string
-          - 'null'
-        messageType:
-          enum:
-          - 0 = Info
-          - 1 = Error
-          type: integer
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        internal:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        exception:
-          $ref: '#/components/schemas/LogException'
-        isOk:
-          type: boolean
-        needsSanitization:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
-    StateUwQuestionAnswerDto:
-      type: object
-      properties:
-        answer:
-          type:
-          - string
-          - 'null'
-        questionId:
-          type:
-          - string
-          - 'null'
-        questionType:
-          type:
-          - string
-          - 'null'
-        text:
-          type:
-          - string
-          - 'null'
-        potentialResponses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        childQuestions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ChildGetUnderwritingQuestionDto'
-        requirementConditions:
-          $ref: '#/components/schemas/RequirementConditions'
-        includedStates:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        excludedStates:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    ClassCodeDtoV2IEnumerableIApiResponse:
+    StringIApiResponse:
       type: object
       properties:
         id:
@@ -2411,10 +2519,24 @@ components:
           readOnly: true
         data:
           type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GetQuestionsDto:
+      type: object
+      properties:
+        generalQuestions:
+          type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/ClassCodeDtoV2'
+            $ref: '#/components/schemas/GetUnderwritingQuestionAnswerDto'
+        classCodeQuestions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GetUnderwritingQuestionAnswerDto'
       additionalProperties: false
     UnauthorizedError:
       type: object
@@ -2604,170 +2726,18 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    ClassCodeDto:
+    GetUnderwritingQuestionAnswerDto:
       type: object
       properties:
-        classCodeId:
-          type: integer
-          format: int32
-        classCode:
+        questionId:
           type:
           - string
           - 'null'
-        classDescriptionCode:
+        questionType:
           type:
           - string
           - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        naics:
-          type:
-          - string
-          - 'null'
-        sic:
-          type:
-          - string
-          - 'null'
-        requiresPersonalPropertyCoverage:
-          type: boolean
-        requiresBuildingCoverage:
-          type: boolean
-        stateLimitation:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ClassCodeDtoIEnumerableIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          enum:
-          - 100 = Continue
-          - 101 = SwitchingProtocols
-          - 102 = Processing
-          - 103 = EarlyHints
-          - 200 = OK
-          - 201 = Created
-          - 202 = Accepted
-          - 203 = NonAuthoritativeInformation
-          - 204 = NoContent
-          - 205 = ResetContent
-          - 206 = PartialContent
-          - 207 = MultiStatus
-          - 208 = AlreadyReported
-          - 226 = IMUsed
-          - 300 = MultipleChoices
-          - 300 = Ambiguous
-          - 301 = MovedPermanently
-          - 301 = Moved
-          - 302 = Found
-          - 302 = Redirect
-          - 303 = SeeOther
-          - 303 = RedirectMethod
-          - 304 = NotModified
-          - 305 = UseProxy
-          - 306 = Unused
-          - 307 = TemporaryRedirect
-          - 307 = RedirectKeepVerb
-          - 308 = PermanentRedirect
-          - 400 = BadRequest
-          - 401 = Unauthorized
-          - 402 = PaymentRequired
-          - 403 = Forbidden
-          - 404 = NotFound
-          - 405 = MethodNotAllowed
-          - 406 = NotAcceptable
-          - 407 = ProxyAuthenticationRequired
-          - 408 = RequestTimeout
-          - 409 = Conflict
-          - 410 = Gone
-          - 411 = LengthRequired
-          - 412 = PreconditionFailed
-          - 413 = RequestEntityTooLarge
-          - 414 = RequestUriTooLong
-          - 415 = UnsupportedMediaType
-          - 416 = RequestedRangeNotSatisfiable
-          - 417 = ExpectationFailed
-          - 421 = MisdirectedRequest
-          - 422 = UnprocessableEntity
-          - 422 = UnprocessableContent
-          - 423 = Locked
-          - 424 = FailedDependency
-          - 426 = UpgradeRequired
-          - 428 = PreconditionRequired
-          - 429 = TooManyRequests
-          - 431 = RequestHeaderFieldsTooLarge
-          - 451 = UnavailableForLegalReasons
-          - 500 = InternalServerError
-          - 501 = NotImplemented
-          - 502 = BadGateway
-          - 503 = ServiceUnavailable
-          - 504 = GatewayTimeout
-          - 505 = HttpVersionNotSupported
-          - 506 = VariantAlsoNegotiates
-          - 507 = InsufficientStorage
-          - 508 = LoopDetected
-          - 510 = NotExtended
-          - 511 = NetworkAuthenticationRequired
-          type: integer
-          format: int32
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ClassCodeDto'
-      additionalProperties: false
-    DetailDto:
-      type: object
-      properties:
-        questionTitle:
-          type:
-          - string
-          - 'null'
-        questionText:
+        text:
           type:
           - string
           - 'null'
@@ -2777,8 +2747,20 @@ components:
           - 'null'
           items:
             type: string
+        childQuestions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChildGetUnderwritingQuestionDto'
+        requirementConditions:
+          $ref: '#/components/schemas/RequirementConditions'
+        answer:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    StringIApiResponse_2:
+    StringIEnumerableIApiResponse:
       type: object
       properties:
         id:
@@ -2825,8 +2807,24 @@ components:
           readOnly: true
         data:
           type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    QuestionDto:
+      type: object
+      properties:
+        classCode:
+          type:
           - string
           - 'null'
+        questionsDetails:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/QuestionDetailDto'
       additionalProperties: false
     UnauthorizedErrorIApiResponse_2:
       type: object
@@ -2876,80 +2874,39 @@ components:
         data:
           $ref: '#/components/schemas/UnauthorizedError_2'
       additionalProperties: false
-    ProductEligibilityDto:
+    GetClassCodesResponseDto:
       type: object
       properties:
-        productLine:
+        codeType:
           type:
           - string
           - 'null'
-        productType:
+        classCode:
           type:
           - string
           - 'null'
-        state:
+        description:
           type:
           - string
           - 'null'
+        naicsCode:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/NaicsCodeResponseDto'
+        sicCode:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
         eligibility:
-          type: integer
-          format: int32
-        eligibilityDescription:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    GetClassCodesResponseDtoIEnumerableIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messages:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/ApiMessage_2'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_2'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/GetClassCodesResponseDto'
+            $ref: '#/components/schemas/ProductEligibilityDto'
       additionalProperties: false
     HttpStatusCode:
       enum:
@@ -3074,6 +3031,110 @@ components:
           items:
             $ref: '#/components/schemas/UnderwritingQuestionResponseV2Dto'
       additionalProperties: false
+    DetailDto:
+      type: object
+      properties:
+        questionTitle:
+          type:
+          - string
+          - 'null'
+        questionText:
+          type:
+          - string
+          - 'null'
+        potentialResponses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    GetClassCodesResponseDtoIEnumerableIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_2'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GetClassCodesResponseDto'
+      additionalProperties: false
+    NaicsCodeResponseDto:
+      type: object
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+        descriptions:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    ApiMessageType:
+      enum:
+      - 0 = Info
+      - 1 = Error
+      type: integer
+      format: int32
+    QuestionDetailDto:
+      type: object
+      properties:
+        naicsCode:
+          type:
+          - string
+          - 'null'
+        details:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DetailDto'
+      additionalProperties: false
     ApiMessage_2:
       type: object
       properties:
@@ -3114,171 +3175,29 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    StringIEnumerableIApiResponse:
+    ProductEligibilityDto:
       type: object
       properties:
-        id:
+        productLine:
           type:
           - string
           - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
+        productType:
           type:
           - string
           - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_2'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_2'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
+        state:
           type:
           - string
           - 'null'
-          readOnly: true
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    QuestionDetailDto:
-      type: object
-      properties:
-        naicsCode:
-          type:
-          - string
-          - 'null'
-        details:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/DetailDto'
-      additionalProperties: false
-    GetClassCodesResponseDto:
-      type: object
-      properties:
-        codeType:
-          type:
-          - string
-          - 'null'
-        classCode:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        naicsCode:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/NaicsCodeResponseDto'
-        sicCode:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
         eligibility:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ProductEligibilityDto'
-      additionalProperties: false
-    UnauthorizedError_2:
-      type: object
-      properties:
-        id:
-          type:
-          - integer
-          - 'null'
+          type: integer
           format: int32
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messageType:
-          $ref: '#/components/schemas/ApiMessageType'
-        detail:
+        eligibilityDescription:
           type:
           - string
           - 'null'
-        internal:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        exception:
-          $ref: '#/components/schemas/LogException'
-        needsSanitization:
-          type: boolean
-          readOnly: true
-        httpStatusCode:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messageCode:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        title:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        isOk:
-          type: boolean
-          readOnly: true
       additionalProperties: false
-    NaicsCodeResponseDto:
-      type: object
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-        descriptions:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    ApiMessageType:
-      enum:
-      - 0 = Info
-      - 1 = Error
-      type: integer
-      format: int32
     UnderwritingQuestionResponseV2Dto:
       type: object
       properties:
@@ -3293,21 +3212,7 @@ components:
           items:
             $ref: '#/components/schemas/QuestionDto'
       additionalProperties: false
-    QuestionDto:
-      type: object
-      properties:
-        classCode:
-          type:
-          - string
-          - 'null'
-        questionsDetails:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/QuestionDetailDto'
-      additionalProperties: false
-    ForbiddenErrorIApiResponse:
+    StringIApiResponse_2:
       type: object
       properties:
         id:
@@ -3328,109 +3233,13 @@ components:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/ApiMessage_3'
+            $ref: '#/components/schemas/ApiMessage_2'
         errors:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/ForbiddenError'
-      additionalProperties: false
-    UnauthorizedErrorIApiResponse_3:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          $ref: '#/components/schemas/UnauthorizedError_3'
-      additionalProperties: false
-    GetClassCodesDtoIEnumerableIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
+            $ref: '#/components/schemas/ApiMessage_2'
         paging:
           $ref: '#/components/schemas/ApiPaging'
         maxMsgIndex:
@@ -3450,88 +3259,10 @@ components:
           readOnly: true
         data:
           type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/GetClassCodesDto'
-      additionalProperties: false
-    GetFacilityCodesDto:
-      type: object
-      properties:
-        facilityCode:
-          type:
           - string
           - 'null'
       additionalProperties: false
-    GetClassCodesDto:
-      type: object
-      properties:
-        classCode:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        exposureBasis:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    GetPropertyClassCodesDtoIEnumerableIApiResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_3'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/GetPropertyClassCodesDto'
-      additionalProperties: false
-    UnauthorizedError_3:
+    UnauthorizedError_2:
       type: object
       properties:
         id:
@@ -3628,6 +3359,228 @@ components:
           items:
             $ref: '#/components/schemas/GetFacilityCodesDto'
       additionalProperties: false
+    ApiMessage_3:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        title:
+          type:
+          - string
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        isOk:
+          type: boolean
+        needsSanitization:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    ForbiddenError:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageType:
+          $ref: '#/components/schemas/ApiMessageType'
+        detail:
+          type:
+          - string
+          - 'null'
+        internal:
+          type:
+          - string
+          - 'null'
+        reference:
+          type:
+          - string
+          - 'null'
+        exception:
+          $ref: '#/components/schemas/LogException'
+        needsSanitization:
+          type: boolean
+          readOnly: true
+        httpStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messageCode:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        title:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        isOk:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    GetClassCodesDto:
+      type: object
+      properties:
+        classCode:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        exposureBasis:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GetClassCodesDtoIEnumerableIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GetClassCodesDto'
+      additionalProperties: false
+    GetPropertyClassCodesDto:
+      type: object
+      properties:
+        classCodeId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        classCode:
+          type:
+          - string
+          - 'null'
+        stateApplicable:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    UnauthorizedErrorIApiResponse_3:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          $ref: '#/components/schemas/UnauthorizedError_3'
+      additionalProperties: false
     StringStringIEnumerableIDictionaryIApiResponse:
       type: object
       properties:
@@ -3684,68 +3637,63 @@ components:
             items:
               type: string
       additionalProperties: false
-    ApiMessage_3:
+    ForbiddenErrorIApiResponse:
       type: object
       properties:
         id:
           type:
-          - integer
+          - string
           - 'null'
-          format: int32
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
         httpStatus:
           $ref: '#/components/schemas/HttpStatusCode'
-        messageCode:
+        messages:
           type:
-          - string
+          - array
           - 'null'
-        messageType:
-          $ref: '#/components/schemas/ApiMessageType'
-        title:
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        errors:
           type:
-          - string
+          - array
           - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        internal:
-          type:
-          - string
-          - 'null'
-        reference:
-          type:
-          - string
-          - 'null'
-        exception:
-          $ref: '#/components/schemas/LogException'
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
         isOk:
           type: boolean
-        needsSanitization:
-          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
           readOnly: true
+        data:
+          $ref: '#/components/schemas/ForbiddenError'
       additionalProperties: false
-    GetPropertyClassCodesDto:
+    GetFacilityCodesDto:
       type: object
       properties:
-        classCodeId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        classCode:
-          type:
-          - string
-          - 'null'
-        stateApplicable:
-          type:
-          - string
-          - 'null'
-        description:
+        facilityCode:
           type:
           - string
           - 'null'
       additionalProperties: false
-    ForbiddenError:
+    UnauthorizedError_3:
       type: object
       properties:
         id:
@@ -3790,11 +3738,428 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
+    GetPropertyClassCodesDtoIEnumerableIApiResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_3'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GetPropertyClassCodesDto'
+      additionalProperties: false
+    StringIEnumerableIApiResponse_2:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode_2'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_4'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_4'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    UnauthorizedErrorIApiResponse_4:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UnauthorizedError_4'
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode_2'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_4'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_4'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    BusinessTypeDto:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    LiabilityLimitsResourceDto:
+      type: object
+      properties:
+        liabilityOccurrence:
+          $ref: '#/components/schemas/LiabilityLimitDto'
+        generalAggregate:
+          $ref: '#/components/schemas/LiabilityLimitDto'
+        productsAggregate:
+          $ref: '#/components/schemas/LiabilityLimitDto'
+        medicalExpense:
+          $ref: '#/components/schemas/LiabilityLimitDto'
+        damageToPremisesRentedToYou:
+          $ref: '#/components/schemas/DamageToPremisesRentedToYou'
+      additionalProperties: false
+      description: "<ul><li>generalAggregate - The options available for this limit will always be the limit equal to the Occurrence Limit selection, or limit 2X the Occurrence Limit.  <br/>Example:  If Occurrence Limit selection is 500000, and the limit sent for General Aggregate is NOT 500000 or 1000000, the API will default to what is accepted and selection will not be saved.</li>\n<li>productsAggregate - The options available for this limit will always be equal to the selection for General Aggregate, equal to the selection for Occurrence Limit, OR Excluded.  \n<ul><li>Example:  If General Aggregate selection is 1000000 and the limit sent for Products Aggregate is NOT 500000 or 1000000, or Excluded, the API will default to lowest value accepted and selection will not be saved.  \n</li><li>NOTE:  If General Aggregate selection is 500000, the only options available for the Products Aggregate will be 500000 or Excluded</li></ul></li>\n<li>DamageToPremisesRentedToYou - Available options will not exceed the Occurrence Limit selection.\n<br/>Example:  If quote is in NY or NJ, and Occurrence Limit selection is 100000, the only option for this limit will be 100000.  If any other selection is sent, the API will default to 100000 and selection will not be saved</li></ul>\n"
+    HttpStatusCode_2:
+      enum:
+      - 100 = Continue
+      - 101 = SwitchingProtocols
+      - 102 = Processing
+      - 103 = EarlyHints
+      - 200 = OK
+      - 201 = Created
+      - 202 = Accepted
+      - 203 = NonAuthoritativeInformation
+      - 204 = NoContent
+      - 205 = ResetContent
+      - 206 = PartialContent
+      - 207 = MultiStatus
+      - 208 = AlreadyReported
+      - 226 = IMUsed
+      - 300 = MultipleChoices
+      - 300 = Ambiguous
+      - 301 = MovedPermanently
+      - 301 = Moved
+      - 302 = Found
+      - 302 = Redirect
+      - 303 = SeeOther
+      - 303 = RedirectMethod
+      - 304 = NotModified
+      - 305 = UseProxy
+      - 306 = Unused
+      - 307 = TemporaryRedirect
+      - 307 = RedirectKeepVerb
+      - 308 = PermanentRedirect
+      - 400 = BadRequest
+      - 401 = Unauthorized
+      - 402 = PaymentRequired
+      - 403 = Forbidden
+      - 404 = NotFound
+      - 405 = MethodNotAllowed
+      - 406 = NotAcceptable
+      - 407 = ProxyAuthenticationRequired
+      - 408 = RequestTimeout
+      - 409 = Conflict
+      - 410 = Gone
+      - 411 = LengthRequired
+      - 412 = PreconditionFailed
+      - 413 = RequestEntityTooLarge
+      - 414 = RequestUriTooLong
+      - 415 = UnsupportedMediaType
+      - 416 = RequestedRangeNotSatisfiable
+      - 417 = ExpectationFailed
+      - 421 = MisdirectedRequest
+      - 422 = UnprocessableEntity
+      - 423 = Locked
+      - 424 = FailedDependency
+      - 426 = UpgradeRequired
+      - 428 = PreconditionRequired
+      - 429 = TooManyRequests
+      - 431 = RequestHeaderFieldsTooLarge
+      - 451 = UnavailableForLegalReasons
+      - 500 = InternalServerError
+      - 501 = NotImplemented
+      - 502 = BadGateway
+      - 503 = ServiceUnavailable
+      - 504 = GatewayTimeout
+      - 505 = HttpVersionNotSupported
+      - 506 = VariantAlsoNegotiates
+      - 507 = InsufficientStorage
+      - 508 = LoopDetected
+      - 510 = NotExtended
+      - 511 = NetworkAuthenticationRequired
+      type: integer
+      format: int32
+    LiabilityLimitsResourceDtoIApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/LiabilityLimitsResourceDto'
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode_2'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_4'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_4'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    PropertyClassCodeDtoIEnumerableIApiResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PropertyClassCodeDto'
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode_2'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_4'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_4'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    GeneralLiabilityClassCodeDto:
+      type: object
+      properties:
+        classCode:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        exposureBasis:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     ForbiddenErrorIApiResponse_2:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/ForbiddenError'
+        id:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          type: string
+          format: date-time
+        correlationID:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatusCode_2'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_4'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiMessage_4'
+        paging:
+          $ref: '#/components/schemas/ApiPaging'
+        maxMsgIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        maxErrIndex:
+          type: integer
+          format: int32
+          readOnly: true
+        isOk:
+          type: boolean
+        apiResponseVersion:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+      additionalProperties: false
+    BusinessTypeDtoIEnumerableIApiResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/BusinessTypeDto'
         id:
           type:
           - string
@@ -3919,207 +4284,6 @@ components:
         baseException:
           $ref: '#/components/schemas/LogException_2'
       additionalProperties: false
-    UnauthorizedErrorIApiResponse_4:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/UnauthorizedError_4'
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_4'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_4'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-      additionalProperties: false
-    PropertyClassCodeDto:
-      type: object
-      properties:
-        classCode:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        stateApplicable:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    LiabilityLimitsResourceDto:
-      type: object
-      properties:
-        liabilityOccurrence:
-          $ref: '#/components/schemas/LiabilityLimitDto'
-        generalAggregate:
-          $ref: '#/components/schemas/LiabilityLimitDto'
-        productsAggregate:
-          $ref: '#/components/schemas/LiabilityLimitDto'
-        medicalExpense:
-          $ref: '#/components/schemas/LiabilityLimitDto'
-        damageToPremisesRentedToYou:
-          $ref: '#/components/schemas/DamageToPremisesRentedToYou'
-      additionalProperties: false
-      description: "<ul><li>generalAggregate - The options available for this limit will always be the limit equal to the Occurrence Limit selection, or limit 2X the Occurrence Limit.  <br/>Example:  If Occurrence Limit selection is 500000, and the limit sent for General Aggregate is NOT 500000 or 1000000, the API will default to what is accepted and selection will not be saved.</li>\n<li>productsAggregate - The options available for this limit will always be equal to the selection for General Aggregate, equal to the selection for Occurrence Limit, OR Excluded.  \n<ul><li>Example:  If General Aggregate selection is 1000000 and the limit sent for Products Aggregate is NOT 500000 or 1000000, or Excluded, the API will default to lowest value accepted and selection will not be saved.  \n</li><li>NOTE:  If General Aggregate selection is 500000, the only options available for the Products Aggregate will be 500000 or Excluded</li></ul></li>\n<li>DamageToPremisesRentedToYou - Available options will not exceed the Occurrence Limit selection.\n<br/>Example:  If quote is in NY or NJ, and Occurrence Limit selection is 100000, the only option for this limit will be 100000.  If any other selection is sent, the API will default to 100000 and selection will not be saved</li></ul>\n"
-    HttpStatusCode_2:
-      enum:
-      - 100 = Continue
-      - 101 = SwitchingProtocols
-      - 102 = Processing
-      - 103 = EarlyHints
-      - 200 = OK
-      - 201 = Created
-      - 202 = Accepted
-      - 203 = NonAuthoritativeInformation
-      - 204 = NoContent
-      - 205 = ResetContent
-      - 206 = PartialContent
-      - 207 = MultiStatus
-      - 208 = AlreadyReported
-      - 226 = IMUsed
-      - 300 = MultipleChoices
-      - 300 = Ambiguous
-      - 301 = MovedPermanently
-      - 301 = Moved
-      - 302 = Found
-      - 302 = Redirect
-      - 303 = SeeOther
-      - 303 = RedirectMethod
-      - 304 = NotModified
-      - 305 = UseProxy
-      - 306 = Unused
-      - 307 = TemporaryRedirect
-      - 307 = RedirectKeepVerb
-      - 308 = PermanentRedirect
-      - 400 = BadRequest
-      - 401 = Unauthorized
-      - 402 = PaymentRequired
-      - 403 = Forbidden
-      - 404 = NotFound
-      - 405 = MethodNotAllowed
-      - 406 = NotAcceptable
-      - 407 = ProxyAuthenticationRequired
-      - 408 = RequestTimeout
-      - 409 = Conflict
-      - 410 = Gone
-      - 411 = LengthRequired
-      - 412 = PreconditionFailed
-      - 413 = RequestEntityTooLarge
-      - 414 = RequestUriTooLong
-      - 415 = UnsupportedMediaType
-      - 416 = RequestedRangeNotSatisfiable
-      - 417 = ExpectationFailed
-      - 421 = MisdirectedRequest
-      - 422 = UnprocessableEntity
-      - 423 = Locked
-      - 424 = FailedDependency
-      - 426 = UpgradeRequired
-      - 428 = PreconditionRequired
-      - 429 = TooManyRequests
-      - 431 = RequestHeaderFieldsTooLarge
-      - 451 = UnavailableForLegalReasons
-      - 500 = InternalServerError
-      - 501 = NotImplemented
-      - 502 = BadGateway
-      - 503 = ServiceUnavailable
-      - 504 = GatewayTimeout
-      - 505 = HttpVersionNotSupported
-      - 506 = VariantAlsoNegotiates
-      - 507 = InsufficientStorage
-      - 508 = LoopDetected
-      - 510 = NotExtended
-      - 511 = NetworkAuthenticationRequired
-      type: integer
-      format: int32
-    BusinessTypeDtoIEnumerableIApiResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/BusinessTypeDto'
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_4'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_4'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-      additionalProperties: false
     DamageToPremisesRentedToYou:
       type: object
       properties:
@@ -4127,68 +4291,6 @@ components:
           $ref: '#/components/schemas/LiabilityLimitDto'
         optionsUnderAllOtherStates:
           $ref: '#/components/schemas/LiabilityLimitDto'
-      additionalProperties: false
-    LiabilityLimitDto:
-      type: object
-      properties:
-        options:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        default:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    LiabilityLimitsResourceDtoIApiResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/LiabilityLimitsResourceDto'
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_4'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_4'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
       additionalProperties: false
     GeneralLiabilityClassCodeDtoIEnumerableIApiResponse:
       type: object
@@ -4242,109 +4344,35 @@ components:
           - 'null'
           readOnly: true
       additionalProperties: false
-    PropertyClassCodeDtoIEnumerableIApiResponse:
+    LiabilityLimitDto:
       type: object
       properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PropertyClassCodeDto'
-        id:
-          type:
-          - string
-          - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
-          type:
-          - string
-          - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_4'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_4'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-      additionalProperties: false
-    StringIEnumerableIApiResponse_2:
-      type: object
-      properties:
-        data:
+        options:
           type:
           - array
           - 'null'
           items:
             type: string
-        id:
+        default:
           type:
           - string
           - 'null'
-        timestamp:
-          type: string
-          format: date-time
-        correlationID:
+      additionalProperties: false
+    PropertyClassCodeDto:
+      type: object
+      properties:
+        classCode:
           type:
           - string
           - 'null'
-        httpStatus:
-          $ref: '#/components/schemas/HttpStatusCode_2'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_4'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiMessage_4'
-        paging:
-          $ref: '#/components/schemas/ApiPaging'
-        maxMsgIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        maxErrIndex:
-          type: integer
-          format: int32
-          readOnly: true
-        isOk:
-          type: boolean
-        apiResponseVersion:
+        description:
           type:
           - string
           - 'null'
-          readOnly: true
+        stateApplicable:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     ApiMessage_4:
       type: object
@@ -4430,34 +4458,6 @@ components:
         isOk:
           type: boolean
           readOnly: true
-      additionalProperties: false
-    GeneralLiabilityClassCodeDto:
-      type: object
-      properties:
-        classCode:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        exposureBasis:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    BusinessTypeDto:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
       additionalProperties: false
   securitySchemes:
     apiKeyHeader:

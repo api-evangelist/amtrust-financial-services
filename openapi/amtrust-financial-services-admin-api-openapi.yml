@@ -1418,38 +1418,49 @@ paths:
                   value: null
 components:
   schemas:
-    SendFileToServerDto:
+    ChangeLogSearchDto:
       type: object
       properties:
-        content:
+        contact:
           type:
           - string
           - 'null'
-          format: byte
-      additionalProperties: false
-    ContractChangesFiles:
-      type: object
-      properties:
-        fileId:
-          type: integer
-          format: int32
-        fileName:
+        completed:
           type:
           - string
           - 'null'
-        fileContent:
+        businessSegment:
           type:
           - string
           - 'null'
-          format: byte
-        uploadedAt:
+        dateReceived:
           type:
           - string
           - 'null'
           format: date-time
-        logId:
-          type: integer
-          format: int32
+        dateCompleted:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateApprovedFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateApprovedTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        note:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     ContractBusinessPartner:
       type: object
@@ -1869,6 +1880,211 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    ContractChangesFiles:
+      type: object
+      properties:
+        fileId:
+          type: integer
+          format: int32
+        fileName:
+          type:
+          - string
+          - 'null'
+        fileContent:
+          type:
+          - string
+          - 'null'
+          format: byte
+        uploadedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        logId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ContractChangesLog:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        logEntryNumber:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        emailSubject:
+          type:
+          - string
+          - 'null'
+        contact:
+          type:
+          - string
+          - 'null'
+        dateReceived:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        notes:
+          type:
+          - string
+          - 'null'
+        completed:
+          type:
+          - string
+          - 'null'
+        dateComplited:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        category:
+          type:
+          - string
+          - 'null'
+        changesMade:
+          type:
+          - string
+          - 'null'
+        impactPrior:
+          type:
+          - string
+          - 'null'
+        downStream:
+          type:
+          - string
+          - 'null'
+        manualEntry:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateCorrecting:
+          type:
+          - string
+          - 'null'
+        filesUpdated:
+          type:
+          - string
+          - 'null'
+        approverNotes:
+          type:
+          - string
+          - 'null'
+        dateApproved:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        businessSegment:
+          type:
+          - string
+          - 'null'
+        file:
+          type:
+          - string
+          - 'null'
+          format: byte
+        fileFullName:
+          type:
+          - string
+          - 'null'
+        approverCompleted:
+          type:
+          - string
+          - 'null'
+        pageCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    DropDownLists:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        ddKey:
+          type:
+          - string
+          - 'null'
+        ddText:
+          type:
+          - string
+          - 'null'
+        ddValue:
+          type:
+          - string
+          - 'null'
+        active:
+          type: boolean
+        sortOrder:
+          type: integer
+          format: int32
+        pc:
+          type:
+          - boolean
+          - 'null'
+        sr:
+          type:
+          - boolean
+          - 'null'
+        international:
+          type:
+          - boolean
+          - 'null'
+      additionalProperties: false
+    Glaslob:
+      type: object
+      properties:
+        oracleASLOB:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        aslobCode:
+          type:
+          - string
+          - 'null'
+        showOnWeb:
+          type: boolean
+      additionalProperties: false
+    GroupNumbers:
+      required:
+      - groupNumber
+      - groupShortName
+      - ownerDepartment
+      - ownerRecoverableBilling
+      - active
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        groupNumber:
+          title: Group Number
+          minLength: 1
+          type: string
+        groupShortName:
+          title: Group Short Name
+          minLength: 1
+          type: string
+        ownerDepartment:
+          title: Owner Department
+          minLength: 1
+          type: string
+        ownerRecoverableBilling:
+          title: Owner Rec Billing
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+      additionalProperties: false
     DimCompanyDaily:
       type: object
       properties:
@@ -1917,72 +2133,14 @@ components:
           - boolean
           - 'null'
       additionalProperties: false
-    GroupNumbers:
-      required:
-      - groupNumber
-      - groupShortName
-      - ownerDepartment
-      - ownerRecoverableBilling
-      - active
+    SendFileToServerDto:
       type: object
       properties:
-        id:
-          type: integer
-          format: int32
-        groupNumber:
-          title: Group Number
-          minLength: 1
-          type: string
-        groupShortName:
-          title: Group Short Name
-          minLength: 1
-          type: string
-        ownerDepartment:
-          title: Owner Department
-          minLength: 1
-          type: string
-        ownerRecoverableBilling:
-          title: Owner Rec Billing
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-      additionalProperties: false
-    DropDownLists:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        ddKey:
+        content:
           type:
           - string
           - 'null'
-        ddText:
-          type:
-          - string
-          - 'null'
-        ddValue:
-          type:
-          - string
-          - 'null'
-        active:
-          type: boolean
-        sortOrder:
-          type: integer
-          format: int32
-        pc:
-          type:
-          - boolean
-          - 'null'
-        sr:
-          type:
-          - boolean
-          - 'null'
-        international:
-          type:
-          - boolean
-          - 'null'
+          format: byte
       additionalProperties: false
     IHeaderDictionary:
       type: object
@@ -2264,164 +2422,6 @@ components:
           items: {}
       additionalProperties: false
       x-abstract: true
-    Glaslob:
-      type: object
-      properties:
-        oracleASLOB:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        aslobCode:
-          type:
-          - string
-          - 'null'
-        showOnWeb:
-          type: boolean
-      additionalProperties: false
-    ContractChangesLog:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        logEntryNumber:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        emailSubject:
-          type:
-          - string
-          - 'null'
-        contact:
-          type:
-          - string
-          - 'null'
-        dateReceived:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        notes:
-          type:
-          - string
-          - 'null'
-        completed:
-          type:
-          - string
-          - 'null'
-        dateComplited:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        category:
-          type:
-          - string
-          - 'null'
-        changesMade:
-          type:
-          - string
-          - 'null'
-        impactPrior:
-          type:
-          - string
-          - 'null'
-        downStream:
-          type:
-          - string
-          - 'null'
-        manualEntry:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        dateCorrecting:
-          type:
-          - string
-          - 'null'
-        filesUpdated:
-          type:
-          - string
-          - 'null'
-        approverNotes:
-          type:
-          - string
-          - 'null'
-        dateApproved:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        businessSegment:
-          type:
-          - string
-          - 'null'
-        file:
-          type:
-          - string
-          - 'null'
-          format: byte
-        fileFullName:
-          type:
-          - string
-          - 'null'
-        approverCompleted:
-          type:
-          - string
-          - 'null'
-        pageCount:
-          type: integer
-          format: int32
-      additionalProperties: false
-    ChangeLogSearchDto:
-      type: object
-      properties:
-        contact:
-          type:
-          - string
-          - 'null'
-        completed:
-          type:
-          - string
-          - 'null'
-        businessSegment:
-          type:
-          - string
-          - 'null'
-        dateReceived:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        dateCompleted:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        dateApprovedFrom:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        dateApprovedTo:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        note:
-          type:
-          - string
-          - 'null'
-        userName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
   securitySchemes:
     apiKeyHeader:
       type: apiKey
