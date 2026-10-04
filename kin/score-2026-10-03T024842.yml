@@ -1,31 +1,30 @@
-# Kin Score artifact — amtrust-financial-services — 2026-09-02T224043
+# Kin Score artifact — amtrust-financial-services — 2026-10-03T024842
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: amtrust-financial-services
-  schema_version: 0.18.0
-  scored_at: '2026-09-02'
-  run_ts: 2026-09-02T224043
-  composite: 42.8
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T024842
+  composite: 46.0
   band: developing
   facets:
-    discoverability: 74.1
-    contract_quality: 45.4
-    governance: 33.3
+    discoverability: 78.6
+    contract_quality: 46.9
+    contract_governance: 31.8
     operational_transparency: 0.0
-    developer_ergonomics: 54.2
-    commercial_clarity: 21.1
-    contract_governance: 33.3
-    access_clarity: 21.1
+    developer_ergonomics: 55.4
+    access_clarity: 42.1
   agent_readiness:
-    score: 31.5
+    score: 41.5
     band: agent-ready
+    band_gated_from: agent-native
     dimensions:
       spec_presence: true
       agentic_access: derived
-      reversibility_documented: false
+      reversibility_documented: documented
       mcp_server: false
-      auth_clarity: bearer
+      auth_clarity: served
       idempotency: false
       error_semantics: verified
       openapi_examples: verified
@@ -36,7 +35,7 @@ kin_score:
       consent_identity: false
       agent_card: false
       dry_run_mode: false
-      delegated_identity: false
+      delegated_identity: served
       protected_resource_metadata: false
       dynamic_client_registration: false
       agentic_commerce: false
@@ -44,7 +43,7 @@ kin_score:
     applies: true
     regime: Insurance
     regime_id: insurance
-    score: 60.6
+    score: 42.1
     matched_via: tags
   provenance:
     mcp: derived
@@ -52,7 +51,7 @@ kin_score:
     agentic_access: derived
     conformance: derived
     contracts:
-      total: 14
-      derived: 5
-      coverage: 35.7
-      callable: 64.3
+      total: 38
+      derived: 8
+      coverage: 21.1
+      callable: 78.9

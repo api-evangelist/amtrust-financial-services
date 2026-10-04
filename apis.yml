@@ -502,6 +502,8 @@ apis:
   humanURL: https://apiportal.amtrustgroup.com/apis
   baseURL: https://gateway.amtrustgroup.com/DigitalAPI
   tags:
+  - Sync Log
+  tags_raw:
   - SyncLog
   properties:
   - type: OpenAPI
