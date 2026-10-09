@@ -1,4 +1,4 @@
-generated: '2026-09-16'
+generated: '2026-09-23'
 method: generated
 source: openapi/amtrust-financial-services-action-log-api-openapi.yml, openapi/amtrust-financial-services-admin-api-openapi.yml,
   openapi/amtrust-financial-services-agent-contacts-api-openapi.yml, openapi/amtrust-financial-services-appetite-api-openapi.yml,
@@ -23,11 +23,11 @@ description: Recommended x-agentic-access execution contracts, classified heuris
 summary:
   operations: 371
   by_action_class:
-    acting: 178
-    connected: 193
+    acting: 174
+    connected: 197
   by_consequence:
-    write: 159
-    read: 193
+    write: 155
+    read: 197
     physical: 18
     safety-critical: 1
   human_in_the_loop_required: 1
@@ -1008,18 +1008,12 @@ operations:
   method: post
   operationId: post-api-v1-dmsdocument-retrievedmsdocument
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/v1/DMSDocument/RemoveDMSDocument
   method: post
   operationId: post-api-v1-dmsdocument-removedmsdocument
@@ -1128,18 +1122,12 @@ operations:
   method: post
   operationId: post-api-v1-insured-clearance
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/v{version}/Layer/LayerReport
   method: post
   operationId: Layer_LayerReport
@@ -3558,18 +3546,12 @@ operations:
   method: post
   operationId: post-api-v1-quotes-quoteid-modifiers-schedulemodifier
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/v1/quotes/{quoteId}/modifiers/schedulemodifier
   method: put
   operationId: put-api-v1-quotes-quoteid-modifiers-schedulemodifier
@@ -4818,18 +4800,12 @@ operations:
   method: post
   operationId: post-api-v1-specialty-program-quotes-quoteid-modifiers-schedulemodifier
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/v1/specialty-program/quotes/{quoteId}/modifiers/schedulemodifier
   method: put
   operationId: put-api-v1-specialty-program-quotes-quoteid-modifiers-schedulemodifier
